@@ -1,0 +1,369 @@
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\bin\Debug\netoaster.dll
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\bin\Debug\netoaster.pdb
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster.csprojResolveAssemblyReference.cache
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\ToasterWindow.g.cs
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\Themes\Generic.baml
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\ToasterWindow.baml
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster.g.resources
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster.csproj.GenerateResource.Cache
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster.dll
+C:\Users\YassinIdlbi\Desktop\Bashar\netoaster-master\netoaster\obj\Debug\netoaster.pdb
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\bin\Debug\netoaster.dll
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\bin\Debug\netoaster.pdb
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster.csprojResolveAssemblyReference.cache
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\ToasterWindow.g.cs
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\Themes\Generic.baml
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\ToasterWindow.baml
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster.g.resources
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.Cache
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster.dll
+C:\Users\YassinIdlbi\Documents\Visual Studio 2015\Projects\YFS\netoaster\obj\Debug\netoaster.pdb
+E:\Backup Project\2015\YFS\18\YFS\netoaster\bin\Debug\netoaster.dll
+E:\Backup Project\2015\YFS\18\YFS\netoaster\bin\Debug\netoaster.pdb
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\Themes\Generic.baml
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\ToasterWindow.baml
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.g.resources
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.Cache
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.dll
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.pdb
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\Backup Project\2015\YFS\18\YFS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\GitHub\posproject2\POS\netoaster\bin\Debug\netoaster.dll
+E:\GitHub\posproject2\POS\netoaster\bin\Debug\netoaster.pdb
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\Themes\Generic.baml
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\ToasterWindow.baml
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.g.resources
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.dll
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.pdb
+D:\gitpos\POS\netoaster\bin\Debug\netoaster.dll
+D:\gitpos\POS\netoaster\bin\Debug\netoaster.pdb
+D:\gitpos\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\gitpos\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\gitpos\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\gitpos\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\gitpos\POS\netoaster\obj\Debug\Themes\Generic.baml
+D:\gitpos\POS\netoaster\obj\Debug\ToasterWindow.baml
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.g.resources
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.dll
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.pdb
+D:\gitpos\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\myproj\posproject2\POS\netoaster\bin\Debug\netoaster.dll
+D:\myproj\posproject2\POS\netoaster\bin\Debug\netoaster.pdb
+D:\myproj\posproject2\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\myproj\posproject2\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\myproj\posproject2\POS\netoaster\obj\Debug\Themes\Generic.baml
+D:\myproj\posproject2\POS\netoaster\obj\Debug\ToasterWindow.baml
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.g.resources
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.dll
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.pdb
+F:\increase\sales\POS\netoaster\bin\Debug\netoaster.dll
+F:\increase\sales\POS\netoaster\bin\Debug\netoaster.pdb
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+F:\increase\sales\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+F:\increase\sales\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+F:\increase\sales\POS\netoaster\obj\Debug\Themes\Generic.baml
+F:\increase\sales\POS\netoaster\obj\Debug\ToasterWindow.baml
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.g.resources
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.dll
+F:\increase\sales\POS\netoaster\obj\Debug\netoaster.pdb
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\bin\Debug\netoaster.dll
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\bin\Debug\netoaster.pdb
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\Themes\Generic.baml
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\ToasterWindow.baml
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.g.resources
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.dll
+D:\ملفات المشروع\دينا\POS8-6\POS\netoaster\obj\Debug\netoaster.pdb
+D:\VSproject\POS\netoaster\bin\Debug\netoaster.dll
+D:\VSproject\POS\netoaster\bin\Debug\netoaster.pdb
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\VSproject\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\VSproject\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\VSproject\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\VSproject\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\VSproject\POS\netoaster\obj\Debug\Themes\Generic.baml
+D:\VSproject\POS\netoaster\obj\Debug\ToasterWindow.baml
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.g.resources
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.dll
+D:\VSproject\POS\netoaster\obj\Debug\netoaster.pdb
+E:\Pos\2021-07-24\POS\netoaster\bin\Debug\netoaster.dll
+E:\Pos\2021-07-24\POS\netoaster\bin\Debug\netoaster.pdb
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\Themes\Generic.baml
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\ToasterWindow.baml
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.g.resources
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.dll
+E:\Pos\2021-07-24\POS\netoaster\obj\Debug\netoaster.pdb
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\bin\Debug\netoaster.dll
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\bin\Debug\netoaster.pdb
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\Themes\Generic.baml
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\ToasterWindow.baml
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.g.resources
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.dll
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.pdb
+C:\Users\HP\Documents\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\GitHub\posproject2\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\myproj\posproject2\POS\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\increase\sales\POS\netoaster\bin\Debug\netoaster.dll
+D:\increase\sales\POS\netoaster\bin\Debug\netoaster.pdb
+D:\increase\sales\POS\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\increase\sales\POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\increase\sales\POS\netoaster\obj\Debug\Themes\Generic.baml
+D:\increase\sales\POS\netoaster\obj\Debug\ToasterWindow.baml
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster.g.resources
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster.dll
+D:\increase\sales\POS\netoaster\obj\Debug\netoaster.pdb
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\bin\Debug\netoaster.dll
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\bin\Debug\netoaster.pdb
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\ToasterWindow.g.cs
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\Themes\Generic.baml
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\ToasterWindow.baml
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.g.resources
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.dll
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.pdb
+C:\Users\YasinIdlbiPC\source\repos\Restaurant\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\GitHub\RESproject\Restaurant\netoaster\bin\Debug\netoaster.dll
+E:\GitHub\RESproject\Restaurant\netoaster\bin\Debug\netoaster.pdb
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\Themes\Generic.baml
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\ToasterWindow.baml
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.g.resources
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.dll
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.pdb
+D:\increase\Resturant\Restaurant\netoaster\bin\Debug\netoaster.dll
+D:\increase\Resturant\Restaurant\netoaster\bin\Debug\netoaster.pdb
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\Themes\Generic.baml
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\ToasterWindow.baml
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.g.resources
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.dll
+D:\increase\Resturant\Restaurant\netoaster\obj\Debug\netoaster.pdb
+D:\myproj\posproject5\Restaurant\netoaster\bin\Debug\netoaster.dll
+D:\myproj\posproject5\Restaurant\netoaster\bin\Debug\netoaster.pdb
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\Themes\Generic.baml
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\ToasterWindow.baml
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.g.resources
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.dll
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.pdb
+E:\Restaurant 9-2-2022\netoaster\bin\Debug\netoaster.dll
+E:\Restaurant 9-2-2022\netoaster\bin\Debug\netoaster.pdb
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\Themes\Generic.baml
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\ToasterWindow.baml
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.g.resources
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.dll
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.pdb
+E:\Restaurant 9-2-2022\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+D:\myproj\posproject5\Restaurant\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\GitHub\RESproject\Restaurant\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\bin\Debug\netoaster.dll
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\bin\Debug\netoaster.pdb
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\Themes\Generic.baml
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\ToasterWindow.baml
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.g.resources
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.dll
+E:\GitHub\RESproject\Restaurant-Client\Restaurant\netoaster\obj\Debug\netoaster.pdb
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\bin\Debug\netoaster.dll
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\bin\Debug\netoaster.pdb
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\Themes\Generic.baml
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\ToasterWindow.baml
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.g.resources
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.dll
+E:\job with Dina\ConsumerAssociation\POSCA\POSCA\netoaster\obj\Debug\netoaster.pdb
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\bin\Debug\netoaster.dll
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\bin\Debug\netoaster.pdb
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csprojAssemblyReference.cache
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\Themes\Generic.baml
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\ToasterWindow.baml
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.g.resources
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.dll
+E:\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.pdb
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\bin\Debug\netoaster.dll
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\bin\Debug\netoaster.pdb
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\Themes\Generic.baml
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\ToasterWindow.baml
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.g.resources
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.dll
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.pdb
+D:\Kuwait Tech\الجمعية\client\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.AssemblyReference.cache
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\bin\Debug\netoaster.dll
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\bin\Debug\netoaster.pdb
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.AssemblyReference.cache
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\Themes\Generic.baml
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\ToasterWindow.baml
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.g.resources
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.dll
+E:\job\job with Dina\ConsumerAssociation\github\Consumer-Association\POSCA\netoaster\obj\Debug\netoaster.pdb
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\bin\Debug\netoaster.dll
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\bin\Debug\netoaster.pdb
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\Themes\Generic.baml
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\ToasterWindow.baml
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster.g.resources
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster.dll
+E:\job\job with Dina\Hesabate POS\project\Hesabate-POS\netoaster\obj\Debug\netoaster.pdb
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\bin\Debug\netoaster.dll
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\bin\Debug\netoaster.pdb
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\Themes\Generic.baml
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\ToasterWindow.baml
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster.g.resources
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster.dll
+E:\job\job with Dina\Hesabate POS\project\3\Hesabate_POS\netoaster\obj\Debug\netoaster.pdb
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\bin\Debug\netoaster.dll
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\bin\Debug\netoaster.pdb
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\ToasterWindow.g.cs
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\Themes\Generic.baml
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\ToasterWindow.baml
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.g.resources
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.dll
+E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.pdb
