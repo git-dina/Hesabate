@@ -10,58 +10,25 @@
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
         <Storyboard x:Key="Storyboard1">
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="43.5"/>
-            </DoubleAnimationUsingKeyFrames>-->
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-43.5"/>
-            </DoubleAnimationUsingKeyFrames>-->
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>-->
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="grid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="190"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="Storyboard2">
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
-                <EasingDoubleKeyFrame KeyTime="0" Value="43.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle1">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-43.5"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>-->
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle2">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>-->
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="grid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="190"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="50"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <!--<Storyboard x:Key="Storyboard3">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="grid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="190"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="50"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>-->
+       
     </UserControl.Resources>
-    <!--<UserControl.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard3}"/>
-        </EventTrigger>
-    </UserControl.Triggers>-->
+    
     <Grid x:Name="grid_main" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
         <Border x:Name="brd_grid0_0" IsEnabled="True"  
                 Grid.Row="0" Grid.Column="0" 
@@ -132,8 +99,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
+                <!--<RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>-->
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Border x:Name="brd_grid0_1" Grid.Row="0" Grid.Column="0" 
             BorderThickness="0"  
@@ -356,7 +324,7 @@
                         BorderThickness="0 0 0 1" 
                         BorderBrush="{StaticResource LightGrey}"/>
 
-                        <ScrollViewer Grid.Row="2" Margin="0,0,-5,0">
+                        <ScrollViewer Grid.Row="2" Margin="0,0,-5,0" >
                             <WrapPanel x:Name="wp_itemsCard" Margin="5,5,5,5" HorizontalAlignment="Left" >
                               
                                 <Border 
@@ -420,9 +388,7 @@
                                     </Grid>
                                 </Button>
                             </Border>
-
-
-                            <!--<Border Grid.Column="1"
+                            <Border Grid.Column="1"
                                         Width="175" Height="75" 
                         CornerRadius="7" Margin="5"
                                 BorderThickness="1"
@@ -483,7 +449,9 @@
                                     </Grid>
                                 </Button>
                             </Border>
-                            <Border Grid.Column="1"
+
+
+                            <!--<Border Grid.Column="1"
                                         Width="175" Height="75" 
                         CornerRadius="7" Margin="5"
                                 BorderThickness="1"
@@ -1284,8 +1252,16 @@
                 </Grid>
             </Border>
 
-
-            <Border x:Name="brd_grid2_1" Grid.Row="2" Grid.Column="0" 
+            <Grid Grid.Row="2" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+            <Border x:Name="brd_grid2_1" Grid.Row="0" Grid.Column="0" 
             BorderThickness="0"  
                     CornerRadius="7" BorderBrush="Black" Background="White" Padding="0" Margin="5">
                 <Border.Effect>
@@ -1510,31 +1486,53 @@
 
 
                     </StackPanel>
-                    <Border   Grid.RowSpan="3" Grid.Column="1" 
-                    Margin="0"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource LightGrey}" />
-                    <StackPanel Grid.Column="2" Grid.RowSpan="3"
-                                Margin="5">
-                        <TextBlock  Text="TOTAL" 
+                   
+                   
+
+                </Grid>
+            </Border>
+
+                <Border x:Name="brd_total" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" 
+            BorderThickness="0"  
+                    CornerRadius="7" BorderBrush="Black" Background="White" Padding="0" Margin="5">
+                    <Border.Effect>
+                        <DropShadowEffect
+                          ShadowDepth="1"
+                          Direction="360"
+                          Color="Gray"
+                          Opacity="0.3"
+                         BlurRadius="10"/>
+                    </Border.Effect>
+                    <Grid   Margin="10,0" >
+                        <Border Grid.Row="1" Margin="0"  
+                        BorderThickness="0 0 0 1" 
+                        BorderBrush="{StaticResource LightGrey}"/>
+                        <StackPanel Grid.Column="2" Grid.RowSpan="3"
+                                Margin="5"
+                                    VerticalAlignment="Center">
+                            <TextBlock  Text="TOTAL" 
                             x:Name="txt_totalTitle" 
                                     HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                             Foreground="{StaticResource MainColor}" 
-                            FontWeight="Bold" FontSize="16" 
+                            FontWeight="Bold" FontSize="22" 
                                     
                             />
-                        <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
+                            <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
                             x:Name="txt_total" 
                                     HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Foreground="{StaticResource MainColor}" 
-                             FontSize="14"  
+                             FontSize="20"  
                             Margin="5 0"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                </Grid>
-            </Border>
+                    </Grid>
+                </Border>
+
+
+            </Grid>
+
         </Grid>
         <Grid   Grid.Column="2"  Margin="0 5 5 5"  >
             <Grid.RowDefinitions>
@@ -1624,49 +1622,111 @@
                                     TextWrapping="WrapWithOverflow"
                                     TextAlignment="Center"/>
 
-                        <Border Grid.Column="1" Height="35" 
+                        <Button  Grid.Row="1" Grid.Column="1"
+                                 Margin="5" 
+                                 Width="35" Height="35"
+                 x:Name="btn_previous"  
+                                 materialDesign:ButtonAssist.CornerRadius="50"
+                    Background="{StaticResource MainColor}"
+                                 BorderBrush="{StaticResource MainColor}"
+                              BorderThickness="1"
+                    Padding="0" 
+                        >
+                            <Grid 
+                              >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path Fill="{StaticResource White}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="17.5" Height="17.5"
+                              Data="{StaticResource previous}"
+                                      Margin="5"/>
+                            </Grid>
+                        </Button>
+                        <!--<Border Grid.Column="1" Height="35" 
                         CornerRadius="50"
-                                BorderThickness="1" BorderBrush="{StaticResource MainColor}"
-                        Margin="0" Padding="0" Background="{StaticResource White}">
+                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
                             <Button  BorderBrush="{x:Null}"  
                     Background="{x:Null}" 
                         x:Name="btn_previous" 
                         materialDesign:ButtonAssist.CornerRadius="15"
                         Padding="0"  >
                                 <StackPanel Orientation="Horizontal" Margin="5 0" >
-                                    <Path Fill="{StaticResource MainColor}" Margin="5"
+                                    <Path Fill="{StaticResource White}" Margin="5"
                               Stretch="Fill" Height="20"  Width="20" x:Name="path_previous"
                           Data="{StaticResource previous}"  />
                                 </StackPanel>
 
                             </Button>
-                        </Border>
+                        </Border>-->
 
-                         
-                        <Border Grid.Column="3" Height="35" 
+
+                        <Button  Grid.Row="1" Grid.Column="3"
+                                 Margin="5" 
+                                 Width="35" Height="35"
+                 x:Name="btn_next"  
+                                 materialDesign:ButtonAssist.CornerRadius="50"
+                    Background="{StaticResource MainColor}"
+                                 BorderBrush="{StaticResource MainColor}"
+                              BorderThickness="1"
+                    Padding="0" 
+                        >
+                            <Grid 
+                              >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path Fill="{StaticResource White}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="17.5" Height="17.5"
+                              Data="{StaticResource next}"
+                                      Margin="5"/>
+                            </Grid>
+                        </Button>
+                        <!--<Border Grid.Column="3" Width="35"  Height="35" 
                         CornerRadius="50"
-                                BorderThickness="1" BorderBrush="{StaticResource MainColor}"
-                        Margin="0" Padding="0" Background="{StaticResource White}">
+                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
                             <Button  BorderBrush="{x:Null}"  
                     Background="{x:Null}" 
                         x:Name="btn_next" 
                         materialDesign:ButtonAssist.CornerRadius="15"
                         Padding="0"  >
                                 <StackPanel Orientation="Horizontal" Margin="5 0" >
-                                    <Path Fill="{StaticResource MainColor}" Margin="5"
+                                    <Path Fill="{StaticResource White}" Margin="5"
                               Stretch="Fill" Height="20"  Width="20" x:Name="path_next"
                           Data="{StaticResource next}"  />
                                 </StackPanel>
 
                             </Button>
-                        </Border>
-                        <TextBlock Grid.Column="2"   Text="#025168" x:Name="txt_invoiceNumber" Foreground="{StaticResource MainColor}" 
-                                                FontWeight="Regular" FontSize="12"  
-                                       HorizontalAlignment="Right" 
-                                   VerticalAlignment="Center"
-                                   Margin="5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
+                        </Border>-->
+
+                        <Button  Grid.Column="2"
+                                 Margin="5"
+                 x:Name="btn_invoiceNumber"  materialDesign:ButtonAssist.CornerRadius="7"
+                    Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}"
+                              BorderThickness="1"
+                    Padding="0" 
+                        >
+                            <Grid 
+                              >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                 
+                                <TextBlock Text="#209507" Foreground="{StaticResource White}" 
+                                           x:Name="txt_invoiceNumber"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5"
+                                           TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"
+                                            FontWeight="Regular" FontSize="12"  />
+                            </Grid>
+                        </Button>
+                      
 
                         <TextBlock Grid.Column="4"   Text="inv Status" x:Name="txt_invoiceStatus" Foreground="{StaticResource MainColor}" 
                                                 FontWeight="SemiBold" FontSize="14"  
@@ -1739,7 +1799,7 @@
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        <Button Grid.Column="5"    Margin="2.5"
+                                        <!--<Button Grid.Column="5"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
                                                 materialDesign:ButtonAssist.CornerRadius="7"
@@ -1760,7 +1820,7 @@
                                                   Stretch="Fill" 
                                                   Height="15"  Width="15" 
                                               Data="{StaticResource discount}"  />
-                                        </Button>
+                                        </Button>-->
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
@@ -1816,6 +1876,8 @@
 
                                         <TextBlock Grid.Column="1"   Text="256.51" 
                                                  Foreground="{StaticResource MainColor}" 
+                                                   FontSize="14"
+                                                   FontWeight="SemiBold"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Margin="5"
@@ -1883,7 +1945,7 @@
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        <Button Grid.Column="5"    Margin="2.5"
+                                        <!--<Button Grid.Column="5"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
                                                 materialDesign:ButtonAssist.CornerRadius="7"
@@ -1904,7 +1966,7 @@
                                                   Stretch="Fill" 
                                                   Height="15"  Width="15" 
                                               Data="{StaticResource discount}"  />
-                                        </Button>
+                                        </Button>-->
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
@@ -1960,6 +2022,8 @@
 
                                         <TextBlock Grid.Column="1"   Text="256.51" 
                                                  Foreground="{StaticResource MainColor}" 
+                                                   FontSize="14"
+                                                   FontWeight="SemiBold"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Margin="5"
@@ -2027,7 +2091,7 @@
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        <Button Grid.Column="5"    Margin="2.5"
+                                        <!--<Button Grid.Column="5"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
                                                 materialDesign:ButtonAssist.CornerRadius="7"
@@ -2048,7 +2112,7 @@
                                                   Stretch="Fill" 
                                                   Height="15"  Width="15" 
                                               Data="{StaticResource discount}"  />
-                                        </Button>
+                                        </Button>-->
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
@@ -2104,6 +2168,8 @@
 
                                         <TextBlock Grid.Column="1"   Text="256.51" 
                                                  Foreground="{StaticResource MainColor}" 
+                                                   FontSize="14"
+                                                   FontWeight="SemiBold"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Margin="5"
