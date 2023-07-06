@@ -697,10 +697,10 @@ namespace Hesabate_POS.View.receipts
                 MaterialDesignThemes.Wpf.TextFieldAssist.SetCharacterCounterStyle(textBoxNotes, null);
                 MaterialDesignThemes.Wpf.HintAssist.SetHint(textBoxNotes, "Notes1...");
 
-
+                borderNotes.Child = textBoxNotes;
                 #endregion
 
-                Grid.SetRow(borderNotes, 0);
+                Grid.SetColumn(borderNotes, 0);
                 gridRow3.Children.Add(borderNotes);
                 #endregion
                 #region textTotal
@@ -715,7 +715,7 @@ namespace Hesabate_POS.View.receipts
                 textTotal.TextWrapping = TextWrapping.WrapWithOverflow;
                 textTotal.TextAlignment = TextAlignment.Center;
 
-                Grid.SetRow(textTotal, 1);
+                Grid.SetColumn(textTotal, 1);
                 gridRow3.Children.Add(textTotal);
                 #endregion
 
