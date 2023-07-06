@@ -1,4 +1,5 @@
 ﻿using Hesabate_POS.Classes;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,7 @@ namespace Hesabate_POS.View.receipts
 
 
                 buildItemsCard(getItems());
+                buildInvoiceDetails(getInvoiceDetails());
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -247,21 +249,9 @@ namespace Hesabate_POS.View.receipts
 
         }
 
-        private void btn_item_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-                if(button.Tag != null)
-                    MessageBox.Show($"I'm button number: {button.Tag}" );
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
+        
 
-
+        #region itemsCard
         class Item
         {
            public int id;
@@ -417,6 +407,19 @@ namespace Hesabate_POS.View.receipts
             }
 
         }
+        private void btn_item_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                if (button.Tag != null)
+                    MessageBox.Show($"I'm button number: {button.Tag}");
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         public static void setImg(Button img, string uri)
         {
             ImageBrush imageBrush = new ImageBrush();
@@ -428,5 +431,350 @@ namespace Hesabate_POS.View.receipts
             imageBrush.Stretch = Stretch.UniformToFill;
             img.Background = imageBrush;
         }
+        #endregion
+
+
+        #region invoiceDetails
+        class InvoiceDetails
+        {
+            public int id;
+            public string name;
+            public int count;
+            public decimal price;
+            public decimal total;
+        }
+        List<InvoiceDetails> getInvoiceDetails()
+        {
+            Random rnd = new Random();
+            List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
+            for (int i = 0; i < 5; i++)
+            {
+                invoiceDetailsList.Add(new InvoiceDetails()
+                {
+                    id = i + 1,
+                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    count = (int)rnd.Next(1, 99) ,
+                    price = (decimal)rnd.Next(100, 9999) / 100,
+                    total = (decimal)rnd.Next(100, 9999) / 100,
+                });
+            }
+            return invoiceDetailsList;
+        }
+        void buildInvoiceDetails(List<InvoiceDetails> invoiceDetailsList)
+        {
+            sp_invoiceDetails.Children.Clear();
+            //int cardWidth = 175;
+            //int cardHeight = 75;
+            int cornerRadius = 7;
+            foreach (var item in invoiceDetailsList)
+            {
+                
+
+
+                #region borderMain
+                Border borderMain = new Border();
+                borderMain.BorderThickness = new Thickness(1);
+                borderMain.CornerRadius = new CornerRadius(cornerRadius);
+                borderMain.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
+                borderMain.Background = null;
+                borderMain.Margin = new Thickness(5);
+                borderMain.Padding = new Thickness(0);
+
+                #region gridMain
+                Grid gridMain = new Grid();
+                #region gridSettings
+                /////////////////////////////////////////////////////
+                int rowCount = 3;
+                RowDefinition[] rd = new RowDefinition[rowCount];
+                for (int i = 0; i < rowCount; i++)
+                {
+                    rd[i] = new RowDefinition();
+                    rd[i].Height = new GridLength(1, GridUnitType.Auto);
+                    gridMain.RowDefinitions.Add(rd[i]);
+                }
+                #endregion
+
+                #region gridRow1
+                Grid gridRow1 = new Grid();
+                gridRow1.Margin = new Thickness(5);
+                #region gridSettings
+                /////////////////////////////////////////////////////
+                int colCountRow1 = 6;
+                ColumnDefinition[] cdRow1 = new ColumnDefinition[colCountRow1];
+                for (int i = 0; i < colCountRow1; i++)
+                {
+                    cdRow1[i] = new ColumnDefinition();
+                }
+                cdRow1[0].Width = new GridLength(1, GridUnitType.Star);
+                cdRow1[1].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[2].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[3].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[4].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[5].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow1; i++)
+                {
+                    gridRow1.ColumnDefinitions.Add(cdRow1[i]);
+                }
+                #endregion
+                #region itemName
+                TextBlock itemName = new TextBlock();
+                itemName.Text = item.name;
+                itemName.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                itemName.HorizontalAlignment = HorizontalAlignment.Left;
+                itemName.VerticalAlignment = VerticalAlignment.Center;
+                itemName.Margin = new Thickness(5);
+                itemName.TextWrapping = TextWrapping.WrapWithOverflow;
+                itemName.TextAlignment = TextAlignment.Center;
+
+
+                Grid.SetColumn(itemName, 0);
+                gridRow1.Children.Add(itemName);
+                #endregion
+                #region itemCount
+                TextBlock itemCount = new TextBlock();
+                itemCount.Text = item.count.ToString();
+                itemCount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemCount.HorizontalAlignment = HorizontalAlignment.Center;
+                itemCount.VerticalAlignment = VerticalAlignment.Center;
+                itemCount.Margin = new Thickness(5);
+                itemCount.TextWrapping = TextWrapping.WrapWithOverflow;
+                itemCount.TextAlignment = TextAlignment.Center;
+
+
+                Grid.SetColumn(itemCount, 2);
+                gridRow1.Children.Add(itemCount);
+                #endregion
+                #region itemPrice
+                TextBlock itemPrice = new TextBlock();
+                itemPrice.Text = item.price.ToString();
+                itemPrice.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                itemPrice.VerticalAlignment = VerticalAlignment.Center;
+                itemPrice.Margin = new Thickness(5);
+                itemPrice.TextWrapping = TextWrapping.WrapWithOverflow;
+                itemPrice.TextAlignment = TextAlignment.Center;
+
+
+                Grid.SetColumn(itemPrice, 4);
+                gridRow1.Children.Add(itemPrice);
+                #endregion
+                #region   minus
+                Button buttonMinus = new Button();
+                buttonMinus.Tag = "minus-" + item.id;
+                buttonMinus.Margin = new Thickness(2.5);
+                buttonMinus.Height =
+                buttonMinus.Width = 25;
+                buttonMinus.Padding = new Thickness(0);
+                buttonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                buttonMinus.BorderThickness = new Thickness(0);
+                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonMinus, (new CornerRadius(cornerRadius)));
+                #region materialDesign
+                var MinusPackIcon = new PackIcon();
+                MinusPackIcon.Tag = "minusPackIcon-" + item.id;
+                MinusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                MinusPackIcon.Height =
+                MinusPackIcon.Width = 25;
+                MinusPackIcon.Kind = PackIconKind.Minus;
+                buttonMinus.Content = MinusPackIcon;
+                #endregion
+                buttonMinus.Click += buttonMinus_Click;
+
+                Grid.SetColumn(buttonMinus, 1);
+                gridRow1.Children.Add(buttonMinus);
+                /////////////////////////////////
+
+                #endregion
+                #region   plus
+                Button buttonPlus = new Button();
+                buttonPlus.Tag = "plus-" + item.id;
+                buttonPlus.Margin = new Thickness(2.5);
+                buttonPlus.Height =
+                buttonPlus.Width = 25;
+                buttonPlus.Padding = new Thickness(0);
+                buttonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                buttonPlus.BorderThickness = new Thickness(0);
+                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonPlus, (new CornerRadius(cornerRadius)));
+                #region materialDesign
+                var PlusPackIcon = new PackIcon();
+                PlusPackIcon.Tag = "plusPackIcon-" + item.id;
+                PlusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                PlusPackIcon.Height =
+                PlusPackIcon.Width = 25;
+                PlusPackIcon.Kind = PackIconKind.Plus;
+                buttonPlus.Content = PlusPackIcon;
+                #endregion
+                buttonPlus.Click += buttonPlus_Click;
+                Grid.SetColumn(buttonPlus, 3);
+                gridRow1.Children.Add(buttonPlus);
+                /////////////////////////////////
+                #endregion
+                #region   close
+                Button buttonClose = new Button();
+                buttonClose.Tag = "close-" + item.id;
+                buttonClose.Margin = new Thickness(2.5);
+                buttonClose.Height =
+                buttonClose.Width = 25;
+                buttonClose.Padding = new Thickness(0);
+                buttonClose.Background = Application.Current.Resources["Red"] as SolidColorBrush;
+                buttonClose.BorderThickness = new Thickness(0);
+                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonClose, (new CornerRadius(cornerRadius)));
+                #region materialDesign
+                var ClosePackIcon = new PackIcon();
+                ClosePackIcon.Tag = "closePackIcon-" + item.id;
+                ClosePackIcon.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                ClosePackIcon.Height =
+                ClosePackIcon.Width = 25;
+                ClosePackIcon.Kind = PackIconKind.Close;
+                buttonClose.Content = ClosePackIcon;
+                #endregion
+                buttonClose.Click += buttonClose_Click;
+                Grid.SetColumn(buttonClose, 5);
+                gridRow1.Children.Add(buttonClose);
+                /////////////////////////////////
+                #endregion
+                gridMain.Children.Add(gridRow1);
+                #endregion
+                #region stackPanelRow2
+                StackPanel stackPanelRow2 = new StackPanel();
+                stackPanelRow2.Margin = new Thickness(5,0,5,0);
+                #region extraItems
+                List<string> extraItems = new List<string>() { "+ extra item", "- item", };
+                foreach (var extra in extraItems)
+                {
+                    TextBlock extraItem = new TextBlock();
+                    extraItem.Text = extra;
+                    extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    extraItem.HorizontalAlignment = HorizontalAlignment.Left;
+                    extraItem.VerticalAlignment = VerticalAlignment.Center;
+                    extraItem.Margin = new Thickness(5);
+                    extraItem.TextWrapping = TextWrapping.WrapWithOverflow;
+                    extraItem.TextAlignment = TextAlignment.Center;
+
+                    stackPanelRow2.Children.Add(extraItem);
+                }
+                #endregion
+                Grid.SetRow(stackPanelRow2, 1);
+                gridMain.Children.Add(stackPanelRow2);
+                #endregion
+                #region gridRow3
+                Grid gridRow3 = new Grid();
+                gridRow3.Margin = new Thickness(5);
+                #region gridSettings
+                /////////////////////////////////////////////////////
+                int colCountRow3 = 2;
+                ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow1];
+                for (int i = 0; i < colCountRow3; i++)
+                {
+                    cdRow3[i] = new ColumnDefinition();
+                }
+                cdRow3[0].Width = new GridLength(1, GridUnitType.Star);
+                cdRow3[1].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow3; i++)
+                {
+                    gridRow3.ColumnDefinitions.Add(cdRow3[i]);
+                }
+                #endregion
+                #region borderNotes
+                Border borderNotes = new Border();
+                borderNotes.CornerRadius = new CornerRadius(0);
+                borderNotes.Margin = new Thickness(5);
+                borderNotes.BorderThickness = new Thickness(0,0,0,1);
+                borderNotes.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
+                borderNotes.Padding = new Thickness(0);
+                borderNotes.Background = null;
+                #region textBoxNotes
+                TextBox textBoxNotes = new TextBox();
+                textBoxNotes.Height = 40;
+                textBoxNotes.BorderThickness = new Thickness(0);
+                textBoxNotes.Margin = new Thickness(0);
+                textBoxNotes.Padding = new Thickness(10,0,5,0);
+                textBoxNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                textBoxNotes.TextWrapping = TextWrapping.Wrap;
+                //Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                textBoxNotes.Style = Application.Current.Resources["MaterialDesignFloatingHintTextBox"] as Style; ;
+
+                // materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                MaterialDesignThemes.Wpf.TextFieldAssist.SetCharacterCounterStyle(textBoxNotes, null);
+                MaterialDesignThemes.Wpf.HintAssist.SetHint(textBoxNotes, "Notes1...");
+
+
+                #endregion
+
+                Grid.SetRow(borderNotes, 0);
+                gridRow3.Children.Add(borderNotes);
+                #endregion
+                #region textTotal
+                TextBlock textTotal = new TextBlock();
+                textTotal.Text = item.total.ToString();
+                textTotal.FontSize = 14;
+                textTotal.FontWeight = FontWeights.SemiBold;
+                textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                textTotal.HorizontalAlignment = HorizontalAlignment.Center;
+                textTotal.VerticalAlignment = VerticalAlignment.Center;
+                textTotal.Margin = new Thickness(5);
+                textTotal.TextWrapping = TextWrapping.WrapWithOverflow;
+                textTotal.TextAlignment = TextAlignment.Center;
+
+                Grid.SetRow(textTotal, 1);
+                gridRow3.Children.Add(textTotal);
+                #endregion
+
+
+
+                Grid.SetRow(gridRow3, 2);
+                gridMain.Children.Add(gridRow3);
+                #endregion 
+
+
+                borderMain.Child = gridMain;
+                #endregion
+                sp_invoiceDetails.Children.Add(borderMain);
+                #endregion
+
+            }
+        }
+        void buttonMinus_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                Button button = sender as Button;
+                int id = int.Parse(button.Tag.ToString().Replace("minus-", ""));
+                MessageBox.Show($"I'm minus button number: {id}");
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+        }
+        void buttonPlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                int id = int.Parse(button.Tag.ToString().Replace("plus-", ""));
+                MessageBox.Show($"I'm plus button number: {id}");
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        void buttonClose_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                int id = int.Parse(button.Tag.ToString().Replace("close-", ""));
+                MessageBox.Show($"I'm close button number: {id}");
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        #endregion
+
     }
 }

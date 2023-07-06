@@ -1741,7 +1741,7 @@
                     <ScrollViewer Margin="0,10" Background="White"  
                                   Grid.Row="2"  
                                   VerticalScrollBarVisibility="Auto"   >
-                        <StackPanel   >
+                        <StackPanel  x:Name="sp_invoiceDetails"  >
                             <Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
@@ -1753,7 +1753,6 @@
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-
                                     <Grid Margin="5 5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -1774,14 +1773,16 @@
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
                                         <Button  Grid.Column="1"    Margin="2.5"
-                                    Height="25" Width="25"  Padding="0"
+                                    Height="25" Width="25" 
+                                                 materialDesign:ButtonAssist.CornerRadius="5"
+                                                 Padding="0"
                                         Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                             <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
                                          Width="25" Height="25" Kind="Minus" />
                                         </Button>
                                         <TextBlock Grid.Column="2"   Text="6" 
                                                  Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Left"
+                                   HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
@@ -1833,8 +1834,6 @@
                                               Data="{StaticResource close}"  />
                                         </Button>
                                     </Grid>
-
-
                                     <StackPanel Grid.Row="1" Margin="5 0">
                                         <TextBlock Grid.Column="0"   Text="+ extra item" 
                                                  Foreground="{StaticResource textColor}" 
@@ -1851,7 +1850,6 @@
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
                                     </StackPanel>
-
                                     <Grid Grid.Row="2" Margin="5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -1864,7 +1862,6 @@
                                                 <TextBox 
                                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                                   Padding="10,0,5,0"
-                                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                                   materialDesign:HintAssist.Hint="Notes1..."  
                                                   Foreground="{StaticResource textColor}"
                                                  Margin="0,0"  BorderThickness="0"
@@ -1878,7 +1875,7 @@
                                                  Foreground="{StaticResource MainColor}" 
                                                    FontSize="14"
                                                    FontWeight="SemiBold"
-                                   HorizontalAlignment="Left"
+                                   HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
