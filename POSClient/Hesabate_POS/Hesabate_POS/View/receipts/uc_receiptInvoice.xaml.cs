@@ -776,5 +776,69 @@ namespace Hesabate_POS.View.receipts
         }
         #endregion
 
+        private void btn_pay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_using_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_toKitchen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_pending_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_openBox_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_selectAgent_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_invoiceDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_points_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_shiftClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_invoiceCost_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_import_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_transform_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
