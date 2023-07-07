@@ -506,8 +506,14 @@ namespace Hesabate_POS
             }
         }
 
-        
+        private void Btn_setting_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
 
+        private void Btn_lockApp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

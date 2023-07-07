@@ -38,6 +38,9 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
 
@@ -51,30 +54,62 @@
                                />
                     </StackPanel>
                 </Grid>
-
-                <Button Grid.Column="3" x:Name="btn_applicationStop" 
-                    Height="auto"  VerticalAlignment="Center" Margin="5 0"
-                     Background="{x:Null}" BorderBrush="{x:Null}" 
-                    Padding="0"    >
-                    <StackPanel>
-                        <TextBlock Name="txt_cashTitle"    
-                                   Text="Balance"
-                                   HorizontalAlignment="Left"   
-                                   Foreground="{StaticResource White}"  FontSize="12" ></TextBlock>
-                        <DockPanel HorizontalAlignment="Left" >
-                            <TextBlock Name="txt_cashValue"  Text="0.00" Foreground="{StaticResource White}"   HorizontalAlignment="Center"  FontSize="14" />
-                            <TextBlock Name="txt_cashSympol" Text="KWD"  Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="14" Margin="5,0,5,0"/>
-                        </DockPanel>
-                    </StackPanel>
-                </Button>
+                
+                <StackPanel x:Name="sp_licenseNumber" VerticalAlignment="Center" Orientation="Vertical" 
+                            Grid.Column="1" Margin="5 0">
+                    <TextBlock x:Name="txt_licenseNumberTitle"  Text="licenseNumber" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="txt_licenseNumber"  Text="0026846" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                </StackPanel>
+                <Border Grid.Column="2" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                <StackPanel x:Name="sp_posName" VerticalAlignment="Center" Orientation="Vertical" 
+                            Grid.Column="3" Margin="5 0">
+                    <TextBlock x:Name="txt_posNameTitle"  Text="POS Name" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="txt_posName"  Text="POS-158" FontSize="14"
+                               Foreground="White" HorizontalAlignment="Center" />
+                </StackPanel>
                 <Border Grid.Column="4" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
-                <StackPanel Grid.Column="5" VerticalAlignment="Center" Margin="5 0">
+
+               
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical" 
+                       Grid.Column="5" Margin="5 0" >
+                    <TextBlock Name="txt_cashTitle"    
+                               Text="Balance"
+                               HorizontalAlignment="Center"   
+                               Foreground="{StaticResource White}"  
+                               FontSize="12" />
+                    <DockPanel HorizontalAlignment="Center" >
+                        <TextBlock Name="txt_cashValue"  Text="0.00" Foreground="{StaticResource White}"   HorizontalAlignment="Center"  FontSize="14" />
+                        <TextBlock Name="txt_cashSympol" Text="KWD"  Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="14" Margin="5,0,5,0"/>
+                    </DockPanel>
+                </StackPanel>
+                <Border Grid.Column="6" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                <StackPanel Grid.Column="7" VerticalAlignment="Center" Margin="5 0">
                     <TextBlock Name="txtTime" Text="00:00 PM" HorizontalAlignment="Center" Foreground="{StaticResource White}"  FontSize="12" ></TextBlock>
                     <TextBlock Name="txtDate" Text="2021/5/1" Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="12" ></TextBlock>
                 </StackPanel>
-                <Border Grid.Column="6" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
-              
-                <Button Grid.Column="7" x:Name="btn_lang"
+                <Border Grid.Column="8" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                <StackPanel x:Name="stp_userName" VerticalAlignment="Center" Orientation="Vertical" 
+                            Grid.Column="9" Margin="5 0">
+                    <TextBlock x:Name="txt_userNameTitle"  Text="User Name" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="txt_userName"  Text="admin" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                    <!--<TextBlock x:Name="txt_userJob"  Text=""   FontSize="12" FontWeight="Light" Foreground="#E8E8E8" HorizontalAlignment="Left" />-->
+                </StackPanel>
+                <Button Grid.Column="10" x:Name="btn_lockApp"
+                    Background="{x:Null}" BorderBrush="{x:Null}" 
+                            Click="Btn_lockApp_Click"
+                    Padding="0" Margin="5 0">
+                    <Border Background="{StaticResource White}" CornerRadius="90"
+                            Height="30" Width="30">
+                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="15" Height="17.5"
+                              Data="{StaticResource lock}"
+                                      Margin="5"/>
+
+                    </Border>
+
+                </Button>
+                <Button Grid.Column="11" x:Name="btn_lang"
                     Background="{x:Null}" BorderBrush="{x:Null}" 
                             Click="Btn_lang_Click"
                     Padding="0" Margin="5 0">
@@ -87,23 +122,24 @@
                     </Border>
 
                 </Button>
+                <Button Grid.Column="12" x:Name="btn_setting"
+                    Background="{x:Null}" BorderBrush="{x:Null}" 
+                            Click="Btn_setting_Click"
+                    Padding="0" Margin="5 0">
+                    <Border Background="{StaticResource White}" CornerRadius="90"
+                            Height="30" Width="30">
+                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="17.5" Height="17.5"
+                              Data="{StaticResource settings}"
+                                      Margin="5"/>
 
+                    </Border>
 
-                <Button Grid.Column="11" Margin="5 0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
-                   Height="35" Width="35"      materialDesign:ButtonAssist.CornerRadius="90"  FlowDirection="LeftToRight" 
-                        x:Name="btn_userImage" Click="Btn_userImage_Click">
-                    <Ellipse  x:Name="img_userLogin"
-                HorizontalAlignment="Center" VerticalAlignment="Center"   
-                     Height="35" Width="35">
-                        <Ellipse.Fill >
-                            <ImageBrush Stretch="UniformToFill"  x:Name="IMG_userPic" ImageSource="pic/no-image-icon-40x40.png"   />
-                        </Ellipse.Fill>
-                    </Ellipse>
                 </Button>
-                <StackPanel x:Name="stp_userName" VerticalAlignment="Center" Orientation="Vertical" Grid.Column="12" Margin="5,5,5,5">
-                    <TextBlock x:Name="txt_userName"  Text="" FontSize="12" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="txt_userJob"  Text=""   FontSize="12" FontWeight="Light" Foreground="#E8E8E8" HorizontalAlignment="Left" />
-                </StackPanel>
+
+
+               
 
                 <Button Grid.Column="13" x:Name="BTN_Minimize" Click="BTN_Minimize_Click"
                Margin="5 0"
