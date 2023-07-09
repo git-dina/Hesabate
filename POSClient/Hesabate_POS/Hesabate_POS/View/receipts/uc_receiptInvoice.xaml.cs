@@ -52,6 +52,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         public static List<string> requiredControlList;
+        ItemService _itemService = new ItemService();
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
