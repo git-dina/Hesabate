@@ -367,3 +367,18 @@ E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoa
 E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
 E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.dll
 E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\netoaster\obj\Debug\netoaster.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\bin\Debug\netoaster.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\bin\Debug\netoaster.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.AssemblyReference.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\ToasterWindow.g.cs
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster_MarkupCompile.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster_MarkupCompile.lref
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\Themes\Generic.baml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\ToasterWindow.baml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.g.resources
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.Properties.Resources.resources
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.GenerateResource.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.csproj.CoreCompileInputs.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\netoaster\obj\Debug\netoaster.pdb

@@ -76,3 +76,44 @@ E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\Hesabate_POS\obj\Debug\He
 E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.GenerateResource.cache
 E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.CoreCompileInputs.cache
 E:\job\job with Dina\Hesabate POS\project\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.CopyComplete
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Hesabate_POS.exe.config
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Hesabate_POS.exe
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Hesabate_POS.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\ControlzEx.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MahApps.Metro.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MaterialDesignColors.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\netoaster.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\netoaster.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\ControlzEx.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\ControlzEx.xml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MahApps.Metro.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MahApps.Metro.xml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MaterialDesignColors.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\de\MahApps.Metro.resources.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.AssemblyReference.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.SuggestedBindingRedirects.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\MainWindow.g.cs
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\View\receipts\uc_receiptInvoice.g.cs
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\App.g.cs
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS_MarkupCompile.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS_MarkupCompile.lref
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\App.baml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\MainWindow.baml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\View\receipts\uc_receiptInvoice.baml
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.g.resources
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.ar_file.resources
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.en_file.resources
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.Properties.Resources.resources
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.GenerateResource.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.CoreCompileInputs.cache
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.csproj.CopyComplete
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.exe
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\obj\Debug\Hesabate_POS.pdb
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Newtonsoft.Json.dll
+D:\Hesabate POS\git\Hesabate\POSClient\Hesabate_POS\Hesabate_POS\bin\Debug\Newtonsoft.Json.xml

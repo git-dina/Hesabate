@@ -50,6 +50,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -75,9 +78,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ar_file.Designer.cs" />
+    <Compile Include="Classes\ApiClasses\GeneralInfoModel.cs" />
+    <Compile Include="Classes\ApiClasses\ItemModel.cs" />
+    <Compile Include="Classes\ApiClasses\LanguageModel.cs" />
+    <Compile Include="Classes\ApiClasses\MainOpModel.cs" />
+    <Compile Include="Classes\ApiClasses\TableModel.cs" />
+    <Compile Include="Classes\GeneralInfoService.cs" />
     <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\FindVisualChildren.cs" />
     <Compile Include="Classes\HelpClass.cs" />
+    <Compile Include="Classes\ItemService.cs" />
     <Compile Include="en_file.Designer.cs" />
     <Compile Include="View\receipts\uc_receiptInvoice.xaml.cs">
       <DependentUpon>uc_receiptInvoice.xaml</DependentUpon>
@@ -138,7 +148,6 @@
     <Resource Include="pic\no-image-icon-90x90.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\ApiClasses\" />
     <Folder Include="converters\" />
     <Folder Include="View\windows\" />
   </ItemGroup>

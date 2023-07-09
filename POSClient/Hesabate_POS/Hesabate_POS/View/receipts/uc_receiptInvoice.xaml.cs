@@ -76,6 +76,9 @@ namespace Hesabate_POS.View.receipts
                 translate();
                 requiredControlList = new List<string> { "" };
 
+                await GeneralInfoService.GetMainInfo();// move to login
+
+                var items = _itemService.getCatItems(0);
 
                 buildItemsCard(getItems());
                 buildInvoiceDetails(getInvoiceDetails());
