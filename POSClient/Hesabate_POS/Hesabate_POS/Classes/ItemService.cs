@@ -12,20 +12,99 @@ namespace Hesabate_POS.Classes
 
         public List<ItemModel> getCatItems(int catId)
         {
+            List<ItemModel> items = null;
             if (catId == 0)
                 return GeneralInfoService.GeneralInfo.buttons_cat;
             else
             {
-                var cat = GeneralInfoService.GeneralInfo.buttons_cat.Where(x => x.id == catId).FirstOrDefault();
-                if (cat.level2 != null)
-                    return cat.level2;
-                else if (cat.items != null)
-                    return cat.items;
-                else
-                    return new List<ItemModel>();
+
+                foreach (var catRow in GeneralInfoService.GeneralInfo.buttons_cat)
+                {
+                    if (catRow.id == catId)
+                    {
+                        if (catRow.level2 != null)
+                            return catRow.level2;
+                        else if (catRow.items != null)
+                            return catRow.items;
+                    }
+                    if (catRow.level2 != null)
+                    {
+                        items = SearchCatLevel2(catRow.level2, catId);
+                        if (items != null)
+                            return items;
+                    }
+                }
+  
+
+                return new List<ItemModel>();
+                //var cat = GeneralInfoService.GeneralInfo.buttons_cat.Where(x => x.id == catId).FirstOrDefault();
+                //if (cat != null)
+                //{
+                //    if (cat.level2 != null)
+                //        return cat.level2;
+                //    else if (cat.items != null)
+                //        return cat.items;
+                //}
+                //else
+                //    return new List<ItemModel>();
             }
         }
-        
+
+        private List<ItemModel> SearchCatLevel2(List<ItemModel> level2, int itemId)
+        {
+            foreach (var level in level2)
+            {
+                if (level.id == itemId)
+                {
+                    if (level.level2 != null)
+                        return level.level2;
+                    else if (level.items != null)
+                        return level.items;
+                }
+
+                if (level.level2 != null)
+                    return SearchCatLevel2(level.level2, itemId);
+            }
+
+            return null;
+        }
+
+        //private List<ItemModel> searchCatItems(List<ItemModel>  cat,int catId)
+        //{
+        //    List<ItemModel> item = null;
+
+        //    foreach (var catRow in cat)
+        //    {
+        //        if (catRow.items != null)
+        //        {
+        //            item = catRow.items.Where(x => x.id == catId).FirstOrDefault();
+        //            if (item != null)
+        //                return item;
+        //        }
+        //        else
+        //        {
+        //            foreach (var level in catRow.level2)
+        //            {
+        //                if (level.items != null)
+        //                {
+        //                    item = level.items.Where(x => x.id == catId).FirstOrDefault();
+        //                    if (item != null)
+        //                        return item;
+        //                }
+        //                else
+        //                {
+        //                    item = searchCatItems(level.level2, itemId);
+        //                    if (item != null)
+        //                        return item;
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return null;
+
+
+        //}
         public ItemModel getItem(int itemId,string type)
         {
             ItemModel itemModel = null;
@@ -62,7 +141,7 @@ namespace Hesabate_POS.Classes
             {
                 if (level.id == itemId)
                     return level;
-                if(level.level2 != null)
+                else if(level.level2 != null)
                   return  SearchInLevel2(level.level2, itemId);
             }
 
