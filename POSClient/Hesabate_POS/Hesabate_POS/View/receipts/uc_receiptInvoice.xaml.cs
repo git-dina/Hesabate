@@ -81,7 +81,8 @@ namespace Hesabate_POS.View.receipts
 
                 await GeneralInfoService.GetMainInfo();// move to login
 
-                
+                var item = _itemService.getItem(50, "item");
+
                 buildInvoiceDetails(getInvoiceDetails());
 
                 HelpClass.EndAwait(grid_main);
@@ -365,6 +366,7 @@ namespace Hesabate_POS.View.receipts
                 //    Stretch = Stretch.UniformToFill,
                 //    ImageSource = new BitmapImage(new Uri(item.url, UriKind.Relative))
                 //};
+          
                 setImg(buttonImage, item.img);
 
                 Grid.SetRowSpan(buttonImage, 2);
@@ -454,7 +456,11 @@ namespace Hesabate_POS.View.receipts
         {
             
             ImageBrush imageBrush = new ImageBrush();
-            Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative);
+
+            Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative); ;
+            //if(uri != null)
+            //    resourceUri = 
+
             StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
             BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
             imageBrush.ImageSource = temp;

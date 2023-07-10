@@ -9,12 +9,13 @@ namespace Hesabate_POS.Classes.ApiClasses
     public class ItemModel
     {
         public int id { get; set; }
-        public int id2 { get; set; }
-        public int but_mast_id { get; set; }
+        public int? id2 { get; set; } // for extras
+
+        public int but_mast_id { get; set; }//parent category id
         public string name { get; set; }
         public string color { get; set; }
-        public List<ItemModel> level2 { get; set; }
-        public List<ItemModel> items { get; set; }
+        public List<ItemModel> level2 { get; set; } // == null there is no sub category
+        public List<ItemModel> items { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
         public decimal discount { get; set; }
         public decimal price { get; set; }
         public string no_w { get; set; }
@@ -30,6 +31,5 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string tax_class { get; set; }
         public string measure_id { get; set; }
         public string unit_parts { get; set; }
-
     }
 }
