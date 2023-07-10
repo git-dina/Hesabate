@@ -1,4 +1,5 @@
 ﻿using Hesabate_POS.Classes;
+using Hesabate_POS.Classes.ApiClasses;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,7 @@ namespace Hesabate_POS.View.receipts
 
         public static List<string> requiredControlList;
         ItemService _itemService = new ItemService();
+        List<ItemModel> items = new List<ItemModel>();
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -79,9 +81,7 @@ namespace Hesabate_POS.View.receipts
 
                 await GeneralInfoService.GetMainInfo();// move to login
 
-                var items = _itemService.getCatItems(0);
-
-                buildItemsCard(getItems());
+                
                 buildInvoiceDetails(getInvoiceDetails());
 
                 HelpClass.EndAwait(grid_main);
@@ -253,9 +253,10 @@ namespace Hesabate_POS.View.receipts
 
         }
 
-        
+
 
         #region itemsCard
+        /*
         class Item
         {
            public int id;
@@ -279,14 +280,21 @@ namespace Hesabate_POS.View.receipts
             }
             return items;
         }
-        void buildItemsCard(List<Item> items)
+        */
+
+        void buildItemsCard(List<ItemModel> items)
         {
             wp_itemsCard.Children.Clear();
             int cardWidth = 175;
             int cardHeight = 75;
             int cornerRadius = 7;
+            bool isLast =false;
             foreach (var item in items)
             {
+                if (item.items is null && item.level2 is null)
+                    isLast = true;
+                else
+                    isLast = false;
 
                 #region borderMain
                 Border borderMain = new Border();
@@ -357,12 +365,12 @@ namespace Hesabate_POS.View.receipts
                 //    Stretch = Stretch.UniformToFill,
                 //    ImageSource = new BitmapImage(new Uri(item.url, UriKind.Relative))
                 //};
-                setImg(buttonImage, item.url);
+                setImg(buttonImage, item.img);
 
-
-            Grid.SetRowSpan(buttonImage, 2);
+                Grid.SetRowSpan(buttonImage, 2);
                 gridMain.Children.Add(buttonImage);
                 #endregion
+
                 #region textName
                 TextBlock textName = new TextBlock();
                 textName.Text = item.name;
@@ -379,27 +387,29 @@ namespace Hesabate_POS.View.receipts
                 gridMain.Children.Add(textName);
                 #endregion
                 #region borderPrice
-               
-                Border borderPrice = new Border();
-                borderPrice.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                borderPrice.Padding = new Thickness(0);
-                borderPrice.Margin = new Thickness(0);
+                if (isLast)
+                {
+                    Border borderPrice = new Border();
+                    borderPrice.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    borderPrice.Padding = new Thickness(0);
+                    borderPrice.Margin = new Thickness(0);
                     borderPrice.CornerRadius = new CornerRadius(0, 0, 12, 0);
 
-                #region textPrice
-                TextBlock textPrice = new TextBlock();
-                textPrice.Text = item.price.ToString();
-                textPrice.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
-                textPrice.Margin = new Thickness(5,2.5, 5, 2.5);
-                textPrice.HorizontalAlignment = HorizontalAlignment.Center;
-                textPrice.VerticalAlignment = VerticalAlignment.Center;
-                textPrice.TextWrapping = TextWrapping.WrapWithOverflow;
-                textPrice.TextAlignment = TextAlignment.Center;
-                borderPrice.Child= textPrice;
-                #endregion
-                Grid.SetRow(borderPrice, 1);
-                Grid.SetColumn(borderPrice,1);
-                gridMain.Children.Add(borderPrice);
+                    #region textPrice
+                    TextBlock textPrice = new TextBlock();
+                    textPrice.Text = item.price.ToString();
+                    textPrice.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                    textPrice.Margin = new Thickness(5, 2.5, 5, 2.5);
+                    textPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                    textPrice.VerticalAlignment = VerticalAlignment.Center;
+                    textPrice.TextWrapping = TextWrapping.WrapWithOverflow;
+                    textPrice.TextAlignment = TextAlignment.Center;
+                    borderPrice.Child = textPrice;
+                    #endregion
+                    Grid.SetRow(borderPrice, 1);
+                    Grid.SetColumn(borderPrice, 1);
+                    gridMain.Children.Add(borderPrice);
+                }
                 #endregion
 
                 buttonMain.Content = gridMain;
@@ -417,7 +427,23 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 if (button.Tag != null)
-                    MessageBox.Show($"I'm button number: {button.Tag}");
+                {
+                    int itemId = int.Parse(button.Tag.ToString());
+                    // isLast
+                    //if (item.items != null || item.level2 != null)
+                    {
+                        // categoryPath
+                        //categoryPath.Add(item);
+
+                        // itemsCard
+                        //items = _itemService.getCatItems(item.id);
+                        items = _itemService.getCatItems(itemId);
+                        buildItemsCard(items);
+
+                    }
+
+
+                }
             }
             catch (Exception ex)
             {
@@ -426,15 +452,106 @@ namespace Hesabate_POS.View.receipts
         }
         public static void setImg(Button img, string uri)
         {
+            
             ImageBrush imageBrush = new ImageBrush();
-
-            Uri resourceUri = new Uri(uri, UriKind.Relative);
+            Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative);
             StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
             BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
             imageBrush.ImageSource = temp;
             imageBrush.Stretch = Stretch.UniformToFill;
             img.Background = imageBrush;
         }
+
+
+        #endregion
+        #region category
+        private void btn_allItems_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            { 
+                // categoryPath
+                categoryPath.Clear();
+                buildCategoryPath(categoryPath);
+
+                // itemsCard
+                items = _itemService.getCatItems(0);
+                buildItemsCard(items);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+
+        List<ItemModel> categoryPath = new List<ItemModel>();
+        void buildCategoryPath(List<ItemModel> categories)
+        {
+            wp_itemsCard.Children.Clear();
+            foreach (var item in items)
+            {
+               
+                #region borderMain
+                Border borderMain = new Border();
+               
+                borderMain.Margin = new Thickness(0);
+                borderMain.Padding = new Thickness(0);
+                borderMain.MinWidth = 50;
+                borderMain.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                #region buttonMain
+                Button buttonMain = new Button();
+                buttonMain.Tag = item.id;
+                buttonMain.Padding = new Thickness(0);
+                buttonMain.BorderBrush = null;
+                buttonMain.Background = null;
+                buttonMain.Height = 50;
+
+                buttonMain.Click += btn_categoryPath_Click;
+                #region textName
+                TextBlock textName = new TextBlock();
+                textName.Text = ">" + item.name;
+                textName.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                textName.Margin = new Thickness(5);
+                buttonMain.Content=textName;
+                #endregion
+                borderMain.Child = buttonMain;
+                #endregion
+                wp_itemsCard.Children.Add(borderMain);
+                #endregion
+            }
+
+        }
+        private void btn_categoryPath_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                if (button.Tag != null)
+                {
+                    int itemId = int.Parse(button.Tag.ToString());
+                    MessageBox.Show($"I'm item num: {itemId}");
+                    // isLast
+                    //if (item.items != null || item.level2 != null)
+                    //{
+                        // categoryPath
+                        //categoryPath.Add(item);
+
+                        // itemsCard
+                        //items = _itemService.getCatItems(item.id);
+                        //items = _itemService.getCatItems(itemId);
+                        //buildItemsCard(items);
+
+                    //}
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
         #endregion
 
 
@@ -780,6 +897,8 @@ namespace Hesabate_POS.View.receipts
         }
         #endregion
 
+
+        
         private void btn_pay_Click(object sender, RoutedEventArgs e)
         {
 
@@ -844,5 +963,6 @@ namespace Hesabate_POS.View.receipts
         {
 
         }
+
     }
 }

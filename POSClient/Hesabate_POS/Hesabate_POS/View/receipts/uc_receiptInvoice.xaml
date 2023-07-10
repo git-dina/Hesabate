@@ -633,7 +633,7 @@
                         Margin="0" Padding="0" Background="{StaticResource MainColor}">
                             <Button  BorderBrush="{x:Null}"  
                     Background="{x:Null}"  Height="50"
-                        x:Name="btn_allItems" 
+                        x:Name="btn_allItems"  Click="btn_allItems_Click"
                         materialDesign:ButtonAssist.CornerRadius="15"
                         Padding="0"  >
                                 <StackPanel Orientation="Horizontal"  >
@@ -649,14 +649,13 @@
                         <ScrollViewer Margin="0,0,10,0" Background="White"  
                                   Grid.Column="1"  
                                   VerticalScrollBarVisibility="Auto"   >
-                            <StackPanel Orientation="Horizontal" >
-                                <Border 
+                            <StackPanel x:Name="sp_categoryPath" Orientation="Horizontal" >
+                                <!--<Border 
                         Margin="0" Padding="0" MinWidth="50"
                         Background="{StaticResource MainColor}">
                                     <Button  BorderBrush="{x:Null}"  
                                  Background="{x:Null}"  Height="50"
                                         x:Name="btn_level1" 
-                                        materialDesign:ButtonAssist.CornerRadius="15"
                                         Padding="0"  >
                                         <StackPanel Orientation="Horizontal"  >
                                             <TextBlock x:Name="txt_level1" 
@@ -673,17 +672,14 @@
                                     <Button  BorderBrush="{x:Null}"  
                                  Background="{x:Null}"  Height="50"
                                         x:Name="btn_level2" 
-                                        materialDesign:ButtonAssist.CornerRadius="15"
                                         Padding="0"  >
-                                        <StackPanel Orientation="Horizontal"  >
                                             <TextBlock x:Name="txt_level2" 
                                                        Text=">level2"  
-                                             Foreground="White" Margin="5"
+                                             Foreground="{StaticResource White}" Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        </StackPanel>
                                     </Button>
-                                </Border>
+                                </Border>-->
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
@@ -695,7 +691,7 @@
                         <ScrollViewer Grid.Row="2" Margin="0,0,-5,0" >
                             <WrapPanel x:Name="wp_itemsCard" Margin="5,5,5,5" HorizontalAlignment="Left" >
                               
-                                <Border 
+                                <!--<Border 
                                         Width="175" Height="75" 
                         CornerRadius="7" Margin="5"
                                 BorderThickness="1"
@@ -718,19 +714,16 @@
                                             <ColumnDefinition Width="75"/>
                                             <ColumnDefinition Width="100"/>
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
+                                        <Image Grid.RowSpan="2"
                                         FlowDirection="LeftToRight"
                                         materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
                                         Height="75"
                                         Width="75"
+                                               Source="/pic/foods/1.png"
+                                               Stretch="Fill"
                                         >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="Fill" 
-                                            ImageSource="/pic/foods/1.png"   />
-                                            </Button.Background>
-                                        </Button>
+
+                                        </Image>
                                         <TextBlock Grid.Column="1"   
                                            Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
                                    Foreground="{StaticResource textColor}" 
@@ -816,7 +809,7 @@
                                         </Border>
                                     </Grid>
                                 </Button>
-                            </Border>
+                            </Border>-->
 
 
                             <!--<Border Grid.Column="1"
