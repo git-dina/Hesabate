@@ -81,7 +81,7 @@ namespace Hesabate_POS.View.receipts
 
                 await GeneralInfoService.GetMainInfo();// move to login
 
-                var item = _itemService.getItem(50, "item");
+                
 
                 buildInvoiceDetails(getInvoiceDetails());
 
@@ -292,7 +292,7 @@ namespace Hesabate_POS.View.receipts
             bool isLast =false;
             foreach (var item in items)
             {
-                if (item.items is null && item.level2 is null)
+                if (ItemService.itemIsLast(item))
                     isLast = true;
                 else
                     isLast = false;
@@ -311,6 +311,7 @@ namespace Hesabate_POS.View.receipts
                 #region buttonMain
                 Button buttonMain = new Button();
                 buttonMain.Tag = item.id;
+                buttonMain.DataContext = item;
                 buttonMain.Width = cardWidth;
                 buttonMain.Height = cardHeight;
                 buttonMain.BorderBrush = null;
@@ -427,21 +428,52 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                /*
                 Button button = sender as Button;
                 if (button.Tag != null)
                 {
                     int itemId = int.Parse(button.Tag.ToString());
-                    // isLast
-                    //if (item.items != null || item.level2 != null)
+                    var item = _itemService.getItem(itemId, "cat");
+                    // is not Last
+                    if (item.items != null || item.level2 != null)
                     {
                         // categoryPath
-                        //categoryPath.Add(item);
+                        categoryPath.Add(item);
 
                         // itemsCard
-                        //items = _itemService.getCatItems(item.id);
-                        items = _itemService.getCatItems(itemId);
+                        items = _itemService.getCatItems(item.id);
                         buildItemsCard(items);
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Add me to invoice");
+                    }
+
+
+                }
+                */
+                Button button = sender as Button;
+                if (button.DataContext != null)
+                {
+                    //int itemId = int.Parse(button.Tag.ToString());
+                    var item = button.DataContext as ItemModel;
+                    // is not Last
+                    //if ( item.level2 != null || (item.items != null && item.items.Count != 0))
+                    if (!ItemService.itemIsLast(item))
+                    {
+                        // categoryPath
+                        categoryPath.Add(item);
+                        buildCategoryPath(categoryPath);
+
+                        // itemsCard
+                        items = _itemService.getCatItems(item.id);
+                        buildItemsCard(items);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Add me to invoice");
                     }
 
 
@@ -493,8 +525,8 @@ namespace Hesabate_POS.View.receipts
         List<ItemModel> categoryPath = new List<ItemModel>();
         void buildCategoryPath(List<ItemModel> categories)
         {
-            wp_itemsCard.Children.Clear();
-            foreach (var item in items)
+            sp_categoryPath.Children.Clear();
+            foreach (var item in categories)
             {
                
                 #region borderMain
@@ -507,6 +539,7 @@ namespace Hesabate_POS.View.receipts
                 #region buttonMain
                 Button buttonMain = new Button();
                 buttonMain.Tag = item.id;
+                buttonMain.DataContext = item;
                 buttonMain.Padding = new Thickness(0);
                 buttonMain.BorderBrush = null;
                 buttonMain.Background = null;
@@ -522,7 +555,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 borderMain.Child = buttonMain;
                 #endregion
-                wp_itemsCard.Children.Add(borderMain);
+                sp_categoryPath.Children.Add(borderMain);
                 #endregion
             }
 
@@ -532,23 +565,16 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                if (button.Tag != null)
+                if (button.DataContext != null)
                 {
-                    int itemId = int.Parse(button.Tag.ToString());
-                    MessageBox.Show($"I'm item num: {itemId}");
-                    // isLast
-                    //if (item.items != null || item.level2 != null)
-                    //{
+                    var item = button.DataContext as ItemModel;
                         // categoryPath
-                        //categoryPath.Add(item);
+                        categoryPath.Add(item);
+                        buildCategoryPath(categoryPath);
 
                         // itemsCard
-                        //items = _itemService.getCatItems(item.id);
-                        //items = _itemService.getCatItems(itemId);
-                        //buildItemsCard(items);
-
-                    //}
-
+                        items = _itemService.getCatItems(item.id);
+                        buildItemsCard(items);
 
                 }
             }
