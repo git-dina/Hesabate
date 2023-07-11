@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -491,6 +492,7 @@ namespace Hesabate_POS.View.receipts
             ImageBrush imageBrush = new ImageBrush();
             BitmapFrame temp;
 
+            imageBrush.Stretch = Stretch.UniformToFill;
             Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative);
 
             if (uri != null && uri != "")
@@ -502,9 +504,17 @@ namespace Hesabate_POS.View.receipts
                     {
                         // temp = BitmapFrame.Create(ms);
                         temp = BitmapFrame.Create(new Uri(AppSettings.APIUri + "/" + uri));
-                        
-                        imageBrush.ImageSource = temp;
-                        imageBrush.Stretch = Stretch.UniformToFill;
+
+                        string remoteUri = AppSettings.APIUri + "/" + uri;
+                        var imgUrl = new Uri(remoteUri);
+                        var imageData = new WebClient().DownloadData(imgUrl);
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = new MemoryStream(imageData);
+                        bitmapImage.EndInit();
+
+                        //imageBrush.ImageSource = temp;
+                        imageBrush.ImageSource = bitmapImage;
                         img.Background = imageBrush;
 
                        
@@ -515,7 +525,6 @@ namespace Hesabate_POS.View.receipts
                     StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
                     temp = BitmapFrame.Create(streamInfo.Stream);
                     imageBrush.ImageSource = temp;
-                    imageBrush.Stretch = Stretch.UniformToFill;
                     img.Background = imageBrush;
                 }
             }
@@ -524,7 +533,6 @@ namespace Hesabate_POS.View.receipts
                 StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
                 temp = BitmapFrame.Create(streamInfo.Stream);
                 imageBrush.ImageSource = temp;
-                imageBrush.Stretch = Stretch.UniformToFill;
                 img.Background = imageBrush;
             }
             //StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
