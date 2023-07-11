@@ -284,7 +284,7 @@ namespace Hesabate_POS.View.receipts
         }
         */
 
-        void buildItemsCard(List<ItemModel> items)
+      async  Task buildItemsCard(List<ItemModel> items)
         {
             wp_itemsCard.Children.Clear();
             int cardWidth = 175;
@@ -369,7 +369,7 @@ namespace Hesabate_POS.View.receipts
                 //    ImageSource = new BitmapImage(new Uri(item.url, UriKind.Relative))
                 //};
           
-                setImg(buttonImage, item.img);
+                await setImg(buttonImage, item.img);
 
                 Grid.SetRowSpan(buttonImage, 2);
                 gridMain.Children.Add(buttonImage);
@@ -425,7 +425,7 @@ namespace Hesabate_POS.View.receipts
             }
 
         }
-        private void btn_item_Click(object sender, RoutedEventArgs e)
+        private async void btn_item_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -469,7 +469,7 @@ namespace Hesabate_POS.View.receipts
 
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
-                        buildItemsCard(items);
+                        await buildItemsCard(items);
 
                     }
                     else
@@ -485,7 +485,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        public async static void setImg(Button img, string uri)
+        public async static Task setImg(Button img, string uri)
         {
             
             ImageBrush imageBrush = new ImageBrush();
@@ -497,13 +497,17 @@ namespace Hesabate_POS.View.receipts
             {
                 try
                 {
-                    //using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
-                    using(MemoryStream ms = new MemoryStream( await ItemService.DownloadImageAsync(AppSettings.APIUri, uri)) )
+                   // using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
+                    //using (MemoryStream ms = new MemoryStream( await ItemService.DownloadImageAsync(AppSettings.APIUri, uri)) )
                     {
-                        temp = BitmapFrame.Create(ms);
+                        // temp = BitmapFrame.Create(ms);
+                        temp = BitmapFrame.Create(new Uri(AppSettings.APIUri + "/" + uri));
+                        
                         imageBrush.ImageSource = temp;
                         imageBrush.Stretch = Stretch.UniformToFill;
                         img.Background = imageBrush;
+
+                       
                     }
 
                 }
@@ -534,7 +538,7 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
         #region category
-        private void btn_allItems_Click(object sender, RoutedEventArgs e)
+        private async void btn_allItems_Click(object sender, RoutedEventArgs e)
         {
             try
             { 
@@ -544,7 +548,7 @@ namespace Hesabate_POS.View.receipts
 
                 // itemsCard
                 items = _itemService.getCatItems(0);
-                buildItemsCard(items);
+                await buildItemsCard(items);
             }
             catch (Exception ex)
             {
@@ -591,7 +595,7 @@ namespace Hesabate_POS.View.receipts
             }
 
         }
-        private void btn_categoryPath_Click(object sender, RoutedEventArgs e)
+        private async void btn_categoryPath_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -605,7 +609,7 @@ namespace Hesabate_POS.View.receipts
 
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
-                        buildItemsCard(items);
+                       await buildItemsCard(items);
 
                 }
             }
