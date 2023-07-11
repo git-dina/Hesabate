@@ -18,12 +18,12 @@ namespace Hesabate_POS.Classes
         public static ResourceManager resourcemanagerEn;
 
        
-        public static string APIUri = "http://localhost:7473/api/";
+        public static string APIUri = "http://s.hesabate.com";
 
 
         #region folders Paths
         public const string TMPFolder = "Thumb";
-        public const string TMPSupFolder = "Thumb/SupDocuments";
+        public const string ItemsImgPath = "Thumb/Items"; // folder to save items photos locally 
         public const string TMPSettingFolder = "Thumb/setting"; // folder to save Logo photos locally 
         #endregion
 

@@ -15,6 +15,7 @@ namespace Hesabate_POS.Classes
        public static GeneralInfoModel GeneralInfo = new GeneralInfoModel();
       public static  List<LanguageModel> Languages = new List<LanguageModel>();
 
+
         public static async Task GetLanguages()
         {
 
@@ -72,6 +73,21 @@ namespace Hesabate_POS.Classes
 
             }
         }
-     
+
+        public static async Task GetLanguagesTerms()
+        {
+
+            using (var client = new HttpClient())
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post, "http://s.hesabate.com/POS/p5api2.php");
+                var content = new MultipartFormDataContent();
+                content.Add(new StringContent("0"), "lang");
+                request.Content = content;
+                var response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+
     }
 }

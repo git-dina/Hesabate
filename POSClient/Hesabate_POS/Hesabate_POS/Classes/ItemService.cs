@@ -1,7 +1,12 @@
 ﻿using Hesabate_POS.Classes.ApiClasses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Security;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -192,6 +197,81 @@ namespace Hesabate_POS.Classes
                 return true;
             else
                 return false;
+        }
+
+        public static async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
+        {
+
+            //// Get the file extension
+            //var uriWithoutQuery = uri.GetLeftPart(UriPartial.Path);
+            //var fileExtension = Path.GetExtension(uriWithoutQuery);
+
+            //// Create file path and ensure directory exists
+            //var path = Path.Combine(directoryPath, $"{fileName}{fileExtension}");
+            //Directory.CreateDirectory(directoryPath);
+
+            //// Download the image and write to the file
+            //var imageBytes = await _httpClient.GetByteArrayAsync(uri);
+            //await File.WriteAllBytesAsync(path, imageBytes);
+
+            //second
+            //  string remoteUri = "http://s.hesabate.com/POS/p5api2.php/storage/db_1828/db_1828_b_18.gif";
+            //string fileName = "db_1828_b_18.gif", myStringWebResource = null;
+            //// Create a new WebClient instance.
+            //WebClient myWebClient = new WebClient();
+            //// Concatenate the domain with the Web resource filename.
+            //myStringWebResource = remoteUri + fileName;
+            //Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", fileName, myStringWebResource);
+            //// Download the Web resource and save it into the current filesystem folder.
+            //myWebClient.DownloadFile(myStringWebResource, fileName);
+
+            //third
+            //using (WebClient client = new WebClient())
+            //{
+
+            //    client.DownloadFileAsync(new Uri(remoteUri), "image35.png");
+            //}
+
+            string remoteUri = apiUri+"/"+imagePath;
+            using (var httpClient = new HttpClient())
+            {
+                    var url = new Uri(remoteUri);
+                    // Get the file extension
+                    var uriWithoutQuery = url.GetLeftPart(UriPartial.Path);
+                var fileName = "";
+
+                var s = url.AbsolutePath.Split('/');
+                fileName = s[s.Length - 1];
+           
+    
+                    var fileExtension = Path.GetExtension(uriWithoutQuery);
+
+                    // Create file path and ensure directory exists
+                    //var fileName = "dd";
+                    string directoryPath = Directory.GetCurrentDirectory();
+                    string path = Path.Combine(directoryPath,AppSettings.ItemsImgPath);
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    path = Path.Combine(path, fileName);
+                    // var path = Path.Combine(directoryPath, $"{fileName}{fileExtension}");
+                    //Directory.CreateDirectory(directoryPath);
+
+                    // Download the image and write to the file
+                    var imageBytes = await httpClient.GetByteArrayAsync(remoteUri);
+
+                return imageBytes;
+               //return new  MemoryStream(imageBytes);
+               //if (imageBytes != null)
+               //{
+               //    using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+               //    {
+               //        fs.Write(imageBytes, 0, imageBytes.Length);
+               //    }
+               //}
+               //File.WriteAllBytes(path, imageBytes);
+               //    return path;
+
+            }
         }
     }
 }

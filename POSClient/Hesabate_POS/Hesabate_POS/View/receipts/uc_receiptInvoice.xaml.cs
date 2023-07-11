@@ -3,6 +3,7 @@ using Hesabate_POS.Classes.ApiClasses;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -484,20 +485,50 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        public static void setImg(Button img, string uri)
+        public async static void setImg(Button img, string uri)
         {
             
             ImageBrush imageBrush = new ImageBrush();
+            BitmapFrame temp;
 
-            Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative); ;
-            //if(uri != null)
-            //    resourceUri = 
+            Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative);
 
-            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
-            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-            imageBrush.ImageSource = temp;
-            imageBrush.Stretch = Stretch.UniformToFill;
-            img.Background = imageBrush;
+            if (uri != null && uri != "")
+            {
+                try
+                {
+                    //using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
+                    using(MemoryStream ms = new MemoryStream( await ItemService.DownloadImageAsync(AppSettings.APIUri, uri)) )
+                    {
+                        temp = BitmapFrame.Create(ms);
+                        imageBrush.ImageSource = temp;
+                        imageBrush.Stretch = Stretch.UniformToFill;
+                        img.Background = imageBrush;
+                    }
+
+                }
+                catch {
+                    StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                    temp = BitmapFrame.Create(streamInfo.Stream);
+                    imageBrush.ImageSource = temp;
+                    imageBrush.Stretch = Stretch.UniformToFill;
+                    img.Background = imageBrush;
+                }
+            }
+            else
+            {
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                temp = BitmapFrame.Create(streamInfo.Stream);
+                imageBrush.ImageSource = temp;
+                imageBrush.Stretch = Stretch.UniformToFill;
+                img.Background = imageBrush;
+            }
+            //StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+            //BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            //imageBrush.ImageSource = temp;
+            //imageBrush.Stretch = Stretch.UniformToFill;
+            //img.Background = imageBrush;
+
         }
 
 
