@@ -105,6 +105,8 @@ namespace Hesabate_POS.Classes
 
 
         //}
+
+        // cat, item
         public ItemModel getItem(int itemId,string type)
         {
             ItemModel itemModel = null;
@@ -181,6 +183,15 @@ namespace Hesabate_POS.Classes
             }
 
             return null;
+        }
+
+        static public bool itemIsLast(ItemModel item)
+        {
+            // is  Last
+            if (item.level2 == null && (item.items == null || item.items.Count == 0))
+                return true;
+            else
+                return false;
         }
     }
 }
