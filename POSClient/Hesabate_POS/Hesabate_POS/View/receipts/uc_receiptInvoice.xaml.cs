@@ -293,6 +293,7 @@ namespace Hesabate_POS.View.receipts
             int cardHeight = 75;
             int cornerRadius = 7;
             bool isLast =false;
+            string cardColor;
             foreach (var item in items)
             {
                 if (ItemService.itemIsLast(item))
@@ -300,12 +301,20 @@ namespace Hesabate_POS.View.receipts
                 else
                     isLast = false;
 
+                if (string.IsNullOrWhiteSpace(item.color))
+                    cardColor = "#7062FB";
+                else
+                    cardColor = "#" + item.color;
+
+
+
                 #region borderMain
                 Border borderMain = new Border();
                 borderMain.Width = cardWidth;
                 borderMain.Height = cardHeight;
                 borderMain.Background = Application.Current.Resources["White"] as SolidColorBrush;
-                borderMain.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
+                //borderMain.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
+                borderMain.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom(cardColor));
                 borderMain.BorderThickness = new Thickness(1);
                 borderMain.Margin = new Thickness(5);
                 borderMain.Padding = new Thickness(0);
@@ -328,27 +337,29 @@ namespace Hesabate_POS.View.receipts
                 Grid gridMain = new Grid();
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int rowCount = 2;
+                int rowCount = 3;
                 RowDefinition[] rd = new RowDefinition[rowCount];
                 for (int i = 0; i < rowCount; i++)
                 {
                     rd[i] = new RowDefinition();
                 }
-                rd[0].Height = new GridLength(1, GridUnitType.Star);
-                rd[1].Height = new GridLength(1, GridUnitType.Auto);
+                rd[0].Height = new GridLength(1, GridUnitType.Auto);
+                rd[1].Height = new GridLength(1, GridUnitType.Star);
+                rd[2].Height = new GridLength(1, GridUnitType.Auto);
                 for (int i = 0; i < rowCount; i++)
                 {
                     gridMain.RowDefinitions.Add(rd[i]);
                 }
                 /////////////////////////////////////////////////////
-                int colCount = 2;
+                int colCount = 3;
                 ColumnDefinition[] cd = new ColumnDefinition[colCount];
                 for (int i = 0; i < colCount; i++)
                 {
                     cd[i] = new ColumnDefinition();
                 }
                 cd[0].Width = new GridLength(75, GridUnitType.Pixel);
-                cd[1].Width = new GridLength(100, GridUnitType.Pixel);
+                cd[1].Width = new GridLength(1, GridUnitType.Pixel);
+                cd[2].Width = new GridLength(99, GridUnitType.Pixel);
                 for (int i = 0; i < colCount; i++)
                 {
                     gridMain.ColumnDefinitions.Add(cd[i]);
@@ -373,10 +384,39 @@ namespace Hesabate_POS.View.receipts
           
                 await setImg(buttonImage, item.img);
 
-                Grid.SetRowSpan(buttonImage, 2);
+                Grid.SetRowSpan(buttonImage, 3);
                 gridMain.Children.Add(buttonImage);
                 #endregion
 
+                #region 
+                Border borderCol1 = new Border();
+                borderCol1.Width = 1;
+                borderCol1.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(cardColor));
+
+                Grid.SetRowSpan(borderCol1, 3);
+                Grid.SetColumn(borderCol1, 1);
+                gridMain.Children.Add(borderCol1);
+
+                #endregion
+
+
+                #region categoryColor
+                //if (!isLast)
+                //{
+                //    Border categoryColor = new Border();
+                //    categoryColor.Height =
+                //    categoryColor.Width = 15;
+                //    categoryColor.HorizontalAlignment =HorizontalAlignment.Right ;
+                //    categoryColor.Margin = new Thickness(5,2.5,5,2.5);
+                //    //categoryColor.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                //    categoryColor.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(cardColor));
+                //    categoryColor.CornerRadius = new CornerRadius(75);
+
+                //    Grid.SetRow(categoryColor, 0);
+                //    Grid.SetColumn(categoryColor, 2);
+                //    gridMain.Children.Add(categoryColor);
+                //}
+                #endregion
                 #region textName
                 TextBlock textName = new TextBlock();
                 textName.Text = item.name;
@@ -389,21 +429,25 @@ namespace Hesabate_POS.View.receipts
                 textName.VerticalAlignment = VerticalAlignment.Center;
                 textName.Margin = new Thickness(2.5);
 
-                Grid.SetColumn(textName, 1);
+                Grid.SetRow(textName, 1);
+                Grid.SetColumn(textName, 2);
                 gridMain.Children.Add(textName);
                 #endregion
                 #region borderPrice
-                if (isLast)
-                {
                     Border borderPrice = new Border();
-                    borderPrice.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    //borderPrice.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    borderPrice.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(cardColor));
                     borderPrice.Padding = new Thickness(0);
                     borderPrice.Margin = new Thickness(0);
                     borderPrice.CornerRadius = new CornerRadius(0, 0, 12, 0);
 
-                    #region textPrice
+                #region textPrice
+               
                     TextBlock textPrice = new TextBlock();
+                if (isLast)
+                {
                     textPrice.Text = item.price.ToString();
+                }
                     textPrice.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
                     textPrice.Margin = new Thickness(5, 2.5, 5, 2.5);
                     textPrice.HorizontalAlignment = HorizontalAlignment.Center;
@@ -411,11 +455,26 @@ namespace Hesabate_POS.View.receipts
                     textPrice.TextWrapping = TextWrapping.WrapWithOverflow;
                     textPrice.TextAlignment = TextAlignment.Center;
                     borderPrice.Child = textPrice;
-                    #endregion
-                    Grid.SetRow(borderPrice, 1);
-                    Grid.SetColumn(borderPrice, 1);
+
+                #endregion
+                Grid.SetRow(borderPrice, 2);
+                    Grid.SetColumn(borderPrice, 2);
                     gridMain.Children.Add(borderPrice);
-                }
+                #endregion
+
+                // add last
+                #region rectangleCard
+                Rectangle rectangleCard = new Rectangle();
+                rectangleCard.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#99F0F8FF"));
+                rectangleCard.Opacity = 0;
+                rectangleCard.RadiusX = 10;
+                rectangleCard.RadiusY = 10;
+                rectangleCard.MouseEnter += rectangle_MouseEnter;
+                rectangleCard.MouseLeave += Button_MouseLeave;
+
+                Grid.SetRowSpan(rectangleCard, 3);
+                Grid.SetColumnSpan(rectangleCard, 3);
+                gridMain.Children.Add(rectangleCard);
                 #endregion
 
                 buttonMain.Content = gridMain;
@@ -431,31 +490,6 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                /*
-                Button button = sender as Button;
-                if (button.Tag != null)
-                {
-                    int itemId = int.Parse(button.Tag.ToString());
-                    var item = _itemService.getItem(itemId, "cat");
-                    // is not Last
-                    if (item.items != null || item.level2 != null)
-                    {
-                        // categoryPath
-                        categoryPath.Add(item);
-
-                        // itemsCard
-                        items = _itemService.getCatItems(item.id);
-                        buildItemsCard(items);
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Add me to invoice");
-                    }
-
-
-                }
-                */
                 Button button = sender as Button;
                 if (button.DataContext != null)
                 {
@@ -543,7 +577,30 @@ namespace Hesabate_POS.View.receipts
             //img.Background = imageBrush;
 
         }
-
+        private void rectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Rectangle rectangle = sender as Rectangle;
+                rectangle.Opacity = 0.3;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Rectangle rectangle = sender as Rectangle;
+                rectangle.Opacity = 0.0;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
 
         #endregion
         #region category
@@ -1040,5 +1097,6 @@ namespace Hesabate_POS.View.receipts
 
         }
 
+       
     }
 }
