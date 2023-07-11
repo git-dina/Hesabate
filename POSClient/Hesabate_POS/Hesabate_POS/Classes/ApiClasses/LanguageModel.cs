@@ -12,4 +12,11 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string name { get; set; }
         public string dir { get; set; }
     }
+
+    public class LanguageTermModel
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+
+    }
 }

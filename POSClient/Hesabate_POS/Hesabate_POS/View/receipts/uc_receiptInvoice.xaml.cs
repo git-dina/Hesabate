@@ -82,8 +82,9 @@ namespace Hesabate_POS.View.receipts
                 requiredControlList = new List<string> { "" };
 
                 await GeneralInfoService.GetMainInfo();// move to login
+                await GeneralInfoService.GetLanguagesTerms(1);// move to login
 
-                
+
 
                 buildInvoiceDetails(getInvoiceDetails());
 
