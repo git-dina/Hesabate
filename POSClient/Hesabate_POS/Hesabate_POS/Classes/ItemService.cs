@@ -125,12 +125,13 @@ namespace Hesabate_POS.Classes
                             return catRow;
 
                         itemModel = SearchInLevel2(catRow.level2, itemId);
-
-                        foreach (var item in catRow.items)
-                        {
-                            if (item.id == itemId)
-                                return item;
-                        }
+                        if (itemModel != null)
+                            return itemModel;
+                        //foreach (var item in catRow.items)
+                        //{
+                        //    if (item.id == itemId)
+                        //        return item;
+                        //}
                     }
                 }
                 else
@@ -190,6 +191,89 @@ namespace Hesabate_POS.Classes
             return null;
         }
 
+        #region item with up level
+        public List<ItemModel> getItemWithUpLevel(int itemId, string type)
+        {
+            List<ItemModel> itemsModel = null;
+            if (GeneralInfoService.GeneralInfo.buttons_cat != null)
+            {
+                if (type == "cat")
+                {
+                    foreach (var catRow in GeneralInfoService.GeneralInfo.buttons_cat)
+                    {
+                        if (catRow.level2 != null)
+                        {
+                            itemsModel = getItemWithUpLevel2(catRow.level2, GeneralInfoService.GeneralInfo.buttons_cat, itemId);
+                            if (itemsModel != null)
+                                return itemsModel;
+                        }
+
+                    }
+
+                   
+                }
+                else
+                {
+                    return SearchInItemsForLevelUp(GeneralInfoService.GeneralInfo.buttons_cat, itemId);
+
+                }
+            }
+            return null;
+        }
+
+        private List<ItemModel> getItemWithUpLevel2(List<ItemModel> level2,List<ItemModel> upLevel, int itemId)
+        {
+            List<ItemModel> items;
+            foreach (var level in level2)
+            {
+                //var item = level.
+                if (level.id == itemId)
+                    return upLevel;
+                else if (level.level2 != null)
+                {
+                   items = getItemWithUpLevel2(level.level2,level2, itemId);
+                    if (items != null)
+                        return items;
+                }
+            }
+
+            return null;
+        }
+        private List<ItemModel> SearchInItemsForLevelUp(List<ItemModel> cat, int itemId)
+        {
+            ItemModel item = null;
+
+            foreach (var catRow in cat)
+            {
+                if (catRow.items != null)
+                {
+                    item = catRow.items.Where(x => x.id == itemId).FirstOrDefault();
+                    if (item != null)
+                        return cat;
+                }
+                else
+                {
+                    foreach (var level in catRow.level2)
+                    {
+                        if (level.items != null)
+                        {
+                            item = level.items.Where(x => x.id == itemId).FirstOrDefault();
+                            if (item != null)
+                                return catRow.level2;
+                        }
+                        else
+                        {
+                           var items = SearchInItemsForLevelUp(level.level2, itemId);
+                            if (items != null)
+                                return items;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+        #endregion
         static public bool itemIsLast(ItemModel item)
         {
             // is  Last

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -82,9 +83,9 @@ namespace Hesabate_POS.View.receipts
                 requiredControlList = new List<string> { "" };
 
                 await GeneralInfoService.GetMainInfo();// move to login
-                await GeneralInfoService.GetLanguagesTerms(1);// move to login
+                await GeneralInfoService.GetLanguagesTerms(1);// move to login (1 is languageId)
 
-
+               var upLevel =  _itemService.getItemWithUpLevel(56,"item");
 
                 buildInvoiceDetails(getInvoiceDetails());
 
@@ -521,7 +522,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        public async static Task setImg(Button img, string uri)
+        public async  Task setImg(Button img, string uri)
         {
             
             ImageBrush imageBrush = new ImageBrush();
@@ -530,46 +531,48 @@ namespace Hesabate_POS.View.receipts
             imageBrush.Stretch = Stretch.UniformToFill;
             Uri resourceUri = new Uri("pic/no-image-icon-125x125.png", UriKind.Relative);
 
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+            temp = BitmapFrame.Create(streamInfo.Stream);
+            imageBrush.ImageSource = temp;
+            img.Background = imageBrush;
+
             if (uri != null && uri != "")
             {
                 try
                 {
                    // using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
-                    //using (MemoryStream ms = new MemoryStream( await ItemService.DownloadImageAsync(AppSettings.APIUri, uri)) )
+
+                    Thread t1 = new Thread(async () =>
                     {
-                        // temp = BitmapFrame.Create(ms);
                         temp = BitmapFrame.Create(new Uri(AppSettings.APIUri + "/" + uri));
 
                         string remoteUri = AppSettings.APIUri + "/" + uri;
                         var imgUrl = new Uri(remoteUri);
                         var imageData = new WebClient().DownloadData(imgUrl);
-                        BitmapImage bitmapImage = new BitmapImage();
-                        bitmapImage.BeginInit();
-                        bitmapImage.StreamSource = new MemoryStream(imageData);
-                        bitmapImage.EndInit();
+                        this.Dispatcher.Invoke(() =>
+                        {
 
-                        //imageBrush.ImageSource = temp;
-                        imageBrush.ImageSource = bitmapImage;
-                        img.Background = imageBrush;
+                            BitmapImage bitmapImage = new BitmapImage();
+                            bitmapImage.BeginInit();
+                            bitmapImage.StreamSource = new MemoryStream(imageData);
+                            bitmapImage.EndInit();
 
-                       
-                    }
+                            //imageBrush.ImageSource = temp;
+                            imageBrush.ImageSource = bitmapImage;
+                            img.Background = imageBrush;
+                        });
+
+                    });
+                    t1.Start();
 
                 }
                 catch {
-                    StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                    streamInfo = Application.GetResourceStream(resourceUri);
                     temp = BitmapFrame.Create(streamInfo.Stream);
                     imageBrush.ImageSource = temp;
                     img.Background = imageBrush;
                 }
-            }
-            else
-            {
-                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
-                temp = BitmapFrame.Create(streamInfo.Stream);
-                imageBrush.ImageSource = temp;
-                img.Background = imageBrush;
-            }
+            }          
             //StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
             //BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
             //imageBrush.ImageSource = temp;
