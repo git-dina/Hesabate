@@ -87,7 +87,7 @@ namespace Hesabate_POS.View.receipts
 
                var upLevel =  _itemService.getItemWithUpLevel(56,"item");
 
-                buildInvoiceDetails(getInvoiceDetails());
+               // buildInvoiceDetails(getInvoiceDetails());
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -511,6 +511,8 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
+                        AddItemToInvoice(item);
+                        
                         MessageBox.Show("Add me to invoice");
                     }
 
@@ -521,6 +523,36 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
+        }
+
+        private void AddItemToInvoice(ItemModel item)
+        {
+            var itemInInvoice = invoiceDetailsList.Where(x => x.id == item.id).FirstOrDefault();
+            if (itemInInvoice != null)
+            {
+                itemInInvoice.count++;
+                itemInInvoice.total = itemInInvoice.count * itemInInvoice.price;
+            }
+            else
+            {
+                string extra = string.Empty;
+                //if(item.id2 != null)
+                //{
+                //    extra = _itemService.getItem((int)item.id2, "item").name;
+                //}
+ 
+                invoiceDetailsList.Add(new InvoiceDetails()
+                {
+                    id = item.id,
+                    name = item.name,
+                    price = item.price,
+                    count = 1,
+                    total = item.price,
+                    extra = extra
+                });
+            }
+
+            buildInvoiceDetails(invoiceDetailsList);
         }
         public async  Task setImg(Button img, string uri)
         {
@@ -692,6 +724,7 @@ namespace Hesabate_POS.View.receipts
 
 
         #region invoiceDetails
+        List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
         class InvoiceDetails
         {
             public int id;
@@ -699,6 +732,7 @@ namespace Hesabate_POS.View.receipts
             public int count;
             public decimal price;
             public decimal total;
+            public string extra;
         }
         List<InvoiceDetails> getInvoiceDetails()
         {
@@ -895,11 +929,12 @@ namespace Hesabate_POS.View.receipts
                 StackPanel stackPanelRow2 = new StackPanel();
                 stackPanelRow2.Margin = new Thickness(5,0,5,0);
                 #region extraItems
-                List<string> extraItems = new List<string>() { "+ extra item", "- item", };
-                foreach (var extra in extraItems)
+                //List<string> extraItems = new List<string>() { "+ extra item", "- item", };
+                if(item.extra != null)
+                //foreach (var extra in extraItems)
                 {
                     TextBlock extraItem = new TextBlock();
-                    extraItem.Text = extra;
+                    extraItem.Text = item.extra;
                     extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     extraItem.HorizontalAlignment = HorizontalAlignment.Left;
                     extraItem.VerticalAlignment = VerticalAlignment.Center;
