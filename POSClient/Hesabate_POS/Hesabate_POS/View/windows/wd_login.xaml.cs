@@ -217,7 +217,8 @@ namespace Hesabate_POS.View.windows
 
         #endregion
         bool logInProcessing = false;
-        private void Btn_login_Click(object sender, RoutedEventArgs e)
+        AuthService _authService = new AuthService();
+        private async void Btn_login_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -226,7 +227,9 @@ namespace Hesabate_POS.View.windows
                     logInProcessing = true;
                     HelpClass.StartAwait(grid_main);
 
-
+                
+                    //await _authService.Login(tb_userName.Text,pb_password.Password);
+                    //await _authService.Login(tb_idCard.Text);
 
                     //open main window and close this window
                     MainWindow main = new MainWindow();

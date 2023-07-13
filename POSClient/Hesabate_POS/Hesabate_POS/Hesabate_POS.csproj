@@ -83,6 +83,7 @@
     <Compile Include="Classes\ApiClasses\LanguageModel.cs" />
     <Compile Include="Classes\ApiClasses\MainOpModel.cs" />
     <Compile Include="Classes\ApiClasses\TableModel.cs" />
+    <Compile Include="Classes\AuthService.cs" />
     <Compile Include="Classes\GeneralInfoService.cs" />
     <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\FindVisualChildren.cs" />
