@@ -12,13 +12,13 @@ namespace Hesabate_POS.Classes
 {
     public static class GeneralInfoService
     {
-       public static GeneralInfoModel GeneralInfo = new GeneralInfoModel();
-      public static  List<LanguageModel> Languages = new List<LanguageModel>();
+       public static GeneralInfoModel GeneralInfo = new GeneralInfoModel();     
         public static List<LanguageTermModel> LanguageTerms = new List<LanguageTermModel>();
+        public static List<ItemModel> items = new List<ItemModel>();
 
-        public static async Task GetLanguages()
+        public static async Task<List<LanguageModel>> GetLanguages()
         {
-
+             List<LanguageModel> languages = new List<LanguageModel>();
             using (var client = new HttpClient())
             {
                 client.Timeout = System.TimeSpan.FromSeconds(3600);
@@ -33,14 +33,16 @@ namespace Hesabate_POS.Classes
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
                         var jsonString = await response.Content.ReadAsStringAsync();
-                        Languages = JsonConvert.DeserializeObject<List<LanguageModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                        languages = JsonConvert.DeserializeObject<List<LanguageModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
                     }
                 }
                 catch (Exception ex) {
-                    Languages = new List<LanguageModel>();
+                    languages = new List<LanguageModel>();
                 }
             }
+
+            return languages;
         }
         
         public static async Task GetMainInfo()

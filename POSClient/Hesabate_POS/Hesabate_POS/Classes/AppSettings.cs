@@ -57,8 +57,8 @@ namespace Hesabate_POS.Classes
         //    }
         //}
 
-        //public static string lang = "ar";
         public static string lang = "ar";
+        public static string dir = "rtl";
 
 
     }

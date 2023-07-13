@@ -264,9 +264,8 @@ namespace Hesabate_POS.Classes
             }
         }
 
-        public async Task< List<CategoryModel> >getItems()
+        public async Task< List<ItemModel> >GetItems()
         {
-            var items = new List<CategoryModel>();
             using (var client = new HttpClient())
             {
                 client.Timeout = System.TimeSpan.FromSeconds(3600);
@@ -284,15 +283,15 @@ namespace Hesabate_POS.Classes
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
                         var jsonString = await response.Content.ReadAsStringAsync();
-                        items = JsonConvert.DeserializeObject<List<CategoryModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                        GeneralInfoService.items = JsonConvert.DeserializeObject<List<ItemModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
                     }
                 }
                 catch (Exception ex)
                 {
-                    items = new List<CategoryModel>();
+                    return new List<ItemModel>();
                 }
-                return items;
+                return GeneralInfoService.items;
             }
         }
     }

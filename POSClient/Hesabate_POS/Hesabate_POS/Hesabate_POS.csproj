@@ -79,11 +79,13 @@
     </ApplicationDefinition>
     <Compile Include="ar_file.Designer.cs" />
     <Compile Include="Classes\ApiClasses\GeneralInfoModel.cs" />
+    <Compile Include="Classes\ApiClasses\CategoryModel.cs" />
     <Compile Include="Classes\ApiClasses\ItemModel.cs" />
     <Compile Include="Classes\ApiClasses\LanguageModel.cs" />
     <Compile Include="Classes\ApiClasses\MainOpModel.cs" />
     <Compile Include="Classes\ApiClasses\TableModel.cs" />
     <Compile Include="Classes\AuthService.cs" />
+    <Compile Include="Classes\FillCombo.cs" />
     <Compile Include="Classes\GeneralInfoService.cs" />
     <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\FindVisualChildren.cs" />

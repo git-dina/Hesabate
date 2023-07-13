@@ -1,4 +1,5 @@
 ﻿using Hesabate_POS.Classes;
+using Hesabate_POS.Classes.ApiClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace Hesabate_POS.View.windows
 
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
-
+        public List<LanguageModel> languages = new List<LanguageModel>();
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {//load
 
@@ -65,6 +66,7 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
+               // languages = await fillLanguageCombo(cb_language);
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -216,8 +218,10 @@ namespace Hesabate_POS.View.windows
         }
 
         #endregion
+
         bool logInProcessing = false;
         AuthService _authService = new AuthService();
+        ItemService _itemService = new ItemService();
         private async void Btn_login_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -227,10 +231,14 @@ namespace Hesabate_POS.View.windows
                     logInProcessing = true;
                     HelpClass.StartAwait(grid_main);
 
-                
+
                     //await _authService.Login(tb_userName.Text,pb_password.Password);
                     //await _authService.Login(tb_idCard.Text);
 
+
+                    await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
+                    await GeneralInfoService.GetLanguagesTerms(1);// get selected language terms
+                    await _itemService.GetItems();
                     //open main window and close this window
                     MainWindow main = new MainWindow();
                     main.Show();
