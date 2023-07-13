@@ -17,10 +17,10 @@ namespace Hesabate_POS.Classes
 {
     public class ItemService
     {
-        private List<ItemModel> categoryPath;
-        public List<ItemModel> getCatItems(int catId)
+        private List<CategoryModel> categoryPath;
+        public List<CategoryModel> getCatItems(int catId)
         {
-            List<ItemModel> items = null;
+            List<CategoryModel> items = null;
             if (catId == 0)
                 return GeneralInfoService.GeneralInfo.buttons_cat;
             else
@@ -44,7 +44,7 @@ namespace Hesabate_POS.Classes
                 }
   
 
-                return new List<ItemModel>();
+                return new List<CategoryModel>();
                 //var cat = GeneralInfoService.GeneralInfo.buttons_cat.Where(x => x.id == catId).FirstOrDefault();
                 //if (cat != null)
                 //{
@@ -58,7 +58,7 @@ namespace Hesabate_POS.Classes
             }
         }
 
-        private List<ItemModel> SearchCatLevel2(List<ItemModel> level2, int itemId)
+        private List<CategoryModel> SearchCatLevel2(List<CategoryModel> level2, int itemId)
         {
             foreach (var level in level2)
             {
@@ -80,9 +80,9 @@ namespace Hesabate_POS.Classes
         
 
         // cat, item
-        public ItemModel getItem(int itemId,string type)
+        public CategoryModel getItem(int itemId,string type)
         {
-            ItemModel itemModel = null;
+            CategoryModel itemModel = null;
             if (GeneralInfoService.GeneralInfo.buttons_cat != null)
             {
                 if (type == "cat")
@@ -92,14 +92,12 @@ namespace Hesabate_POS.Classes
                         if (catRow.id == itemId)
                             return catRow;
 
-                        itemModel = SearchInLevel2(catRow.level2, itemId);
-                        if (itemModel != null)
-                            return itemModel;
-                        //foreach (var item in catRow.items)
-                        //{
-                        //    if (item.id == itemId)
-                        //        return item;
-                        //}
+                        if (catRow.level2 != null)
+                        {
+                            itemModel = SearchInLevel2(catRow.level2, itemId);
+                            if (itemModel != null)
+                                return itemModel;
+                        }
                     }
                 }
                 else
@@ -111,7 +109,7 @@ namespace Hesabate_POS.Classes
             return null;
         }
 
-        private ItemModel SearchInLevel2(List<ItemModel> level2,int itemId)
+        private CategoryModel SearchInLevel2(List<CategoryModel> level2,int itemId)
         {
             foreach (var level in level2)
             {
@@ -124,9 +122,9 @@ namespace Hesabate_POS.Classes
             return null;
         } 
         
-        private ItemModel SearchInItems(List<ItemModel> cat,int itemId)
+        private CategoryModel SearchInItems(List<CategoryModel> cat,int itemId)
         {
-            ItemModel item = null;
+            CategoryModel item = null;
            
             foreach (var catRow in cat)
             {
@@ -146,7 +144,7 @@ namespace Hesabate_POS.Classes
                             if (item != null)
                                 return item;
                         }
-                        else
+                        else if(level.level2 != null)
                         {
                             item = SearchInItems(level.level2, itemId);
                             if (item != null)
@@ -159,10 +157,10 @@ namespace Hesabate_POS.Classes
             return null;
         }
 
-        #region item with up level
-        public List<ItemModel> getItemWithUpLevel(int itemId)
+        #region path category
+        public List<CategoryModel> getCategoryPath(int itemId)
         {
-            categoryPath = new List<ItemModel>();
+            categoryPath = new List<CategoryModel>();
             if (GeneralInfoService.GeneralInfo.buttons_cat != null)
             {
                 foreach (var catRow in GeneralInfoService.GeneralInfo.buttons_cat)
@@ -187,7 +185,7 @@ namespace Hesabate_POS.Classes
             return categoryPath;
         }
 
-        private ItemModel getItemWithUpLevel2(List<ItemModel> level2, int itemId)
+        private CategoryModel getItemWithUpLevel2(List<CategoryModel> level2, int itemId)
         {
             foreach (var level in level2)
             {
@@ -210,42 +208,9 @@ namespace Hesabate_POS.Classes
 
             return null;
         }
-        //private List<ItemModel> SearchInItemsForLevelUp(List<ItemModel> cat, int itemId)
-        //{
-        //    ItemModel item = null;
-
-        //    foreach (var catRow in cat)
-        //    {
-        //        if (catRow.items != null)
-        //        {
-        //            item = catRow.items.Where(x => x.id == itemId).FirstOrDefault();
-        //            if (item != null)
-        //                return cat;
-        //        }
-        //        else
-        //        {
-        //            foreach (var level in catRow.level2)
-        //            {
-        //                if (level.items != null)
-        //                {
-        //                    item = level.items.Where(x => x.id == itemId).FirstOrDefault();
-        //                    if (item != null)
-        //                        return catRow.level2;
-        //                }
-        //                else
-        //                {
-        //                   var items = SearchInItemsForLevelUp(level.level2, itemId);
-        //                    if (items != null)
-        //                        return items;
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return null;
-        //}
+       
         #endregion
-        static public bool itemIsLast(ItemModel item)
+        static public bool itemIsLast(CategoryModel item)
         {
             // is  Last
             if (item.level2 == null && (item.items == null || item.items.Count == 0))
@@ -256,36 +221,6 @@ namespace Hesabate_POS.Classes
 
         public static async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
         {
-
-            //// Get the file extension
-            //var uriWithoutQuery = uri.GetLeftPart(UriPartial.Path);
-            //var fileExtension = Path.GetExtension(uriWithoutQuery);
-
-            //// Create file path and ensure directory exists
-            //var path = Path.Combine(directoryPath, $"{fileName}{fileExtension}");
-            //Directory.CreateDirectory(directoryPath);
-
-            //// Download the image and write to the file
-            //var imageBytes = await _httpClient.GetByteArrayAsync(uri);
-            //await File.WriteAllBytesAsync(path, imageBytes);
-
-            //second
-            //  string remoteUri = "http://s.hesabate.com/POS/p5api2.php/storage/db_1828/db_1828_b_18.gif";
-            //string fileName = "db_1828_b_18.gif", myStringWebResource = null;
-            //// Create a new WebClient instance.
-            //WebClient myWebClient = new WebClient();
-            //// Concatenate the domain with the Web resource filename.
-            //myStringWebResource = remoteUri + fileName;
-            //Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", fileName, myStringWebResource);
-            //// Download the Web resource and save it into the current filesystem folder.
-            //myWebClient.DownloadFile(myStringWebResource, fileName);
-
-            //third
-            //using (WebClient client = new WebClient())
-            //{
-
-            //    client.DownloadFileAsync(new Uri(remoteUri), "image35.png");
-            //}
 
             string remoteUri = apiUri+"/"+imagePath;
             using (var httpClient = new HttpClient())
@@ -329,9 +264,9 @@ namespace Hesabate_POS.Classes
             }
         }
 
-        public async Task< List<ItemModel> >getItems()
+        public async Task< List<CategoryModel> >getItems()
         {
-            var items = new List<ItemModel>();
+            var items = new List<CategoryModel>();
             using (var client = new HttpClient())
             {
                 client.Timeout = System.TimeSpan.FromSeconds(3600);
@@ -349,13 +284,13 @@ namespace Hesabate_POS.Classes
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
                         var jsonString = await response.Content.ReadAsStringAsync();
-                        items = JsonConvert.DeserializeObject<List<ItemModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                        items = JsonConvert.DeserializeObject<List<CategoryModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
                     }
                 }
                 catch (Exception ex)
                 {
-                    items = new List<ItemModel>();
+                    items = new List<CategoryModel>();
                 }
                 return items;
             }

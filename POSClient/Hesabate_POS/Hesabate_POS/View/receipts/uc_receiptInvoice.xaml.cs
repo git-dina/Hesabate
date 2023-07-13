@@ -57,7 +57,7 @@ namespace Hesabate_POS.View.receipts
 
         public static List<string> requiredControlList;
         ItemService _itemService = new ItemService();
-        List<ItemModel> items = new List<ItemModel>();
+        List<CategoryModel> items = new List<CategoryModel>();
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -286,7 +286,7 @@ namespace Hesabate_POS.View.receipts
         }
         */
 
-      async  Task buildItemsCard(List<ItemModel> items)
+      async  Task buildItemsCard(List<CategoryModel> items)
         {
             wp_itemsCard.Children.Clear();
             int cardWidth = 175;
@@ -494,7 +494,7 @@ namespace Hesabate_POS.View.receipts
                 if (button.DataContext != null)
                 {
                     //int itemId = int.Parse(button.Tag.ToString());
-                    var item = button.DataContext as ItemModel;
+                    var item = button.DataContext as CategoryModel;
                     // is not Last
                     //if ( item.level2 != null || (item.items != null && item.items.Count != 0))
                     if (!ItemService.itemIsLast(item))
@@ -502,7 +502,7 @@ namespace Hesabate_POS.View.receipts
                         // categoryPath
                         //categoryPath.Add(item);
                       
-                        categoryPath = _itemService.getItemWithUpLevel(item.id).ToList();
+                        categoryPath = _itemService.getCategoryPath(item.id).ToList();
                         buildCategoryPath(categoryPath);
                       
 
@@ -526,7 +526,7 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        private void AddItemToInvoice(ItemModel item)
+        private void AddItemToInvoice(CategoryModel item)
         {
             var itemInInvoice = invoiceDetailsList.Where(x => x.id == item.id).FirstOrDefault();
             if (itemInInvoice != null)
@@ -659,8 +659,8 @@ namespace Hesabate_POS.View.receipts
         }
 
 
-        List<ItemModel> categoryPath = new List<ItemModel>();
-        void buildCategoryPath(List<ItemModel> categories)
+        List<CategoryModel> categoryPath = new List<CategoryModel>();
+        void buildCategoryPath(List<CategoryModel> categories)
         {
             sp_categoryPath.Children.Clear();
             foreach (var item in categories)
@@ -704,11 +704,11 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 if (button.DataContext != null)
                 {
-                    var item = button.DataContext as ItemModel;
+                    var item = button.DataContext as CategoryModel;
                     // categoryPath
                     //categoryPath.Add(item);
                   
-                    categoryPath = _itemService.getItemWithUpLevel(item.id).ToList();
+                    categoryPath = _itemService.getCategoryPath(item.id).ToList();
                     buildCategoryPath(categoryPath);
                     
                         // itemsCard

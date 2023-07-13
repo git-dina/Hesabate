@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hesabate_POS.Classes.ApiClasses
 {
-    public class ItemModel
+    public class CategoryModel
     {
         public int id { get; set; }
         public int? id2 { get; set; } // for extras
@@ -14,8 +14,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int but_mast_id { get; set; }//parent category id
         public string name { get; set; }
         public string color { get; set; }
-        public List<ItemModel> level2 { get; set; } // == null there is no sub category
-        public List<ItemModel> items { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
+        public List<CategoryModel> level2 { get; set; } // == null there is no sub category
+        public List<CategoryModel> items { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
         public decimal discount { get; set; }
         public decimal price { get; set; }
         public string no_w { get; set; }
