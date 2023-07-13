@@ -2173,7 +2173,7 @@
                                   VerticalScrollBarVisibility="Auto"  
                                   >
                         <StackPanel  x:Name="sp_invoiceDetails"  >
-                            <Border BorderThickness="1"  
+                            <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
                                     Background="{x:Null}" Padding="0" 
@@ -2231,7 +2231,7 @@
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        <!--<Button Grid.Column="5"    Margin="2.5"
+                                        --><!--<Button Grid.Column="5"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
                                                 materialDesign:ButtonAssist.CornerRadius="7"
@@ -2252,7 +2252,7 @@
                                                   Stretch="Fill" 
                                                   Height="15"  Width="15" 
                                               Data="{StaticResource discount}"  />
-                                        </Button>-->
+                                        </Button>--><!--
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
@@ -2315,8 +2315,8 @@
 
 
                                 </Grid>
-                            </Border>
-                            <Border BorderThickness="1"  
+                            </Border>-->
+                            <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
                                     Background="{x:Null}" Padding="0" 
@@ -2373,7 +2373,7 @@
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        <!--<Button Grid.Column="5"    Margin="2.5"
+                                        --><!--<Button Grid.Column="5"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
                                                 materialDesign:ButtonAssist.CornerRadius="7"
@@ -2394,7 +2394,7 @@
                                                   Stretch="Fill" 
                                                   Height="15"  Width="15" 
                                               Data="{StaticResource discount}"  />
-                                        </Button>-->
+                                        </Button>--><!--
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
@@ -2519,7 +2519,7 @@
                                    Margin="5"
                                    TextWrapping="WrapWithOverflow"
                                    TextAlignment="Center"/>
-                                        <!--<Button Grid.Column="5"    Margin="2.5"
+                                        --><!--<Button Grid.Column="5"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
                                                 materialDesign:ButtonAssist.CornerRadius="7"
@@ -2540,7 +2540,7 @@
                                                   Stretch="Fill" 
                                                   Height="15"  Width="15" 
                                               Data="{StaticResource discount}"  />
-                                        </Button>-->
+                                        </Button>--><!--
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
                                                 BorderThickness="1"
@@ -2607,7 +2607,7 @@
 
 
                                 </Grid>
-                            </Border>
+                            </Border>-->
 
                         </StackPanel>
                     </ScrollViewer>

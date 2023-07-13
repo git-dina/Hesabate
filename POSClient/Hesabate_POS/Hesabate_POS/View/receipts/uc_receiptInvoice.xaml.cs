@@ -85,7 +85,6 @@ namespace Hesabate_POS.View.receipts
                 await GeneralInfoService.GetMainInfo();// move to login
                 await GeneralInfoService.GetLanguagesTerms(1);// move to login (1 is languageId)
 
-               var upLevel =  _itemService.getItemWithUpLevel(56,"item");
 
                // buildInvoiceDetails(getInvoiceDetails());
 
@@ -501,8 +500,11 @@ namespace Hesabate_POS.View.receipts
                     if (!ItemService.itemIsLast(item))
                     {
                         // categoryPath
-                        categoryPath.Add(item);
+                        //categoryPath.Add(item);
+                        /*
+                        categoryPath = _itemService.getItemWithUpLevel(item.id, "item").ToList();
                         buildCategoryPath(categoryPath);
+                        */
 
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
@@ -512,8 +514,7 @@ namespace Hesabate_POS.View.receipts
                     else
                     {
                         AddItemToInvoice(item);
-                        
-                        MessageBox.Show("Add me to invoice");
+                        //MessageBox.Show("Add me to invoice");
                     }
 
 
@@ -704,10 +705,12 @@ namespace Hesabate_POS.View.receipts
                 if (button.DataContext != null)
                 {
                     var item = button.DataContext as ItemModel;
-                        // categoryPath
-                        categoryPath.Add(item);
-                        buildCategoryPath(categoryPath);
-
+                    // categoryPath
+                    //categoryPath.Add(item);
+                    /*
+                    categoryPath = _itemService.getItemWithUpLevel(item.id, "cat").ToList();
+                    buildCategoryPath(categoryPath);
+                    */
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
                        await buildItemsCard(items);
@@ -724,6 +727,7 @@ namespace Hesabate_POS.View.receipts
 
 
         #region invoiceDetails
+
         List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
         class InvoiceDetails
         {
@@ -734,6 +738,7 @@ namespace Hesabate_POS.View.receipts
             public decimal total;
             public string extra;
         }
+        /*
         List<InvoiceDetails> getInvoiceDetails()
         {
             Random rnd = new Random();
@@ -751,6 +756,7 @@ namespace Hesabate_POS.View.receipts
             }
             return invoiceDetailsList;
         }
+        */
         void buildInvoiceDetails(List<InvoiceDetails> invoiceDetailsList)
         {
             sp_invoiceDetails.Children.Clear();
@@ -759,9 +765,6 @@ namespace Hesabate_POS.View.receipts
             int cornerRadius = 7;
             foreach (var item in invoiceDetailsList)
             {
-                
-
-
                 #region borderMain
                 Border borderMain = new Border();
                 borderMain.BorderThickness = new Thickness(1);
@@ -1022,7 +1025,6 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 sp_invoiceDetails.Children.Add(borderMain);
                 #endregion
-
             }
         }
         void buttonMinus_Click(object sender, RoutedEventArgs e)
