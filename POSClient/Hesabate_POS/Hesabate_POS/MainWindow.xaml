@@ -116,9 +116,14 @@
                     <Border Background="{StaticResource White}" CornerRadius="90"
                             Height="30" Width="30">
 
-                        <TextBlock Name="txt_lang" Text="EN"
+                        <!--<TextBlock Name="txt_lang" Text="EN"
                                HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="{StaticResource MainColor}"  FontSize="14" ></TextBlock>
+                               Foreground="{StaticResource MainColor}"  FontSize="14" ></TextBlock>-->
+                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="17.5" Height="17.5"
+                              Data="{StaticResource languageTranslation}"
+                                      Margin="5"/>
                     </Border>
 
                 </Button>

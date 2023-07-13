@@ -76,14 +76,14 @@ namespace Hesabate_POS
                 {
                     AppSettings.resourcemanager = new ResourceManager("Hesabate_POS.en_file", Assembly.GetExecutingAssembly());
                     grid_mainWindow.FlowDirection = FlowDirection.LeftToRight;
-                    txt_lang.Text = "AR";
+                    //txt_lang.Text = "AR";
 
                 }
                 else
                 {
                     AppSettings.resourcemanager = new ResourceManager("Hesabate_POS.ar_file", Assembly.GetExecutingAssembly());
                     grid_mainWindow.FlowDirection = FlowDirection.RightToLeft;
-                    txt_lang.Text = "EN";
+                    //txt_lang.Text = "EN";
 
                 }
                 translate();
@@ -492,14 +492,14 @@ namespace Hesabate_POS
                 {
                     AppSettings.resourcemanager = new ResourceManager("Hesabate_POS.en_file", Assembly.GetExecutingAssembly());
                     parentWindow.grid_mainWindow.FlowDirection = FlowDirection.LeftToRight;
-                    txt_lang.Text = "AR";
+                    //txt_lang.Text = "AR";
 
                 }
                 else
                 {
                     AppSettings.resourcemanager = new ResourceManager("Hesabate_POS.ar_file", Assembly.GetExecutingAssembly());
                     parentWindow.grid_mainWindow.FlowDirection = FlowDirection.RightToLeft;
-                    txt_lang.Text = "EN";
+                    //txt_lang.Text = "EN";
                 }
                 parentWindow.translate();
 
