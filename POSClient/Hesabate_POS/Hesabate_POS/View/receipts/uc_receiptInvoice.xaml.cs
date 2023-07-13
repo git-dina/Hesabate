@@ -501,10 +501,10 @@ namespace Hesabate_POS.View.receipts
                     {
                         // categoryPath
                         //categoryPath.Add(item);
-                        /*
-                        categoryPath = _itemService.getItemWithUpLevel(item.id, "item").ToList();
+                      
+                        categoryPath = _itemService.getItemWithUpLevel(item.id).ToList();
                         buildCategoryPath(categoryPath);
-                        */
+                      
 
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
@@ -707,10 +707,10 @@ namespace Hesabate_POS.View.receipts
                     var item = button.DataContext as ItemModel;
                     // categoryPath
                     //categoryPath.Add(item);
-                    /*
-                    categoryPath = _itemService.getItemWithUpLevel(item.id, "cat").ToList();
+                  
+                    categoryPath = _itemService.getItemWithUpLevel(item.id).ToList();
                     buildCategoryPath(categoryPath);
-                    */
+                    
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
                        await buildItemsCard(items);
