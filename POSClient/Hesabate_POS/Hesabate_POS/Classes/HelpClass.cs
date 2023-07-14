@@ -596,7 +596,7 @@ namespace Hesabate_POS.Classes
             grid.Opacity = 0.6;
             MahApps.Metro.Controls.ProgressRing progressRing = new MahApps.Metro.Controls.ProgressRing();
             progressRing.Name = "prg_awaitRing" + progressRingName;
-            progressRing.Foreground = App.Current.Resources["SecondColor"] as Brush;
+            progressRing.Foreground = App.Current.Resources["MainColor"] as Brush;
             progressRing.IsActive = true;
             Grid.SetRowSpan(progressRing, 10);
             Grid.SetColumnSpan(progressRing, 10);
