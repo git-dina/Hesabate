@@ -729,6 +729,7 @@ namespace Hesabate_POS.View.receipts
         {
             public int id;
             public string name;
+            public string unit;
             public int count;
             public decimal price;
             public decimal total;
@@ -759,6 +760,7 @@ namespace Hesabate_POS.View.receipts
             //int cardWidth = 175;
             //int cardHeight = 75;
             int cornerRadius = 7;
+            int index = 1;
             foreach (var item in invoiceDetailsList)
             {
                 #region borderMain
@@ -772,9 +774,11 @@ namespace Hesabate_POS.View.receipts
 
                 #region gridMain
                 Grid gridMain = new Grid();
+                gridMain.Margin = new Thickness(5,5,5,5);
+
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int rowCount = 3;
+                int rowCount = 4;
                 RowDefinition[] rd = new RowDefinition[rowCount];
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -784,31 +788,47 @@ namespace Hesabate_POS.View.receipts
                 }
                 #endregion
 
-                #region gridRow1
-                Grid gridRow1 = new Grid();
-                gridRow1.Margin = new Thickness(5);
+                #region gridRow0
+                Grid gridRow0 = new Grid();
+                gridRow0.Margin = new Thickness(0,2.5,0, 2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int colCountRow1 = 6;
-                ColumnDefinition[] cdRow1 = new ColumnDefinition[colCountRow1];
-                for (int i = 0; i < colCountRow1; i++)
+                int colCountRow0 = 3;
+                ColumnDefinition[] cdRow0 = new ColumnDefinition[colCountRow0];
+                for (int i = 0; i < colCountRow0; i++)
                 {
-                    cdRow1[i] = new ColumnDefinition();
+                    cdRow0[i] = new ColumnDefinition();
                 }
-                cdRow1[0].Width = new GridLength(1, GridUnitType.Star);
-                cdRow1[1].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow1[2].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow1[3].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow1[4].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow1[5].Width = new GridLength(1, GridUnitType.Auto);
-                for (int i = 0; i < colCountRow1; i++)
+                cdRow0[0].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow0[1].Width = new GridLength(1, GridUnitType.Star);
+                cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow0; i++)
                 {
-                    gridRow1.ColumnDefinitions.Add(cdRow1[i]);
+                    gridRow0.ColumnDefinitions.Add(cdRow0[i]);
                 }
+                #endregion
+                #region itemIndex
+                TextBlock itemIndex = new TextBlock();
+                itemIndex.Text = $"{index}-" ;
+                itemIndex.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                itemIndex.HorizontalAlignment = HorizontalAlignment.Center;
+                itemIndex.VerticalAlignment = VerticalAlignment.Center;
+                itemIndex.Margin = new Thickness(5,5,0,5);
+                itemIndex.TextWrapping = TextWrapping.WrapWithOverflow;
+                itemIndex.TextAlignment = TextAlignment.Center;
+
+
+                Grid.SetColumn(itemIndex, 0);
+                gridRow0.Children.Add(itemIndex);
                 #endregion
                 #region itemName
                 TextBlock itemName = new TextBlock();
-                itemName.Text = item.name;
+
+                if (string.IsNullOrWhiteSpace(item.unit))
+                    itemName.Text = item.name;
+                else
+                    itemName.Text = $"{item.name} - {item.unit}";
+
                 itemName.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 itemName.HorizontalAlignment = HorizontalAlignment.Left;
                 itemName.VerticalAlignment = VerticalAlignment.Center;
@@ -817,8 +837,71 @@ namespace Hesabate_POS.View.receipts
                 itemName.TextAlignment = TextAlignment.Center;
 
 
-                Grid.SetColumn(itemName, 0);
-                gridRow1.Children.Add(itemName);
+                Grid.SetColumn(itemName, 1);
+                gridRow0.Children.Add(itemName);
+                #endregion
+                #region itemPrice
+                TextBlock itemPrice = new TextBlock();
+                itemPrice.Text = item.price+"$";
+                itemPrice.FontSize = 12;
+                itemPrice.FontWeight = FontWeights.SemiBold;
+                itemPrice.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                itemPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                itemPrice.VerticalAlignment = VerticalAlignment.Center;
+                itemPrice.Margin = new Thickness(5);
+                itemPrice.TextWrapping = TextWrapping.WrapWithOverflow;
+                itemPrice.TextAlignment = TextAlignment.Center;
+
+                Grid.SetColumn(itemPrice, 2);
+                gridRow0.Children.Add(itemPrice);
+                #endregion
+                gridMain.Children.Add(gridRow0);
+                #endregion
+
+                #region stackPanelRow1
+                StackPanel stackPanelRow1 = new StackPanel();
+                stackPanelRow1.Margin = new Thickness(0, 2.5, 0, 2.5);
+                #region extraItems
+                //List<string> extraItems = new List<string>() { "+ extra item", "- item", };
+                if (item.extra != null)
+                //foreach (var extra in extraItems)
+                {
+                    TextBlock extraItem = new TextBlock();
+                    extraItem.Text = item.extra;
+                    extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    extraItem.HorizontalAlignment = HorizontalAlignment.Left;
+                    extraItem.VerticalAlignment = VerticalAlignment.Center;
+                    extraItem.Margin = new Thickness(0, 2.5, 0, 2.5);
+                    extraItem.TextWrapping = TextWrapping.WrapWithOverflow;
+                    extraItem.TextAlignment = TextAlignment.Center;
+
+                    stackPanelRow1.Children.Add(extraItem);
+                }
+                #endregion
+                Grid.SetRow(stackPanelRow1, 1);
+                gridMain.Children.Add(stackPanelRow1);
+                #endregion
+                #region gridRow2
+                Grid gridRow2 = new Grid();
+                gridRow2.Margin = new Thickness(0, 2.5, 0, 2.5);
+                #region gridSettings
+                /////////////////////////////////////////////////////
+                int colCountRow2 = 6;
+                ColumnDefinition[] cdRow2 = new ColumnDefinition[colCountRow2];
+                for (int i = 0; i < colCountRow2; i++)
+                {
+                    cdRow2[i] = new ColumnDefinition();
+                }
+                cdRow2[0].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow2[1].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow2[2].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow2[3].Width = new GridLength(1, GridUnitType.Star);
+                cdRow2[4].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow2[5].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow2; i++)
+                {
+                    gridRow2.ColumnDefinitions.Add(cdRow2[i]);
+                }
                 #endregion
                 #region itemCount
                 TextBlock itemCount = new TextBlock();
@@ -831,22 +914,24 @@ namespace Hesabate_POS.View.receipts
                 itemCount.TextAlignment = TextAlignment.Center;
 
 
-                Grid.SetColumn(itemCount, 2);
-                gridRow1.Children.Add(itemCount);
+                Grid.SetColumn(itemCount, 1);
+                gridRow2.Children.Add(itemCount);
                 #endregion
                 #region itemPrice
+                /*
                 TextBlock itemPrice = new TextBlock();
-                itemPrice.Text = item.price.ToString();
-                itemPrice.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                itemPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                itemPrice.Text = item.price + "$";
+                itemPrice.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                itemPrice.HorizontalAlignment = HorizontalAlignment.Left;
                 itemPrice.VerticalAlignment = VerticalAlignment.Center;
                 itemPrice.Margin = new Thickness(5);
                 itemPrice.TextWrapping = TextWrapping.WrapWithOverflow;
                 itemPrice.TextAlignment = TextAlignment.Center;
 
 
-                Grid.SetColumn(itemPrice, 4);
-                gridRow1.Children.Add(itemPrice);
+                Grid.SetColumn(itemPrice, 3);
+                gridRow2.Children.Add(itemPrice);
+                */
                 #endregion
                 #region   minus
                 Button buttonMinus = new Button();
@@ -869,8 +954,8 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 buttonMinus.Click += buttonMinus_Click;
 
-                Grid.SetColumn(buttonMinus, 1);
-                gridRow1.Children.Add(buttonMinus);
+                Grid.SetColumn(buttonMinus, 0);
+                gridRow2.Children.Add(buttonMinus);
                 /////////////////////////////////
 
                 #endregion
@@ -894,8 +979,33 @@ namespace Hesabate_POS.View.receipts
                 buttonPlus.Content = PlusPackIcon;
                 #endregion
                 buttonPlus.Click += buttonPlus_Click;
-                Grid.SetColumn(buttonPlus, 3);
-                gridRow1.Children.Add(buttonPlus);
+                Grid.SetColumn(buttonPlus, 2);
+                gridRow2.Children.Add(buttonPlus);
+                /////////////////////////////////
+                #endregion
+                #region   info
+                Button buttonInfo = new Button();
+                buttonInfo.Tag = "info-" + item.id;
+                buttonInfo.Margin = new Thickness(2.5);
+                buttonInfo.Height =
+                buttonInfo.Width = 25;
+                buttonInfo.Padding = new Thickness(0);
+                buttonInfo.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonInfo, (new CornerRadius(25)));
+                #region materialDesign
+                System.Windows.Shapes.Path infoIcon = new System.Windows.Shapes.Path();
+                infoIcon.Tag = "infoIcon-" + item.id;
+                infoIcon.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                infoIcon.Stretch = Stretch.Fill;
+                infoIcon.Height =
+                infoIcon.Width = 25;
+                infoIcon.Data = App.Current.Resources["infoCircle"] as Geometry;
+
+                buttonInfo.Content = infoIcon;
+                #endregion
+                buttonInfo.Click += buttonInfo_Click;
+                Grid.SetColumn(buttonInfo, 4);
+                gridRow2.Children.Add(buttonInfo);
                 /////////////////////////////////
                 #endregion
                 #region   close
@@ -907,7 +1017,7 @@ namespace Hesabate_POS.View.receipts
                 buttonClose.Padding = new Thickness(0);
                 buttonClose.Background = Application.Current.Resources["Red"] as SolidColorBrush;
                 buttonClose.BorderThickness = new Thickness(0);
-                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonClose, (new CornerRadius(cornerRadius)));
+                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonClose, (new CornerRadius(25)));
                 #region materialDesign
                 var ClosePackIcon = new PackIcon();
                 ClosePackIcon.Tag = "closePackIcon-" + item.id;
@@ -919,41 +1029,21 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 buttonClose.Click += buttonClose_Click;
                 Grid.SetColumn(buttonClose, 5);
-                gridRow1.Children.Add(buttonClose);
+                gridRow2.Children.Add(buttonClose);
                 /////////////////////////////////
                 #endregion
-                gridMain.Children.Add(gridRow1);
+                Grid.SetRow(gridRow2, 2);
+                gridMain.Children.Add(gridRow2);
                 #endregion
-                #region stackPanelRow2
-                StackPanel stackPanelRow2 = new StackPanel();
-                stackPanelRow2.Margin = new Thickness(5,0,5,0);
-                #region extraItems
-                //List<string> extraItems = new List<string>() { "+ extra item", "- item", };
-                if(item.extra != null)
-                //foreach (var extra in extraItems)
-                {
-                    TextBlock extraItem = new TextBlock();
-                    extraItem.Text = item.extra;
-                    extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                    extraItem.HorizontalAlignment = HorizontalAlignment.Left;
-                    extraItem.VerticalAlignment = VerticalAlignment.Center;
-                    extraItem.Margin = new Thickness(5);
-                    extraItem.TextWrapping = TextWrapping.WrapWithOverflow;
-                    extraItem.TextAlignment = TextAlignment.Center;
+                
 
-                    stackPanelRow2.Children.Add(extraItem);
-                }
-                #endregion
-                Grid.SetRow(stackPanelRow2, 1);
-                gridMain.Children.Add(stackPanelRow2);
-                #endregion
                 #region gridRow3
                 Grid gridRow3 = new Grid();
-                gridRow3.Margin = new Thickness(5);
+                gridRow3.Margin = new Thickness(0, 2.5, 0, 2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
                 int colCountRow3 = 2;
-                ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow1];
+                ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow3];
                 for (int i = 0; i < colCountRow3; i++)
                 {
                     cdRow3[i] = new ColumnDefinition();
@@ -996,7 +1086,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region textTotal
                 TextBlock textTotal = new TextBlock();
-                textTotal.Text = item.total.ToString();
+                textTotal.Text = item.total + "$";
                 textTotal.FontSize = 14;
                 textTotal.FontWeight = FontWeights.SemiBold;
                 textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
@@ -1012,7 +1102,7 @@ namespace Hesabate_POS.View.receipts
 
 
 
-                Grid.SetRow(gridRow3, 2);
+                Grid.SetRow(gridRow3, 3);
                 gridMain.Children.Add(gridRow3);
                 #endregion 
 
@@ -1021,6 +1111,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 sp_invoiceDetails.Children.Add(borderMain);
                 #endregion
+                index++;
             }
         }
         void buttonMinus_Click(object sender, RoutedEventArgs e)
@@ -1045,6 +1136,19 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 int id = int.Parse(button.Tag.ToString().Replace("plus-", ""));
                 MessageBox.Show($"I'm plus button number: {id}");
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        void buttonInfo_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                int id = int.Parse(button.Tag.ToString().Replace("info-", ""));
+                MessageBox.Show($"I'm info button number: {id}");
             }
             catch (Exception ex)
             {
