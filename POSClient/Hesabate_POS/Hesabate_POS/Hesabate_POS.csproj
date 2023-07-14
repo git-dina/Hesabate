@@ -99,6 +99,9 @@
     <Compile Include="View\windows\wd_login.xaml.cs">
       <DependentUpon>wd_login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_selectBox.xaml.cs">
+      <DependentUpon>wd_selectBox.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -116,6 +119,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_selectBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
