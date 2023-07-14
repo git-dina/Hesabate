@@ -50,7 +50,8 @@ namespace Hesabate_POS.View.windows
 
 
                 HelpClass.StartAwait(grid_main);
-                requiredControlList = new List<string> { "userName", "password", "idCard", "language", };
+                //requiredControlList = new List<string> { "userName", "password", "idCard", "language", };
+                requiredControlList = new List<string> { "", };
 
                 #region translate
                 /*
@@ -90,7 +91,7 @@ namespace Hesabate_POS.View.windows
             {
                 if (e.Key == Key.Return)
                 {
-
+                    Btn_login_Click(btn_login, null);
                 }
             }
             catch (Exception ex)
@@ -219,43 +220,68 @@ namespace Hesabate_POS.View.windows
 
         #endregion
 
-        bool logInProcessing = false;
+        //bool logInProcessing = false;
         AuthService _authService = new AuthService();
         ItemService _itemService = new ItemService();
         private async void Btn_login_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!logInProcessing)
+                btn_login.IsEnabled = false;
+
+                //await _authService.Login(tb_userName.Text,pb_password.Password);
+                //await _authService.Login(tb_idCard.Text);
+
+
+                #region  selectBox
+                HelpClass.StartAwait(grid_form);
+
+                pb_main.Visibility = Visibility.Visible;
+                pb_main.Value = 0;
+
+
+                int taskCount = 3;
+                await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
+                pb_main.Value += 100 / taskCount;
+                await GeneralInfoService.GetLanguagesTerms(1);// get selected language terms
+                pb_main.Value += 100 / taskCount;
+                await _itemService.GetItems();
+                pb_main.Value = 100;
+
+
+                Window.GetWindow(this).Opacity = 0.0;
+                wd_selectBox w = new wd_selectBox();
+                w.ShowDialog();
+                if (w.isOk)
                 {
-                    logInProcessing = true;
-                    HelpClass.StartAwait(grid_main);
-
-
-                    //await _authService.Login(tb_userName.Text,pb_password.Password);
-                    //await _authService.Login(tb_idCard.Text);
-
-
-                    await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
-                    await GeneralInfoService.GetLanguagesTerms(1);// get selected language terms
-                    await _itemService.GetItems();
                     //open main window and close this window
                     MainWindow main = new MainWindow();
                     main.Show();
                     this.Close();
-
-                    HelpClass.EndAwait(grid_main);
-                    logInProcessing = false;
                 }
+
+                pb_main.Visibility = Visibility.Collapsed;
+                pb_main.Value = 0;
+                Window.GetWindow(this).Opacity = 1;
+
+                HelpClass.EndAwait(grid_form);
+                #endregion
+
+
+                btn_login.IsEnabled = true;
+
             }
             catch (Exception ex)
             {
-                HelpClass.EndAwait(grid_main);
-                logInProcessing = false;
+                HelpClass.EndAwait(grid_form);
+                btn_login.IsEnabled = true;
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
 
-      
+        private void cb_language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("cb_language_SelectionChanged");
+        }
     }
 }
