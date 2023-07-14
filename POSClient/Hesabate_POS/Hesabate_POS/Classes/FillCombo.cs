@@ -19,19 +19,21 @@ namespace Hesabate_POS.Classes
 
         #region language
 
-        static public async Task<List<LanguageModel>> fillLanguages(ComboBox combo)
+        static public async Task fillLanguages(ComboBox combo)
         {
-             var languages =   await GeneralInfoService.GetLanguages();
+            if(GeneralInfoService.Languages == null)
+                 await GeneralInfoService.GetLanguages();
 
-            combo.ItemsSource = languages;
+            combo.ItemsSource = GeneralInfoService.Languages;
             combo.SelectedValuePath = "id";
             combo.DisplayMemberPath = "name";
             combo.SelectedIndex =0;
 
-            return languages;
         }
-        
-        
+
+        #endregion
+
+        #region cashBox
         #endregion
 
     }

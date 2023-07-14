@@ -67,7 +67,7 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
-               // languages = await fillLanguageCombo(cb_language);
+                await FillCombo.fillLanguages(cb_language);
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -281,7 +281,11 @@ namespace Hesabate_POS.View.windows
 
         private void cb_language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("cb_language_SelectionChanged");
+            if (cb_language.SelectedValue != null)
+            {
+                var lang = GeneralInfoService.Languages.Where(x => x.id == (int)cb_language.SelectedValue).FirstOrDefault();
+                AppSettings.dir = lang.dir;
+            }
         }
     }
 }
