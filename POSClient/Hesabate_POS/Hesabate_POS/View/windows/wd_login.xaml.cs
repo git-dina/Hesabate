@@ -243,7 +243,7 @@ namespace Hesabate_POS.View.windows
                 int taskCount = 3;
                 await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
                 pb_main.Value += 100 / taskCount;
-                await GeneralInfoService.GetLanguagesTerms(1);// get selected language terms
+                await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
                 pb_main.Value += 100 / taskCount;
                 await _itemService.GetItems();
                 pb_main.Value = 100;

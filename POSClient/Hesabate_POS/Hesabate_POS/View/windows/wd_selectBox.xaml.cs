@@ -89,8 +89,9 @@ namespace Hesabate_POS.View.windows
 
         private void translate()
         {
-            
 
+            txt_title.Text = Translate.getResource("104");
+            btn_save.Content = Translate.getResource("27");
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
