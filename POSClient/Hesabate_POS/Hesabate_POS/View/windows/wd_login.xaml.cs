@@ -232,29 +232,34 @@ namespace Hesabate_POS.View.windows
                 string res = "";
                 if (tb_userName.Text != "" && pb_password.Password != "")
                 {
-                    res = await _authService.Login(tb_userName.Text, pb_password.Password);
+                    var res1 = await _authService.Login(tb_userName.Text, pb_password.Password);
+                    res = Convert.ToString(res1);
                 }
-                else if(tb_idCard.Text != "")
-                    res = await _authService.Login(tb_idCard.Text);
+                else if (tb_idCard.Text != "")
+                {
+                    var res1 = await _authService.Login(tb_idCard.Text);
+                    res = Convert.ToString(res1);
+                }
 
                 // show message
                 //if(res != "")
 
                 #region  selectBox
-                HelpClass.StartAwait(grid_form);
+                HelpClass.StartAwait(grid_form);               
 
-                pb_main.Visibility = Visibility.Visible;
-                pb_main.Value = 0;
+                if (res == "")
+                {
+                    pb_main.Visibility = Visibility.Visible;
+                    pb_main.Value = 0;
 
-
-                int taskCount = 3;
-                await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
-                pb_main.Value += 100 / taskCount;
-                await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
-                pb_main.Value += 100 / taskCount;
-                await _itemService.GetItems();
-                pb_main.Value = 100;
-
+                    int taskCount = 3;
+                    await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
+                    pb_main.Value += 100 / taskCount;
+                    await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
+                    pb_main.Value += 100 / taskCount;
+                    await _itemService.GetItems();
+                    pb_main.Value = 100;
+                }
                 if (res == "" && AppSettings.cashBoxId == "0")
                 {
                     Window.GetWindow(this).Opacity = 0.0;
