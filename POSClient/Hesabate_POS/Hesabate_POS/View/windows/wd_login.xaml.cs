@@ -223,49 +223,50 @@ namespace Hesabate_POS.View.windows
         //bool logInProcessing = false;
         AuthService _authService = new AuthService();
         ItemService _itemService = new ItemService();
+        int taskCount = 3;
         private async void Btn_login_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 btn_login.IsEnabled = false;
+                pb_main.Value = 0;
 
                 string res = "";
                 if (tb_userName.Text != "" && pb_password.Password != "")
                 {
-                    res = await _authService.Login(tb_userName.Text, pb_password.Password);
+                    var res1 = await _authService.Login(tb_userName.Text, pb_password.Password);
+                    res = Convert.ToString(res1);
                 }
-                else if(tb_idCard.Text != "")
-                    res = await _authService.Login(tb_idCard.Text);
-
+                else if (tb_idCard.Text != "")
+                {
+                    var res1 = await _authService.Login(tb_idCard.Text);
+                    res = Convert.ToString(res1);
+                }
+                
                 // show message
                 //if(res != "")
 
                 #region  selectBox
                 HelpClass.StartAwait(grid_form);
 
-                pb_main.Visibility = Visibility.Visible;
-                pb_main.Value = 0;
-
-
-                int taskCount = 3;
-                await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
-                pb_main.Value += 100 / taskCount;
-                await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
-                pb_main.Value += 100 / taskCount;
-                await _itemService.GetItems();
-                pb_main.Value = 100;
+                if(res == "")
+                {
+                    pb_main.Visibility = Visibility.Visible;
+                  
+                    await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
+                    pb_main.Value += 100 / taskCount;
+                }
 
                 if (res == "" && AppSettings.cashBoxId == "0")
                 {
+                    
                     Window.GetWindow(this).Opacity = 0.0;
                     wd_selectBox w = new wd_selectBox();
                     w.ShowDialog();
                     if (w.isOk)
                     {
                         //open main window and close this window
-                        MainWindow main = new MainWindow();
-                        main.Show();
-                        this.Close();
+                        await doLogin();
                     }
 
                     pb_main.Visibility = Visibility.Collapsed;
@@ -274,10 +275,8 @@ namespace Hesabate_POS.View.windows
                 }
                 else if(res == "")
                 {
-                    //open main window and close this window
-                    MainWindow main = new MainWindow();
-                    main.Show();
-                    this.Close();
+
+                    await doLogin();
                 }
                 HelpClass.EndAwait(grid_form);
                 #endregion
@@ -294,6 +293,19 @@ namespace Hesabate_POS.View.windows
             }
         }
 
+        private async Task doLogin()
+        {
+            
+            await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
+            pb_main.Value += 100 / taskCount;
+            
+            await _itemService.GetItems();
+            pb_main.Value = 100;
+            //open main window and close this window
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
         private void cb_language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cb_language.SelectedValue != null)
