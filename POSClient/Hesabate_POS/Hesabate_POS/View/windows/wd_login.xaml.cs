@@ -229,9 +229,16 @@ namespace Hesabate_POS.View.windows
             {
                 btn_login.IsEnabled = false;
 
-                //await _authService.Login(tb_userName.Text,pb_password.Password);
-                //await _authService.Login(tb_idCard.Text);
+                string res = "";
+                if (tb_userName.Text != "" && pb_password.Password != "")
+                {
+                    res = await _authService.Login(tb_userName.Text, pb_password.Password);
+                }
+                else if(tb_idCard.Text != "")
+                    res = await _authService.Login(tb_idCard.Text);
 
+                // show message
+                //if(res != "")
 
                 #region  selectBox
                 HelpClass.StartAwait(grid_form);
@@ -248,22 +255,30 @@ namespace Hesabate_POS.View.windows
                 await _itemService.GetItems();
                 pb_main.Value = 100;
 
+                if (res == "" && AppSettings.cashBoxId == "0")
+                {
+                    Window.GetWindow(this).Opacity = 0.0;
+                    wd_selectBox w = new wd_selectBox();
+                    w.ShowDialog();
+                    if (w.isOk)
+                    {
+                        //open main window and close this window
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                        this.Close();
+                    }
 
-                Window.GetWindow(this).Opacity = 0.0;
-                wd_selectBox w = new wd_selectBox();
-                w.ShowDialog();
-                if (w.isOk)
+                    pb_main.Visibility = Visibility.Collapsed;
+                    pb_main.Value = 0;
+                    Window.GetWindow(this).Opacity = 1;
+                }
+                else if(res == "")
                 {
                     //open main window and close this window
                     MainWindow main = new MainWindow();
                     main.Show();
                     this.Close();
                 }
-
-                pb_main.Visibility = Visibility.Collapsed;
-                pb_main.Value = 0;
-                Window.GetWindow(this).Opacity = 1;
-
                 HelpClass.EndAwait(grid_form);
                 #endregion
 

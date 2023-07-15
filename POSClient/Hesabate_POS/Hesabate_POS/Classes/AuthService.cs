@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Hesabate_POS.Classes.ApiClasses;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,9 +14,9 @@ namespace Hesabate_POS.Classes
 {
     public class AuthService
     {
-        public  async Task Login(string userName,string password)
+        public  async Task<dynamic> Login(string userName,string password)
         {
-
+            dynamic res = "";
             using (var client = new HttpClient())
             {
                 client.Timeout = System.TimeSpan.FromSeconds(3600);
@@ -29,8 +33,14 @@ namespace Hesabate_POS.Classes
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
                         var jsonString = await response.Content.ReadAsStringAsync();
-                       // Languages = JsonConvert.DeserializeObject<List<LanguageModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-
+                        res = JsonConvert.DeserializeObject<dynamic>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                        if (res["result"] != null)
+                            return res["code"];
+                        else
+                        {
+                            setAppSettings(jsonString);
+                            
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -38,10 +48,11 @@ namespace Hesabate_POS.Classes
                     //Languages = new List<LanguageModel>();
                 }
             }
+            return res;
         } 
-        public  async Task Login(string idCard)
+        public  async Task<dynamic> Login(string idCard)
         {
-
+            dynamic res = "";
             using (var client = new HttpClient())
             {
                 client.Timeout = System.TimeSpan.FromSeconds(3600);
@@ -56,7 +67,10 @@ namespace Hesabate_POS.Classes
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
                         var jsonString = await response.Content.ReadAsStringAsync();
-                       // Languages = JsonConvert.DeserializeObject<List<LanguageModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                        res = JsonConvert.DeserializeObject<dynamic>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                        if (res["result"] != null)
+                            return res["code"];
+
 
                     }
                 }
@@ -64,7 +78,27 @@ namespace Hesabate_POS.Classes
                 {
                     //Languages = new List<LanguageModel>();
                 }
+                return res;
             }
+        }
+
+        private void setAppSettings(string jsonString)
+        {
+           var  res = JsonConvert.DeserializeObject<dynamic>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+            
+            AppSettings.handhold_out = res["handhold_out"];
+            AppSettings.handhold_in = res["handhold_in"];
+            AppSettings.handhold = res["handhold"];
+            AppSettings.items_page = res["items_page"];
+            AppSettings.reservation = res["reservation"];
+            AppSettings.customer_report = res["customer_report"];
+            AppSettings.convert = res["convert"];
+            AppSettings.database_id = res["database_id"];
+            AppSettings.userId = res["userid"];
+            AppSettings.userName = res["name"];
+            AppSettings.cashBoxId = res["cash_box"];
+            AppSettings.token = res["token"];
+         
         }
     }
 }

@@ -60,6 +60,29 @@ namespace Hesabate_POS.Classes
         public static string lang = "ar";
         public static string dir = "rtl";
 
+        #region User Info
+        public static string userId;//رقم المستخدم على النظام
+        public static string userName;//اسم المستخدم على النظام
+        public static string database_id;//رقم قاعدة البيانات التي يعمل عليها النظام في برنامج المحاسبة
+        public static string cashBoxId;//رقم الصندوق و في حال كان الرقم 0 يجب ان يختار واحد من الصناديق الملحقة و اذا كان الرقم اكبر من صفر يتم الاختيار بشكل آلي ولا يسمح للمستخدم بالاختيار
+        public static string token;//يتم استخدامها في كل الاوامر اللاحقة بحيث تكون مفتاح لقبول العمل على النظام
+        #endregion
 
+        #region Operation Permissions
+        public static string handhold_out;//مسموح استخدام سند دفع
+        public static string handhold_in;////مسموح استخدام سند القبض
+        public static string handhold;//مسموح استخدام سند الصرف
+        public static string items_page;//مسموح استخدام بطاقة الاصناف --حاليا غير مستخدمه
+        public static string reservation;//مسموح فتح الحجوزات
+        public static string customer_report;//مسموح استخدام كشف حساب العميل
+        public static string convert;//مسموح استخدام كبسة التحويل : وهي كبسة تقوم بترحيل العمليات الى السيرفر أو استقبال بيانات من السيرفر             
+        public static string showPx;//يجب اظهار شاشة  تسليم العهده للمستخدم قبل العمل على البرنامج      
+        #endregion
+
+        #region options
+        #endregion
+
+        #region appSettings
+        #endregion
     }
 }

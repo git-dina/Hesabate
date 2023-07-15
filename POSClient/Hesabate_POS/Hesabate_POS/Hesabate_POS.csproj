@@ -78,6 +78,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ar_file.Designer.cs" />
+    <Compile Include="Classes\ApiClasses\CashBoxModel.cs" />
     <Compile Include="Classes\ApiClasses\GeneralInfoModel.cs" />
     <Compile Include="Classes\ApiClasses\CategoryModel.cs" />
     <Compile Include="Classes\ApiClasses\ItemModel.cs" />
