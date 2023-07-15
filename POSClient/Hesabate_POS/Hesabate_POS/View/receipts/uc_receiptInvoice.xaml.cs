@@ -96,8 +96,9 @@ namespace Hesabate_POS.View.receipts
 
         private void translate()
         {
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
 
-           
         }
 
         private void btn_home_Click(object sender, RoutedEventArgs e)

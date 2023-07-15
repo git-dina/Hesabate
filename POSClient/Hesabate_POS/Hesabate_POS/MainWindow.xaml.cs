@@ -88,6 +88,7 @@ namespace Hesabate_POS
                 }
                 translate();
 
+                setHeaderValues();
                 //should be moved to login page
                 //await FillCombo.RefreshCompanySettings();
                 //try
@@ -248,6 +249,10 @@ namespace Hesabate_POS
             }
         }
 
+        private void setHeaderValues()
+        {
+            txt_userName.Text = AppSettings.userName;
+        }
         void permission()
         {
             /*
@@ -360,48 +365,7 @@ namespace Hesabate_POS
         */
         public void translate()
         {
-            /*
-            // txt_home.Text = AppSettings.resourcemanager.GetString("trHome");
-
-            txt_mainSection.Text = AppSettings.resourcemanager.GetString("trHome");
-            txt_catalog.Text = AppSettings.resourcemanager.GetString("trCatalog");
-            txt_category.Text = AppSettings.resourcemanager.GetString("Categories");
-            txt_item.Text = AppSettings.resourcemanager.GetString("Items");
-            //txt_unit.Text = AppSettings.resourcemanager.GetString("Units");
-
-            txt_purchases.Text = AppSettings.resourcemanager.GetString("trPurchase");
-            txt_purchaseOrder.Text = AppSettings.resourcemanager.GetString("ProcurementRequests");
-            txt_purchaseInvoice.Text = AppSettings.resourcemanager.GetString("trPurchaseOrders");
-
-            txt_receipts.Text = AppSettings.resourcemanager.GetString("Receipts");
-            txt_receiptInvoice.Text = AppSettings.resourcemanager.GetString("Receipt");
-            txt_returnReceiptInv.Text = AppSettings.resourcemanager.GetString("Returns");
-
-
-            txt_promotion.Text = AppSettings.resourcemanager.GetString("Offers");
-            txt_promotionInvoice.Text = AppSettings.resourcemanager.GetString("PromotionalOffers");
-
-            txt_sectionData.Text = AppSettings.resourcemanager.GetString("trSectionData");
-            txt_phoneType.Text = AppSettings.resourcemanager.GetString("PhonesTypes");
-            txt_bank.Text = AppSettings.resourcemanager.GetString("trBanks");
-            txt_country.Text = AppSettings.resourcemanager.GetString("Countries");
-            txt_brand.Text = AppSettings.resourcemanager.GetString("Brands");
-
-            txt_locations.Text = AppSettings.resourcemanager.GetString("Locations");
-            txt_locationsData.Text = AppSettings.resourcemanager.GetString("LocationsData");
-            txt_locationType.Text = AppSettings.resourcemanager.GetString("LocationsType");
-
-            txt_vendors.Text = AppSettings.resourcemanager.GetString("Suppliers");
-            txt_vendorsData.Text = AppSettings.resourcemanager.GetString("SuppliersData");
-            txt_vendorsGroups.Text = AppSettings.resourcemanager.GetString("SuppliersGroups");
-            txt_vendorsType.Text = AppSettings.resourcemanager.GetString("SuppliersTypes");
-            txt_supportVendors.Text = AppSettings.resourcemanager.GetString("AssistantSuppliers");
-            txt_supplierDocType.Text = AppSettings.resourcemanager.GetString("SupplierDocTypes");
-
-            txt_settings.Text = AppSettings.resourcemanager.GetString("Settings");
-            txt_generalSettings.Text = AppSettings.resourcemanager.GetString("GeneralSettings");
-          
-            */
+           
         }
         private void Btn_home_Click(object sender, RoutedEventArgs e)
         {
