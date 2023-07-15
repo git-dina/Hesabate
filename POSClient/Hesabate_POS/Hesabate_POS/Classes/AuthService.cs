@@ -39,7 +39,7 @@ namespace Hesabate_POS.Classes
                         else
                         {
                             setAppSettings(jsonString);
-                            return "";
+                            
                         }
                     }
                 }
@@ -70,11 +70,7 @@ namespace Hesabate_POS.Classes
                         res = JsonConvert.DeserializeObject<dynamic>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                         if (res["result"] != null)
                             return res["code"];
-                        else
-                        {
-                            setAppSettings(jsonString);
-                            return "";
-                        }
+
 
                     }
                 }
