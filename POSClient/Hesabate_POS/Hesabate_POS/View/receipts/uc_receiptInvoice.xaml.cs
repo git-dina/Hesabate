@@ -96,9 +96,22 @@ namespace Hesabate_POS.View.receipts
 
         private void translate()
         {
+            txt_allItems.Text = Translate.getResource("391");
+            txt_invoiceTitle.Text = Translate.getResource("1128");
+            txt_external.Text = Translate.getResource("695");
+            txt_tables.Text = Translate.getResource("167");
+            txt_customer.Text = Translate.getResource("2145");
+            txt_CountTitle.Text = Translate.getResource("578");
+            txt_SupTotalTitle.Text = Translate.getResource("572");
+
+            txt_TaxTitle.Text = Translate.getResource("1342");
+            txt_DiscountTitle.Text = Translate.getResource("1066");
+            txt_totalTitle.Text = Translate.getResource("727");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
 
+            btn_save.Content = Translate.getResource("2104");
         }
 
         private void btn_home_Click(object sender, RoutedEventArgs e)
@@ -795,6 +808,7 @@ namespace Hesabate_POS.View.receipts
         List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
         class InvoiceDetails
         {
+            public int index { get; set; }
             public int id;
             public string name;
             public string unit;
@@ -831,6 +845,7 @@ namespace Hesabate_POS.View.receipts
             int index = 1;
             foreach (var item in invoiceDetailsList)
             {
+                item.index = index;
                 #region borderMain
                 Border borderMain = new Border();
                 borderMain.BorderThickness = new Thickness(1);
@@ -1003,7 +1018,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region   minus
                 Button buttonMinus = new Button();
-                buttonMinus.Tag = "minus-" + item.id;
+                buttonMinus.Tag = "minus-" + item.index;
                 buttonMinus.Margin = new Thickness(2.5);
                 buttonMinus.Height =
                 buttonMinus.Width = 25;
@@ -1029,7 +1044,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region   plus
                 Button buttonPlus = new Button();
-                buttonPlus.Tag = "plus-" + item.id;
+                buttonPlus.Tag = "plus-" + item.index;
                 buttonPlus.Margin = new Thickness(2.5);
                 buttonPlus.Height =
                 buttonPlus.Width = 25;
@@ -1188,8 +1203,16 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                int id = int.Parse(button.Tag.ToString().Replace("minus-", ""));
-                MessageBox.Show($"I'm minus button number: {id}");
+                int index = int.Parse(button.Tag.ToString().Replace("minus-", ""));
+                int itemCount = invoiceDetailsList[index - 1].count;
+                if (itemCount >1)
+                {
+                    invoiceDetailsList[index - 1].count--;
+                    invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
+                    buildInvoiceDetails(invoiceDetailsList);
+                    CalculateInvoiceValues();
+                }
+                MessageBox.Show($"I'm minus button number: {index}");
             }
             catch (Exception ex)
             {
@@ -1202,8 +1225,14 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                int id = int.Parse(button.Tag.ToString().Replace("plus-", ""));
-                MessageBox.Show($"I'm plus button number: {id}");
+                int index = int.Parse(button.Tag.ToString().Replace("plus-", ""));
+               
+
+                invoiceDetailsList[index-1].count++;
+                invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
+                buildInvoiceDetails(invoiceDetailsList);
+
+                CalculateInvoiceValues();
             }
             catch (Exception ex)
             {
@@ -1215,8 +1244,10 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                int id = int.Parse(button.Tag.ToString().Replace("info-", ""));
-                MessageBox.Show($"I'm info button number: {id}");
+                int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
+                invoiceDetailsList[index].count++;
+
+                MessageBox.Show($"I'm info button number: {index}");
 
                 
             }
@@ -1326,12 +1357,25 @@ namespace Hesabate_POS.View.receipts
             {
                 if (tb_search.Text != "")
                 {
+                    HelpClass.StartAwait(grid_main);
                     string customerId = "1";
-                    var item = _itemService.GetItemInfo(tb_search.Text, "0", customerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
+                    var item = _itemService.GetItemInfo("123s", "0", customerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
+                    if(item != null)
+                    {
+
+                    }
+                    HelpClass.EndAwait(grid_main);
                 }
             }
             catch { }
         }
         #endregion
+
+        private void CalculateInvoiceValues()
+        {
+            txt_Count.Text = invoiceDetailsList.Select(x => x.count).Sum().ToString();
+            txt_SupTotal.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
+            txt_total.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
+        }
     }
 }
