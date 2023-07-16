@@ -255,7 +255,7 @@ namespace Hesabate_POS.View.receipts
         }
 
 
-
+        #region grid1_1
         #region itemsCard
         /*
         class Item
@@ -283,7 +283,7 @@ namespace Hesabate_POS.View.receipts
         }
         */
 
-      async  Task buildItemsCard(List<CategoryModel> items)
+        async Task buildItemsCard(List<CategoryModel> items)
         {
             wp_itemsCard.Children.Clear();
             int cardWidth = 175;
@@ -722,6 +722,73 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
 
+        #region invoiceItemOptions
+        private void Btn_invoiceItemOptionsBack_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                switchGrid1_1(button.Tag.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void btn_extraItems_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                switchGrid1_1(button.Tag.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_deleteItems_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+        void switchGrid1_1(string type)
+        {
+            // first level
+            if (type == "mainItemsCatalog")
+            {
+                grid_mainItemsCatalog.Visibility = Visibility.Visible;
+                grid_invoiceItemOptions.Visibility = Visibility.Collapsed;
+            }
+            else if (type == "invoiceItemOptions")
+            {
+                grid_mainItemsCatalog.Visibility = Visibility.Collapsed;
+                grid_invoiceItemOptions.Visibility = Visibility.Visible;
+
+
+                btn_invoiceItemOptionsBack.Tag = "mainItemsCatalog";
+                txt_invoiceItemOptionsTitle.Text = "invoiceItemOptions";
+                wp_invoiceItemOptions.Visibility = Visibility.Visible;
+            }
+            // second level
+            else if (type == "extraItems")
+            {
+               
+                btn_invoiceItemOptionsBack.Tag = "invoiceItemOptions";
+                txt_invoiceItemOptionsTitle.Text = "extraItems";
+                wp_invoiceItemOptions.Visibility = Visibility.Collapsed;
+                //wp_extraItems.Visibility = Visibility.Visible;
+            }
+
+
+            
+        }
+
+        #endregion
 
         #region invoiceDetails
 
@@ -1150,6 +1217,8 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 int id = int.Parse(button.Tag.ToString().Replace("info-", ""));
                 MessageBox.Show($"I'm info button number: {id}");
+
+                
             }
             catch (Exception ex)
             {
@@ -1169,10 +1238,17 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
+
+        void switchInvoiceType(string type)
+        {
+            
+        }
+
         #endregion
 
 
-        
+        #region grid0_0
         private void btn_pay_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1238,6 +1314,10 @@ namespace Hesabate_POS.View.receipts
 
         }
 
+        #endregion
+
        
+
+
     }
 }

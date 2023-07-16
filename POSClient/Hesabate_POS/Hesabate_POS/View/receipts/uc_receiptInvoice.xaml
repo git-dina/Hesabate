@@ -616,13 +616,14 @@
                          BlurRadius="10"/>
                 </Border.Effect>
                 <Grid>
+                <Grid x:Name="grid_mainItemsCatalog" Visibility="Visible">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid>
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
@@ -687,8 +688,8 @@
                     <Border Grid.Row="1" Margin="0"  
                         BorderThickness="0 0 0 1" 
                         BorderBrush="{StaticResource LightGrey}"/>
-                    <Grid x:Name="itemsCard" Grid.Row="2">
-                    <ScrollViewer x:Name="sv_itemsCard"
+                    <Grid  Grid.Row="2">
+                    <ScrollViewer 
                              Margin="0,0,-5,0" >
                             <WrapPanel x:Name="wp_itemsCard" Margin="5,5,5,5" HorizontalAlignment="Left" >
                               
@@ -1628,6 +1629,127 @@
                     </Grid>
 
                 </Grid>
+                    <Grid x:Name="grid_invoiceItemOptions"  Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0"  Background="{StaticResource MainColor}">
+                            <Grid>
+
+                                <Button x:Name="btn_invoiceItemOptionsBack" 
+                                        Click="Btn_invoiceItemOptionsBack_Click"
+                                    Tag="invoiceItemOptions"
+                                          HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  
+                                    Foreground="White" Margin="0" 
+                             FontWeight="SemiBold" Width="35"
+                                    Padding="0"  >
+                                    <Path Fill="{StaticResource White}" Margin="5"
+                              Stretch="Fill" Height="15"  Width="20" 
+                          Data="{StaticResource ArrowRight}"  />
+                                </Button>
+                                <Grid  HorizontalAlignment="Center"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="1.2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Path Fill="White" Stretch="Fill" Margin="5,0" FlowDirection="LeftToRight"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center"  Width="20" Height="20"
+                              Data="{StaticResource vendor}"/>-->
+                                    <TextBlock Text="invoiceItemOptions" x:Name="txt_invoiceItemOptionsTitle" Foreground="White" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Grid  Grid.Row="2">
+                            <ScrollViewer 
+                             Margin="0,0,-5,0" >
+                                <WrapPanel x:Name="wp_invoiceItemOptions" 
+                                           Margin="5,5,5,5" HorizontalAlignment="Left" >
+
+                                    <Button x:Name="btn_extraItems"
+                                            Click="btn_extraItems_Click"
+                                            Tag="extraItems"
+                                            Grid.Row="1"
+                                             Width="100" Height="125" 
+                                    Margin="5" 
+                                   materialDesign:ButtonAssist.CornerRadius="7"
+                                    Background="{StaticResource White}"
+                                            BorderBrush="{StaticResource MainColor}"
+                                    BorderThickness="1"
+                                    Padding="0" >
+                                        <Grid Width="100" Height="125">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*"/>
+                                                <RowDefinition Height="2*"/>
+                                            </Grid.RowDefinitions>
+                                            <Path Grid.Row="0"
+                                                Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="50" Height="50"
+                              Data="{StaticResource plusCircle}"
+                                       FlowDirection="LeftToRight"
+                                      Margin="5"/>
+                                            <Grid Grid.Row="1" 
+                                                  Background="{StaticResource MainColor}">
+                                            <TextBlock x:Name="txt_extraItems" 
+                                                       Grid.Row="1"
+                                                       Text="extraItems" 
+                                                       Foreground="{StaticResource White}"
+                                                         Margin="5"
+                                                       VerticalAlignment="Center"
+                                                       TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                                        </Grid>
+                                        </Grid>
+                                    </Button>
+                                 <Button x:Name="btn_deleteItems"
+                                            Click="btn_deleteItems_Click"
+                                            Grid.Row="1"
+                                             Width="100" Height="125" 
+                                    Margin="5" 
+                                   materialDesign:ButtonAssist.CornerRadius="7"
+                                    Background="{StaticResource White}"
+                                            BorderBrush="{StaticResource MainColor}"
+                                    BorderThickness="1"
+                                    Padding="0" >
+                                        <Grid Width="100" Height="125">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*"/>
+                                                <RowDefinition Height="2*"/>
+                                            </Grid.RowDefinitions>
+                                            <Path Grid.Row="0"
+                                                Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="50" Height="50"
+                              Data="{StaticResource minusCircle}"
+                                       FlowDirection="LeftToRight"
+                                      Margin="5"/>
+                                            <Grid Grid.Row="1" 
+                                                  Background="{StaticResource MainColor}">
+                                                <TextBlock x:Name="txt_deleteItems" 
+                                                       Grid.Row="1"
+                                                       Text="deleteItems" 
+                                                       Foreground="{StaticResource White}"
+                                                         Margin="5"
+                                                       VerticalAlignment="Center"
+                                                       TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                                        </Grid>
+                                        </Grid>
+                                    </Button>
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
             </Border>
 
             <Grid Grid.Row="2" Grid.RowSpan="2">
@@ -2175,7 +2297,7 @@
                                   VerticalScrollBarVisibility="Auto"  
                                   >
                         <StackPanel  x:Name="sp_invoiceDetails"  >
-                            <Border BorderThickness="1"  
+                            <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
                                     Background="{x:Null}" Padding="0" 
@@ -2245,9 +2367,9 @@
                                                   Stretch="Fill" 
                                                   Height="25"  Width="25" 
                                               Data="{StaticResource infoCircle}"  />
-                                            <!--<TextBlock Text="!"
+                                            --><!--<TextBlock Text="!"
                                                        Foreground="{StaticResource White}" 
-                                            FontWeight="SemiBold" FontSize="16"  />-->
+                                            FontWeight="SemiBold" FontSize="16"  />--><!--
                                         </Button>
                                         <Button Grid.Column="7"    Margin="2.5"
                                     Height="25" Width="25"  Padding="0"
@@ -2311,7 +2433,7 @@
 
 
                                 </Grid>
-                            </Border>
+                            </Border>-->
                             <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
