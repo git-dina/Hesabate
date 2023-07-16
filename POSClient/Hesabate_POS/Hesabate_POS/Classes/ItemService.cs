@@ -293,6 +293,45 @@ namespace Hesabate_POS.Classes
                 }
                 return GeneralInfoService.items;
             }
+        } 
+        
+        public async Task< ItemModel>GetItemInfo(string searchText,string zType,string customerId,string priceId,string sTr="",string unitid="0")
+        {
+            ItemModel item = null;
+            using (var client = new HttpClient())
+            {
+                client.Timeout = System.TimeSpan.FromSeconds(3600);
+                //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
+                var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
+                try
+                {
+                    var content = new MultipartFormDataContent();
+                    content.Add(new StringContent(AppSettings.token), "token");
+                    content.Add(new StringContent("4"), "op");
+                    content.Add(new StringContent(searchText), "id");// search in id
+                    content.Add(new StringContent(zType), "ztype");// 1 search according to text search only, 0 to apply search on all parameters
+                    content.Add(new StringContent(customerId), "cid"); // customer id in invoice
+                    content.Add(new StringContent(priceId), "priceid"); // from main info
+                    content.Add(new StringContent(sTr), "sTr");//barcode 
+                    content.Add(new StringContent(unitid), "unitid");//search in other item details
+                    request.Content = content;
+                    var response = await client.SendAsync(request);
+                    response.EnsureSuccessStatusCode();
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var jsonString = await response.Content.ReadAsStringAsync();
+                       item = JsonConvert.DeserializeObject<ItemModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return new ItemModel();
+                }
+                return item;
+            }
         }
     }
 }

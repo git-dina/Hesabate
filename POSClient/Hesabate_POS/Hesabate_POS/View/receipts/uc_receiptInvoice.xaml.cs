@@ -1314,10 +1314,24 @@ namespace Hesabate_POS.View.receipts
 
         }
 
+
+
+
         #endregion
 
-       
-
-
+        #region search
+        private async void tb_search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (tb_search.Text != "")
+                {
+                    string customerId = "1";
+                    var item = _itemService.GetItemInfo(tb_search.Text, "0", customerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
+                }
+            }
+            catch { }
+        }
+        #endregion
     }
 }
