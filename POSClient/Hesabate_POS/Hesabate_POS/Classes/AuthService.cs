@@ -14,12 +14,14 @@ namespace Hesabate_POS.Classes
 {
     public class AuthService
     {
+        private  HttpClient client = AppSettings.httpClient;
+
         public  async Task<dynamic> Login(string userName,string password)
         {
             dynamic res = "";
-            using (var client = new HttpClient())
+            //using (var client = new HttpClient())
             {
-                client.Timeout = System.TimeSpan.FromSeconds(3600);
+                //client.Timeout = System.TimeSpan.FromSeconds(3600);
 
                 var request = new HttpRequestMessage(HttpMethod.Post,AppSettings.APIUri+ "/POS/p5api2.php");
                 var content = new MultipartFormDataContent();
@@ -43,7 +45,7 @@ namespace Hesabate_POS.Classes
                         }
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     //Languages = new List<LanguageModel>();
                 }
@@ -78,7 +80,7 @@ namespace Hesabate_POS.Classes
 
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     //Languages = new List<LanguageModel>();
                 }
@@ -102,7 +104,13 @@ namespace Hesabate_POS.Classes
             AppSettings.userName = res["name"];
             AppSettings.cashBoxId = res["cash_box"];
             AppSettings.token = res["token"];
-         
+
+            var s = res["cash_boxes"];
+            //var str = Convert.ToString(s);
+            //str.SubString(1, str.Length);
+            //var jObject = JObject.Parse(s);
+ 
+            //GeneralInfoService.cashBoxes = JsonConvert.DeserializeObject<List<CashBoxModel>>(res["cash_boxes"], new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
         }
     }
 }

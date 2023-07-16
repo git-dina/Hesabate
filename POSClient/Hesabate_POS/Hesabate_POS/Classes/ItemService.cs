@@ -18,6 +18,8 @@ namespace Hesabate_POS.Classes
     public class ItemService
     {
         private List<CategoryModel> categoryPath;
+        private HttpClient client = AppSettings.httpClient;
+
         public List<CategoryModel> getCatItems(int catId)
         {
             List<CategoryModel> items = null;
@@ -219,7 +221,7 @@ namespace Hesabate_POS.Classes
                 return false;
         }
 
-        public static async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
+        public  async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
         {
 
             string remoteUri = apiUri+"/"+imagePath;
@@ -247,9 +249,10 @@ namespace Hesabate_POS.Classes
                     //Directory.CreateDirectory(directoryPath);
 
                     // Download the image and write to the file
-                    var imageBytes = await httpClient.GetByteArrayAsync(remoteUri);
+                   // var imageBytes = await httpClient.GetByteArrayAsync(remoteUri);
+                    var imageBytes1 = await client.GetByteArrayAsync(remoteUri);
 
-                return imageBytes;
+                return imageBytes1;
                //return new  MemoryStream(imageBytes);
                //if (imageBytes != null)
                //{
@@ -266,16 +269,16 @@ namespace Hesabate_POS.Classes
 
         public async Task< List<ItemModel> >GetItems()
         {
-            using (var client = new HttpClient())
+            //using (var client = new HttpClient())
             {
-                client.Timeout = System.TimeSpan.FromSeconds(3600);
+               // client.Timeout = System.TimeSpan.FromSeconds(3600);
                 //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
                 var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
                 try
                 {
                     var content = new MultipartFormDataContent();
-                    content.Add(new StringContent("KCvWV8bgsJKjTBsNDjJWCtZurF7bBJPOraSDtOJ27PYkPTToqkzDsVRVXilEwUkPKTkWGSxYIodapKKQWS5Hnx5puLgNhfH33hOOOSEZAlzsfyS2alxoMsbbP19LscsnbNMLFBgDNt2+xMrUQXDlhJYHB/+vSCHyDub89k/I6s+wCoG4YhV3vzoMmyW9mhsMo2IGSJzb4kyFWm8KvzWhrpdomkMNWL3ybqICjPq1RBYTpufI2ACasIMaAMwRbvxf"), "token");
+                    content.Add(new StringContent(AppSettings.token), "token");
                     content.Add(new StringContent("13"), "op");
                     request.Content = content;
                     var response = await client.SendAsync(request);
@@ -298,9 +301,9 @@ namespace Hesabate_POS.Classes
         public async Task< ItemModel>GetItemInfo(string searchText,string zType,string customerId,string priceId,string sTr="",string unitid="0")
         {
             ItemModel item = null;
-            using (var client = new HttpClient())
+           // using (var client = new HttpClient())
             {
-                client.Timeout = System.TimeSpan.FromSeconds(3600);
+                //client.Timeout = System.TimeSpan.FromSeconds(3600);
                 //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
                 var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
@@ -328,7 +331,7 @@ namespace Hesabate_POS.Classes
                 }
                 catch (Exception ex)
                 {
-                    return new ItemModel();
+                    return null;
                 }
                 return item;
             }

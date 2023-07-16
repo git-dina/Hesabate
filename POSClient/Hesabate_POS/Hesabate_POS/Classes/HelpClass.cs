@@ -32,7 +32,7 @@ namespace Hesabate_POS.Classes
         public static Pos posModel = new Pos();
         public static Offer offerModel = new Offer();
         */
-        public static string code;
+        //public static string code;
         static public BrushConverter brushConverter = new BrushConverter();
         public static ImageBrush imageBrush = new ImageBrush();
         /*

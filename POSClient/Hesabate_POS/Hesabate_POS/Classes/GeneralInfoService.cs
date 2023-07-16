@@ -12,6 +12,9 @@ namespace Hesabate_POS.Classes
 {
     public static class GeneralInfoService
     {
+
+        private static HttpClient client = AppSettings.httpClient;
+
         public static GeneralInfoModel GeneralInfo;
         public static List<LanguageModel> Languages;
         public static List<LanguageTermModel> LanguageTerms ;
@@ -21,9 +24,9 @@ namespace Hesabate_POS.Classes
         public static async Task<List<LanguageModel>> GetLanguages()
         {
             
-            using (var client = new HttpClient())
+            //using (var client = new HttpClient())
             {
-                client.Timeout = System.TimeSpan.FromSeconds(3600);
+               // client.Timeout = System.TimeSpan.FromSeconds(3600);
                 //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
                 var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
@@ -39,7 +42,7 @@ namespace Hesabate_POS.Classes
 
                     }
                 }
-                catch (Exception ex) {
+                catch  {
                     Languages = new List<LanguageModel>();
                 }
             }
@@ -49,13 +52,13 @@ namespace Hesabate_POS.Classes
         
         public static async Task GetMainInfo()
         {
-            using (var client = new HttpClient())
+            //using (var client = new HttpClient())
             {
-                client.Timeout = System.TimeSpan.FromSeconds(3600);
+                //client.Timeout = System.TimeSpan.FromSeconds(3600);
 
                 var request = new HttpRequestMessage(HttpMethod.Post,AppSettings.APIUri+ "/POS/p5api2.php");
                 var content = new MultipartFormDataContent();
-                content.Add(new StringContent("KCvWV8bgsJKjTBsNDjJWCtZurF7bBJPOraSDtOJ27PYkPTToqkzDsVRVXilEwUkPKTkWGSxYIodapKKQWS5Hnx5puLgNhfH33hOOOSEZAlzsfyS2alxoMsbbP19LscsnbNMLFBgDNt2+xMrUQXDlhJYHB/+vSCHyDub89k/I6s+wCoG4YhV3vzoMmyW9mhsMo2IGSJzb4kyFWm8KvzWhrpdomkMNWL3ybqICjPq1RBYTpufI2ACasIMaAMwRbvxf"), "token");
+                content.Add(new StringContent(AppSettings.token), "token");
                 content.Add(new StringContent("1"), "op");
                 request.Content = content;
                 try
@@ -81,9 +84,9 @@ namespace Hesabate_POS.Classes
         public static async Task GetLanguagesTerms(int languageId)
         {
 
-            using (var client = new HttpClient())
+            //using (var client = new HttpClient())
             {
-                client.Timeout = System.TimeSpan.FromSeconds(3600);
+                //client.Timeout = System.TimeSpan.FromSeconds(3600);
 
                 var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
                 var content = new MultipartFormDataContent();

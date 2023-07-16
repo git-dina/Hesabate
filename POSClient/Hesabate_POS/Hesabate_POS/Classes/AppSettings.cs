@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 //using System.Deployment.Application;
 using System.Reflection;
+using System.Net.Http;
 
 namespace Hesabate_POS.Classes
 {
     public class AppSettings
     {
+        public static readonly HttpClient httpClient = new HttpClient();
 
         public static ResourceManager resourcemanager;
         public static ResourceManager resourcemanagerreport;
@@ -32,18 +34,6 @@ namespace Hesabate_POS.Classes
         internal static string currency = "د.ك";
         public static string dateFormat = "ShortDatePattern";
 
-        #region company info
-        //default system info
-        internal static string companyName;
-        internal static string companyNameAr;
-        internal static string companyAddress;
-
-        internal static string companyEmail;
-        internal static string companyMobile;
-        internal static string companyPhone;
-        internal static string companyFax;
-        internal static string companylogoImage;
-        #endregion
 
     
         // app version
