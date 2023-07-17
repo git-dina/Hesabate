@@ -812,8 +812,8 @@ namespace Hesabate_POS.View.receipts
                 grid_invoiceDetailsBig.Visibility = Visibility.Visible;
                 grid_invoiceDetailsSmall.Visibility = Visibility.Collapsed;
               
-                cd_main1.Width = new GridLength(50, GridUnitType.Star);
-                cd_main2.Width = new GridLength(50, GridUnitType.Star);
+                cd_main1.Width = new GridLength(55, GridUnitType.Star);
+                cd_main2.Width = new GridLength(45, GridUnitType.Star);
             }
             else if (AppSettings.invoiceDetailsType == "small")
             {

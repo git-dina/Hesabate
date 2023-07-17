@@ -27,8 +27,8 @@
     <Grid x:Name="grid_main" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="cd_main0" Width="auto"/>
-            <ColumnDefinition x:Name="cd_main1" Width="50*"/>
-            <ColumnDefinition x:Name="cd_main2" Width="50*" MinWidth="260"/>
+            <ColumnDefinition x:Name="cd_main1" Width="55*"/>
+            <ColumnDefinition x:Name="cd_main2" Width="45*" MinWidth="260"/>
         </Grid.ColumnDefinitions>
         <Border x:Name="brd_grid0_0" IsEnabled="True"  
                 Grid.Row="0" Grid.Column="0" 
