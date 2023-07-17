@@ -19,6 +19,9 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string max_p { get; set; }
         public string unit_parts { get; set; }
         //public string ?column? { get; set; }
-        
+
+        public int count { get; set; }
+
+
     }
 }
