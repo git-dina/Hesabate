@@ -26,9 +26,9 @@
     
     <Grid x:Name="grid_main" Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="35*" MinWidth="260"/>
+            <ColumnDefinition x:Name="cd_main0" Width="auto"/>
+            <ColumnDefinition x:Name="cd_main1" Width="50*"/>
+            <ColumnDefinition x:Name="cd_main2" Width="50*" MinWidth="260"/>
         </Grid.ColumnDefinitions>
         <Border x:Name="brd_grid0_0" IsEnabled="True"  
                 Grid.Row="0" Grid.Column="0" 
@@ -2292,11 +2292,13 @@
                     <Border Grid.Row="1" Margin="10 0"  
                         BorderThickness="0 0 0 1" 
                         BorderBrush="{StaticResource MainColor}"/>
-                    <ScrollViewer Margin="0,10" Background="White"  
+                    <Grid Grid.Row="2">
+                        <Grid x:Name="grid_invoiceDetailsSmall" Visibility="Collapsed"> 
+                            <ScrollViewer Margin="0,10" Background="White"  
                                   Grid.Row="2"  
                                   VerticalScrollBarVisibility="Auto"  
                                   >
-                        <StackPanel  x:Name="sp_invoiceDetails"  >
+                                <StackPanel  x:Name="sp_invoiceDetailsSmall"  >
                             <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
@@ -2729,7 +2731,256 @@
 
                         </StackPanel>
                     </ScrollViewer>
+                        </Grid>
+                        <Grid x:Name="grid_invoiceDetailsBig">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  Grid.Column="0"
+                                        Text="index" 
+                                            FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="1"
+                                        Text="id" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="2"
+                                        Text="item-unit" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="3"
+                                        Text="discount" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="4"
+                                        Text="extra items" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="5"
+                                        Text="delete items" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="6"
+                                        Text="notes" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}"  
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="7"
+                                        Text="count" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}"  
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="8"
+                                        Text="price" 
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}"  
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                <TextBlock   Grid.Column="9"
+                                        Text="total" 
+                                               FontWeight="SemiBold"
+                                                Foreground="{StaticResource MainColor}"  
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                               
+                             </Grid>
+                            <ScrollViewer Margin="0,10" Background="White"  
+                                  Grid.Row="1"  
+                                  VerticalScrollBarVisibility="Auto"  
+                                  >
+                                <Grid  x:Name="grid_invoiceDetailsBigRows"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Grid.Column="0"
+                                        Text="#51561" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <TextBlock   Grid.Column="1"
+                                        Text="25" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <TextBlock   Grid.Column="2"
+                                        Text="item - unit" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <TextBlock   Grid.Column="3"
+                                        Text="15" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <StackPanel  Grid.Column="4"
+                                                 VerticalAlignment="Top">
+                                    <TextBlock  Text="+ extra1 152$" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                        <TextBlock  Text="+ extra2 152$" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel  Grid.Column="5"
+                                                 VerticalAlignment="Top">
+                                        <TextBlock  Text="+ delete 152$" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                        <TextBlock  Text="+ delete 152$" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <TextBlock   Grid.Column="6"
+                                        Text="notes" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <TextBlock   Grid.Column="7"
+                                        Text="19" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <TextBlock   Grid.Column="8"
+                                        Text="price" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <TextBlock   Grid.Column="9"
+                                        Text="112" 
+                                                Foreground="{StaticResource textColor}" 
+                                                FontSize="12"  
+                                   VerticalAlignment="Top"
+                                       HorizontalAlignment="Center" Margin="2.5"
+                                    TextWrapping="WrapWithOverflow"
+                                    TextAlignment="Center"/>
+                                    <Button Grid.Column="10"  
+                                            Tag="1"
+                                            Margin="2.5"
+                                    Height="25" Width="25"  Padding="0"
+                                            VerticalAlignment="Top"
+                                                BorderThickness="1"
+                                                materialDesign:ButtonAssist.CornerRadius="25"
+                                                BorderBrush="{StaticResource LightGrey}"
+                                        Background="{StaticResource Red}">
+                                        <Path Fill="{StaticResource White}" 
+                                                  Stretch="Fill" 
+                                                  Height="15"  Width="15" 
+                                              Data="{StaticResource close}"  />
+                                    </Button>
+                                </Grid>
+                        </ScrollViewer>
+                        </Grid>
                     </Grid>
+                </Grid>
             </Border>
             <Grid x:Name="brd_grid2_2" Grid.Row="2" Grid.Column="1" >
                 <Grid.ColumnDefinitions>

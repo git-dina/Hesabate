@@ -82,6 +82,7 @@ namespace Hesabate_POS.View.receipts
                 translate();
                 requiredControlList = new List<string> { "" };
 
+                switchInvoiceDetailsType();
                // buildInvoiceDetails(getInvoiceDetails());
 
                 HelpClass.EndAwait(grid_main);
@@ -804,6 +805,27 @@ namespace Hesabate_POS.View.receipts
         #endregion
 
         #region invoiceDetails
+        void switchInvoiceDetailsType()
+        {
+            if (AppSettings.invoiceDetailsType == "big")
+            {
+                grid_invoiceDetailsBig.Visibility = Visibility.Visible;
+                grid_invoiceDetailsSmall.Visibility = Visibility.Collapsed;
+              
+                cd_main1.Width = new GridLength(50, GridUnitType.Star);
+                cd_main2.Width = new GridLength(50, GridUnitType.Star);
+            }
+            else if (AppSettings.invoiceDetailsType == "small")
+            {
+                grid_invoiceDetailsBig.Visibility = Visibility.Collapsed;
+                grid_invoiceDetailsSmall.Visibility = Visibility.Visible;
+
+                cd_main1.Width = new GridLength(65, GridUnitType.Star);
+                cd_main2.Width = new GridLength(35, GridUnitType.Star);
+            }
+        }
+
+
 
         List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
         class InvoiceDetails
@@ -812,33 +834,73 @@ namespace Hesabate_POS.View.receipts
             public int id;
             public string name;
             public string unit;
+            public string nameUnit
+            {
+                get
+                {
+                    return (string.IsNullOrWhiteSpace(unit) ? $"{name}" : $"{name} - {unit}");
+                }
+                set
+                {
+                    nameUnit = value;
+                }
+            }
             public int count;
+            public decimal discount;
             public decimal price;
             public decimal total;
             public string extra;
+            public List<ItemModel> extraItems =new List<ItemModel>();
+            public List<ItemModel> deleteItems =new List<ItemModel>();
+            public string notes;
+
+
+
         }
-        /*
         List<InvoiceDetails> getInvoiceDetails()
         {
             Random rnd = new Random();
             List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
+            List<ItemModel> extra = new List<ItemModel>();
+            List<ItemModel> delete = new List<ItemModel>();
+            for (int i = 0; i < 2; i++)
+            {
+                extra.Add(new ItemModel()
+                {
+                    id = i + 1,
+                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    count = rnd.Next(1, 15),
+                });
+            }
+             for (int i = 0; i < 2; i++)
+            {
+                extra.Add(new ItemModel()
+                {
+                    id = i + 1,
+                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    count = rnd.Next(1, 15),
+                });
+            }
             for (int i = 0; i < 5; i++)
             {
                 invoiceDetailsList.Add(new InvoiceDetails()
                 {
                     id = i + 1,
                     name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-                    count = (int)rnd.Next(1, 99) ,
+                    count = rnd.Next(1, 99),
                     price = (decimal)rnd.Next(100, 9999) / 100,
                     total = (decimal)rnd.Next(100, 9999) / 100,
+                    discount = (decimal)rnd.Next(100, 9999) / 100,
+                    notes = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    extraItems = extra,
+                    deleteItems = delete
                 });
             }
             return invoiceDetailsList;
         }
-        */
         void buildInvoiceDetails(List<InvoiceDetails> invoiceDetailsList)
         {
-            sp_invoiceDetails.Children.Clear();
+            sp_invoiceDetailsSmall.Children.Clear();
             //int cardWidth = 175;
             //int cardHeight = 75;
             int cornerRadius = 7;
@@ -1192,7 +1254,7 @@ namespace Hesabate_POS.View.receipts
 
                 borderMain.Child = gridMain;
                 #endregion
-                sp_invoiceDetails.Children.Add(borderMain);
+                sp_invoiceDetailsSmall.Children.Add(borderMain);
                 #endregion
                 index++;
             }
