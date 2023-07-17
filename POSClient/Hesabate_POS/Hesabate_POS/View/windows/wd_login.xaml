@@ -202,14 +202,25 @@
                         </Border>
                     </Grid>
                 </Grid>
-
+                <ScrollViewer 
+                                  Grid.Row="1"  
+                                  VerticalScrollBarVisibility="Auto"  
+                                  >
+                    <TextBlock x:Name="txt_message"
+                           Foreground="{StaticResource textColor}" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="25 5"
+                        TextWrapping="WrapWithOverflow"
+                        TextAlignment="Center"/>
+                </ScrollViewer>
                 <ProgressBar x:Name="pb_main"
                     Grid.Row="2" 
                              Margin="25 5"
                              Height="20"
                              Value="0" 
                              Foreground="{StaticResource MainColor}"
-                             Visibility="Collapsed"
+                             Visibility="Visible"
                              />
                 <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" 
                           materialDesign:ButtonAssist.CornerRadius="7"

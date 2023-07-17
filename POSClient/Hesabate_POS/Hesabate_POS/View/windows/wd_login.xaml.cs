@@ -228,7 +228,7 @@ namespace Hesabate_POS.View.windows
             try
             {
                 btn_login.IsEnabled = false;
-
+                txt_message.Text = "";
                 string res = "";
                 if (tb_userName.Text != "" && pb_password.Password != "")
                 {
@@ -242,9 +242,9 @@ namespace Hesabate_POS.View.windows
                 }
 
                 // show message
-                //if(res != "")
-
-                #region  selectBox
+                if (res != "")
+                    txt_message.Text = "";
+                    #region  selectBox
                 HelpClass.StartAwait(grid_form);               
 
                 if (res == "")
