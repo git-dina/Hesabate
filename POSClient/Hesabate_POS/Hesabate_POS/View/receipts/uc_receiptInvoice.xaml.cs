@@ -564,7 +564,7 @@ namespace Hesabate_POS.View.receipts
                 });
             }
 
-            buildInvoiceDetails(invoiceDetailsList);
+            buildInvoiceDetailsSmall(invoiceDetailsList);
         }
         public async  Task setImg(Button img, string uri)
         {
@@ -898,7 +898,7 @@ namespace Hesabate_POS.View.receipts
             }
             return invoiceDetailsList;
         }
-        void buildInvoiceDetails(List<InvoiceDetails> invoiceDetailsList)
+        void buildInvoiceDetailsSmall(List<InvoiceDetails> invoiceDetailsList)
         {
             sp_invoiceDetailsSmall.Children.Clear();
             //int cardWidth = 175;
@@ -1271,7 +1271,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     invoiceDetailsList[index - 1].count--;
                     invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
-                    buildInvoiceDetails(invoiceDetailsList);
+                    buildInvoiceDetailsSmall(invoiceDetailsList);
                     CalculateInvoiceValues();
                 }
                 MessageBox.Show($"I'm minus button number: {index}");
@@ -1292,7 +1292,7 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceDetailsList[index-1].count++;
                 invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
-                buildInvoiceDetails(invoiceDetailsList);
+                buildInvoiceDetailsSmall(invoiceDetailsList);
 
                 CalculateInvoiceValues();
             }
@@ -1413,6 +1413,7 @@ namespace Hesabate_POS.View.receipts
         #endregion
 
         #region search
+
         private async void tb_search_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -1431,6 +1432,24 @@ namespace Hesabate_POS.View.receipts
             }
             catch { }
         }
+        private void tb_search_KeyDown(object sender, KeyEventArgs e)
+        {
+                try
+                {
+                    if (e.Key == Key.Return)
+                    {
+                        Btn_search_Click(btn_search, null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                }
+        }
+        private void Btn_search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         private void CalculateInvoiceValues()
@@ -1439,5 +1458,7 @@ namespace Hesabate_POS.View.receipts
             txt_SupTotal.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
             txt_total.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
         }
+
+      
     }
 }

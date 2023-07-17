@@ -557,7 +557,8 @@
                                          Foreground="{StaticResource textColor}"
                                   Height="50"  Margin="0" 
                               VerticalAlignment="Center"
-                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}" 
+                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                      KeyDown="tb_search_KeyDown"
                                          TextChanged="tb_search_TextChanged"
                                        />
                         </Grid>
@@ -588,7 +589,8 @@
                     Background="{x:Null}" Height="50"
                         x:Name="btn_search" 
                         materialDesign:ButtonAssist.CornerRadius="15"
-                        Padding="0"  
+                        Padding="0" 
+                                 Click="Btn_search_Click"
                   >
                             <StackPanel Orientation="Horizontal" Margin="5 0" >
                                 <!--<TextBlock x:Name="txt_search" Text="search"  Foreground="White" Margin="5"/>-->
@@ -2732,7 +2734,7 @@
                         </StackPanel>
                     </ScrollViewer>
                         </Grid>
-                        <Grid x:Name="grid_invoiceDetailsBig">
+                        <Grid x:Name="grid_invoiceDetailsBig" Visibility="Collapsed">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
