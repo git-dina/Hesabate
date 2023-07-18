@@ -243,7 +243,10 @@ namespace Hesabate_POS.View.windows
 
                 // show message
                 if (res != "")
+                    txt_message.Text = res;
+                else
                     txt_message.Text = "";
+
                     #region  selectBox
                 HelpClass.StartAwait(grid_form);               
 

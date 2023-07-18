@@ -33,6 +33,14 @@ namespace Hesabate_POS.Classes
         #endregion
 
         #region cashBox
+        static public  void fillCashBoxes(ComboBox combo)
+        {
+            combo.ItemsSource = GeneralInfoService.cashBoxes;
+            combo.SelectedValuePath = "BoxId";
+            combo.DisplayMemberPath = "Name";
+            combo.SelectedIndex = 0;
+
+        }
         #endregion
 
     }

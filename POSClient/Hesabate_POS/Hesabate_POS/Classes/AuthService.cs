@@ -47,7 +47,7 @@ namespace Hesabate_POS.Classes
                 }
                 catch 
                 {
-                    //Languages = new List<LanguageModel>();
+                    res = "error";
                 }
             }
             return res;
@@ -105,12 +105,16 @@ namespace Hesabate_POS.Classes
             AppSettings.cashBoxId = res["cash_box"];
             AppSettings.token = res["token"];
 
-            var s = res["cash_boxes"];
-            //var str = Convert.ToString(s);
-            //str.SubString(1, str.Length);
-            //var jObject = JObject.Parse(s);
- 
-            //GeneralInfoService.cashBoxes = JsonConvert.DeserializeObject<List<CashBoxModel>>(res["cash_boxes"], new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+
+            var boxesLst = JObject.Parse(jsonString)["cash_boxes"].ToList();
+
+            GeneralInfoService.cashBoxes = boxesLst.Select(d => new CashBoxModel
+            {
+                Name = (string)d["name"],
+                BoxId = (string)d["id"] 
+            }).ToList();
+
+            
         }
     }
 }

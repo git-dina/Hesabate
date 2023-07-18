@@ -73,7 +73,7 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
-                
+                FillCombo.fillCashBoxes(cb_selectBox);
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -216,11 +216,13 @@ namespace Hesabate_POS.View.windows
 
                 HelpClass.StartAwait(grid_main);
 
-                
-
-
-                isOk = true;
-                this.Close();
+               if(cb_selectBox.SelectedValue != null)
+                {
+                    AppSettings.cashBoxId = cb_selectBox.SelectedValue.ToString();
+                    isOk = true;
+                    this.Close();
+                }
+               
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
