@@ -270,10 +270,15 @@ namespace Hesabate_POS.View.windows
                     w.ShowDialog();
                     if (w.isOk)
                     {
-                        //open main window and close this window
-                        MainWindow main = new MainWindow();
-                        main.Show();
-                        this.Close();
+                        wd_custody custodyWindow = new wd_custody();
+                        custodyWindow.ShowDialog();
+                        if (custodyWindow.isOk)
+                        {
+                            //open main window and close this window
+                            MainWindow main = new MainWindow();
+                            main.Show();
+                            this.Close();
+                        }
                     }
 
                     pb_main.Visibility = Visibility.Collapsed;
