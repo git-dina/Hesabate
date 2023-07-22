@@ -3,9 +3,11 @@ using Hesabate_POS.Classes.ApiClasses;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -83,7 +85,9 @@ namespace Hesabate_POS.View.receipts
                 requiredControlList = new List<string> { "" };
 
                 switchInvoiceDetailsType();
-               // buildInvoiceDetails(getInvoiceDetails());
+
+                //invoiceDetailsList = getInvoiceDetails();
+                //buildInvoiceDetailsSmall(invoiceDetailsList);
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -828,9 +832,22 @@ namespace Hesabate_POS.View.receipts
 
 
         List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
-        class InvoiceDetails
+        class InvoiceDetails:  INotifyPropertyChanged
         {
-            public int index { get; set; }
+            //public int index { get; set; }
+            private int _index;
+            public int index
+            {
+                get => _index;
+                set
+                {
+                    if (_index == value) return;
+
+                    _index = value;
+                    OnPropertyChanged();
+                }
+            }
+
             public int id;
             public string name;
             public string unit;
@@ -845,17 +862,66 @@ namespace Hesabate_POS.View.receipts
                     nameUnit = value;
                 }
             }
-            public int count;
+            //public int count;
+            private int _count;
+            public int count
+            {
+                get => _count;
+                set
+                {
+                    if (_count == value) return;
+
+                    _count = value;
+                    OnPropertyChanged();
+                }
+            }
+
             public decimal discount;
-            public decimal price;
-            public decimal total;
+            //public decimal price;
+            private decimal _price;
+            public decimal price
+            {
+                get => _price;
+                set
+                {
+                    if (_price == value) return;
+
+                    _price = value;
+                    OnPropertyChanged();
+                }
+            }
+            //public decimal total;
+            private decimal _total;
+            public decimal total
+            {
+                get => _total;
+                set
+                {
+                    if (_total == value) return;
+
+                    _total = value;
+                    OnPropertyChanged();
+                }
+            }
             public string extra;
             public List<ItemModel> extraItems =new List<ItemModel>();
             public List<ItemModel> deleteItems =new List<ItemModel>();
-            public string notes;
+            //public string notes;
+            private string _notes;
+            public string notes
+            {
+                get => _notes;
+                set
+                {
+                    if (_notes == value) return;
 
+                    _notes = value;
+                    OnPropertyChanged();
+                }
+            }
 
-
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
         }
         List<InvoiceDetails> getInvoiceDetails()
         {
@@ -910,6 +976,7 @@ namespace Hesabate_POS.View.receipts
                 item.index = index;
                 #region borderMain
                 Border borderMain = new Border();
+                borderMain.DataContext = item;
                 borderMain.BorderThickness = new Thickness(1);
                 borderMain.CornerRadius = new CornerRadius(cornerRadius);
                 borderMain.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
@@ -954,7 +1021,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region itemIndex
                 TextBlock itemIndex = new TextBlock();
-                itemIndex.Text = $"{index}-" ;
+                itemIndex.Text = $"{item.index}-" ;
                 itemIndex.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 itemIndex.HorizontalAlignment = HorizontalAlignment.Center;
                 itemIndex.VerticalAlignment = VerticalAlignment.Center;
@@ -987,7 +1054,11 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region itemPrice
                 TextBlock itemPrice = new TextBlock();
-                itemPrice.Text = item.price+"$";
+                //itemPrice.Text = item.price+"$";
+                var itemPriceBinding = new System.Windows.Data.Binding("price");
+                itemPriceBinding.Mode = BindingMode.OneWay;
+                itemPrice.SetBinding(TextBlock.TextProperty, itemPriceBinding);
+
                 itemPrice.FontSize = 12;
                 itemPrice.FontWeight = FontWeights.SemiBold;
                 itemPrice.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
@@ -1050,7 +1121,12 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region itemCount
                 TextBlock itemCount = new TextBlock();
-                itemCount.Text = item.count.ToString();
+
+                //itemCount.Text = item.count.ToString();
+                var itemCountBinding = new System.Windows.Data.Binding("count");
+                //itemCountBinding.Mode = BindingMode.OneWay;
+                itemCount.SetBinding(TextBlock.TextProperty, itemCountBinding);
+
                 itemCount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                 itemCount.HorizontalAlignment = HorizontalAlignment.Center;
                 itemCount.VerticalAlignment = VerticalAlignment.Center;
@@ -1062,22 +1138,7 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetColumn(itemCount, 1);
                 gridRow2.Children.Add(itemCount);
                 #endregion
-                #region itemPrice
-                /*
-                TextBlock itemPrice = new TextBlock();
-                itemPrice.Text = item.price + "$";
-                itemPrice.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                itemPrice.HorizontalAlignment = HorizontalAlignment.Left;
-                itemPrice.VerticalAlignment = VerticalAlignment.Center;
-                itemPrice.Margin = new Thickness(5);
-                itemPrice.TextWrapping = TextWrapping.WrapWithOverflow;
-                itemPrice.TextAlignment = TextAlignment.Center;
-
-
-                Grid.SetColumn(itemPrice, 3);
-                gridRow2.Children.Add(itemPrice);
-                */
-                #endregion
+                
                 #region   minus
                 Button buttonMinus = new Button();
                 buttonMinus.Tag = "minus-" + item.index;
@@ -1210,6 +1271,10 @@ namespace Hesabate_POS.View.receipts
                 borderNotes.Background = null;
                 #region textBoxNotes
                 TextBox textBoxNotes = new TextBox();
+                var textBoxNotesBinding = new System.Windows.Data.Binding("notes");
+                textBoxNotesBinding.Mode = BindingMode.TwoWay;
+                textBoxNotes.SetBinding(TextBox.TextProperty, textBoxNotesBinding);
+
                 textBoxNotes.Height = 40;
                 textBoxNotes.BorderThickness = new Thickness(0);
                 textBoxNotes.Margin = new Thickness(0);
@@ -1231,7 +1296,11 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region textTotal
                 TextBlock textTotal = new TextBlock();
-                textTotal.Text = item.total + "$";
+                //textTotal.Text = item.total + "$";
+                var textTotalBinding = new System.Windows.Data.Binding("total");
+                textTotalBinding.Mode = BindingMode.OneWay;
+                textTotal.SetBinding(TextBlock.TextProperty, textTotalBinding);
+
                 textTotal.FontSize = 14;
                 textTotal.FontWeight = FontWeights.SemiBold;
                 textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
@@ -1271,7 +1340,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     invoiceDetailsList[index - 1].count--;
                     invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
-                    buildInvoiceDetailsSmall(invoiceDetailsList);
+                    //buildInvoiceDetailsSmall(invoiceDetailsList);
                     CalculateInvoiceValues();
                 }
                 MessageBox.Show($"I'm minus button number: {index}");
@@ -1292,7 +1361,7 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceDetailsList[index-1].count++;
                 invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
-                buildInvoiceDetailsSmall(invoiceDetailsList);
+                //buildInvoiceDetailsSmall(invoiceDetailsList);
 
                 CalculateInvoiceValues();
             }
