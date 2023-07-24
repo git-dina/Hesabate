@@ -137,15 +137,13 @@
     <Compile Include="Classes\HelpClass.cs" />
     <Compile Include="Classes\ItemService.cs" />
     <Compile Include="Classes\Translate.cs" />
+    <Compile Include="converters\accuracyConverter.cs" />
     <Compile Include="en_file.Designer.cs" />
     <Compile Include="View\receipts\uc_receiptInvoice.xaml.cs">
       <DependentUpon>uc_receiptInvoice.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_chromiumWebBrowser.xaml.cs">
       <DependentUpon>wd_chromiumWebBrowser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\windows\wd_custody.xaml.cs">
-      <DependentUpon>wd_custody.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_login.xaml.cs">
       <DependentUpon>wd_login.xaml</DependentUpon>
@@ -170,10 +168,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_chromiumWebBrowser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\windows\wd_custody.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,9 +218,7 @@
     <Resource Include="pic\no-image-icon-512x512.png" />
     <Resource Include="pic\no-image-icon-90x90.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\netoaster\netoaster.csproj">
       <Project>{211d37ef-74f8-4e4f-9ed0-da4566f423f5}</Project>

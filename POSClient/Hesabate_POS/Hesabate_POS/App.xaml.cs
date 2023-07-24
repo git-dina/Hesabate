@@ -26,8 +26,9 @@ namespace Hesabate_POS
 
                 System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-                    wd_login logIn = new wd_login();
-                    logIn.Show();
+                wd_login logIn = new wd_login();
+                //MainWindow logIn = new MainWindow();
+                logIn.Show();
 
             }
             catch (Exception ex)

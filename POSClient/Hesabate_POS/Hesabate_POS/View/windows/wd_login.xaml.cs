@@ -270,7 +270,7 @@ namespace Hesabate_POS.View.windows
                     w.ShowDialog();
                     if (w.isOk)
                     {
-                        wd_custody custodyWindow = new wd_custody();
+                        wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
                         custodyWindow.ShowDialog();
                         if (custodyWindow.isOk)
                         {

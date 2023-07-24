@@ -2301,7 +2301,7 @@
                                   VerticalScrollBarVisibility="Auto"  
                                   >
                                 <StackPanel  x:Name="sp_invoiceDetailsSmall"  >
-                            <Border BorderThickness="1"  
+                            <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
                                     Background="{x:Null}" Padding="0" 
@@ -2434,7 +2434,7 @@
 
 
                                 </Grid>
-                            </Border>
+                            </Border>-->
                             <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
