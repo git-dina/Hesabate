@@ -70,6 +70,7 @@ namespace Hesabate_POS.Classes
                         var jsonString = await response.Content.ReadAsStringAsync();
                         GeneralInfo = JsonConvert.DeserializeObject<GeneralInfoModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
+                        AppSettings.accuracy = GeneralInfo.MainOp.AMain.ToString();
                     }
                 }
                 catch(Exception ex)

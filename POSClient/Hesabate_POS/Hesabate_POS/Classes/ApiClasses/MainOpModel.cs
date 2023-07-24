@@ -35,10 +35,10 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string employe { get; set; }
         public string storeID { get; set; }
         public string price_id { get; set; }
-        public int card_type { get; set; }
+        public string card_type { get; set; }
         public string default_name { get; set; }
         public string DataBase_Name { get; set; }
-        public int AMain { get; set; }
+        public int AMain { get; set; }//accuracy
 
     }
 }
