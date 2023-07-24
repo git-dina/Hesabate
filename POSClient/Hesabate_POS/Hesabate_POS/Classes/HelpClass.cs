@@ -25,31 +25,12 @@ namespace Hesabate_POS.Classes
     class HelpClass
     {
         public static bool iscodeExist = false;
-        /*
-        public static Agent agentModel = new Agent();
-        public static Branch branchModel = new Branch();
-        public static Category categoryModel = new Category();
-        public static Pos posModel = new Pos();
-        public static Offer offerModel = new Offer();
-        */
-        //public static string code;
+      
+
         static public BrushConverter brushConverter = new BrushConverter();
         public static ImageBrush imageBrush = new ImageBrush();
-        /*
-        static public bool isAdminPermision()
-        {
-            if (MainWindow.userLogin.isAdmin == true)
-                return true;
-            return false;
-        }
-        static public bool isSupportPermision()
-        {
-            //if (MainWindow.userLogin.userId == 1 || MainWindow.userLogin.userId == 2)
-            if (MainWindow.userLogin.isAdmin == true && MainWindow.userLogin.username == "Support@Increase")
-                return true;
-            return false;
-        }
-        */
+        
+
         public static bool validateEmpty(string str, Path p_error)
         {
             bool isValid = true;
@@ -374,70 +355,7 @@ namespace Hesabate_POS.Classes
         }
         #endregion
 
-        public static void getMobile(string _mobile, ComboBox _area, TextBox _tb)
-        {//mobile
-            if ((_mobile != null))
-            {
-                string area = _mobile;
-                string[] pharr = area.Split('-');
-                int j = 0;
-                string phone = "";
-
-                foreach (string strpart in pharr)
-                {
-                    if (j == 0)
-                    {
-                        area = strpart;
-                    }
-                    else
-                    {
-                        phone = phone + strpart;
-                    }
-                    j++;
-                }
-
-                _area.Text = area;
-
-                _tb.Text = phone.ToString();
-            }
-            else
-            {
-                _area.SelectedIndex = -1;
-                _tb.Clear();
-            }
-        }
-
-        public static void getPhone(string _phone, ComboBox _area, ComboBox _areaLocal, TextBox _tb)
-        {//phone
-            if ((_phone != null))
-            {
-                string area = _phone;
-                string[] pharr = area.Split('-');
-                int j = 0;
-                string phone = "";
-                string areaLocal = "";
-                foreach (string strpart in pharr)
-                {
-                    if (j == 0)
-                        area = strpart;
-                    else if (j == 1)
-                        areaLocal = strpart;
-                    else
-                        phone = phone + strpart;
-                    j++;
-                }
-
-                _area.Text = area;
-                _areaLocal.Text = areaLocal;
-                _tb.Text = phone.ToString();
-            }
-            else
-            {
-                _area.SelectedIndex = -1;
-                _areaLocal.SelectedIndex = -1;
-                _tb.Clear();
-            }
-        }
+      
 
         public static void clearImg(Button img)
         {
@@ -637,70 +555,7 @@ namespace Hesabate_POS.Classes
             }
             _count = count;
         }
-        /*
-        static public void drawBarcode(string barcodeStr, Image img)
-        {//barcode image
-            // create encoding object
-            Zen.Barcode.Code128BarcodeDraw barcode = Zen.Barcode.BarcodeDrawFactory.Code128WithChecksum;
-
-            if (barcodeStr != "")
-            {
-                System.Drawing.Bitmap serial_bitmap = (System.Drawing.Bitmap)barcode.Draw(barcodeStr, 60);
-                System.Drawing.ImageConverter ic = new System.Drawing.ImageConverter();
-                //generate bitmap
-                img.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(serial_bitmap.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            }
-            else
-                img.Source = null;
-        }
-        */
-        /*
-        static public void activateCategoriesButtons(List<Item> items, List<Category> categories, List<Button> btns)
-        {
-            foreach (Category cat in categories)
-            {
-                string btn_name = "btn_" + cat.categoryCode;
-                Button categoryBtn = new Button();
-                foreach (Button btn in btns)
-                {
-                    if (btn.Name == btn_name)
-                    {
-                        categoryBtn = btn;
-                        break;
-                    }
-                }
-
-                var isExist = items.Where(x => x.categoryId == cat.categoryId).FirstOrDefault();
-                if (isExist == null)
-                    categoryBtn.IsEnabled = false;
-                else
-                    categoryBtn.IsEnabled = true;
-            }
-        }
-        static public void activateCategoriesButtons(List<MenuSetting> items, List<Category> categories, List<Button> btns)
-        {
-            foreach (Category cat in categories)
-            {
-                string btn_name = "btn_" + cat.categoryCode;
-                Button categoryBtn = new Button();
-                foreach (Button btn in btns)
-                {
-                    if (btn.Name == btn_name)
-                    {
-                        categoryBtn = btn;
-                        break;
-                    }
-                }
-
-                var isExist = items.Where(x => x.categoryId == cat.categoryId).FirstOrDefault();
-                if (isExist == null)
-                    categoryBtn.IsEnabled = false;
-                else
-                    categoryBtn.IsEnabled = true;
-            }
-        }
-        */
-
+     
 
         public static string decimalToTime(decimal remainingTime)
         {
@@ -761,174 +616,7 @@ namespace Hesabate_POS.Classes
         }
 
 
-        public static string ConvertInvType(string invType)
-        {
-            string value = "";
-            value = invType;
-
-            try
-            {
-
-                switch (value)
-                {
-                    //مشتريات 
-                    case "p":
-                        value = AppSettings.resourcemanager.GetString("trPurchaseInvoice");
-                        break;
-                    //فاتورة مشتريات بانتظار الادخال
-                    case "pw":
-                        value = AppSettings.resourcemanager.GetString("trPurchaseInvoiceWaiting");
-                        break;
-                    //مبيعات
-                    case "s":
-                        value = AppSettings.resourcemanager.GetString("trSalesInvoice");
-                        break;
-                    //مرتجع مبيعات
-                    case "sb":
-                        value = AppSettings.resourcemanager.GetString("trSalesReturnInvoice");
-                        break;
-                    //مرتجع مشتريات
-                    case "pb":
-                        value = AppSettings.resourcemanager.GetString("trPurchaseReturnInvoice");
-                        break;
-                    //فاتورة مرتجع مشتريات بانتظار الاخراج
-                    case "pbw":
-                        value = AppSettings.resourcemanager.GetString("trPurchaseReturnInvoiceWaiting");
-                        break;
-                    //مسودة مشتريات 
-                    case "pd":
-                        value = AppSettings.resourcemanager.GetString("trDraftPurchaseBill");
-                        break;
-                    //مسودة مبيعات
-                    case "sd":
-                        value = AppSettings.resourcemanager.GetString("trSalesDraft");
-                        break;
-                    //مسودة مرتجع مبيعات
-                    case "sbd":
-                        value = AppSettings.resourcemanager.GetString("trSalesReturnDraft");
-                        break;
-                    //مسودة مرتجع مشتريات
-                    case "pbd":
-                        value = AppSettings.resourcemanager.GetString("trPurchaseReturnDraft");
-                        break;
-                    // مسودة طلبية مبيعا 
-                    case "ord":
-                        value = AppSettings.resourcemanager.GetString("trDraft");
-                        break;
-                    //طلبية مبيعات 
-                    case "or":
-                        value = AppSettings.resourcemanager.GetString("trSaleOrder");
-                        break;
-                    //مسودة طلبية شراء 
-                    case "pod":
-                        value = AppSettings.resourcemanager.GetString("trDraft");
-                        break;
-                    //طلبية شراء 
-                    case "po":
-                        value = AppSettings.resourcemanager.GetString("trPurchaceOrder");
-                        break;
-                    // طلبية شراء أو بيع محفوظة
-                    case "pos":
-                    case "ors":
-                        value = AppSettings.resourcemanager.GetString("trSaved");
-                        break;
-                    //مسودة عرض 
-                    case "qd":
-                        value = AppSettings.resourcemanager.GetString("trQuotationsDraft");
-                        break;
-                    //عرض سعر محفوظ
-                    case "qs":
-                        value = AppSettings.resourcemanager.GetString("trSaved");
-                        break;
-                    //فاتورة عرض اسعار
-                    case "q":
-                        value = AppSettings.resourcemanager.GetString("trQuotations");
-                        break;
-                    //الإتلاف
-                    case "d":
-                        value = AppSettings.resourcemanager.GetString("trDestructive");
-                        break;
-                    //النواقص
-                    case "sh":
-                        value = AppSettings.resourcemanager.GetString("trShortage");
-                        break;
-                    //مسودة  استراد
-                    case "imd":
-                        value = AppSettings.resourcemanager.GetString("trImportDraft");
-                        break;
-                    // استراد
-                    case "im":
-                        value = AppSettings.resourcemanager.GetString("trImport");
-                        break;
-                    // طلب استيراد
-                    case "imw":
-                        value = AppSettings.resourcemanager.GetString("trImportOrder");
-                        break;
-                    //مسودة تصدير
-                    case "exd":
-                        value = AppSettings.resourcemanager.GetString("trExportDraft");
-                        break;
-                    // تصدير
-                    case "ex":
-                        value = AppSettings.resourcemanager.GetString("trExport");
-                        break;
-                    // طلب تصدير
-                    case "exw":
-                        value = AppSettings.resourcemanager.GetString("trExportOrder");
-                        break;
-                    // إدخال مباشر
-                    case "is":
-                        value = AppSettings.resourcemanager.GetString("trDirectEntry");
-                        break;
-                    // مسودة إدخال مباشر
-                    case "isd":
-                        value = AppSettings.resourcemanager.GetString("trDirectEntryDraft");
-                        break;
-                    // مسودة طلب خارجي
-                    case "tsd":
-                        value = AppSettings.resourcemanager.GetString("trTakeAwayDraft");
-                        break;
-                    // طلب خارجي
-                    case "ts":
-                        value = AppSettings.resourcemanager.GetString("trTakeAway");
-                        break;
-                    // خدمة ذاتية
-                    case "ss":
-                        value = AppSettings.resourcemanager.GetString("trSelfService");
-                        break;
-                    // خدمة ذاتية مسودة
-                    case "ssd":
-                        value = AppSettings.resourcemanager.GetString("trSelfServiceDraft");
-                        break;
-                    // فاتورة استهلاك
-                    case "fbc":
-                        value = AppSettings.resourcemanager.GetString("consumptionInvoice");
-                        break;
-                    // مسودة طلب صرف
-                    case "srd":
-                        value = AppSettings.resourcemanager.GetString("trSpendingRequestDraft");
-                        break;
-                    //  طلب صرف
-                    case "sr":
-                        value = AppSettings.resourcemanager.GetString("trSpendingRequest");
-                        break;
-                    // مرتجع طلب صرف 
-                    case "srb":
-                        value = AppSettings.resourcemanager.GetString("trSpendingRequestReturn");
-                        break;
-                    //  طلب صرف في الانتظار 
-                    case "srw":
-                        value = AppSettings.resourcemanager.GetString("trSpendingOrderWait");
-                        break;
-                    default: break;
-                }
-                return value;
-            }
-            catch
-            {
-                return "";
-            }
-        }
+       
         public static string DateToString(DateTime? date)
         {
             string sdate = "";
