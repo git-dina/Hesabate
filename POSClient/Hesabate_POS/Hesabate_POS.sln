@@ -10,22 +10,37 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		content|Any CPU = content|Any CPU
+		content|x86 = content|x86
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.content|Any CPU.ActiveCfg = Release|Any CPU
 		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.content|Any CPU.Build.0 = Release|Any CPU
+		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.content|x86.ActiveCfg = Debug|x86
+		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.content|x86.Build.0 = Debug|x86
 		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Debug|x86.ActiveCfg = Debug|x86
+		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Debug|x86.Build.0 = Debug|x86
 		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Release|x86.ActiveCfg = Release|x86
+		{46939D38-6F29-44C6-93CB-B72B1E0A5722}.Release|x86.Build.0 = Release|x86
 		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.content|Any CPU.ActiveCfg = content|Any CPU
 		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.content|Any CPU.Build.0 = content|Any CPU
+		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.content|x86.ActiveCfg = content|x86
+		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.content|x86.Build.0 = content|x86
 		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Debug|x86.ActiveCfg = Debug|x86
+		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Debug|x86.Build.0 = Debug|x86
 		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Release|x86.ActiveCfg = Release|x86
+		{211D37EF-74F8-4E4F-9ED0-DA4566F423F5}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
