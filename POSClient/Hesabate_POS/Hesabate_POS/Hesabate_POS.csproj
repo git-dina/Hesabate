@@ -145,9 +145,6 @@
     <Compile Include="View\windows\wd_chromiumWebBrowser.xaml.cs">
       <DependentUpon>wd_chromiumWebBrowser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\windows\wd_custody.xaml.cs">
-      <DependentUpon>wd_custody.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\windows\wd_login.xaml.cs">
       <DependentUpon>wd_login.xaml</DependentUpon>
     </Compile>
@@ -171,10 +168,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_chromiumWebBrowser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\windows\wd_custody.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
