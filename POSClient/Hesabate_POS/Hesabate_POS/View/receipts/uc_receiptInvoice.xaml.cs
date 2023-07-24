@@ -1,5 +1,6 @@
 ﻿using Hesabate_POS.Classes;
 using Hesabate_POS.Classes.ApiClasses;
+using Hesabate_POS.converters;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -396,7 +397,7 @@ namespace Hesabate_POS.View.receipts
                 //    Stretch = Stretch.UniformToFill,
                 //    ImageSource = new BitmapImage(new Uri(item.url, UriKind.Relative))
                 //};
-          
+
                 await setImg(buttonImage, item.img);
 
                 Grid.SetRowSpan(buttonImage, 3);
@@ -449,32 +450,32 @@ namespace Hesabate_POS.View.receipts
                 gridMain.Children.Add(textName);
                 #endregion
                 #region borderPrice
-                    Border borderPrice = new Border();
-                    //borderPrice.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                    borderPrice.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(cardColor));
-                    borderPrice.Padding = new Thickness(0);
-                    borderPrice.Margin = new Thickness(0);
-                    borderPrice.CornerRadius = new CornerRadius(0, 0, 12, 0);
+                Border borderPrice = new Border();
+                //borderPrice.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                borderPrice.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(cardColor));
+                borderPrice.Padding = new Thickness(0);
+                borderPrice.Margin = new Thickness(0);
+                borderPrice.CornerRadius = new CornerRadius(0, 0, 12, 0);
 
                 #region textPrice
-               
-                    TextBlock textPrice = new TextBlock();
+
+                TextBlock textPrice = new TextBlock();
                 if (isLast)
                 {
-                    textPrice.Text = item.price.ToString();
+                    textPrice.Text = HelpClass.DecTostring(item.price);
                 }
-                    textPrice.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
-                    textPrice.Margin = new Thickness(5, 2.5, 5, 2.5);
-                    textPrice.HorizontalAlignment = HorizontalAlignment.Center;
-                    textPrice.VerticalAlignment = VerticalAlignment.Center;
-                    textPrice.TextWrapping = TextWrapping.WrapWithOverflow;
-                    textPrice.TextAlignment = TextAlignment.Center;
-                    borderPrice.Child = textPrice;
+                textPrice.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                textPrice.Margin = new Thickness(5, 2.5, 5, 2.5);
+                textPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                textPrice.VerticalAlignment = VerticalAlignment.Center;
+                textPrice.TextWrapping = TextWrapping.WrapWithOverflow;
+                textPrice.TextAlignment = TextAlignment.Center;
+                borderPrice.Child = textPrice;
 
                 #endregion
                 Grid.SetRow(borderPrice, 2);
-                    Grid.SetColumn(borderPrice, 2);
-                    gridMain.Children.Add(borderPrice);
+                Grid.SetColumn(borderPrice, 2);
+                gridMain.Children.Add(borderPrice);
                 #endregion
 
                 // add last
@@ -552,11 +553,7 @@ namespace Hesabate_POS.View.receipts
             else
             {
                 string extra = string.Empty;
-                //if(item.id2 != null)
-                //{
-                //    extra = _itemService.getItem((int)item.id2, "item").name;
-                //}
- 
+               
                 invoiceDetailsList.Add(new InvoiceDetails()
                 {
                     id = item.id,
@@ -621,11 +618,6 @@ namespace Hesabate_POS.View.receipts
                     img.Background = imageBrush;
                 }
             }          
-            //StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
-            //BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-            //imageBrush.ImageSource = temp;
-            //imageBrush.Stretch = Stretch.UniformToFill;
-            //img.Background = imageBrush;
 
         }
         private void rectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -741,6 +733,7 @@ namespace Hesabate_POS.View.receipts
         #endregion
 
         #region invoiceItemOptions
+        InvoiceDetails selectedInvoiceItemOptions;
         private void Btn_invoiceItemOptionsBack_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -760,7 +753,11 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                switchGrid1_1(button.Tag.ToString());
+                    switchGrid1_1(button.Tag.ToString() );
+                if (selectedInvoiceItemOptions != null && selectedInvoiceItemOptions.index != 0)
+                {
+                    MessageBox.Show($"i'm items extra for invoiceItem index : {selectedInvoiceItemOptions.index}");
+                }
 
             }
             catch (Exception ex)
@@ -776,6 +773,9 @@ namespace Hesabate_POS.View.receipts
         #endregion
         void switchGrid1_1(string type)
         {
+            
+
+
             // first level
             if (type == "mainItemsCatalog")
             {
@@ -1057,6 +1057,7 @@ namespace Hesabate_POS.View.receipts
                 //itemPrice.Text = item.price+"$";
                 var itemPriceBinding = new System.Windows.Data.Binding("price");
                 itemPriceBinding.Mode = BindingMode.OneWay;
+                itemPriceBinding.Converter =new accuracyConverter();
                 itemPrice.SetBinding(TextBlock.TextProperty, itemPriceBinding);
 
                 itemPrice.FontSize = 12;
@@ -1191,7 +1192,8 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region   info
                 Button buttonInfo = new Button();
-                buttonInfo.Tag = "info-" + item.id;
+                buttonInfo.DataContext = item;
+                buttonInfo.Tag = "info-" + item.index;
                 buttonInfo.Margin = new Thickness(2.5);
                 buttonInfo.Height =
                 buttonInfo.Width = 25;
@@ -1299,6 +1301,7 @@ namespace Hesabate_POS.View.receipts
                 //textTotal.Text = item.total + "$";
                 var textTotalBinding = new System.Windows.Data.Binding("total");
                 textTotalBinding.Mode = BindingMode.OneWay;
+                textTotalBinding.Converter =new accuracyConverter();
                 textTotal.SetBinding(TextBlock.TextProperty, textTotalBinding);
 
                 textTotal.FontSize = 14;
@@ -1376,9 +1379,9 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
-                invoiceDetailsList[index].count++;
-
-                MessageBox.Show($"I'm info button number: {index}");
+                InvoiceDetails invoiceDetails = button.DataContext as InvoiceDetails;
+                selectedInvoiceItemOptions = invoiceDetails;
+                switchGrid1_1("invoiceItemOptions");
 
                 
             }
@@ -1408,7 +1411,14 @@ namespace Hesabate_POS.View.receipts
         }
 
         #endregion
-
+        #region invoice
+        private void CalculateInvoiceValues()
+        {
+            txt_Count.Text = invoiceDetailsList.Select(x => x.count).Sum().ToString();
+            txt_SupTotal.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
+            txt_total.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
+        }
+        #endregion
 
         #region grid0_0
         private void btn_pay_Click(object sender, RoutedEventArgs e)
@@ -1521,12 +1531,7 @@ namespace Hesabate_POS.View.receipts
         }
         #endregion
 
-        private void CalculateInvoiceValues()
-        {
-            txt_Count.Text = invoiceDetailsList.Select(x => x.count).Sum().ToString();
-            txt_SupTotal.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
-            txt_total.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
-        }
+        
 
       
     }
