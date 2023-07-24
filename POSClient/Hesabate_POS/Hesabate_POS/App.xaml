@@ -9,10 +9,9 @@
         <ResourceDictionary>
 
             <!--<converters:dateFrameConverter x:Key="dateFrameConverter"/>
-            <converters:receiptTypeConverter x:Key="receiptTypeConverter"/>
+            <converters:receiptTypeConverter x:Key="receiptTypeConverter"/>-->
             <converters:accuracyConverter x:Key="accuracyConverter"/>
-            <converters:PromotionTypeConverter x:Key="PromotionTypeConverter"/>
-            <converters:PromotionNatureConverter x:Key="PromotionNatureConverter"/>-->
+            
             <!--#region Fonts-->
             <FontFamily x:Key="Font-cairo-light" >cairo light, /Hesabate_POS;component/fonts/cairo-font/#cairo light, Arial</FontFamily>
             <FontFamily x:Key="Font-cairo-bold" >cairo bold , /Hesabate_POS;component/fonts/cairo-font/#cairo bold, Arial</FontFamily>
