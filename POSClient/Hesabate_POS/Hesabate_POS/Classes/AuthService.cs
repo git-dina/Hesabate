@@ -16,7 +16,7 @@ namespace Hesabate_POS.Classes
     {
         private  HttpClient client = AppSettings.httpClient;
 
-        public  async Task<dynamic> Login(string userName,string password)
+        public  async Task<dynamic> Login(string userName,string password,string lang)
         {
             dynamic res = "";
             //using (var client = new HttpClient())
@@ -28,6 +28,7 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(userName), "U");
                 content.Add(new StringContent(password), "P");
                 content.Add(new StringContent(""), "D");
+                content.Add(new StringContent(lang), "lang");
                 request.Content = content;
                 try
                 {

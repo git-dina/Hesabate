@@ -232,7 +232,7 @@ namespace Hesabate_POS.View.windows
                 string res = "";
                 if (tb_userName.Text != "" && pb_password.Password != "")
                 {
-                    var res1 = await _authService.Login(tb_userName.Text, pb_password.Password);
+                    var res1 = await _authService.Login(tb_userName.Text, pb_password.Password,cb_language.SelectedValue.ToString());
                     res = Convert.ToString(res1);
                 }
                 else if (tb_idCard.Text != "")
