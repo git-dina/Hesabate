@@ -1,0 +1,2 @@
+D:/Hesabate[[:space:]]POS/git/Hesabate/POSClient/Hesabate_POS/packages/cef.redist.x86.114.2.12/cef.redist.x86.114.2.12.nupkg filter=lfs diff=lfs merge=lfs -text
+D:/Hesabate[[:space:]]POS/git/Hesabate/POSClient/Hesabate_POS/packages/cef.redist.x64.114.2.12/CEF/libcef.dll filter=lfs diff=lfs merge=lfs -text
