@@ -45,14 +45,14 @@ namespace Hesabate_POS.View.windows
             this.Close();
         }
 
-        public string uri =AppSettings.APIUri+ "/POS/pp2.php?token=" + AppSettings.token;
+        public string url{get;set;}
 
         public bool isOk { get; set; }
         //public static List<string> requiredControlList;
 
         ChromiumWebBrowser Mainchrome;
-        //System.Windows.Forms.WebBrowser bmMain;
-        //private external _callBackObjectForJs;
+        System.Windows.Forms.WebBrowser bmMain;
+        private external _callBackObjectForJs;
 
         string x;
         private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -79,16 +79,20 @@ namespace Hesabate_POS.View.windows
                 #endregion
 
               
-                Mainchrome = new ChromiumWebBrowser(uri);
+                Mainchrome = new ChromiumWebBrowser(AppSettings.APIUri + url+ "?token=" + AppSettings.token);
 
-                 //bmMain = new System.Windows.Forms.WebBrowser();
-                //_callBackObjectForJs = new external(bmMain);
+                 bmMain = new System.Windows.Forms.WebBrowser();
+                 _callBackObjectForJs = new external(bmMain);
                  //Mainchrome.RegisterJsObject("external", _callBackObjectForJs);
+
+                Mainchrome.LoadHandler = new CustomLoadHandler();
+                // Add this  for request handler
+                Mainchrome.RequestHandler = new CustomRequestHandler();
 
                 //Mainchrome.MenuHandler = new MyCustomMenuHandler();
                 grid_webBrowser.Children.Add(Mainchrome);
                 //Mainchrome.Dock = DockStyle.Fill;
-
+                Mainchrome.BrowserSettings.Javascript = CefState.Enabled;
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -107,6 +111,7 @@ namespace Hesabate_POS.View.windows
             txt_title.Text = Translate.getResource("104");
         }
 
+       
         private void HandleKeyPress(object sender, System.Windows.Input.KeyEventArgs e)
         {
             /*
@@ -227,29 +232,7 @@ namespace Hesabate_POS.View.windows
         }
         */
         #endregion
-        /*
-        private void Btn_save_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
-                HelpClass.StartAwait(grid_main);
-
-
-
-
-                isOk = true;
-                this.Close();
-                HelpClass.EndAwait(grid_main);
-            }
-            catch (Exception ex)
-            {
-
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
-        */
+     
     }
 
     public class external
@@ -357,22 +340,22 @@ namespace Hesabate_POS.View.windows
     {
         public void OnFrameLoadEnd(IWebBrowser chromiumWebBrowser, FrameLoadEndEventArgs frameLoadEndArgs)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void OnFrameLoadStart(IWebBrowser chromiumWebBrowser, FrameLoadStartEventArgs frameLoadStartArgs)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void OnLoadError(IWebBrowser chromiumWebBrowser, LoadErrorEventArgs loadErrorArgs)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void OnLoadingStateChange(IWebBrowser chromiumWebBrowser, LoadingStateChangedEventArgs loadingStateChangedArgs)
         {
-            throw new NotImplementedException();
+            //System.Windows.Forms.MessageBox.Show(chromiumWebBrowser);
         }
     }
     public class MyCustomMenuHandler : IContextMenuHandler
@@ -452,5 +435,53 @@ namespace Hesabate_POS.View.windows
         }
     }
 
-   
+    public class MyCustomResourceRequestHandler : CefSharp.Handler.ResourceRequestHandler
+    {
+        private readonly System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+
+        protected override IResponseFilter GetResourceResponseFilter(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response)
+        {
+            if (response.StatusCode == 200)
+            {
+                
+
+            }
+            return new CefSharp.ResponseFilter.StreamResponseFilter(memoryStream);
+        }
+
+        protected override void OnResourceLoadComplete(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
+        {
+            //You can now get the data from the stream
+            var bytes = memoryStream.ToArray();
+
+            if (response.Charset == "utf-8")
+            {
+                var str = System.Text.Encoding.UTF8.GetString(bytes);
+                Console.WriteLine("In OnResourceLoadComplete : " + str.Substring(0, 10) + " <...>");
+            }
+            else
+            {
+                //Deal with different encoding here
+            }
+        }
+    }
+
+    public class CustomRequestHandler : CefSharp.Handler.RequestHandler
+    {
+        protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
+        {
+            Console.WriteLine("In GetResourceRequestHandler : " + request.Url);
+            //Only intercept specific Url's
+            if (request.Url == "http://s.hesabate.com/POS/pp2.php?token=S0N2V1Y4YmdzSktqVEJzTkRqSldDdFp1ckY3YkJKUE9yYVNEdE9KMjdQWWtQVFRvcWt6RHNWUlZYaWxFd1VrUEtUa1dHU3hZSW9kYXBLS1FXUzVIbng1cHVMZ05oZkgzM2hPT09TRVpBbHpzZnlTMmFseG9Nc2JiUDE5THNjc25iTk1MRkJnRE50Mit4TXJVUVhEbGhKWUhCLyt2U0NIeUR1Yjg5ay9JNnMrd0NvRzRZaFYzdnpvTW15VzltaHNNbzJJR1NKemI0a3lGV204S3Z6V2hycGRvbWtNTldMM3licUlDalBxMVJCWVRwdWZJMkFDYXNJTWFBTXdSYnZ4Zg==" || request.Url == "https://cefsharp.github.io/")
+            {
+                return new MyCustomResourceRequestHandler();
+            }
+            //Default behaviour, url will be loaded normally.
+            return null;
+        }
+
+
+
+    }
+
 }

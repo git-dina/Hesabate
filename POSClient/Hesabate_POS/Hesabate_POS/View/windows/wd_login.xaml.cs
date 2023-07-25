@@ -271,6 +271,7 @@ namespace Hesabate_POS.View.windows
                     if (w.isOk)
                     {
                         wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
+                        custodyWindow.url = "/POS/pp2.php";
                         custodyWindow.ShowDialog();
                         if (custodyWindow.isOk)
                         {
