@@ -227,6 +227,7 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
+                bool canLogin = false;
                 btn_login.IsEnabled = false;
                 txt_message.Text = "";
                 string res = "";
@@ -252,6 +253,8 @@ namespace Hesabate_POS.View.windows
 
                 if (res == "")
                 {
+                    canLogin = true;
+
                     pb_main.Visibility = Visibility.Visible;
                     pb_main.Value = 0;
 
@@ -263,32 +266,30 @@ namespace Hesabate_POS.View.windows
                     await _itemService.GetItems();
                     pb_main.Value = 100;
                 }
-                //if (res == "" && AppSettings.cashBoxId == "0")//AppSettings.cashBoxId!=0
-                //{
-                //    Window.GetWindow(this).Opacity = 0.0;
-                //    wd_selectBox w = new wd_selectBox();
-                //    w.ShowDialog();
-                //    if (w.isOk)
-                //    {
-                //        wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
-                //        custodyWindow.url = "/POS/pp2.php";
-                //        custodyWindow.ShowDialog();
-                //        if (custodyWindow.isOk)
-                //        {
-                //            //open main window and close this window
-                //            MainWindow main = new MainWindow();
-                //            main.Show();
-                //            this.Close();
-                //        }
-                //    }
-
-                //    pb_main.Visibility = Visibility.Collapsed;
-                //    pb_main.Value = 0;
-                //    Window.GetWindow(this).Opacity = 1;
-                //}
-                //else 
-                if(res == "")
+                if (res == "" && AppSettings.cashBoxId == "0")
                 {
+                    Window.GetWindow(this).Opacity = 0.0;
+                    wd_selectBox w = new wd_selectBox();
+                    w.ShowDialog();
+                    if (w.isOk)
+                    {
+                       
+                    }
+                    else
+                        canLogin = false;
+
+                    pb_main.Visibility = Visibility.Collapsed;
+                    pb_main.Value = 0;
+                    Window.GetWindow(this).Opacity = 1;
+                }
+            
+                if (canLogin)
+                {
+                    //show custody window
+                    wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
+                    custodyWindow.url = "/POS/pp2.php";
+                    custodyWindow.ShowDialog();
+
                     //open main window and close this window
                     MainWindow main = new MainWindow();
                     main.Show();
