@@ -5,11 +5,11 @@
   <Import Project="..\packages\cef.redist.x64.114.2.12\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.114.2.12\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-   <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
-  <CefSharpPlatformTargetOverride>AnyCPU</CefSharpPlatformTargetOverride>
-<CefSharpBuildAction>Content</CefSharpBuildAction>
- </PropertyGroup>
-<PropertyGroup>
+    <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
+    <CefSharpPlatformTargetOverride>AnyCPU</CefSharpPlatformTargetOverride>
+    <CefSharpBuildAction>Content</CefSharpBuildAction>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{46939D38-6F29-44C6-93CB-B72B1E0A5722}</ProjectGuid>
@@ -150,6 +150,9 @@
     <Compile Include="View\windows\wd_chromiumWebBrowser.xaml.cs">
       <DependentUpon>wd_chromiumWebBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_getUserCardData.xaml.cs">
+      <DependentUpon>wd_getUserCardData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_login.xaml.cs">
       <DependentUpon>wd_login.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_chromiumWebBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_getUserCardData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
