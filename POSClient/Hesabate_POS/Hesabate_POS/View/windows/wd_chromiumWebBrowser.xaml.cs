@@ -78,21 +78,26 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
-              
-                Mainchrome = new ChromiumWebBrowser(AppSettings.APIUri + url+ "?token=" + AppSettings.token);
+                string windowURL = AppSettings.APIUri + "/POS/" + url;
+                Mainchrome = new ChromiumWebBrowser(windowURL);
 
                  bmMain = new System.Windows.Forms.WebBrowser();
                  _callBackObjectForJs = new external(bmMain);
-                 //Mainchrome.RegisterJsObject("external", _callBackObjectForJs);
+                //Mainchrome.RegisterJsObject("external", _callBackObjectForJs);
 
-                Mainchrome.LoadHandler = new CustomLoadHandler();
+                CefSharpSettings.WcfEnabled = true;
+                Mainchrome.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+                Mainchrome.JavascriptObjectRepository.Register("external", _callBackObjectForJs, isAsync: false, options: BindingOptions.DefaultBinder);
+
+                Mainchrome.LoadHandler = new CustomLoadHandler(Mainchrome);
                 // Add this  for request handler
                 Mainchrome.RequestHandler = new CustomRequestHandler();
 
                 //Mainchrome.MenuHandler = new MyCustomMenuHandler();
                 grid_webBrowser.Children.Add(Mainchrome);
+
                 //Mainchrome.Dock = DockStyle.Fill;
-                Mainchrome.BrowserSettings.Javascript = CefState.Enabled;
+                //Mainchrome.BrowserSettings.Javascript = CefState.Enabled;
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -249,6 +254,14 @@ namespace Hesabate_POS.View.windows
         {
             return true;
         }
+        public bool MyDialog(string s1, string s2)
+        {
+            System.Windows.Forms.MessageBox.Show(s1 + " ==>"+ s2);
+            wd_chromiumWebBrowser dialogWindow = new wd_chromiumWebBrowser();
+            dialogWindow.url = s1;
+            var hr = dialogWindow.ShowDialog();
+            return true;
+        }
         private Int32 Int32Parse(string num)
         {
             if (num == null || num.Trim().Equals("")) return 0;
@@ -338,9 +351,13 @@ namespace Hesabate_POS.View.windows
 
     public class CustomLoadHandler : ILoadHandler
     {
+        ChromiumWebBrowser bmMain;
+        public CustomLoadHandler(ChromiumWebBrowser bmMain1)
+        {
+            bmMain = bmMain1;
+        }
         public void OnFrameLoadEnd(IWebBrowser chromiumWebBrowser, FrameLoadEndEventArgs frameLoadEndArgs)
         {
-           
         }
 
         public void OnFrameLoadStart(IWebBrowser chromiumWebBrowser, FrameLoadStartEventArgs frameLoadStartArgs)
@@ -355,7 +372,7 @@ namespace Hesabate_POS.View.windows
 
         public void OnLoadingStateChange(IWebBrowser chromiumWebBrowser, LoadingStateChangedEventArgs loadingStateChangedArgs)
         {
-            //System.Windows.Forms.MessageBox.Show(chromiumWebBrowser);
+            //bmMain.ExecuteScriptAsync("CefSharp.BindObjectAsync(\"external\",\"bound\");");
         }
     }
     public class MyCustomMenuHandler : IContextMenuHandler
@@ -461,6 +478,7 @@ namespace Hesabate_POS.View.windows
             }
             else
             {
+              
                 //Deal with different encoding here
             }
         }

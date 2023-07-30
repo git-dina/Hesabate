@@ -248,7 +248,7 @@ namespace Hesabate_POS.View.windows
                 else
                     txt_message.Text = "";
 
-                    #region  selectBox
+                   
                 HelpClass.StartAwait(grid_form);               
 
                 if (res == "")
@@ -266,6 +266,7 @@ namespace Hesabate_POS.View.windows
                     await _itemService.GetItems();
                     pb_main.Value = 100;
                 }
+                #region  selectBox
                 if (res == "" && AppSettings.cashBoxId == "0")
                 {
                     Window.GetWindow(this).Opacity = 0.0;
@@ -282,12 +283,12 @@ namespace Hesabate_POS.View.windows
                     pb_main.Value = 0;
                     Window.GetWindow(this).Opacity = 1;
                 }
-            
+                #endregion
                 if (canLogin)
                 {
                     //show custody window
                     wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
-                    custodyWindow.url = "/POS/pp2.php";
+                    custodyWindow.url = "pp2.php"+ "?token=" + AppSettings.token;
                     custodyWindow.ShowDialog();
 
                     //open main window and close this window
@@ -296,7 +297,7 @@ namespace Hesabate_POS.View.windows
                     this.Close();
                 }
                 HelpClass.EndAwait(grid_form);
-                #endregion
+             
 
 
                 btn_login.IsEnabled = true;
