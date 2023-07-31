@@ -1536,7 +1536,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     HelpClass.StartAwait(grid_main);
 
-                    var item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
+                    var item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
                     if (item != null)
                     {
                         AddItemToInvoice(item.id, item.name, item.min_p,item.no_w);
