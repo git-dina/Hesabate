@@ -15,8 +15,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string dangure { get; set; }
         public string tax_class { get; set; }
         public string discount_per { get; set; }
-        public string min_p { get; set; }
-        public string max_p { get; set; }
+        public decimal min_p { get; set; }
+        public decimal max_p { get; set; }
         public string unit_parts { get; set; }
         //public string ?column? { get; set; }
 

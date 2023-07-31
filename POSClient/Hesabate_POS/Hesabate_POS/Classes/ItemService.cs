@@ -298,7 +298,7 @@ namespace Hesabate_POS.Classes
             }
         } 
         
-        public async Task< ItemModel>GetItemInfo(string searchText,string zType,string customerId,string priceId,string sTr="",string unitid="0")
+        public async Task< ItemModel>GetItemInfo(string searchText,string zType,int customerId,string priceId,string sTr="",string unitid="0")
         {
             ItemModel item = null;
            // using (var client = new HttpClient())
@@ -314,7 +314,7 @@ namespace Hesabate_POS.Classes
                     content.Add(new StringContent("4"), "op");
                     content.Add(new StringContent(searchText), "id");// search in id
                     content.Add(new StringContent(zType), "ztype");// 1 search according to text search only, 0 to apply search on all parameters
-                    content.Add(new StringContent(customerId), "cid"); // customer id in invoice
+                    content.Add(new StringContent(customerId.ToString()), "cid"); // customer id in invoice
                     content.Add(new StringContent(priceId), "priceid"); // from main info
                     content.Add(new StringContent(sTr), "sTr");//barcode 
                     content.Add(new StringContent(unitid), "unitid");//search in other item details

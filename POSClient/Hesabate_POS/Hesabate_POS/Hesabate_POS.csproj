@@ -130,6 +130,7 @@
     <Compile Include="Classes\ApiClasses\CashBoxModel.cs" />
     <Compile Include="Classes\ApiClasses\GeneralInfoModel.cs" />
     <Compile Include="Classes\ApiClasses\CategoryModel.cs" />
+    <Compile Include="Classes\ApiClasses\InvoiceModel.cs" />
     <Compile Include="Classes\ApiClasses\ItemModel.cs" />
     <Compile Include="Classes\ApiClasses\LanguageModel.cs" />
     <Compile Include="Classes\ApiClasses\MainOpModel.cs" />
