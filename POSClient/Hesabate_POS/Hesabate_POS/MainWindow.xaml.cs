@@ -251,7 +251,12 @@ namespace Hesabate_POS
 
         private void setHeaderValues()
         {
+            txt_posNameTitle.Text = Translate.getResource("746");
+
+
             txt_userName.Text = AppSettings.userName;
+            txt_posName.Text = GeneralInfoService.cashBoxes.Where(x => x.BoxId == AppSettings.cashBoxId).Select(x => x.Name).FirstOrDefault();
+            txt_licenseNumber.Text = GeneralInfoService.GeneralInfo.MainOp.MySno;
         }
         void permission()
         {
