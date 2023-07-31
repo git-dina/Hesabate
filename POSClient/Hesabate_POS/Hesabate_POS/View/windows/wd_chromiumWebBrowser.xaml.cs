@@ -46,6 +46,7 @@ namespace Hesabate_POS.View.windows
         }
 
         public string url{get;set;}
+        public string title{get;set;}
 
         public bool isOk { get; set; }
         //public static List<string> requiredControlList;
@@ -113,7 +114,7 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            txt_title.Text = Translate.getResource("104");
+            txt_title.Text = title;
         }
 
        

@@ -288,6 +288,7 @@ namespace Hesabate_POS.View.windows
                 {
                     //show custody window
                     wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
+                    custodyWindow.title = Translate.getResource("1740");
                     custodyWindow.url = "pp2.php"+ "?token=" + AppSettings.token;
                     custodyWindow.ShowDialog();
 

@@ -559,7 +559,7 @@
                               VerticalAlignment="Center"
                                          materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                       KeyDown="tb_search_KeyDown"
-                                         TextChanged="tb_search_TextChanged"
+                                        
                                        />
                         </Grid>
                     </Border>

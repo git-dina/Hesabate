@@ -61,7 +61,7 @@ namespace Hesabate_POS.View.receipts
         public static List<string> requiredControlList;
         ItemService _itemService = new ItemService();
         List<CategoryModel> items = new List<CategoryModel>();
-
+        InvoiceModel invoice = new InvoiceModel();
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             Instance = null;
@@ -529,7 +529,7 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
-                        AddItemToInvoice(item);
+                        AddItemToInvoice(item.id,item.name,item.price,item.no_w);
                         //MessageBox.Show("Add me to invoice");
                     }
 
@@ -542,10 +542,11 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        private void AddItemToInvoice(CategoryModel item)
+        //private void AddItemToInvoice(CategoryModel item)
+        private void AddItemToInvoice(int itemId,string itemName, decimal itemPrice,string hasSerial)
         {
-            var itemInInvoice = invoiceDetailsList.Where(x => x.id == item.id).FirstOrDefault();
-            if (itemInInvoice != null)
+            var itemInInvoice = invoiceDetailsList.Where(x => x.id == itemId).FirstOrDefault();
+            if (itemInInvoice != null && hasSerial.Equals("0"))
             {
                 itemInInvoice.count++;
                 itemInInvoice.total = itemInInvoice.count * itemInInvoice.price;
@@ -556,16 +557,17 @@ namespace Hesabate_POS.View.receipts
                
                 invoiceDetailsList.Add(new InvoiceDetails()
                 {
-                    id = item.id,
-                    name = item.name,
-                    price = item.price,
+                    id = itemId,
+                    name = itemName,
+                    price = itemPrice,
                     count = 1,
-                    total = item.price,
+                    total = itemPrice,
                     extra = extra
                 });
             }
 
             buildInvoiceDetailsSmall(invoiceDetailsList);
+            CalculateInvoiceValues();
         }
         public async  Task setImg(Button img, string uri)
         {
@@ -1346,7 +1348,6 @@ namespace Hesabate_POS.View.receipts
                     //buildInvoiceDetailsSmall(invoiceDetailsList);
                     CalculateInvoiceValues();
                 }
-                MessageBox.Show($"I'm minus button number: {index}");
             }
             catch (Exception ex)
             {
@@ -1414,9 +1415,9 @@ namespace Hesabate_POS.View.receipts
         #region invoice
         private void CalculateInvoiceValues()
         {
-            txt_Count.Text = invoiceDetailsList.Select(x => x.count).Sum().ToString();
-            txt_SupTotal.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
-            txt_total.Text = invoiceDetailsList.Select(x => x.price).Sum().ToString();
+            txt_Count.Text =  invoiceDetailsList.Select(x => x.count).Sum().ToString();
+            txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.price).Sum());
+            txt_total.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.price).Sum());
         }
         #endregion
 
@@ -1493,24 +1494,26 @@ namespace Hesabate_POS.View.receipts
 
         #region search
 
-        private async void tb_search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (tb_search.Text != "")
-                {
-                    HelpClass.StartAwait(grid_main);
-                    string customerId = "1";
-                    var item = _itemService.GetItemInfo("123s", "0", customerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
-                    if(item != null)
-                    {
-
-                    }
-                    HelpClass.EndAwait(grid_main);
-                }
-            }
-            catch { }
-        }
+        //private async void tb_search_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (tb_search.Text != "")
+        //        {
+        //            HelpClass.StartAwait(grid_main);
+ 
+        //            var item =await _itemService.GetItemInfo(tb_search.Text, "0", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
+        //            if(item != null)
+        //            {
+        //                AddItemToInvoice(item.id,item.name,item.min_p,item.no_w);
+        //            }
+        //            //else
+        //            //    HelpClass
+        //            HelpClass.EndAwait(grid_main);
+        //        }
+        //    }
+        //    catch { }
+        //}
         private void tb_search_KeyDown(object sender, KeyEventArgs e)
         {
                 try
@@ -1525,9 +1528,27 @@ namespace Hesabate_POS.View.receipts
                     HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
                 }
         }
-        private void Btn_search_Click(object sender, RoutedEventArgs e)
+        private async void Btn_search_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (tb_search.Text != "")
+                {
+                    HelpClass.StartAwait(grid_main);
 
+                    var item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id);
+                    if (item != null)
+                    {
+                        AddItemToInvoice(item.id, item.name, item.min_p,item.no_w);
+                    }
+                    //else
+                    //    HelpClass
+
+                    tb_search.Text = "";
+                    HelpClass.EndAwait(grid_main);
+                }
+            }
+            catch { }
         }
         #endregion
 
