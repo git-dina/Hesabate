@@ -111,7 +111,7 @@ namespace Hesabate_POS.View.receipts
             txt_SupTotalTitle.Text = Translate.getResource("572");
 
             txt_TaxTitle.Text = Translate.getResource("1342");
-            txt_DiscountTitle.Text = Translate.getResource("1066");
+            txt_AutoDiscountTitle.Text = Translate.getResource("1066");
             txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
@@ -553,7 +553,7 @@ namespace Hesabate_POS.View.receipts
             }
             else
             {
-                string extra = string.Empty;
+                //string extra = string.Empty;
                
                 invoiceDetailsList.Add(new InvoiceDetails()
                 {
@@ -562,7 +562,7 @@ namespace Hesabate_POS.View.receipts
                     price = itemPrice,
                     count = 1,
                     total = itemPrice,
-                    extra = extra
+                    //extraItems = extra
                 });
             }
 
@@ -905,7 +905,7 @@ namespace Hesabate_POS.View.receipts
                     OnPropertyChanged();
                 }
             }
-            public string extra;
+            //public string extra;
             public List<ItemModel> extraItems =new List<ItemModel>();
             public List<ItemModel> deleteItems =new List<ItemModel>();
             //public string notes;
@@ -1082,12 +1082,19 @@ namespace Hesabate_POS.View.receipts
                 stackPanelRow1.Margin = new Thickness(0, 2.5, 0, 2.5);
                 #region extraItems
                 //List<string> extraItems = new List<string>() { "+ extra item", "- item", };
-                if (item.extra != null)
-                //foreach (var extra in extraItems)
-                {
+                if (item.extraItems != null)
+                    foreach (var extra in item.extraItems)
+                    {
                     TextBlock extraItem = new TextBlock();
-                    extraItem.Text = item.extra;
-                    extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+
+
+                    extraItem.Text = extra.name;
+                    if (string.IsNullOrWhiteSpace(extra.unita))
+                        extraItem.Text = extra.name;
+                    else
+                        extraItem.Text = $"{extra.name} - {extra.unita}";
+
+                        extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     extraItem.HorizontalAlignment = HorizontalAlignment.Left;
                     extraItem.VerticalAlignment = VerticalAlignment.Center;
                     extraItem.Margin = new Thickness(0, 2.5, 0, 2.5);
@@ -1534,7 +1541,7 @@ namespace Hesabate_POS.View.receipts
             {
                 if (tb_search.Text != "")
                 {
-                    HelpClass.StartAwait(grid_main);
+                    //HelpClass.StartAwait(grid_main);
 
                     var item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
                     if (item != null)
@@ -1545,7 +1552,7 @@ namespace Hesabate_POS.View.receipts
                     //    HelpClass
 
                     tb_search.Text = "";
-                    HelpClass.EndAwait(grid_main);
+                    //HelpClass.EndAwait(grid_main);
                 }
             }
             catch { }
