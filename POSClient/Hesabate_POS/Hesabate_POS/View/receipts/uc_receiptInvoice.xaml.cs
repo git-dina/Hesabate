@@ -557,7 +557,7 @@ namespace Hesabate_POS.View.receipts
             {
                 //string extra = string.Empty;
                
-                invoiceDetailsList.Add(new InvoiceDetails()
+                invoiceDetailsList.Add(new ItemModel()
                 {
                     id = item.id,
                     name = item.name,
@@ -737,7 +737,7 @@ namespace Hesabate_POS.View.receipts
         #endregion
 
         #region invoiceItemOptions
-        InvoiceDetails selectedInvoiceItemOptions;
+        ItemModel selectedInvoiceItemOptions;
         private void Btn_invoiceItemOptionsBack_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -834,8 +834,8 @@ namespace Hesabate_POS.View.receipts
         }
 
 
-
-        List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
+        List<ItemModel> invoiceDetailsList = new List<ItemModel>();
+        /*
         class InvoiceDetails:  INotifyPropertyChanged
         {
             //public int index { get; set; }
@@ -927,48 +927,51 @@ namespace Hesabate_POS.View.receipts
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
         }
-        //List<InvoiceDetails> getInvoiceDetails()
-        //{
-        //    Random rnd = new Random();
-        //    List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
-        //    List<ItemModel> extra = new List<ItemModel>();
-        //    List<ItemModel> delete = new List<ItemModel>();
-        //    for (int i = 0; i < 2; i++)
-        //    {
-        //        extra.Add(new ItemModel()
-        //        {
-        //            id = i + 1,
-        //            name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-        //            count = rnd.Next(1, 15),
-        //        });
-        //    }
-        //     for (int i = 0; i < 2; i++)
-        //    {
-        //        extra.Add(new ItemModel()
-        //        {
-        //            id = i + 1,
-        //            name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-        //            count = rnd.Next(1, 15),
-        //        });
-        //    }
-        //    for (int i = 0; i < 5; i++)
-        //    {
-        //        invoiceDetailsList.Add(new InvoiceDetails()
-        //        {
-        //            id = i + 1,
-        //            name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-        //            count = rnd.Next(1, 99),
-        //            price = (decimal)rnd.Next(100, 9999) / 100,
-        //            total = (decimal)rnd.Next(100, 9999) / 100,
-        //            discount = (decimal)rnd.Next(100, 9999) / 100,
-        //            notes = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-        //            extraItems = extra,
-        //            deleteItems = delete
-        //        });
-        //    }
-        //    return invoiceDetailsList;
-        //}
-        void buildInvoiceDetailsSmall(List<InvoiceDetails> invoiceDetailsList)
+        */
+        /*
+        List<InvoiceDetails> getInvoiceDetails()
+        {
+            Random rnd = new Random();
+            List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
+            List<ItemModel> extra = new List<ItemModel>();
+            List<ItemModel> delete = new List<ItemModel>();
+            for (int i = 0; i < 2; i++)
+            {
+                extra.Add(new ItemModel()
+                {
+                    id = i + 1,
+                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    count = rnd.Next(1, 15),
+                });
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                extra.Add(new ItemModel()
+                {
+                    id = i + 1,
+                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    count = rnd.Next(1, 15),
+                });
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                invoiceDetailsList.Add(new InvoiceDetails()
+                {
+                    id = i + 1,
+                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    count = rnd.Next(1, 99),
+                    price = (decimal)rnd.Next(100, 9999) / 100,
+                    total = (decimal)rnd.Next(100, 9999) / 100,
+                    discount = (decimal)rnd.Next(100, 9999) / 100,
+                    notes = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+                    extraItems = extra,
+                    deleteItems = delete
+                });
+            }
+            return invoiceDetailsList;
+        }
+        */
+        void buildInvoiceDetailsSmall(List<ItemModel> invoiceDetailsList)
         {
             sp_invoiceDetailsSmall.Children.Clear();
             //int cardWidth = 175;
@@ -1389,7 +1392,7 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
-                InvoiceDetails invoiceDetails = button.DataContext as InvoiceDetails;
+                ItemModel invoiceDetails = button.DataContext as ItemModel;
                 selectedInvoiceItemOptions = invoiceDetails;
                 switchGrid1_1("invoiceItemOptions");
 
