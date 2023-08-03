@@ -286,11 +286,14 @@ namespace Hesabate_POS.View.windows
                 #endregion
                 if (canLogin)
                 {
-                    //show custody window
-                    wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
-                    custodyWindow.title = Translate.getResource("1740");
-                    custodyWindow.url = "pp2.php"+ "?token=" + AppSettings.token;
-                    custodyWindow.ShowDialog();
+                    if (AppSettings.showPx.Equals("1"))
+                    {
+                        //show custody window
+                        wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
+                        custodyWindow.title = Translate.getResource("1740");
+                        custodyWindow.url = "pp2.php" + "?token=" + AppSettings.token;
+                        custodyWindow.ShowDialog();
+                    }
 
                     //open main window and close this window
                     MainWindow main = new MainWindow();
