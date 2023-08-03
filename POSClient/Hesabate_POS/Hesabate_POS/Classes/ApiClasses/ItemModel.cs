@@ -8,7 +8,7 @@ namespace Hesabate_POS.Classes.ApiClasses
 {
     public class ItemModel
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string name { get; set; }
         public string serial { get; set; } //هل المعلومات هي سيريال أو لا
         public string unit { get; set; } // unit id
@@ -22,6 +22,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public decimal discount { get; set; } // الخصم الصافي على الصنف
         public string usedSerialTxt { get; set; } // السيريال الذي تم بيعه في هذه العملية
 
+
+        private int _index;
         public int count { get; set; }
 
 

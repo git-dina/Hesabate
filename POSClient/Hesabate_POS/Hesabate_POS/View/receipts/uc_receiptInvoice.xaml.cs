@@ -529,7 +529,9 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
-                        AddItemToInvoice(item.id,item.name,item.price,item.no_w);
+                        AddItemToInvoice(new ItemModel() 
+                        { id = item.id.ToString(),name = item.name,price = item.price, no_w = item.no_w}
+                        );
                         //MessageBox.Show("Add me to invoice");
                     }
 
@@ -543,10 +545,10 @@ namespace Hesabate_POS.View.receipts
         }
 
         //private void AddItemToInvoice(CategoryModel item)
-        private void AddItemToInvoice(int itemId,string itemName, decimal itemPrice,string hasSerial)
+        private void AddItemToInvoice(ItemModel item)
         {
-            var itemInInvoice = invoiceDetailsList.Where(x => x.id == itemId).FirstOrDefault();
-            if (itemInInvoice != null && hasSerial.Equals("0"))
+            var itemInInvoice = invoiceDetailsList.Where(x => x.id.ToString() == item.id).FirstOrDefault();
+            if (itemInInvoice != null && item.no_w.Equals("0"))
             {
                 itemInInvoice.count++;
                 itemInInvoice.total = itemInInvoice.count * itemInInvoice.price;
@@ -557,11 +559,11 @@ namespace Hesabate_POS.View.receipts
                
                 invoiceDetailsList.Add(new InvoiceDetails()
                 {
-                    id = itemId,
-                    name = itemName,
-                    price = itemPrice,
+                    id = item.id,
+                    name = item.name,
+                    price = item.price,
                     count = 1,
-                    total = itemPrice,
+                    total = item.price,
                     //extraItems = extra
                 });
             }
@@ -769,7 +771,7 @@ namespace Hesabate_POS.View.receipts
         }
         private void btn_deleteItems_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("ss");
         }
 
         #endregion
@@ -850,7 +852,7 @@ namespace Hesabate_POS.View.receipts
                 }
             }
 
-            public int id;
+            public string id;
             public string name;
             public string unit;
             public string nameUnit
@@ -925,47 +927,47 @@ namespace Hesabate_POS.View.receipts
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
         }
-        List<InvoiceDetails> getInvoiceDetails()
-        {
-            Random rnd = new Random();
-            List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
-            List<ItemModel> extra = new List<ItemModel>();
-            List<ItemModel> delete = new List<ItemModel>();
-            for (int i = 0; i < 2; i++)
-            {
-                extra.Add(new ItemModel()
-                {
-                    id = i + 1,
-                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-                    count = rnd.Next(1, 15),
-                });
-            }
-             for (int i = 0; i < 2; i++)
-            {
-                extra.Add(new ItemModel()
-                {
-                    id = i + 1,
-                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-                    count = rnd.Next(1, 15),
-                });
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                invoiceDetailsList.Add(new InvoiceDetails()
-                {
-                    id = i + 1,
-                    name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-                    count = rnd.Next(1, 99),
-                    price = (decimal)rnd.Next(100, 9999) / 100,
-                    total = (decimal)rnd.Next(100, 9999) / 100,
-                    discount = (decimal)rnd.Next(100, 9999) / 100,
-                    notes = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
-                    extraItems = extra,
-                    deleteItems = delete
-                });
-            }
-            return invoiceDetailsList;
-        }
+        //List<InvoiceDetails> getInvoiceDetails()
+        //{
+        //    Random rnd = new Random();
+        //    List<InvoiceDetails> invoiceDetailsList = new List<InvoiceDetails>();
+        //    List<ItemModel> extra = new List<ItemModel>();
+        //    List<ItemModel> delete = new List<ItemModel>();
+        //    for (int i = 0; i < 2; i++)
+        //    {
+        //        extra.Add(new ItemModel()
+        //        {
+        //            id = i + 1,
+        //            name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+        //            count = rnd.Next(1, 15),
+        //        });
+        //    }
+        //     for (int i = 0; i < 2; i++)
+        //    {
+        //        extra.Add(new ItemModel()
+        //        {
+        //            id = i + 1,
+        //            name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+        //            count = rnd.Next(1, 15),
+        //        });
+        //    }
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        invoiceDetailsList.Add(new InvoiceDetails()
+        //        {
+        //            id = i + 1,
+        //            name = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+        //            count = rnd.Next(1, 99),
+        //            price = (decimal)rnd.Next(100, 9999) / 100,
+        //            total = (decimal)rnd.Next(100, 9999) / 100,
+        //            discount = (decimal)rnd.Next(100, 9999) / 100,
+        //            notes = "Lorem ipsum dolor sit Lorem ipsum dolor sit...",
+        //            extraItems = extra,
+        //            deleteItems = delete
+        //        });
+        //    }
+        //    return invoiceDetailsList;
+        //}
         void buildInvoiceDetailsSmall(List<InvoiceDetails> invoiceDetailsList)
         {
             sp_invoiceDetailsSmall.Children.Clear();
@@ -1542,15 +1544,19 @@ namespace Hesabate_POS.View.receipts
                 if (tb_search.Text != "")
                 {
                     //HelpClass.StartAwait(grid_main);
-
-                    var item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
-                    if (item != null)
+                    ItemModel item;
+                    item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                    if (item == null)
                     {
-                        AddItemToInvoice(item.id, item.name, item.price,item.no_w);
-                    }
-                    //else
-                    //    HelpClass
+                        item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
+                        if (item == null)
+                        {
+                            //HelpClass.
+                        }
 
+                    }
+                    else
+                        AddItemToInvoice(item);
                     tb_search.Text = "";
                     //HelpClass.EndAwait(grid_main);
                 }
