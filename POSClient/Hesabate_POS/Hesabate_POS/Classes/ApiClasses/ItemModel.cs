@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hesabate_POS.Classes.ApiClasses
 {
-    public class ItemModel
+    public class ItemModel : INotifyPropertyChanged
     {
         public string id { get; set; }
         public string name { get; set; }
@@ -16,15 +18,98 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string dangure { get; set; }//هل الصنف مصنف على انه صنف خطير حتى يظهر رسالة على النظام
         public string tax_class { get; set; } //نسبة الضريبة على الصنف
         public string discount_per { get; set; }//نسبة الخصم المثبت في بطاقة الصنف
-        public decimal price { get; set; } // item price 
+        //public decimal price { get; set; } // item price 
         public decimal min_p { get; set; } // min price 
         public decimal max_p { get; set; } // max price
         public decimal discount { get; set; } // الخصم الصافي على الصنف
         public string usedSerialTxt { get; set; } // السيريال الذي تم بيعه في هذه العملية
 
 
+        
+
+
+        /// <summary>
+        ///  invoice details
+        /// </summary>
+        //public int index { get; set; }
         private int _index;
-        public int count { get; set; }
+        public int index
+        {
+            get => _index;
+            set
+            {
+                if (_index == value) return;
+
+                _index = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string nameUnit
+        {
+            get
+            {
+                return (string.IsNullOrWhiteSpace(unit) ? $"{name}" : $"{name} - {unit}");
+            }
+            set
+            {
+                nameUnit = value;
+            }
+        }
+        private int _count;
+        public int count
+        {
+            get => _count;
+            set
+            {
+                if (_count == value) return;
+
+                _count = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private decimal _price;
+        public decimal price
+        {
+            get => _price;
+            set
+            {
+                if (_price == value) return;
+
+                _price = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _total;
+        public decimal total
+        {
+            get => _total;
+            set
+            {
+                if (_total == value) return;
+
+                _total = value;
+                OnPropertyChanged();
+            }
+        }
+        public List<ItemModel> extraItems = new List<ItemModel>();
+        public List<ItemModel> deleteItems = new List<ItemModel>();
+        private string _notes;
+        public string notes
+        {
+            get => _notes;
+            set
+            {
+                if (_notes == value) return;
+
+                _notes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
 
     }
