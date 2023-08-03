@@ -1089,10 +1089,10 @@ namespace Hesabate_POS.View.receipts
 
 
                     extraItem.Text = extra.name;
-                    if (string.IsNullOrWhiteSpace(extra.unita))
+                    if (string.IsNullOrWhiteSpace(extra.unit))
                         extraItem.Text = extra.name;
                     else
-                        extraItem.Text = $"{extra.name} - {extra.unita}";
+                        extraItem.Text = $"{extra.name} - {extra.unit}";
 
                         extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     extraItem.HorizontalAlignment = HorizontalAlignment.Left;
@@ -1546,7 +1546,7 @@ namespace Hesabate_POS.View.receipts
                     var item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
                     if (item != null)
                     {
-                        AddItemToInvoice(item.id, item.name, item.min_p,item.no_w);
+                        AddItemToInvoice(item.id, item.name, item.price,item.no_w);
                     }
                     //else
                     //    HelpClass

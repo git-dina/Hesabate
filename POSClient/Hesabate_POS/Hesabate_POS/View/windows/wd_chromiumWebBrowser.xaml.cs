@@ -474,8 +474,8 @@ namespace Hesabate_POS.View.windows
 
             if (response.Charset == "utf-8")
             {
-                var str = System.Text.Encoding.UTF8.GetString(bytes);
-                Console.WriteLine("In OnResourceLoadComplete : " + str.Substring(0, 10) + " <...>");
+                //var str = System.Text.Encoding.UTF8.GetString(bytes);
+                //Console.WriteLine("In OnResourceLoadComplete : " + str.Substring(0, 10) + " <...>");
             }
             else
             {

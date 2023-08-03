@@ -301,10 +301,7 @@ namespace Hesabate_POS.Classes
         public async Task< ItemModel>GetItemInfo(string searchText,string zType,int customerId,string priceId,string sTr="",string unitid="0")
         {
             ItemModel item = null;
-           // using (var client = new HttpClient())
-            {
-                //client.Timeout = System.TimeSpan.FromSeconds(3600);
-                //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
 
                 var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
                 try
@@ -334,7 +331,6 @@ namespace Hesabate_POS.Classes
                     return null;
                 }
                 return item;
-            }
         }
     }
 }
