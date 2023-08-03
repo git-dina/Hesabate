@@ -67,10 +67,8 @@
                     <TextBlock x:Name="txt_posName"  Text="POS-158" FontSize="14"
                                Foreground="White" HorizontalAlignment="Center" />
                 </StackPanel>
-                <Border Grid.Column="4" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
-
-               
-                <StackPanel VerticalAlignment="Center" Orientation="Vertical" 
+                <!--<Border Grid.Column="4" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>-->
+                <!--<StackPanel VerticalAlignment="Center" Orientation="Vertical" 
                        Grid.Column="5" Margin="5 0" >
                     <TextBlock Name="txt_cashTitle"    
                                Text="Balance"
@@ -81,7 +79,7 @@
                         <TextBlock Name="txt_cashValue"  Text="0.00" Foreground="{StaticResource White}"   HorizontalAlignment="Center"  FontSize="14" />
                         <TextBlock Name="txt_cashSympol" Text="KWD"  Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="14" Margin="5,0,5,0"/>
                     </DockPanel>
-                </StackPanel>
+                </StackPanel>-->
                 <Border Grid.Column="6" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
                 <StackPanel Grid.Column="7" VerticalAlignment="Center" Margin="5 0">
                     <TextBlock Name="txtTime" Text="00:00 PM" HorizontalAlignment="Center" Foreground="{StaticResource White}"  FontSize="12" ></TextBlock>
