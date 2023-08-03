@@ -63,9 +63,9 @@ namespace Hesabate_POS.View.windows
         }
         private void translate()
         {
-            if (string.IsNullOrWhiteSpace(titleText2))
-                txt_title.Text = MainWindow.resourcemanager.GetString("trMessage");
-            btn_ok.Content = MainWindow.resourcemanager.GetString("trOK");
+            //if (string.IsNullOrWhiteSpace(titleText2))
+            //    txt_title.Text = MainWindow.resourcemanager.GetString("trMessage");
+            btn_ok.Content = Translate.getResource("27");
         }
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {

@@ -141,6 +141,7 @@
     <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\FindVisualChildren.cs" />
     <Compile Include="Classes\HelpClass.cs" />
+    <Compile Include="Classes\InvoiceService.cs" />
     <Compile Include="Classes\ItemService.cs" />
     <Compile Include="Classes\Translate.cs" />
     <Compile Include="converters\accuracyConverter.cs" />

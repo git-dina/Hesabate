@@ -60,6 +60,7 @@ namespace Hesabate_POS.View.receipts
 
         public static List<string> requiredControlList;
         ItemService _itemService = new ItemService();
+        InvoiceService _invoiceService = new InvoiceService();
         List<CategoryModel> items = new List<CategoryModel>();
         InvoiceModel invoice = new InvoiceModel();
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -263,9 +264,15 @@ namespace Hesabate_POS.View.receipts
 
 
         #endregion
-        private void Btn_save_Click(object sender, RoutedEventArgs e)
+        private async void Btn_save_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, "0", "0", "0", "1", "0",
+                    GeneralInfoService.GeneralInfo.MainOp.vat, "0", "0", "1", "مبيعات نقدية", "1", tb_Notes1.Text,
+                    tb_Notes2.Text, "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+            }
+            catch { }
         }
 
         private void Btn_stop_Click(object sender, RoutedEventArgs e)
@@ -1434,9 +1441,9 @@ namespace Hesabate_POS.View.receipts
         #endregion
 
         #region grid0_0
-        private void btn_pay_Click(object sender, RoutedEventArgs e)
+        private  void btn_pay_Click(object sender, RoutedEventArgs e)
         {
-
+          
         }
 
         private void btn_using_Click(object sender, RoutedEventArgs e)

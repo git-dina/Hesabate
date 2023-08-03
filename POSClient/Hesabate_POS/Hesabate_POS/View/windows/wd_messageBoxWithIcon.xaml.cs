@@ -61,8 +61,8 @@ namespace Hesabate_POS.View.windows
         }
         private void translate()
         {
-            btn_ok.Content = MainWindow.resourcemanager.GetString("trOK");
-            txt_title.Text = MainWindow.resourcemanager.GetString("trWarning");
+            btn_ok.Content = Translate.getResource("27");
+            //txt_title.Text = MainWindow.resourcemanager.GetString("trWarning");
         }
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {

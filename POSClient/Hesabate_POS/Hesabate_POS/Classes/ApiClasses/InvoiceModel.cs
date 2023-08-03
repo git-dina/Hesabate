@@ -10,5 +10,8 @@ namespace Hesabate_POS.Classes.ApiClasses
     {
 
         public int CustomerId { get; set; }
+        public string BillId { get;set; }
+        public string next_billid { get;set; }
+        public string table_id { get;set; }
     }
 }
