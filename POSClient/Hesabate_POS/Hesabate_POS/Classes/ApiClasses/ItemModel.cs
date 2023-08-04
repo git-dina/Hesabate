@@ -25,9 +25,18 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string usedSerialTxt { get; set; } // السيريال الذي تم بيعه في هذه العملية
 
 
-        
+        public string x_vat { get; set; } //غير موجود في اجراء getitems
+        public string is_special { get; set; }//غير موجود في اجراء getitems
+        public string x_discount { get; set; }//غير موجود في اجراء getitems
+        public string bonus { get; set; }//غير موجود في اجراء getitems
+        public string detail { get; set; }//غير موجود في اجراء getitems
+        public string measure_id { get; set; }//غير موجود في اجراء getitems
+        public string is_ext { get; set; }//غير موجود في اجراء getitems
+        public string serial_text { get; set; }//غير موجود في اجراء getitems
 
 
+        //extra
+        public string unitName { get; set; }
         /// <summary>
         ///  invoice details
         /// </summary>
@@ -56,15 +65,15 @@ namespace Hesabate_POS.Classes.ApiClasses
                 nameUnit = value;
             }
         }
-        private int _count;
-        public int count
+        private int _amount;
+        public int amount
         {
-            get => _count;
+            get => _amount;
             set
             {
-                if (_count == value) return;
+                if (_amount == value) return;
 
-                _count = value;
+                _amount = value;
                 OnPropertyChanged();
             }
         }

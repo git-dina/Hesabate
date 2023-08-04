@@ -10,7 +10,7 @@ namespace Hesabate_POS.Classes.ApiClasses
     {
         public string note1 { get; set; }
         public string note2 { get; set; }
-        public string service { get; set; }
+        public decimal service { get; set; }
         public string options { get; set; }
         public string rooms { get; set; }
         public string menus { get; set; }
@@ -22,7 +22,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string ThisYearId { get; set; }
         public string is_closed { get; set; }
         public string S_sms { get; set; }
-        public string vat { get; set; }
+        public decimal vat { get; set; }
         public string HornyTag { get; set; }
         public string MustSerial { get; set; }
         public string MySno { get; set; }

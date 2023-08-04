@@ -86,7 +86,8 @@ namespace Hesabate_POS.View.receipts
                 translate();
                 requiredControlList = new List<string> { "" };
 
-                switchInvoiceDetailsType();
+                clearInvoice();
+                switchInvoiceDetailsType();            
 
                 //invoiceDetailsList = getInvoiceDetails();
                 //buildInvoiceDetailsSmall(invoiceDetailsList);
@@ -110,6 +111,7 @@ namespace Hesabate_POS.View.receipts
             txt_customer.Text = Translate.getResource("2145");
             txt_CountTitle.Text = Translate.getResource("578");
             txt_SupTotalTitle.Text = Translate.getResource("572");
+            txt_ServiceTitle.Text = Translate.getResource("1152");
 
             txt_TaxTitle.Text = Translate.getResource("1342");
             txt_AutoDiscountTitle.Text = Translate.getResource("1066");
@@ -121,6 +123,13 @@ namespace Hesabate_POS.View.receipts
             btn_save.Content = Translate.getResource("2104");
         }
 
+        private void clearInvoice()
+        {
+            invoice = new InvoiceModel();
+
+            txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
+            txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
+        }
         private void btn_home_Click(object sender, RoutedEventArgs e)
         {
 
@@ -268,9 +277,10 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, "0", "0", "0", "1", "0",
-                    GeneralInfoService.GeneralInfo.MainOp.vat, "0", "0", "1", "مبيعات نقدية", "1", tb_Notes1.Text,
-                    tb_Notes2.Text, "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+                invoice.note = tb_Notes1.Text;
+                invoice.note2 = tb_Notes2.Text;
+                
+                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
             }
             catch { }
         }
@@ -537,7 +547,9 @@ namespace Hesabate_POS.View.receipts
                     else
                     {
                         AddItemToInvoice(new ItemModel() 
-                        { id = item.id.ToString(),name = item.name,price = item.price, no_w = item.no_w}
+                        { id = item.id.ToString(),name = item.name,unit = item.unit, price = item.price,
+                        discount = item.discount, measure_id = item.measure_id,
+                            x_vat = item.x_vat,is_special = item.is_special, no_w = item.no_w}
                         );
                         //MessageBox.Show("Add me to invoice");
                     }
@@ -557,22 +569,18 @@ namespace Hesabate_POS.View.receipts
             var itemInInvoice = invoiceDetailsList.Where(x => x.id.ToString() == item.id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
             {
-                itemInInvoice.count++;
-                itemInInvoice.total = itemInInvoice.count * itemInInvoice.price;
+                itemInInvoice.amount++;
+                itemInInvoice.total = itemInInvoice.amount * itemInInvoice.price;
             }
             else
             {
                 //string extra = string.Empty;
-               
-                invoiceDetailsList.Add(new ItemModel()
-                {
-                    id = item.id,
-                    name = item.name,
-                    price = item.price,
-                    count = 1,
-                    total = item.price,
-                    //extraItems = extra
-                });
+                if (item.unit != "0")
+                    item.unitName = GeneralInfoService.GeneralInfo.units[item.unit];
+
+                item.amount = 1;
+                item.total = item.price;
+                invoiceDetailsList.Add(item);
             }
 
             buildInvoiceDetailsSmall(invoiceDetailsList);
@@ -1050,10 +1058,10 @@ namespace Hesabate_POS.View.receipts
                 #region itemName
                 TextBlock itemName = new TextBlock();
 
-                if (string.IsNullOrWhiteSpace(item.unit))
+                if (string.IsNullOrWhiteSpace(item.unitName))
                     itemName.Text = item.name;
                 else
-                    itemName.Text = $"{item.name} - {item.unit}";
+                    itemName.Text = $"{item.name} - {item.unitName}";
 
                 itemName.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 itemName.HorizontalAlignment = HorizontalAlignment.Left;
@@ -1145,7 +1153,7 @@ namespace Hesabate_POS.View.receipts
                 TextBlock itemCount = new TextBlock();
 
                 //itemCount.Text = item.count.ToString();
-                var itemCountBinding = new System.Windows.Data.Binding("count");
+                var itemCountBinding = new System.Windows.Data.Binding("amount");
                 //itemCountBinding.Mode = BindingMode.OneWay;
                 itemCount.SetBinding(TextBlock.TextProperty, itemCountBinding);
 
@@ -1239,7 +1247,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region   close
                 Button buttonClose = new Button();
-                buttonClose.Tag = "close-" + item.id;
+                buttonClose.Tag = "close-" + item.index;
                 buttonClose.Margin = new Thickness(2.5);
                 buttonClose.Height =
                 buttonClose.Width = 25;
@@ -1294,7 +1302,7 @@ namespace Hesabate_POS.View.receipts
                 borderNotes.Background = null;
                 #region textBoxNotes
                 TextBox textBoxNotes = new TextBox();
-                var textBoxNotesBinding = new System.Windows.Data.Binding("notes");
+                var textBoxNotesBinding = new System.Windows.Data.Binding("detail");
                 textBoxNotesBinding.Mode = BindingMode.TwoWay;
                 textBoxNotes.SetBinding(TextBox.TextProperty, textBoxNotesBinding);
 
@@ -1359,11 +1367,11 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 int index = int.Parse(button.Tag.ToString().Replace("minus-", ""));
-                int itemCount = invoiceDetailsList[index - 1].count;
+                int itemCount = invoiceDetailsList[index - 1].amount;
                 if (itemCount >1)
                 {
-                    invoiceDetailsList[index - 1].count--;
-                    invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
+                    invoiceDetailsList[index - 1].amount--;
+                    invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].amount * invoiceDetailsList[index - 1].price;
                     //buildInvoiceDetailsSmall(invoiceDetailsList);
                     CalculateInvoiceValues();
                 }
@@ -1382,8 +1390,8 @@ namespace Hesabate_POS.View.receipts
                 int index = int.Parse(button.Tag.ToString().Replace("plus-", ""));
                
 
-                invoiceDetailsList[index-1].count++;
-                invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].count * invoiceDetailsList[index - 1].price;
+                invoiceDetailsList[index-1].amount++;
+                invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].amount * invoiceDetailsList[index - 1].price;
                 //buildInvoiceDetailsSmall(invoiceDetailsList);
 
                 CalculateInvoiceValues();
@@ -1415,8 +1423,12 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                int id = int.Parse(button.Tag.ToString().Replace("close-", ""));
-                MessageBox.Show($"I'm close button number: {id}");
+                int index = int.Parse(button.Tag.ToString().Replace("close-", ""));
+
+                invoiceDetailsList.RemoveAt(index - 1);
+
+                buildInvoiceDetailsSmall(invoiceDetailsList);
+                CalculateInvoiceValues();
             }
             catch (Exception ex)
             {
@@ -1434,9 +1446,25 @@ namespace Hesabate_POS.View.receipts
         #region invoice
         private void CalculateInvoiceValues()
         {
-            txt_Count.Text =  invoiceDetailsList.Select(x => x.count).Sum().ToString();
-            txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.price).Sum());
-            txt_total.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.price).Sum());
+            decimal total = invoiceDetailsList.Select(x => x.total).Sum();
+
+            //service
+            invoice.service = decimal.Parse(txt_Service.Text);
+            decimal totalNet = total + HelpClass.calcPercentage(total, invoice.service);
+
+            //tax
+            invoice.vat = decimal.Parse(txt_Tax.Text);//tax percentage
+            invoice.vat_amount = HelpClass.calcPercentage(totalNet, invoice.vat);//tax value
+
+            totalNet += invoice.vat_amount;
+            //discount
+
+
+            invoice.total_after_discount = totalNet;
+            //display
+            txt_Count.Text = invoiceDetailsList.Select(x => x.amount).Sum().ToString();
+            txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.total).Sum());
+            txt_total.Text = HelpClass.DecTostring(totalNet);
         }
         #endregion
 

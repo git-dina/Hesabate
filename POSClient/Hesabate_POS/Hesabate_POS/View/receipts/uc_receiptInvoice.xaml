@@ -2171,7 +2171,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Row="8" CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                         <Grid   >
-                            <TextBox  x:Name="tb_Notes1" Text="{Binding Notes1, Mode=TwoWay}"
+                            <TextBox  x:Name="tb_Notes1" Text="{Binding note, Mode=TwoWay}"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   Padding="10,0,5,0"
                                  materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
@@ -2185,7 +2185,7 @@
                     </Border>
                     <Border Grid.Row="8" Grid.Column="1" CornerRadius="0" Margin="5,5,10,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                         <Grid   >
-                            <TextBox  x:Name="tb_Notes2" Text="{Binding Notes2, Mode=TwoWay}"
+                            <TextBox  x:Name="tb_Notes2" Text="{Binding note2, Mode=TwoWay}"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   Padding="10,0,5,0"
                                  materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
