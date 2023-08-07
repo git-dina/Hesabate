@@ -546,11 +546,8 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
-                        AddItemToInvoice(new ItemModel() 
-                        { id = item.id.ToString(),name = item.name,unit = item.unit, price = item.price,
-                        discount = item.discount, measure_id = item.measure_id,
-                            x_vat = item.x_vat,is_special = item.is_special, no_w = item.no_w}
-                        );
+                        var item1 = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                        AddItemToInvoice(item1);
                         //MessageBox.Show("Add me to invoice");
                     }
 
