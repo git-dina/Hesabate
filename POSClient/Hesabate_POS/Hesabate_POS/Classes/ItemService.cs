@@ -215,7 +215,9 @@ namespace Hesabate_POS.Classes
         static public bool itemIsLast(CategoryModel item)
         {
             // is  Last
-            if (item.level2 == null && (item.items == null || item.items.Count == 0))
+            if (item.level2 == null && (item.items == null || item.items.Count == 0) )
+                return true;
+            if (item.id2 != null)
                 return true;
             else
                 return false;
