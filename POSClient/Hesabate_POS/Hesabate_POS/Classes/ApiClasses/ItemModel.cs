@@ -103,7 +103,7 @@ namespace Hesabate_POS.Classes.ApiClasses
             }
         }
         public List<ItemModel> extraItems = new List<ItemModel>();
-        public List<ItemModel> deleteItems = new List<ItemModel>();
+        //public List<ItemModel> deleteItems = new List<ItemModel>();
         private string _notes;
         public string notes
         {
