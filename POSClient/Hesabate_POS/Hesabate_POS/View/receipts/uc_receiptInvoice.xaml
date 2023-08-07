@@ -618,7 +618,7 @@
                          BlurRadius="10"/>
                 </Border.Effect>
                 <Grid>
-                <Grid x:Name="grid_mainItemsCatalog" Visibility="Visible">
+                <Grid x:Name="grid_mainItemsCatalog" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="auto"/>
@@ -830,800 +830,7 @@
                                 </Button>
                             </Border>-->
 
-
-                            <!--<Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="3" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/3.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="4" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/4.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="5" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/5.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="6" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/6.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="7" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/7.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="8" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/8.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="9" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/9.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="10" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/10.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="11" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/11.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="12" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/12.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="13" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/13.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="14" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/14.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>
-                            <Border Grid.Column="1"
-                                        Width="175" Height="75" 
-                        CornerRadius="7" Margin="5"
-                                BorderThickness="1"
-                                        BorderBrush="{StaticResource Grey}"
-                         Padding="0" Background="{StaticResource White}">
-                                <Button  Width="175" Height="75" 
-                                    BorderBrush="{x:Null}"  
-                                         BorderThickness="0"
-                                         Tag="15" 
-                                         Click="btn_item_Click"
-                                    Background="{x:Null}" 
-                                    Padding="0"
-                                    Margin="0">
-                                    <Grid  >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="75"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button Grid.RowSpan="2"
-                                        BorderThickness="0"
-                                        Padding="0"
-                                        FlowDirection="LeftToRight"
-                                        materialDesign:ButtonAssist.CornerRadius="9 0 0 9"
-                                        Height="75"
-                                        Width="75"
-                                        >
-                                            <Button.Background>
-                                                <ImageBrush Stretch="UniformToFill" 
-                                            ImageSource="/pic/foods/15.png"   />
-                                            </Button.Background>
-                                        </Button>
-                                        <TextBlock Grid.Column="1"   
-                                           Text="Lorem ipsum dolor sit... Lorem ipsum dolor sit..." 
-                                   Foreground="{StaticResource textColor}" 
-                                                   FontSize="12"
-                                                   FontWeight="Regular" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="2.5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                        <Border Grid.Row="1" Grid.Column="1"  
-                        CornerRadius="0 0 12 0"
-                        Margin="0" Padding="0" Background="{StaticResource MainColor}">
-                                            <TextBlock
-                                    Text="12.56"  
-                                            Foreground="White" Margin="5 2.5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"
-                                                       />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </Border>-->
+ 
 
 
                         </WrapPanel>
@@ -1631,7 +838,7 @@
                     </Grid>
 
                 </Grid>
-                    <Grid x:Name="grid_invoiceItemOptions"  Visibility="Collapsed">
+                    <Grid x:Name="grid_invoiceItemOptions"  Visibility="Visible">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="auto"/>
@@ -1672,7 +879,8 @@
                         <Grid  Grid.Row="2">
                             <ScrollViewer 
                              Margin="0,0,-5,0" >
-                                <WrapPanel x:Name="wp_invoiceItemOptions" 
+                                <Grid>
+                                <WrapPanel x:Name="wp_invoiceItemOptions" Visibility="Collapsed" 
                                            Margin="5,5,5,5" HorizontalAlignment="Left" >
 
                                     <Button x:Name="btn_extraItems"
@@ -1711,7 +919,7 @@
                                         </Grid>
                                         </Grid>
                                     </Button>
-                                 <Button x:Name="btn_deleteItems"
+                                 <!--<Button x:Name="btn_deleteItems"
                                             Click="btn_deleteItems_Click"
                                             Grid.Row="1"
                                              Width="100" Height="125" 
@@ -1745,8 +953,170 @@
                                    TextAlignment="Center"/>
                                         </Grid>
                                         </Grid>
-                                    </Button>
+                                    </Button>-->
                                 </WrapPanel>
+                                    <StackPanel x:Name="sp_extraItems" 
+                                           Margin="5,5,5,5"  >
+                                        <Grid>
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock x:Name="txt_orders" Text="Orders"  Foreground="{StaticResource MainColor}" 
+                                            Grid.Column="0" 
+                                   FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
+                                       HorizontalAlignment="Left" />
+                                                </Grid>
+
+                                                <Border Grid.Row="1"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                                <ScrollViewer x:Name="sv_billDetail" Grid.Row="2"    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="auto"
+                                          ScrollViewer.CanContentScroll="True">
+
+                                                    <Grid x:Name="grid_billDetailsContainer" Margin="5" >
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <!--#region  1-->
+                                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                                                 Foreground="{StaticResource MainColor}" 
+                                                      HorizontalAlignment="Left"
+                                                           VerticalAlignment="Center"
+                                                           Margin="5"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           TextAlignment="Center"/>
+                                                        <Button  Grid.Column="2"    Margin="2.5"
+                                    Height="25" Width="25" 
+                                                 materialDesign:ButtonAssist.CornerRadius="5"
+                                                 Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Minus" />
+                                                        </Button>
+                                                        <TextBlock Grid.Column="3"   Text="6" 
+                                                 Foreground="{StaticResource textColor}" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="5"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                                                        <Button Grid.Column="4"    Margin="2.5"
+                                    Height="25" Width="25"  Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Plus" />
+                                                        </Button>
+                                                        <!--#endregion-->
+                                                        <!--<TextBlock Grid.Row="1"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="2"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="3"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="4"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="5"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="6"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="7"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="8"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="9"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="10"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                                        <TextBlock Grid.Row="11"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="12"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="13"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        <TextBlock Grid.Row="14"  Grid.Column="0" Text="1." FontSize="14"  
+                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                                           FontWeight="Bold" Margin="5"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                                                        
+
+
+
+                                                    </Grid>
+
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </Grid>
+
+                                    
+                                </StackPanel>
+                                </Grid>
                             </ScrollViewer>
                         </Grid>
 

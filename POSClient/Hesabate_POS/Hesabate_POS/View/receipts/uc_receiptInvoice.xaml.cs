@@ -87,7 +87,8 @@ namespace Hesabate_POS.View.receipts
                 requiredControlList = new List<string> { "" };
 
                 clearInvoice();
-                switchInvoiceDetailsType();            
+                switchInvoiceDetailsType();
+                switchGrid1_1("mainItemsCatalog");
 
                 //invoiceDetailsList = getInvoiceDetails();
                 //buildInvoiceDetailsSmall(invoiceDetailsList);
@@ -546,7 +547,7 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
-                        var item1 = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                        var item1 = GeneralInfoService.items.Where(x => x.id == item.id.ToString()).FirstOrDefault();
                         AddItemToInvoice(item1);
                         //MessageBox.Show("Add me to invoice");
                     }
@@ -807,6 +808,7 @@ namespace Hesabate_POS.View.receipts
                 btn_invoiceItemOptionsBack.Tag = "mainItemsCatalog";
                 txt_invoiceItemOptionsTitle.Text = "invoiceItemOptions";
                 wp_invoiceItemOptions.Visibility = Visibility.Visible;
+                sp_extraItems.Visibility = Visibility.Collapsed;
             }
             // second level
             else if (type == "extraItems")
@@ -815,7 +817,7 @@ namespace Hesabate_POS.View.receipts
                 btn_invoiceItemOptionsBack.Tag = "invoiceItemOptions";
                 txt_invoiceItemOptionsTitle.Text = "extraItems";
                 wp_invoiceItemOptions.Visibility = Visibility.Collapsed;
-                //wp_extraItems.Visibility = Visibility.Visible;
+                sp_extraItems.Visibility = Visibility.Visible;
             }
 
 
