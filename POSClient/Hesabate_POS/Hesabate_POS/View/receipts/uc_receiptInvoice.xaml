@@ -1439,7 +1439,7 @@
                              FontSize="12"
                             Margin="5 0"
                             Tag="decimal" PreviewTextInput="Number_PreviewTextInput"
-                            />
+                            TextChanged="tb_UserDiscount_TextChanged"/>
                             <!--<materialDesign:PackIcon Grid.Column="1" Foreground="{StaticResource Grey}" Kind="PercentOutline"   
                                                              Width="15" Height="15"
                                              Margin="0 0 5 0"
