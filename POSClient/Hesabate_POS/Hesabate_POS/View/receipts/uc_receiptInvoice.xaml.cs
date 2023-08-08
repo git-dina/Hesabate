@@ -777,6 +777,8 @@ namespace Hesabate_POS.View.receipts
                 if (selectedInvoiceItemOptions != null && selectedInvoiceItemOptions.index != 0)
                 {
                     MessageBox.Show($"i'm items extra for invoiceItem index : {selectedInvoiceItemOptions.index}");
+                    string extra = "";
+
                 }
 
             }
@@ -828,6 +830,66 @@ namespace Hesabate_POS.View.receipts
         }
 
         #endregion
+        #region grid2_1
+
+        
+        private void btn_external_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (invoice != null)
+                {
+                    if (invoice.external.Equals("1"))
+                    {
+                        invoice.external = "0";
+
+                        btn_external.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                        path_external.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        txt_external.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    }
+                    else
+                    {
+                        invoice.external = "1";
+                        btn_external.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        path_external.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                        txt_external.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_takeAway_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (invoice != null)
+                {
+                    if (invoice.takeaway.Equals("1"))
+                    {
+                        invoice.takeaway = "0";
+                        btn_takeAway.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        path_takeAway.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                        txt_takeAway.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                    
+                    }
+                    else
+                    {
+                        invoice.takeaway = "1";
+                        btn_takeAway.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                        path_takeAway.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        txt_takeAway.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
 
         #region invoiceDetails
         void switchInvoiceDetailsType()
@@ -1107,23 +1169,33 @@ namespace Hesabate_POS.View.receipts
                 if (item.extraItems != null)
                     foreach (var extra in item.extraItems)
                     {
+
                     TextBlock extraItem = new TextBlock();
-
-
-                    extraItem.Text = extra.name;
-                    if (string.IsNullOrWhiteSpace(extra.unit))
-                        extraItem.Text = extra.name;
-                    else
-                        extraItem.Text = $"{extra.name} - {extra.unit}";
-
-                        extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    extraItem.Text =$"{extra.group_name}:" ;
+                    extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     extraItem.HorizontalAlignment = HorizontalAlignment.Left;
                     extraItem.VerticalAlignment = VerticalAlignment.Center;
                     extraItem.Margin = new Thickness(0, 2.5, 0, 2.5);
                     extraItem.TextWrapping = TextWrapping.WrapWithOverflow;
                     extraItem.TextAlignment = TextAlignment.Center;
-
                     stackPanelRow1.Children.Add(extraItem);
+                        foreach (var groupItem in extra.group_items)
+                        {
+                            TextBlock groupItemText = new TextBlock();
+                            groupItemText.Text = $"{groupItem.name} ({groupItem.start_amount})"  ;
+                        if (string.IsNullOrWhiteSpace(groupItem.unit))
+                                groupItemText.Text = groupItem.name;
+                        else
+                                groupItemText.Text = $"{groupItem.name} - {groupItem.unit} ({groupItem.start_amount})";
+
+                            groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                            groupItemText.HorizontalAlignment = HorizontalAlignment.Left;
+                            groupItemText.VerticalAlignment = VerticalAlignment.Center;
+                            groupItemText.Margin = new Thickness(0, 2.5, 0, 2.5);
+                            groupItemText.TextWrapping = TextWrapping.WrapWithOverflow;
+                            groupItemText.TextAlignment = TextAlignment.Center;
+                            stackPanelRow1.Children.Add(groupItemText);
+                        }
                 }
                 #endregion
                 Grid.SetRow(stackPanelRow1, 1);
@@ -1655,8 +1727,12 @@ namespace Hesabate_POS.View.receipts
 
 
 
+
+
         #endregion
 
-     
+        #endregion
+
+        
     }
 }

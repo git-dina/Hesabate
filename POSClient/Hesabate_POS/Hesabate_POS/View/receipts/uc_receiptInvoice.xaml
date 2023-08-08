@@ -957,31 +957,30 @@
                                 </WrapPanel>
                                     <StackPanel x:Name="sp_extraItems" 
                                            Margin="5,5,5,5"  >
-                                        <Grid>
+                                        <ScrollViewer x:Name="sv_billDetail" Grid.Row="2"    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="auto"
+                                          ScrollViewer.CanContentScroll="True">
+                                            <Grid>
                                             <Grid >
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="auto"/>
                                                     <RowDefinition Height="auto"/>
-                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
                                                     <RowDefinition Height="auto"/>
                                                     <RowDefinition Height="auto"/>
                                                 </Grid.RowDefinitions>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock x:Name="txt_orders" Text="Orders"  Foreground="{StaticResource MainColor}" 
+                                               
+                                                <TextBlock x:Name="txt_extraTitle" Text="Group title"  Foreground="{StaticResource MainColor}" 
                                             Grid.Column="0" 
                                    FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
                                        HorizontalAlignment="Left" />
-                                                </Grid>
-
                                                 <Border Grid.Row="1"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
-                                                <ScrollViewer x:Name="sv_billDetail" Grid.Row="2"    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="auto"
-                                          ScrollViewer.CanContentScroll="True">
-
-                                                    <Grid x:Name="grid_billDetailsContainer" Margin="5" >
+                                                <Grid x:Name="grid_billDetailsContainer" 
+                                                          Grid.Row="2"
+                                                          Margin="5" >
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="auto"/>
                                                             <RowDefinition Height="auto"/>
@@ -1110,12 +1109,208 @@
 
                                                     </Grid>
 
-                                                </ScrollViewer>
-                                            </Grid>
-                                        </Grid>
+                                                    <TextBlock Grid.Row="3"    Text="Group title"  Foreground="{StaticResource MainColor}" 
+                                            Grid.Column="0" 
+                                   FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
+                                       HorizontalAlignment="Left" />
+                                                    <Border Grid.Row="4"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                                    <Grid  
+                                                          Grid.Row="5"
+                                                          Margin="5" >
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
 
-                                    
-                                </StackPanel>
+                                                        <!--#region  1-->
+                                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                                                 Foreground="{StaticResource MainColor}" 
+                                                      HorizontalAlignment="Left"
+                                                           VerticalAlignment="Center"
+                                                           Margin="5"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           TextAlignment="Center"/>
+                                                        <Button  Grid.Column="2"    Margin="2.5"
+                                    Height="25" Width="25" 
+                                                 materialDesign:ButtonAssist.CornerRadius="5"
+                                                 Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Minus" />
+                                                        </Button>
+                                                        <TextBlock Grid.Column="3"   Text="6" 
+                                                 Foreground="{StaticResource textColor}" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="5"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                                                        <Button Grid.Column="4"    Margin="2.5"
+                                    Height="25" Width="25"  Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Plus" />
+                                                        </Button>
+                                                        
+                                                    </Grid>
+                                                    <Grid  
+                                                          Grid.Row="8"
+                                                          Margin="5" >
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <!--#region  1-->
+                                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                                                 Foreground="{StaticResource MainColor}" 
+                                                      HorizontalAlignment="Left"
+                                                           VerticalAlignment="Center"
+                                                           Margin="5"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           TextAlignment="Center"/>
+                                                        <Button  Grid.Column="2"    Margin="2.5"
+                                    Height="25" Width="25" 
+                                                 materialDesign:ButtonAssist.CornerRadius="5"
+                                                 Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Minus" />
+                                                        </Button>
+                                                        <TextBlock Grid.Column="3"   Text="6" 
+                                                 Foreground="{StaticResource textColor}" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="5"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                                                        <Button Grid.Column="4"    Margin="2.5"
+                                    Height="25" Width="25"  Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Plus" />
+                                                        </Button>
+
+                                                    </Grid>
+                                                    <Grid  
+                                                          Grid.Row="7"
+                                                          Margin="5" >
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                            <RowDefinition Height="auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <!--#region  1-->
+                                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                                                 Foreground="{StaticResource MainColor}" 
+                                                      HorizontalAlignment="Left"
+                                                           VerticalAlignment="Center"
+                                                           Margin="5"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           TextAlignment="Center"/>
+                                                        <Button  Grid.Column="2"    Margin="2.5"
+                                    Height="25" Width="25" 
+                                                 materialDesign:ButtonAssist.CornerRadius="5"
+                                                 Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Minus" />
+                                                        </Button>
+                                                        <TextBlock Grid.Column="3"   Text="6" 
+                                                 Foreground="{StaticResource textColor}" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="5"
+                                   TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                                                        <Button Grid.Column="4"    Margin="2.5"
+                                    Height="25" Width="25"  Padding="0"
+                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                                         Width="25" Height="25" Kind="Plus" />
+                                                        </Button>
+
+                                                    </Grid>
+
+
+                                                </Grid>
+                                        </Grid>
+                                        </ScrollViewer>
+
+
+                                    </StackPanel>
                                 </Grid>
                             </ScrollViewer>
                         </Grid>
@@ -1152,8 +1347,9 @@
                               >
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 -5">
                         <Button  Grid.Row="1"
-                                 Margin="5"
-                 x:Name="btn_external"  materialDesign:ButtonAssist.CornerRadius="7"
+                                 Margin="5" 
+                 x:Name="btn_external"  Click="btn_external_Click"
+                                 materialDesign:ButtonAssist.CornerRadius="7"
                     Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
                               BorderThickness="1"
                     Padding="0" 
@@ -1164,7 +1360,8 @@
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                                <Path x:Name="path_external"
+                                    Fill="{StaticResource MainColor}"  Stretch="Fill"  
                               HorizontalAlignment="Center" Grid.Column="0"  
                          VerticalAlignment="Center" Width="20" Height="20"
                               Data="{StaticResource delivery}"
@@ -1177,7 +1374,8 @@
                         </Button>
                             <Button  Grid.Row="1"
                                  Margin="5"
-                 x:Name="btn_takeAway"  materialDesign:ButtonAssist.CornerRadius="7"
+                 x:Name="btn_takeAway" Click="btn_takeAway_Click"
+                                     materialDesign:ButtonAssist.CornerRadius="7"
                     Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
                               BorderThickness="1"
                     Padding="0" 
@@ -1188,7 +1386,8 @@
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                                    <Path  x:Name="path_takeAway"
+                                        Fill="{StaticResource MainColor}"  Stretch="Fill"  
                               HorizontalAlignment="Center" Grid.Column="0"  
                          VerticalAlignment="Center" Width="20" Height="20"
                               Data="{StaticResource takeAway}"
@@ -1337,6 +1536,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                                 <TextBlock  Text="Service" 
                             x:Name="txt_ServiceTitle" 
@@ -1350,12 +1550,17 @@
                             Foreground="{StaticResource textColor}" 
                              FontSize="12"  
                             Margin="5 0"/>
-                        </Grid>
+                                <materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                                             Width="15" Height="15"
+                                             Margin="0 0 5 0"
+                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            </Grid>
                         <Border   Grid.RowSpan="2" Grid.Column="4" 
                     Margin="5"  CornerRadius="0,0,0,0"  
                            Width="1" BorderThickness="0" Background="{StaticResource MainColor}" />
                         <Grid x:Name="Tax">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
@@ -1371,7 +1576,12 @@
                             Foreground="{StaticResource textColor}" 
                              FontSize="12"  
                             Margin="5 0"/>
-                        </Grid>
+                                <materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                                             Width="15" Height="15"
+                                             Margin="0 0 5 0"
+                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                            </Grid>
 
                           
                             
