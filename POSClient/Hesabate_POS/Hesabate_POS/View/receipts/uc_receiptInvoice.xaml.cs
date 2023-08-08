@@ -548,7 +548,8 @@ namespace Hesabate_POS.View.receipts
                     else
                     {
                         var item1 = GeneralInfoService.items.Where(x => x.id == item.id.ToString()).FirstOrDefault();
-                        AddItemToInvoice(item1);
+
+                        AddItemToInvoice(item1,item.items);
                         //MessageBox.Show("Add me to invoice");
                     }
 
@@ -562,7 +563,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         //private void AddItemToInvoice(CategoryModel item)
-        private void AddItemToInvoice(ItemModel item)
+        private void AddItemToInvoice(ItemModel item,List<CategoryModel> extraItems)
         {
             var itemInInvoice = invoiceDetailsList.Where(x => x.id.ToString() == item.id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
@@ -578,6 +579,8 @@ namespace Hesabate_POS.View.receipts
 
                 item.amount = 1;
                 item.total = item.price;
+
+                item.extraItems = extraItems;
                 invoiceDetailsList.Add(item);
             }
 
@@ -1508,7 +1511,9 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                CalculateInvoiceValues();
+                TextBox tb = (TextBox)sender;
+                if(tb.IsFocused)
+                    CalculateInvoiceValues();
             }
             catch { }
         }
@@ -1640,7 +1645,7 @@ namespace Hesabate_POS.View.receipts
 
                     }
                     else
-                        AddItemToInvoice(item);
+                        AddItemToInvoice(item , new List<CategoryModel>());
                     tb_search.Text = "";
                     //HelpClass.EndAwait(grid_main);
                 }
