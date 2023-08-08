@@ -86,7 +86,7 @@ namespace Hesabate_POS.View.receipts
                 translate();
                 requiredControlList = new List<string> { "" };
 
-                clearInvoice();
+                //clearInvoice();
                 switchInvoiceDetailsType();
                 switchGrid1_1("mainItemsCatalog");
 
@@ -128,8 +128,8 @@ namespace Hesabate_POS.View.receipts
         {
             invoice = new InvoiceModel();
 
-            txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
-            txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
+            //txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
+            //txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
         }
         private void btn_home_Click(object sender, RoutedEventArgs e)
         {
@@ -1316,7 +1316,7 @@ namespace Hesabate_POS.View.receipts
 
                 // materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                 MaterialDesignThemes.Wpf.TextFieldAssist.SetCharacterCounterStyle(textBoxNotes, null);
-                MaterialDesignThemes.Wpf.HintAssist.SetHint(textBoxNotes, "Notes1...");
+                MaterialDesignThemes.Wpf.HintAssist.SetHint(textBoxNotes,Translate.getResource("28"));
 
                 borderNotes.Child = textBoxNotes;
                 #endregion
@@ -1448,22 +1448,69 @@ namespace Hesabate_POS.View.receipts
             decimal total = invoiceDetailsList.Select(x => x.total).Sum();
 
             //service
-            invoice.service = decimal.Parse(txt_Service.Text);
-            decimal totalNet = total + HelpClass.calcPercentage(total, invoice.service);
+            decimal serviceAmount = HelpClass.calcPercentage(total, GeneralInfoService.GeneralInfo.MainOp.service);
+            invoice.service = serviceAmount;
+            decimal totalAfterService = total + serviceAmount;
 
+            #region tax
+            decimal taxAmount = 0;
+            decimal taxPercentage = 0;
+
+            foreach(var item in invoiceDetailsList)
+            {
+                taxAmount += HelpClass.calcPercentage(totalAfterService, item.tax_class) * item.amount;
+            }
+            if (taxAmount.Equals(0))//tax on invoice
+            {
+                taxAmount = HelpClass.calcPercentage(totalAfterService, GeneralInfoService.GeneralInfo.MainOp.vat);//tax value
+                taxPercentage = GeneralInfoService.GeneralInfo.MainOp.vat;
+            }
+            else
+                taxPercentage = (taxAmount * 100) / totalAfterService;  
+  
             //tax
-            invoice.vat = decimal.Parse(txt_Tax.Text);//tax percentage
-            invoice.vat_amount = HelpClass.calcPercentage(totalNet, invoice.vat);//tax value
+            invoice.vat_amount = taxAmount;
+            invoice.vat = taxPercentage;
 
-            totalNet += invoice.vat_amount;
-            //discount
+
+            #endregion
+            decimal totalAfterTax = totalAfterService + taxAmount;
+
+            #region discount
+            decimal overDiscount = 0;
+            decimal overDiscountPercentage = 0;
+
+            //manual discount
+            decimal manualDiscount = 0;
+            manualDiscount = decimal.Parse(tb_UserDiscount.Text);
+            if (chk_UserDiscountType.IsChecked == true)
+                manualDiscount = HelpClass.calcPercentage(totalAfterTax, manualDiscount);
+
+            overDiscount += manualDiscount;
+            overDiscountPercentage = (overDiscount * 100) / totalAfterTax;
+            //over discount
+            invoice.over_discount = overDiscount.ToString();
+            invoice.over_discount_percentage = overDiscountPercentage.ToString();
+            #endregion
+            decimal totalNet = totalAfterTax - overDiscount;
 
 
             invoice.total_after_discount = totalNet;
             //display
             txt_Count.Text = invoiceDetailsList.Select(x => x.amount).Sum().ToString();
             txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.total).Sum());
+            txt_Service.Text = HelpClass.DecTostring(serviceAmount);
+            txt_Tax.Text = HelpClass.DecTostring(taxAmount);
             txt_total.Text = HelpClass.DecTostring(totalNet);
+        }
+
+        private void tb_UserDiscount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                CalculateInvoiceValues();
+            }
+            catch { }
         }
         #endregion
 
@@ -1600,10 +1647,11 @@ namespace Hesabate_POS.View.receipts
             }
             catch { }
         }
+
+
+
         #endregion
 
-        
-
-      
+     
     }
 }

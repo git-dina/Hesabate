@@ -16,23 +16,22 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string unit { get; set; } // unit id
         public string no_w { get; set; }// هل نظام السيريال فعال أو لا
         public string dangure { get; set; }//هل الصنف مصنف على انه صنف خطير حتى يظهر رسالة على النظام
-        public string tax_class { get; set; } //نسبة الضريبة على الصنف
+        public decimal tax_class { get; set; } //نسبة الضريبة على الصنف
         public string discount_per { get; set; }//نسبة الخصم المثبت في بطاقة الصنف
         //public decimal price { get; set; } // item price 
+        public string measure_id { get; set; }
         public decimal min_p { get; set; } // min price 
         public decimal max_p { get; set; } // max price
         public decimal discount { get; set; } // الخصم الصافي على الصنف
-        public string usedSerialTxt { get; set; } // السيريال الذي تم بيعه في هذه العملية
+        public string serial_text { get; set; } // السيريال الذي تم بيعه في هذه العملية
+        public string detail { get; set; }//note
 
 
-        public string x_vat { get; set; } //غير موجود في اجراء getitems
+        public string x_vat { get; set; } //ضريبة العنصر
         public string is_special { get; set; }//غير موجود في اجراء getitems
         public string x_discount { get; set; }//غير موجود في اجراء getitems
         public string bonus { get; set; }//غير موجود في اجراء getitems
-        public string detail { get; set; }//غير موجود في اجراء getitems
-        public string measure_id { get; set; }//غير موجود في اجراء getitems
         public string is_ext { get; set; }//غير موجود في اجراء getitems
-        public string serial_text { get; set; }//غير موجود في اجراء getitems
 
 
         //extra

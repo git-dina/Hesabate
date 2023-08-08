@@ -17,6 +17,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public decimal total_after_discount { get;set; }//invoice total
         public string UNo { get;set; }//customer id
         public string over_discount { get;set; }//discount amount
+        public string over_discount_percentage { get;set; }//discount percentage
         public decimal vat { get;set; }//vat percent
         public string vat_included { get;set; }//is vat included ??from where
         public decimal vat_amount { get;set; }//calculateed vat amount
@@ -25,7 +26,6 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string paid { get;set; }//payment type(0 not paid, 1 paid)
         public string note { get;set; }
         public string note2 { get;set; }
-        public string over_discount_percentage { get;set; }//discount percentage
         public string external { get;set; }//is invoice external
         public decimal service { get;set; }//service amount ??value or percentage
         public string emp { get;set; } //employer id
