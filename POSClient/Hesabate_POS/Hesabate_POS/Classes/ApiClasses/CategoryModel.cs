@@ -35,7 +35,6 @@ namespace Hesabate_POS.Classes.ApiClasses
         //for extra
         public string group_name { get; set; }
         public int group_count { get; set; }
-        public int unit { get; set; }
         public List<GroupItemModel> group_items { get; set; }
     }
 }
