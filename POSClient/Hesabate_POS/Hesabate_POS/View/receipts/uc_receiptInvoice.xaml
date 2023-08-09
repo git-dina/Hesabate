@@ -1536,7 +1536,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
+                                <!--<ColumnDefinition Width="auto"/>-->
                             </Grid.ColumnDefinitions>
                                 <TextBlock  Text="Service" 
                             x:Name="txt_ServiceTitle" 
@@ -1550,10 +1550,10 @@
                             Foreground="{StaticResource textColor}" 
                              FontSize="12"  
                             Margin="5 0"/>
-                                <materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                <!--<materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
                                                              Width="15" Height="15"
                                              Margin="0 0 5 0"
-                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />-->
                             </Grid>
                         <Border   Grid.RowSpan="2" Grid.Column="4" 
                     Margin="5"  CornerRadius="0,0,0,0"  
@@ -1562,7 +1562,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
+                                <!--<ColumnDefinition Width="auto"/>-->
                             </Grid.ColumnDefinitions>
                                 <TextBlock  Text="Tax" 
                             x:Name="txt_TaxTitle" 
@@ -1576,10 +1576,10 @@
                             Foreground="{StaticResource textColor}" 
                              FontSize="12"  
                             Margin="5 0"/>
-                                <materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                <!--<materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
                                                              Width="15" Height="15"
                                              Margin="0 0 5 0"
-                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />-->
 
                             </Grid>
 
