@@ -26,11 +26,11 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string paid { get;set; }//payment type(0 not paid, 1 paid)
         public string note { get;set; }
         public string note2 { get;set; }
-        public string external { get;set; }//is invoice external
+        public string external { get; set; } = "0"; //is invoice external
         public decimal service { get;set; }//service amount ??value or percentage
         public string emp { get;set; } //employer id
         public string for_use { get;set; }//is this invoice for internal use not sale
-        public string takeaway { get;set; }//is this takeaway invoice
+        public string takeaway { get; set; } = "0";//is this takeaway invoice
         public string on_table { get;set; }//on table seletced ( like external and takeaway)
         public int room_reservation_id { get;set; }//room reservation id if used
         public decimal round_dis { get;set; }//discount calculated through round mathmatics

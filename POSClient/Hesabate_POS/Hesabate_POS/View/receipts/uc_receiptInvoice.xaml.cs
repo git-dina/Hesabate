@@ -1186,7 +1186,7 @@ namespace Hesabate_POS.View.receipts
                         if (string.IsNullOrWhiteSpace(groupItem.unit))
                                 groupItemText.Text = groupItem.name;
                         else
-                                groupItemText.Text = $"{groupItem.name} - {groupItem.unit} ({groupItem.start_amount})";
+                                groupItemText.Text = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.start_amount})";
 
                             groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                             groupItemText.HorizontalAlignment = HorizontalAlignment.Left;
