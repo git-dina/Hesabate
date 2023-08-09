@@ -1541,7 +1541,10 @@ namespace Hesabate_POS.View.receipts
                 taxPercentage = GeneralInfoService.GeneralInfo.MainOp.vat;
             }
             else
-                taxPercentage = (taxAmount * 100) / totalAfterService;  
+            {
+                if(totalAfterService != 0)
+                    taxPercentage = (taxAmount * 100) / totalAfterService;
+            }
   
             //tax
             invoice.vat_amount = taxAmount;
@@ -1562,7 +1565,8 @@ namespace Hesabate_POS.View.receipts
                 manualDiscount = HelpClass.calcPercentage(totalAfterTax, manualDiscount);
 
             overDiscount += manualDiscount;
-            overDiscountPercentage = (overDiscount * 100) / totalAfterTax;
+            if(totalAfterTax != 0)
+                overDiscountPercentage = (overDiscount * 100) / totalAfterTax;
             //over discount
             invoice.over_discount = overDiscount.ToString();
             invoice.over_discount_percentage = overDiscountPercentage.ToString();
