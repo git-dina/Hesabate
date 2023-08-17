@@ -122,6 +122,21 @@ namespace Hesabate_POS.View.receipts
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
 
             btn_save.Content = Translate.getResource("2104");
+
+            #region side buttons
+            txt_pay.Text = Translate.getResource("2162");
+            txt_using.Text = Translate.getResource("1613");
+            txt_toKitchen.Text = Translate.getResource("1295");
+            txt_pending.Text = Translate.getResource("2154");
+            txt_pendingQuery.Text = Translate.getResource("1281");//استعلام فقط نحتاج استعلام معلق
+            txt_openBox.Text = Translate.getResource("2152");
+            txt_selectAgent.Text = Translate.getResource("526");
+            txt_invoiceDelete.Text = Translate.getResource("2153");
+            txt_points.Text = Translate.getResource("654");
+            txt_invoiceCost.Text = Translate.getResource("21");
+            txt_transform.Text = Translate.getResource("32");
+
+            #endregion
         }
 
         private void clearInvoice()
