@@ -829,18 +829,19 @@ namespace Hesabate_POS.View.receipts
                 btn_invoiceItemOptionsBack.Tag = "mainItemsCatalog";
                 txt_invoiceItemOptionsTitle.Text = "invoiceItemOptions";
                 wp_invoiceItemOptions.Visibility = Visibility.Visible;
-                sp_extraItems.Visibility = Visibility.Collapsed;
+                //sp_extraItems.Visibility = Visibility.Collapsed;
             }
             // second level
+            /*
             else if (type == "extraItems")
             {
                
                 btn_invoiceItemOptionsBack.Tag = "invoiceItemOptions";
                 txt_invoiceItemOptionsTitle.Text = "extraItems";
                 wp_invoiceItemOptions.Visibility = Visibility.Collapsed;
-                sp_extraItems.Visibility = Visibility.Visible;
+                //sp_extraItems.Visibility = Visibility.Visible;
             }
-
+            */
 
             
         }
@@ -938,6 +939,7 @@ namespace Hesabate_POS.View.receipts
                 if (dg_invoiceDetailsBig.SelectedIndex != -1)
                 {
                     selectedInvoiceItemOptions = dg_invoiceDetailsBig.SelectedItem as ItemModel;
+                    wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
                     switchGrid1_1("invoiceItemOptions");
 
                 }
@@ -1601,6 +1603,7 @@ namespace Hesabate_POS.View.receipts
                 //int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
                 ItemModel invoiceDetails = button.DataContext as ItemModel;
                 selectedInvoiceItemOptions = invoiceDetails;
+                wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
                 switchGrid1_1("invoiceItemOptions");
 
 
