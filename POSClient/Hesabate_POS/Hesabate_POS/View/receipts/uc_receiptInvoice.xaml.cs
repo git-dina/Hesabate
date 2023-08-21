@@ -24,6 +24,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
+using Path = System.Windows.Shapes.Path;
 
 namespace Hesabate_POS.View.receipts
 {
@@ -114,7 +115,7 @@ namespace Hesabate_POS.View.receipts
             txt_SupTotalTitle.Text = Translate.getResource("572");
             txt_ServiceTitle.Text = Translate.getResource("1152");
 
-            txt_TaxTitle.Text = Translate.getResource("1342");
+            txt_taxValueTitle.Text = Translate.getResource("1342");
             txt_AutoDiscountTitle.Text = Translate.getResource("1066");
             txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
@@ -905,6 +906,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        #endregion
 
         #region invoiceDetails
         void switchInvoiceDetailsType()
@@ -926,8 +928,86 @@ namespace Hesabate_POS.View.receipts
                 cd_main2.Width = new GridLength(35, GridUnitType.Star);
             }
         }
+        #region buildInvoiceDetailsBig
+        private void Dg_invoiceDetailsBig_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                try
+                {
+                    HelpClass.StartAwait(grid_main);
+                //selection
+                if (dg_invoiceDetailsBig.SelectedIndex != -1)
+                {
+                    selectedInvoiceItemOptions = dg_invoiceDetailsBig.SelectedItem as ItemModel;
+                    switchGrid1_1("invoiceItemOptions");
 
+                }
+                HelpClass.EndAwait(grid_main);
+                }
+                catch (Exception ex)
+                {
+                    HelpClass.EndAwait(grid_main);
+                    HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                }
+        }
+        private void locationInvoiceItemRowinDatagrid(object sender, RoutedEventArgs e)
+        {
+            /*
+            try
+            {
+                HelpClass.StartAwait(grid_main);
 
+                for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                    if (vis is DataGridRow)
+                    {
+
+                        btn_addSupplierPhone.IsEnabled = false;
+                        dg_supplierPhone.IsEnabled = false;
+                        SupplierPhone row = (SupplierPhone)dg_supplierPhone.SelectedItems[0];
+                        SupplierPhones.Remove(row);
+                        RefreshSupplierPhoneDataGrid();
+                    }
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                dg_supplierPhone.IsEnabled = true;
+                btn_addSupplierPhone.IsEnabled = true;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            */
+        }
+        private void deleteInvoiceItemRowinDatagrid(object sender, RoutedEventArgs e)
+        {
+            /*
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+
+                for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                    if (vis is DataGridRow)
+                    {
+
+                        btn_addSupplierPhone.IsEnabled = false;
+                        dg_supplierPhone.IsEnabled = false;
+                        SupplierPhone row = (SupplierPhone)dg_supplierPhone.SelectedItems[0];
+                        SupplierPhones.Remove(row);
+                        RefreshSupplierPhoneDataGrid();
+                    }
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                dg_supplierPhone.IsEnabled = true;
+                btn_addSupplierPhone.IsEnabled = true;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            */
+        }
+        #endregion
         List<ItemModel> invoiceDetailsList = new List<ItemModel>();
         /*
         class InvoiceDetails:  INotifyPropertyChanged
@@ -1065,7 +1145,8 @@ namespace Hesabate_POS.View.receipts
             return invoiceDetailsList;
         }
         */
-        void buildInvoiceDetailsSmall(List<ItemModel> invoiceDetailsList)
+        #region buildInvoiceDetailsSmall
+        async void buildInvoiceDetailsSmall(List<ItemModel> invoiceDetailsList)
         {
             sp_invoiceDetailsSmall.Children.Clear();
             //int cardWidth = 175;
@@ -1074,6 +1155,7 @@ namespace Hesabate_POS.View.receipts
             int index = 1;
             foreach (var item in invoiceDetailsList)
             {
+               
                 item.index = index;
                 #region borderMain
                 Border borderMain = new Border();
@@ -1084,6 +1166,7 @@ namespace Hesabate_POS.View.receipts
                 borderMain.Background = null;
                 borderMain.Margin = new Thickness(5);
                 borderMain.Padding = new Thickness(0);
+
 
                 #region gridMain
                 Grid gridMain = new Grid();
@@ -1101,26 +1184,31 @@ namespace Hesabate_POS.View.receipts
                 }
                 #endregion
 
+                
+
                 #region gridRow0
+
                 Grid gridRow0 = new Grid();
-                gridRow0.Margin = new Thickness(0,2.5,0, 2.5);
+                gridRow0.Margin = new Thickness(5,2.5,5, 2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int colCountRow0 = 3;
+                int colCountRow0 = 2;
                 ColumnDefinition[] cdRow0 = new ColumnDefinition[colCountRow0];
                 for (int i = 0; i < colCountRow0; i++)
                 {
                     cdRow0[i] = new ColumnDefinition();
                 }
-                cdRow0[0].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow0[1].Width = new GridLength(1, GridUnitType.Star);
-                cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow0[0].Width = new GridLength(1, GridUnitType.Star);
+                cdRow0[1].Width = new GridLength(1, GridUnitType.Auto);
+                //cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
                 for (int i = 0; i < colCountRow0; i++)
                 {
                     gridRow0.ColumnDefinitions.Add(cdRow0[i]);
                 }
                 #endregion
+
                 #region itemIndex
+                /*
                 TextBlock itemIndex = new TextBlock();
                 itemIndex.Text = $"{item.index}-" ;
                 itemIndex.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
@@ -1133,52 +1221,178 @@ namespace Hesabate_POS.View.receipts
 
                 Grid.SetColumn(itemIndex, 0);
                 gridRow0.Children.Add(itemIndex);
+                */
                 #endregion
+               
                 #region itemName
                 TextBlock itemName = new TextBlock();
-
-                if (string.IsNullOrWhiteSpace(item.unitName))
-                    itemName.Text = item.name;
-                else
-                    itemName.Text = $"{item.name} - {item.unitName}";
-
+                itemName.Text = item.name;
                 itemName.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                itemName.HorizontalAlignment = HorizontalAlignment.Left;
-                itemName.VerticalAlignment = VerticalAlignment.Center;
                 itemName.Margin = new Thickness(5);
-                itemName.TextWrapping = TextWrapping.WrapWithOverflow;
-                itemName.TextAlignment = TextAlignment.Center;
 
-
-                Grid.SetColumn(itemName, 1);
+                Grid.SetColumn(itemName, 0);
                 gridRow0.Children.Add(itemName);
                 #endregion
-                #region itemPrice
-                TextBlock itemPrice = new TextBlock();
-                //itemPrice.Text = item.price+"$";
-                var itemPriceBinding = new System.Windows.Data.Binding("price");
-                itemPriceBinding.Mode = BindingMode.OneWay;
-                itemPriceBinding.Converter =new accuracyConverter();
-                itemPrice.SetBinding(TextBlock.TextProperty, itemPriceBinding);
+                #region itemUnit
+                if (string.IsNullOrWhiteSpace(item.unitName))
+                {
+                    TextBlock itemUnit = new TextBlock();
+                    itemUnit.Text = item.unitName;
+                    itemUnit.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    itemUnit.Margin = new Thickness(5);
 
-                itemPrice.FontSize = 12;
-                itemPrice.FontWeight = FontWeights.SemiBold;
-                itemPrice.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                itemPrice.HorizontalAlignment = HorizontalAlignment.Center;
-                itemPrice.VerticalAlignment = VerticalAlignment.Center;
-                itemPrice.Margin = new Thickness(5);
-                itemPrice.TextWrapping = TextWrapping.WrapWithOverflow;
-                itemPrice.TextAlignment = TextAlignment.Center;
-
-                Grid.SetColumn(itemPrice, 2);
-                gridRow0.Children.Add(itemPrice);
+                    Grid.SetColumn(itemUnit, 1);
+                    gridRow0.Children.Add(itemUnit);
+                }
                 #endregion
+
+                
                 gridMain.Children.Add(gridRow0);
                 #endregion
+                #region gridRow1
+               
 
+                Grid gridRow1 = new Grid();
+                gridRow1.Margin = new Thickness(5, 2.5, 5, 2.5);
+                #region gridSettings
+                /////////////////////////////////////////////////////
+                int colCountRow1 = 11;
+                ColumnDefinition[] cdRow1 = new ColumnDefinition[colCountRow1];
+                for (int i = 0; i < colCountRow1; i++)
+                {
+                    cdRow1[i] = new ColumnDefinition();
+                }
+                cdRow1[0].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[1].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[2].Width = new GridLength(1, GridUnitType.Star);
+                cdRow1[3].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[4].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[5].Width = new GridLength(1, GridUnitType.Star);
+                cdRow1[6].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[7].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[8].Width = new GridLength(1, GridUnitType.Star);
+                cdRow1[9].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow1[10].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow1; i++)
+                {
+                    gridRow1.ColumnDefinitions.Add(cdRow1[i]);
+                }
+
+                #endregion
+                #region itemCount
+                TextBlock itemCount = new TextBlock();
+                var itemCountBinding = new System.Windows.Data.Binding("amount");
+                itemCount.SetBinding(TextBlock.TextProperty, itemCountBinding);
+                itemCount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemCount.HorizontalAlignment = HorizontalAlignment.Center;
+                itemCount.VerticalAlignment = VerticalAlignment.Center;
+                itemCount.Margin = new Thickness(5);
+                Grid.SetColumn(itemCount, 0);
+                gridRow1.Children.Add(itemCount);
+                #endregion
+                #region itemCountIcon
+                Path itemCountIcon = new Path();
+                itemCountIcon.Fill = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemCountIcon.Stretch = Stretch.Fill;
+                itemCountIcon.FlowDirection = FlowDirection.LeftToRight;
+                itemCountIcon.Height =
+                itemCountIcon.Width = 25;
+                itemCountIcon.Data = App.Current.Resources["count123"] as Geometry;
+
+                Grid.SetColumn(itemCountIcon, 1);
+                gridRow1.Children.Add(itemCountIcon);
+                #endregion
+
+                #region itemDiscount
+                TextBlock itemDiscount = new TextBlock();
+                var itemDiscountBinding = new System.Windows.Data.Binding("discount");
+                itemDiscount.SetBinding(TextBlock.TextProperty, itemDiscountBinding);
+                itemDiscount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemDiscount.HorizontalAlignment = HorizontalAlignment.Center;
+                itemDiscount.VerticalAlignment = VerticalAlignment.Center;
+                itemDiscount.Margin = new Thickness(5);
+                Grid.SetColumn(itemDiscount, 3);
+                gridRow1.Children.Add(itemDiscount);
+                #endregion
+                #region itemDiscountIcon
+                Path itemDiscountIcon = new Path();
+                itemDiscountIcon.Fill = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemDiscountIcon.Stretch = Stretch.Fill;
+                itemDiscountIcon.FlowDirection = FlowDirection.LeftToRight;
+                itemDiscountIcon.Height =
+                itemDiscountIcon.Width = 25;
+                itemDiscountIcon.Data = App.Current.Resources["discount"] as Geometry;
+
+                Grid.SetColumn(itemDiscountIcon, 4);
+                gridRow1.Children.Add(itemDiscountIcon);
+                #endregion
+
+                #region itemBonus
+                TextBlock itemBonus = new TextBlock();
+                var itemBonusBinding = new System.Windows.Data.Binding("bonus");
+                itemBonus.SetBinding(TextBlock.TextProperty, itemBonusBinding);
+                itemBonus.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemBonus.HorizontalAlignment = HorizontalAlignment.Center;
+                itemBonus.VerticalAlignment = VerticalAlignment.Center;
+                itemBonus.Margin = new Thickness(5);
+                Grid.SetColumn(itemBonus, 6);
+                gridRow1.Children.Add(itemBonus);
+                #endregion
+                #region itemBonusIcon
+                Path itemBonusIcon = new Path();
+                itemBonusIcon.Fill = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemBonusIcon.Stretch = Stretch.Fill;
+                itemBonusIcon.FlowDirection = FlowDirection.LeftToRight;
+                itemBonusIcon.Height =
+                itemBonusIcon.Width = 25;
+                itemBonusIcon.Data = App.Current.Resources["couponBonus"] as Geometry;
+
+                Grid.SetColumn(itemBonusIcon, 7);
+                gridRow1.Children.Add(itemBonusIcon);
+                #endregion
+
+                
+                #region stackPanelPrice
+                StackPanel stackPanelPrice = new StackPanel();
+                stackPanelPrice.Orientation = Orientation.Horizontal;
+                #region itemPrice
+                TextBlock itemPrice = new TextBlock();
+                var itemPriceBinding = new System.Windows.Data.Binding("price");
+                itemPriceBinding.Mode = BindingMode.OneWay;
+                itemPriceBinding.Converter = new accuracyConverter();
+                itemPrice.SetBinding(TextBlock.TextProperty, itemPriceBinding);
+                itemPrice.FontSize = 14;
+                itemPrice.FontWeight = FontWeights.SemiBold;
+                itemPrice.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemPrice.HorizontalAlignment = HorizontalAlignment.Center;
+                itemPrice.VerticalAlignment = VerticalAlignment.Center;
+                itemPrice.Margin = new Thickness(5,0,5,0);
+
+                stackPanelPrice.Children.Add(itemPrice);
+                #endregion
+                #region itemPriceAccuracy
+                TextBlock itemPriceAccuracy = new TextBlock();
+                itemPriceAccuracy.Text = AppSettings.currency;
+                itemPriceAccuracy.FontSize = 14;
+                itemPriceAccuracy.FontWeight = FontWeights.SemiBold;
+                itemPriceAccuracy.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemPriceAccuracy.HorizontalAlignment = HorizontalAlignment.Center;
+                itemPriceAccuracy.VerticalAlignment = VerticalAlignment.Center;
+                itemPriceAccuracy.Margin = new Thickness(0);
+
+                stackPanelPrice.Children.Add(itemPriceAccuracy);
+                #endregion
+                Grid.SetColumn(stackPanelPrice, 9);
+                gridRow1.Children.Add(stackPanelPrice);
+                #endregion
+
+
+                Grid.SetRow(gridRow1, 1);
+                gridMain.Children.Add(gridRow1);
+                #endregion
                 #region stackPanelRow1
                 StackPanel stackPanelRow1 = new StackPanel();
-                stackPanelRow1.Margin = new Thickness(0, 2.5, 0, 2.5);
+                stackPanelRow1.Margin = new Thickness(5,0,5,0);
                 #region extraItems
                 //List<string> extraItems = new List<string>() { "+ extra item", "- item", };
                 if (item.extraItems != null)
@@ -1213,126 +1427,115 @@ namespace Hesabate_POS.View.receipts
                         }
                 }
                 #endregion
-                Grid.SetRow(stackPanelRow1, 1);
+                Grid.SetRow(stackPanelRow1, 2);
                 gridMain.Children.Add(stackPanelRow1);
                 #endregion
-                #region gridRow2
-                Grid gridRow2 = new Grid();
-                gridRow2.Margin = new Thickness(0, 2.5, 0, 2.5);
-                #region gridSettings
-                /////////////////////////////////////////////////////
-                int colCountRow2 = 6;
-                ColumnDefinition[] cdRow2 = new ColumnDefinition[colCountRow2];
-                for (int i = 0; i < colCountRow2; i++)
-                {
-                    cdRow2[i] = new ColumnDefinition();
-                }
-                cdRow2[0].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow2[1].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow2[2].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow2[3].Width = new GridLength(1, GridUnitType.Star);
-                cdRow2[4].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow2[5].Width = new GridLength(1, GridUnitType.Auto);
-                for (int i = 0; i < colCountRow2; i++)
-                {
-                    gridRow2.ColumnDefinitions.Add(cdRow2[i]);
-                }
-                #endregion
-                #region itemCount
-                TextBlock itemCount = new TextBlock();
 
-                //itemCount.Text = item.count.ToString();
-                var itemCountBinding = new System.Windows.Data.Binding("amount");
-                //itemCountBinding.Mode = BindingMode.OneWay;
-                itemCount.SetBinding(TextBlock.TextProperty, itemCountBinding);
+                #region buttonInfo
+                Rectangle rectangleInfo = new Rectangle();
+                Grid.SetRowSpan(rectangleInfo, 4);
+                gridMain.Children.Add(rectangleInfo);
 
-                itemCount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                itemCount.HorizontalAlignment = HorizontalAlignment.Center;
-                itemCount.VerticalAlignment = VerticalAlignment.Center;
-                itemCount.Margin = new Thickness(5);
-                itemCount.TextWrapping = TextWrapping.WrapWithOverflow;
-                itemCount.TextAlignment = TextAlignment.Center;
-
-
-                Grid.SetColumn(itemCount, 1);
-                gridRow2.Children.Add(itemCount);
-                #endregion
-                
-                #region   minus
-                Button buttonMinus = new Button();
-                buttonMinus.Tag = "minus-" + item.index;
-                buttonMinus.Margin = new Thickness(2.5);
-                buttonMinus.Height =
-                buttonMinus.Width = 25;
-                buttonMinus.Padding = new Thickness(0);
-                buttonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
-                buttonMinus.BorderThickness = new Thickness(0);
-                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonMinus, (new CornerRadius(cornerRadius)));
-                #region materialDesign
-                var MinusPackIcon = new PackIcon();
-                MinusPackIcon.Tag = "minusPackIcon-" + item.id;
-                MinusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
-                MinusPackIcon.Height =
-                MinusPackIcon.Width = 25;
-                MinusPackIcon.Kind = PackIconKind.Minus;
-                buttonMinus.Content = MinusPackIcon;
-                #endregion
-                buttonMinus.Click += buttonMinus_Click;
-
-                Grid.SetColumn(buttonMinus, 0);
-                gridRow2.Children.Add(buttonMinus);
-                /////////////////////////////////
-
-                #endregion
-                #region   plus
-                Button buttonPlus = new Button();
-                buttonPlus.Tag = "plus-" + item.index;
-                buttonPlus.Margin = new Thickness(2.5);
-                buttonPlus.Height =
-                buttonPlus.Width = 25;
-                buttonPlus.Padding = new Thickness(0);
-                buttonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
-                buttonPlus.BorderThickness = new Thickness(0);
-                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonPlus, (new CornerRadius(cornerRadius)));
-                #region materialDesign
-                var PlusPackIcon = new PackIcon();
-                PlusPackIcon.Tag = "plusPackIcon-" + item.id;
-                PlusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
-                PlusPackIcon.Height =
-                PlusPackIcon.Width = 25;
-                PlusPackIcon.Kind = PackIconKind.Plus;
-                buttonPlus.Content = PlusPackIcon;
-                #endregion
-                buttonPlus.Click += buttonPlus_Click;
-                Grid.SetColumn(buttonPlus, 2);
-                gridRow2.Children.Add(buttonPlus);
-                /////////////////////////////////
-                #endregion
-                #region   info
                 Button buttonInfo = new Button();
                 buttonInfo.DataContext = item;
-                buttonInfo.Tag = "info-" + item.index;
-                buttonInfo.Margin = new Thickness(2.5);
-                buttonInfo.Height =
-                buttonInfo.Width = 25;
-                buttonInfo.Padding = new Thickness(0);
-                buttonInfo.Background = Application.Current.Resources["White"] as SolidColorBrush;
-                MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonInfo, (new CornerRadius(25)));
-                #region materialDesign
-                System.Windows.Shapes.Path infoIcon = new System.Windows.Shapes.Path();
-                infoIcon.Tag = "infoIcon-" + item.id;
-                infoIcon.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                infoIcon.Stretch = Stretch.Fill;
-                infoIcon.Height =
-                infoIcon.Width = 25;
-                infoIcon.Data = App.Current.Resources["infoCircle"] as Geometry;
-
-                buttonInfo.Content = infoIcon;
-                #endregion
+                buttonInfo.Height = rectangleInfo.Height;
+                buttonInfo.Background = null;
+                buttonInfo.BorderBrush = null;
                 buttonInfo.Click += buttonInfo_Click;
-                Grid.SetColumn(buttonInfo, 4);
-                gridRow2.Children.Add(buttonInfo);
-                /////////////////////////////////
+
+                Grid.SetRowSpan(buttonInfo, 4);
+                gridMain.Children.Add(buttonInfo);
+                #endregion
+
+
+
+                #region gridRow3
+                Grid gridRow3 = new Grid();
+                gridRow3.Margin = new Thickness(2.5);
+                #region gridSettings
+                /////////////////////////////////////////////////////
+                int colCountRow3 = 3;
+                ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow3];
+                for (int i = 0; i < colCountRow3; i++)
+                {
+                    cdRow3[i] = new ColumnDefinition();
+                }
+                cdRow3[0].Width = new GridLength(1, GridUnitType.Star);
+                cdRow3[1].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow3[2].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow3; i++)
+                {
+                    gridRow3.ColumnDefinitions.Add(cdRow3[i]);
+                }
+                #endregion
+
+                #region borderNotes
+                Border borderNotes = new Border();
+                borderNotes.CornerRadius = new CornerRadius(0);
+                borderNotes.Margin = new Thickness(5);
+                borderNotes.BorderThickness = new Thickness(0,0,0,1);
+                borderNotes.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
+                borderNotes.Padding = new Thickness(0);
+                borderNotes.Background = null;
+                #region comboBoxNotes
+                
+                ComboBox comboBoxNotes = new ComboBox();
+                var comboBoxNotesBinding = new System.Windows.Data.Binding("detail");
+                comboBoxNotesBinding.Mode = BindingMode.TwoWay;
+                comboBoxNotes.SetBinding(ComboBox.TextProperty, comboBoxNotesBinding);
+                comboBoxNotes.Padding = new Thickness(10, 0, 5, 0);
+                comboBoxNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                comboBoxNotes.Style = Application.Current.Resources["MaterialDesignFloatingHintComboBox"] as Style; ;
+                comboBoxNotes.Height = 40;
+                MaterialDesignThemes.Wpf.HintAssist.SetHint(comboBoxNotes, Translate.getResource("28"));
+                comboBoxNotes.BorderThickness = new Thickness(0);
+                comboBoxNotes.Margin = new Thickness(0);
+                comboBoxNotes.IsEditable = true;
+                comboBoxNotes.StaysOpenOnEdit = true;
+                comboBoxNotes.IsTextSearchEnabled = false;
+                comboBoxNotes.KeyUp += Cb_invoiceItemNotes_KeyUp;
+                /*
+                                 BorderBrush="#737373" 
+                */
+                borderNotes.Child = comboBoxNotes;
+                #endregion
+
+                Grid.SetColumn(borderNotes, 0);
+                gridRow3.Children.Add(borderNotes);
+                #endregion
+                #region stackPanelTotal
+                StackPanel stackPanelTotal = new StackPanel();
+                stackPanelTotal.Orientation = Orientation.Horizontal;
+                #region textTotal
+                TextBlock textTotal = new TextBlock();
+                var textTotalBinding = new System.Windows.Data.Binding("total");
+                textTotalBinding.Mode = BindingMode.OneWay;
+                textTotalBinding.Converter =new accuracyConverter();
+                textTotal.SetBinding(TextBlock.TextProperty, textTotalBinding);
+
+                textTotal.FontSize = 14;
+                textTotal.FontWeight = FontWeights.Bold;
+                textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                textTotal.HorizontalAlignment = HorizontalAlignment.Center;
+                textTotal.VerticalAlignment = VerticalAlignment.Center;
+                textTotal.Margin = new Thickness(5);
+
+                stackPanelTotal.Children.Add(textTotal);
+                #endregion
+                #region textTotalAccuracy
+                TextBlock textTotalAccuracy = new TextBlock();
+                textTotalAccuracy.Text = AppSettings.currency;
+                textTotalAccuracy.FontSize = 14;
+                textTotalAccuracy.FontWeight = FontWeights.Bold;
+                textTotalAccuracy.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                textTotalAccuracy.HorizontalAlignment = HorizontalAlignment.Center;
+                textTotalAccuracy.VerticalAlignment = VerticalAlignment.Center;
+                textTotalAccuracy.Margin = new Thickness(5);
+
+                stackPanelTotal.Children.Add(textTotalAccuracy);
+                #endregion
+                Grid.SetColumn(stackPanelTotal, 1);
+                gridRow3.Children.Add(stackPanelTotal);
                 #endregion
                 #region   close
                 Button buttonClose = new Button();
@@ -1354,157 +1557,23 @@ namespace Hesabate_POS.View.receipts
                 buttonClose.Content = ClosePackIcon;
                 #endregion
                 buttonClose.Click += buttonClose_Click;
-                Grid.SetColumn(buttonClose, 5);
-                gridRow2.Children.Add(buttonClose);
+                Grid.SetColumn(buttonClose, 2);
+                gridRow3.Children.Add(buttonClose);
                 /////////////////////////////////
                 #endregion
-                Grid.SetRow(gridRow2, 2);
-                gridMain.Children.Add(gridRow2);
-                #endregion
-                
-
-                #region gridRow3
-                Grid gridRow3 = new Grid();
-                gridRow3.Margin = new Thickness(0, 2.5, 0, 2.5);
-                #region gridSettings
-                /////////////////////////////////////////////////////
-                int colCountRow3 = 2;
-                ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow3];
-                for (int i = 0; i < colCountRow3; i++)
-                {
-                    cdRow3[i] = new ColumnDefinition();
-                }
-                cdRow3[0].Width = new GridLength(1, GridUnitType.Star);
-                cdRow3[1].Width = new GridLength(1, GridUnitType.Auto);
-                for (int i = 0; i < colCountRow3; i++)
-                {
-                    gridRow3.ColumnDefinitions.Add(cdRow3[i]);
-                }
-                #endregion
-                #region borderNotes
-                Border borderNotes = new Border();
-                borderNotes.CornerRadius = new CornerRadius(0);
-                borderNotes.Margin = new Thickness(5);
-                borderNotes.BorderThickness = new Thickness(0,0,0,1);
-                borderNotes.BorderBrush = Application.Current.Resources["Grey"] as SolidColorBrush;
-                borderNotes.Padding = new Thickness(0);
-                borderNotes.Background = null;
-                #region textBoxNotes
-                TextBox textBoxNotes = new TextBox();
-                var textBoxNotesBinding = new System.Windows.Data.Binding("detail");
-                textBoxNotesBinding.Mode = BindingMode.TwoWay;
-                textBoxNotes.SetBinding(TextBox.TextProperty, textBoxNotesBinding);
-
-                textBoxNotes.Height = 40;
-                textBoxNotes.BorderThickness = new Thickness(0);
-                textBoxNotes.Margin = new Thickness(0);
-                textBoxNotes.Padding = new Thickness(10,0,5,0);
-                textBoxNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                textBoxNotes.TextWrapping = TextWrapping.Wrap;
-                //Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                textBoxNotes.Style = Application.Current.Resources["MaterialDesignFloatingHintTextBox"] as Style; ;
-
-                // materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                MaterialDesignThemes.Wpf.TextFieldAssist.SetCharacterCounterStyle(textBoxNotes, null);
-                MaterialDesignThemes.Wpf.HintAssist.SetHint(textBoxNotes,Translate.getResource("28"));
-
-                borderNotes.Child = textBoxNotes;
-                #endregion
-
-                Grid.SetColumn(borderNotes, 0);
-                gridRow3.Children.Add(borderNotes);
-                #endregion
-                #region textTotal
-                TextBlock textTotal = new TextBlock();
-                //textTotal.Text = item.total + "$";
-                var textTotalBinding = new System.Windows.Data.Binding("total");
-                textTotalBinding.Mode = BindingMode.OneWay;
-                textTotalBinding.Converter =new accuracyConverter();
-                textTotal.SetBinding(TextBlock.TextProperty, textTotalBinding);
-
-                textTotal.FontSize = 14;
-                textTotal.FontWeight = FontWeights.SemiBold;
-                textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                textTotal.HorizontalAlignment = HorizontalAlignment.Center;
-                textTotal.VerticalAlignment = VerticalAlignment.Center;
-                textTotal.Margin = new Thickness(5);
-                textTotal.TextWrapping = TextWrapping.WrapWithOverflow;
-                textTotal.TextAlignment = TextAlignment.Center;
-
-                Grid.SetColumn(textTotal, 1);
-                gridRow3.Children.Add(textTotal);
-                #endregion
-
 
 
                 Grid.SetRow(gridRow3, 3);
                 gridMain.Children.Add(gridRow3);
-                #endregion 
+                #endregion
 
+                
 
                 borderMain.Child = gridMain;
                 #endregion
                 sp_invoiceDetailsSmall.Children.Add(borderMain);
                 #endregion
                 index++;
-            }
-        }
-        void buttonMinus_Click(object sender, RoutedEventArgs e)
-        {
-
-            try
-            {
-                Button button = sender as Button;
-                int index = int.Parse(button.Tag.ToString().Replace("minus-", ""));
-                int itemCount = invoiceDetailsList[index - 1].amount;
-                if (itemCount >1)
-                {
-                    invoiceDetailsList[index - 1].amount--;
-                    invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].amount * invoiceDetailsList[index - 1].price;
-                    //buildInvoiceDetailsSmall(invoiceDetailsList);
-                    CalculateInvoiceValues();
-                }
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-
-        }
-        void buttonPlus_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-                int index = int.Parse(button.Tag.ToString().Replace("plus-", ""));
-               
-
-                invoiceDetailsList[index-1].amount++;
-                invoiceDetailsList[index - 1].total = invoiceDetailsList[index - 1].amount * invoiceDetailsList[index - 1].price;
-                //buildInvoiceDetailsSmall(invoiceDetailsList);
-
-                CalculateInvoiceValues();
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
-        void buttonInfo_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-                int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
-                ItemModel invoiceDetails = button.DataContext as ItemModel;
-                selectedInvoiceItemOptions = invoiceDetails;
-                switchGrid1_1("invoiceItemOptions");
-
-                
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
         void buttonClose_Click(object sender, RoutedEventArgs e)
@@ -1524,12 +1593,35 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-
-
-        void switchInvoiceType(string type)
+        void buttonInfo_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+                Button button = sender as Button;
+                //int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
+                ItemModel invoiceDetails = button.DataContext as ItemModel;
+                selectedInvoiceItemOptions = invoiceDetails;
+                switchGrid1_1("invoiceItemOptions");
+
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
+        private void Cb_invoiceItemNotes_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                ComboBox cbm = sender as ComboBox;
+                HelpClass.searchInComboBox(cbm);
+            }
+            catch (Exception ex)
+            { HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+        }
+        #endregion
+
 
         #endregion
         #region invoice
@@ -1594,7 +1686,7 @@ namespace Hesabate_POS.View.receipts
             txt_Count.Text = invoiceDetailsList.Select(x => x.amount).Sum().ToString();
             txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.total).Sum());
             txt_Service.Text = HelpClass.DecTostring(serviceAmount);
-            txt_Tax.Text = HelpClass.DecTostring(taxAmount);
+            txt_taxValue.Text = HelpClass.DecTostring(taxAmount);
             txt_total.Text = HelpClass.DecTostring(totalNet);
         }
 
@@ -1748,7 +1840,12 @@ namespace Hesabate_POS.View.receipts
 
 
 
-        #endregion
+
+
+
+
+
+
 
         #endregion
 
