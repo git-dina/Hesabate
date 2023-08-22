@@ -2544,14 +2544,14 @@
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="*"  Header="index"   Binding="{Binding Path=index, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*"  Header="id"   Binding="{Binding Path=id, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*"  Header="name"   Binding="{Binding Path=name, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*"  Header="unitName"   Binding="{Binding Path=unitName, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*"  Header="discount"   Binding="{Binding Path=discount, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*"  Header="amount"   Binding="{Binding Path=amount, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*"  Header="price" Binding="{Binding Path=price, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
-                                    <DataGridTextColumn Width="*"  Header="total" Binding="{Binding Path=total, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_index"  Header="index"   Binding="{Binding Path=index, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_id"  Header="id"   Binding="{Binding Path=id, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_name" Header="name"   Binding="{Binding Path=name, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_unitName" Header="unitName"   Binding="{Binding Path=unitName, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_discount" Header="discount"   Binding="{Binding Path=discount, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_amount" Header="amount"   Binding="{Binding Path=amount, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_price" Header="price" Binding="{Binding Path=price, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_total" Header="total" Binding="{Binding Path=total, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
 
                                     <DataGridTemplateColumn Width="*" Header="Location" IsReadOnly="True" >
                                         <DataGridTemplateColumn.CellTemplate>

@@ -115,7 +115,7 @@ namespace Hesabate_POS.View.receipts
             txt_SupTotalTitle.Text = Translate.getResource("572");
             txt_ServiceTitle.Text = Translate.getResource("1152");
 
-            txt_taxValueTitle.Text = Translate.getResource("1342");
+            txt_taxValueTitle.Text = Translate.getResource("575");
             txt_AutoDiscountTitle.Text = Translate.getResource("1066");
             txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
@@ -136,6 +136,18 @@ namespace Hesabate_POS.View.receipts
             txt_points.Text = Translate.getResource("654");
             txt_invoiceCost.Text = Translate.getResource("21");
             txt_transform.Text = Translate.getResource("32");
+
+            #endregion
+
+            #region invoice details big
+            col_index.Header = "#";
+            col_id.Header = Translate.getResource("567");
+            col_name.Header = Translate.getResource("568");
+            col_unitName.Header = Translate.getResource("427");
+            col_amount.Header = Translate.getResource("491");
+            col_discount.Header = Translate.getResource("571");
+            col_price.Header = Translate.getResource("570");
+            col_total.Header = Translate.getResource("572");
 
             #endregion
         }
