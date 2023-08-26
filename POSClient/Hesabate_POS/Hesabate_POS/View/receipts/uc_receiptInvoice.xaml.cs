@@ -633,8 +633,12 @@ namespace Hesabate_POS.View.receipts
             {
                 try
                 {
-                   // using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
+                    // using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
 
+                    
+                    var localUri = _itemService.GetLocalUri(uri);
+                    if (localUri == "")
+                    {
                     Thread t1 = new Thread(async () =>
                     {
                         temp = BitmapFrame.Create(new Uri(AppSettings.APIUri + "/" + uri));
@@ -642,6 +646,7 @@ namespace Hesabate_POS.View.receipts
                         string remoteUri = AppSettings.APIUri + "/" + uri;
                         var imgUrl = new Uri(remoteUri);
                         var imageData = new WebClient().DownloadData(imgUrl);
+                        _itemService.SaveImage(imageData, uri);
                         this.Dispatcher.Invoke(() =>
                         {
 
@@ -650,13 +655,30 @@ namespace Hesabate_POS.View.receipts
                             bitmapImage.StreamSource = new MemoryStream(imageData);
                             bitmapImage.EndInit();
 
-                            //imageBrush.ImageSource = temp;
-                            imageBrush.ImageSource = bitmapImage;
+                        //imageBrush.ImageSource = temp;
+                        imageBrush.ImageSource = bitmapImage;
                             img.Background = imageBrush;
                         });
-
                     });
+
                     t1.Start();
+                    }
+                    else
+                    { 
+                        byte[] imageBuffer = _itemService.readLocalImage(localUri);
+                        var bitmapImage = new BitmapImage();
+                        using (var memoryStream = new System.IO.MemoryStream(imageBuffer))
+                        {
+                            bitmapImage.BeginInit();
+                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmapImage.StreamSource = memoryStream;
+                            bitmapImage.EndInit();
+                        }
+                        img.Background = new ImageBrush(bitmapImage);
+
+                    
+                    }
+                 
 
                 }
                 catch {

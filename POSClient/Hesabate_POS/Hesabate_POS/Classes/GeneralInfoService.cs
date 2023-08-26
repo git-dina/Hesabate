@@ -52,34 +52,29 @@ namespace Hesabate_POS.Classes
         
         public static async Task GetMainInfo()
         {
-            //using (var client = new HttpClient())
+            var request = new HttpRequestMessage(HttpMethod.Post,AppSettings.APIUri+ "/POS/p5api2.php");
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(AppSettings.token), "token");
+            content.Add(new StringContent("1"), "op");
+            request.Content = content;
+            try
             {
-                //client.Timeout = System.TimeSpan.FromSeconds(3600);
+                var response = await client.SendAsync(request);
 
-                var request = new HttpRequestMessage(HttpMethod.Post,AppSettings.APIUri+ "/POS/p5api2.php");
-                var content = new MultipartFormDataContent();
-                content.Add(new StringContent(AppSettings.token), "token");
-                content.Add(new StringContent("1"), "op");
-                request.Content = content;
-                try
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var response = await client.SendAsync(request);
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    GeneralInfo = JsonConvert.DeserializeObject<GeneralInfoModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                    //accuracy
+                    AppSettings.accuracy = GeneralInfo.MainOp.AMain.ToString();
 
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        var jsonString = await response.Content.ReadAsStringAsync();
-                        GeneralInfo = JsonConvert.DeserializeObject<GeneralInfoModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-
-                        AppSettings.accuracy = GeneralInfo.MainOp.AMain.ToString();
-                    }
                 }
-                catch(Exception ex)
-                {
-                    GeneralInfo = new GeneralInfoModel();
-                }
-             
-
             }
+            catch(Exception ex)
+            {
+                GeneralInfo = new GeneralInfoModel();
+            }
+             
         }
 
         public static async Task GetLanguagesTerms(int languageId)

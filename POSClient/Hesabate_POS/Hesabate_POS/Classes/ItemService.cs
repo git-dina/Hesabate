@@ -222,7 +222,60 @@ namespace Hesabate_POS.Classes
             else
                 return false;
         }
+        public string GetLocalUri(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            string dir = Directory.GetCurrentDirectory();
+            string tmpPath = Path.Combine(dir, AppSettings.ItemsImgPath);
+            tmpPath = Path.Combine(tmpPath, fileName);
 
+            if (File.Exists(tmpPath))
+                return tmpPath;
+            else
+                return "";
+        }
+        public void SaveImage(byte[] arrBytes, string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            string dir = Directory.GetCurrentDirectory();
+            string tmpPath = Path.Combine(dir, AppSettings.ItemsImgPath);
+            if (!Directory.Exists(tmpPath))
+                Directory.CreateDirectory(tmpPath);
+
+            tmpPath = Path.Combine(tmpPath, fileName);
+            if (System.IO.File.Exists(tmpPath))
+            {
+                System.IO.File.Delete(tmpPath);
+            }
+            if (arrBytes != null)
+            {
+                using (FileStream fs = new FileStream(tmpPath, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    fs.Write(arrBytes, 0, arrBytes.Length);
+                }
+            }
+        }
+        public byte[] readLocalImage(string imageUri)
+        {
+            byte[] data = null;
+            System.IO.FileInfo fileInfo = new System.IO.FileInfo(imageUri);
+            // The byte[] to save the data in
+            data = new byte[fileInfo.Length];
+            using (var stream = new System.IO.FileStream(imageUri, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                stream.Read(data, 0, data.Length);
+            }
+            return data;
+        }
+        public void ClearSavedImages()
+        {
+            string dir = Directory.GetCurrentDirectory();
+            string tmpPath = Path.Combine(dir, AppSettings.ItemsImgPath);
+
+            var files = Directory.GetFiles(tmpPath);
+            foreach (var f in files)
+                File.Delete(f);
+        }
         public  async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
         {
 

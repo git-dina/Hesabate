@@ -231,6 +231,9 @@ namespace Hesabate_POS.View.windows
                 btn_login.IsEnabled = false;
                 txt_message.Text = "";
                 string res = "";
+
+                //clear loaded images
+                _itemService.ClearSavedImages();
                 if (tb_userName.Text != "" && pb_password.Password != "")
                 {
                     var res1 = await _authService.Login(tb_userName.Text, pb_password.Password,cb_language.SelectedValue.ToString());
