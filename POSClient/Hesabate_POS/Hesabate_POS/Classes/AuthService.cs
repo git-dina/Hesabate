@@ -105,6 +105,7 @@ namespace Hesabate_POS.Classes
             AppSettings.userName = res["name"];
             AppSettings.cashBoxId = res["cash_box"];
             AppSettings.showPx = res["showPx"];
+            AppSettings.MainCurrency = res["MainCurrency"];
             AppSettings.token = res["token"];
 
 
