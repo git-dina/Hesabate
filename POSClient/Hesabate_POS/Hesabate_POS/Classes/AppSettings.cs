@@ -50,7 +50,7 @@ namespace Hesabate_POS.Classes
         public static string lang = "ar";
         public static string dir = "rtl";
         // small, big
-        public static string invoiceDetailsType = "big";
+        public static string invoiceDetailsType = "small";
 
         #region User Info
         public static string userId;//رقم المستخدم على النظام
