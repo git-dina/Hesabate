@@ -31,7 +31,7 @@ namespace Hesabate_POS.Classes
 
         //general info
         internal static string accuracy = "3";
-        internal static string currency = "د.ك";
+        internal static string currency = "TL";
         internal static int MainCurrency ;
         public static string dateFormat = "ShortDatePattern";
 

@@ -65,8 +65,7 @@ namespace Hesabate_POS.Classes
                 {
                     var jsonString = await response.Content.ReadAsStringAsync();
                     GeneralInfo = JsonConvert.DeserializeObject<GeneralInfoModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-                    //accuracy
-                    AppSettings.accuracy = GeneralInfo.MainOp.AMain.ToString();
+
 
                 }
             }
@@ -80,30 +79,25 @@ namespace Hesabate_POS.Classes
         public static async Task GetLanguagesTerms(int languageId)
         {
 
-            //using (var client = new HttpClient())
+            var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(languageId.ToString()), "lang");
+            request.Content = content;
+            try
             {
-                //client.Timeout = System.TimeSpan.FromSeconds(3600);
+                var response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
 
-                var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
-                var content = new MultipartFormDataContent();
-                content.Add(new StringContent(languageId.ToString()), "lang");
-                request.Content = content;
-                try
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var response = await client.SendAsync(request);
-                    response.EnsureSuccessStatusCode();
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    LanguageTerms = JsonConvert.DeserializeObject<List<LanguageTermModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        var jsonString = await response.Content.ReadAsStringAsync();
-                        LanguageTerms = JsonConvert.DeserializeObject<List<LanguageTermModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-
-                    }
                 }
-                catch (Exception ex)
-                {
-                    LanguageTerms = new List<LanguageTermModel>();
-                }
+            }
+            catch (Exception ex)
+            {
+                LanguageTerms = new List<LanguageTermModel>();
             }
         }
 

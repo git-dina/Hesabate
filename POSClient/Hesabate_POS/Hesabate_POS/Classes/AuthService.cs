@@ -108,6 +108,8 @@ namespace Hesabate_POS.Classes
             AppSettings.MainCurrency = res["MainCurrency"];
             AppSettings.token = res["token"];
 
+            //accuracy
+           // AppSettings.accuracy = GeneralInfo.MainOp.AMain.ToString();
 
             var boxesLst = JObject.Parse(jsonString)["cash_boxes"].ToList();
 
