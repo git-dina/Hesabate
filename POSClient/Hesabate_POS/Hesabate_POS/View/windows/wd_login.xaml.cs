@@ -330,5 +330,21 @@ namespace Hesabate_POS.View.windows
                 AppSettings.dir = lang.dir;
             }
         }
+
+        private void btn_serverName_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (brd_serverName.Visibility == Visibility.Visible)
+                    brd_serverName.Visibility = Visibility.Collapsed;
+                else
+                    brd_serverName.Visibility = Visibility.Visible;
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
     }
 }
