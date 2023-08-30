@@ -378,6 +378,37 @@
                                         Margin="10,0,0,0"/>
                             </Grid>
                         </Button>
+                        <Button   x:Name="btn_invoiceBonus" 
+      Tag="invoiceBonus"
+      Click="btn_invoiceBonus_Click"
+     Height="50" 
+     HorizontalAlignment="Left"  
+     Background="{StaticResource MainColor}" 
+      BorderBrush="{x:Null}"   
+      Padding="0"  BorderThickness="0" 
+ materialDesign:ButtonAssist.CornerRadius="0">
+                            <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+      Height="50"  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path  x:Name="path_invoiceBonus" 
+            Grid.Column="0"  
+               FlowDirection="LeftToRight"
+           Fill="{StaticResource White}" 
+           Stretch="Fill"  
+      HorizontalAlignment="Center"
+        VerticalAlignment="Center" Width="20" Height="20"
+      Data="{StaticResource bonus}"/>
+                                <TextBlock  x:Name="txt_invoiceBonus" Grid.Column="1"
+                Text="invoiceBonus" 
+           Foreground="{StaticResource White}" 
+           HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Margin="10,0,0,0"/>
+                            </Grid>
+                        </Button>
+
                         <Button   x:Name="btn_invoiceCost" 
                               Tag="invoiceCost"
                               Click="btn_invoiceCost_Click"
@@ -438,9 +469,9 @@
                                         Margin="10,0,0,0"/>
                             </Grid>
                         </Button>
-                        <Button   x:Name="btn_transform" 
-                              Tag="transform"
-                              Click="btn_transform_Click"
+                        <Button   x:Name="btn_export" 
+                              Tag="export"
+                              Click="btn_export_Click"
                              Height="50" 
                              HorizontalAlignment="Left"  
                              Background="{StaticResource MainColor}" 
@@ -453,16 +484,46 @@
                                     <ColumnDefinition Width="50"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Path  x:Name="path_transform" 
+                                <Path  x:Name="path_export" 
                                     Grid.Column="0"  
                                        FlowDirection="LeftToRight"
                                    Fill="{StaticResource White}" 
                                    Stretch="Fill"  
                               HorizontalAlignment="Center"
                                 VerticalAlignment="Center" Width="20" Height="20"
-                              Data="{StaticResource transform}"/>
-                                <TextBlock  x:Name="txt_transform" Grid.Column="1"
-                                        Text="transform" 
+                              Data="{StaticResource export}"/>
+                                <TextBlock  x:Name="txt_export" Grid.Column="1"
+                                        Text="export" 
+                                   Foreground="{StaticResource White}" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                        Margin="10,0,0,0"/>
+                            </Grid>
+                        </Button>
+                    <Button   x:Name="btn_administration" 
+                              Tag="administration"
+                              Click="btn_administration_Click"
+                             Height="50" 
+                             HorizontalAlignment="Left"  
+                             Background="{StaticResource MainColor}" 
+                              BorderBrush="{x:Null}"   
+                              Padding="0"  BorderThickness="0" 
+                         materialDesign:ButtonAssist.CornerRadius="0">
+                            <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                              Height="50"  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path  x:Name="path_administration" 
+                                    Grid.Column="0"  
+                                       FlowDirection="LeftToRight"
+                                   Fill="{StaticResource White}" 
+                                   Stretch="Fill"  
+                              HorizontalAlignment="Center"
+                                VerticalAlignment="Center" Width="20" Height="20"
+                              Data="{StaticResource system}"/>
+                                <TextBlock  x:Name="txt_administration" Grid.Column="1"
+                                        Text="administration" 
                                    Foreground="{StaticResource White}" 
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
                                         Margin="10,0,0,0"/>
@@ -494,55 +555,97 @@
                 <Grid   Margin="0 0 0 0"  >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <Button Grid.Column="1" DockPanel.Dock="Right" BorderBrush="{x:Null}" Padding="0"
-                        Margin="5,0,5,0" Height="auto"
-                    Background="{x:Null}" x:Name="btn_printInvoice"   >
-                            <StackPanel>
-                                <Path Fill="{StaticResource MainColor}" Stretch="Fill"  
-                       Height="30" Width="30"
-                                       FlowDirection="LeftToRight"
-                           Data="{StaticResource printer}" />
-                                <!--<TextBlock Text="print" x:Name="txt_printInvoice" Foreground="#178DD2" 
-                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
-                                           HorizontalAlignment="Center"/>-->
-                            </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                Margin="5 0 0 0">
+                        <Button  Grid.Row="1"
+                                    Margin="5,0,5,0"
+                    
+                                        x:Name="btn_printInvoice"
+                                 Click="btn_printInvoice_Click"
+                                 materialDesign:ButtonAssist.CornerRadius="7"
+                                           Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                                                     BorderThickness="1"
+                                           Padding="0" 
+                                 >
+                                          <Grid 
+                                  >
+                                              <Grid.ColumnDefinitions>
+                                                  <ColumnDefinition Width="auto"/>
+                                                  <ColumnDefinition Width="*"/>
+                                              </Grid.ColumnDefinitions>
+                                              <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                                 HorizontalAlignment="Center" Grid.Column="0"  
+                            VerticalAlignment="Center" Width="20" Height="20"
+                                 Data="{StaticResource printer}"
+                                          FlowDirection="LeftToRight"
+                                         Margin="5"/>
+                                <TextBlock Text="printInvoice" Foreground="{StaticResource MainColor}" x:Name="txt_printInvoice"
+                                      HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                 Grid.Column="1"      Margin="5"/>
+                            </Grid>
                         </Button>
-                        <Button Grid.Column="2" BorderBrush="{x:Null}" Padding="0"   
-                            Height="auto" Margin="5,0,5,0" DockPanel.Dock="Right"
-                    Background="{x:Null}" x:Name="btn_returns"  >
-                            <StackPanel>
-                                <Path Fill="{StaticResource MainColor}" Stretch="Fill"  
-                          Width="30" Height="30"  
-                              FlowDirection="LeftToRight"
-                          Data="{StaticResource returns}" />
-                                <!--<TextBlock Text="returns" x:Name="txt_returns" Foreground="#178DD2" 
-                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
-                                           HorizontalAlignment="Center"/>-->
-                            </StackPanel>
+                        <Button  Grid.Row="1"
+            Margin="5,0,5,0"
+                    
+                x:Name="btn_returns"
+         Click="btn_returns_Click"
+         materialDesign:ButtonAssist.CornerRadius="7"
+                   Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                             BorderThickness="1"
+                   Padding="0" 
+         >
+                            <Grid 
+          >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+         HorizontalAlignment="Center" Grid.Column="0"  
+    VerticalAlignment="Center" Width="20" Height="20"
+         Data="{StaticResource returns}"
+                  FlowDirection="LeftToRight"
+                 Margin="5"/>
+                                <TextBlock Text="returns" Foreground="{StaticResource MainColor}" x:Name="txt_returns"
+              HorizontalAlignment="Left" VerticalAlignment="Center" 
+         Grid.Column="1"      Margin="5"/>
+                            </Grid>
                         </Button>
-                        <Button Grid.Column="2" BorderBrush="{x:Null}" Padding="0"   
-                            Height="auto" Margin="5,0,5,0" DockPanel.Dock="Right"
-                    Background="{x:Null}" x:Name="btn_discount">
-                            <StackPanel>
-                                <Path Fill="{StaticResource MainColor}" Stretch="Fill"  
-                          Width="30" Height="30"  
-                              FlowDirection="LeftToRight"
-                          Data="{StaticResource discount}" />
-                                <!--<TextBlock Text="discount" x:Name="txt_discount" Foreground="#178DD2" 
-                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
-                                           HorizontalAlignment="Center"/>-->
-                            </StackPanel>
+                        <Button  Grid.Row="1"
+        Margin="5,0,5,0"
+                
+            x:Name="btn_discount"
+     Click="btn_discount_Click"
+     materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+     >
+                            <Grid 
+      >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource discount}"
+              FlowDirection="LeftToRight"
+             Margin="5"/>
+                                <TextBlock Text="discount" Foreground="{StaticResource MainColor}" x:Name="txt_discount"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                            </Grid>
                         </Button>
-                        
-
+                         
                     </StackPanel>
                     <Border   Grid.RowSpan="2" Grid.Column="2" 
                     Margin="5 0 0 0"  CornerRadius="0,0,0,0"  
@@ -618,7 +721,7 @@
                          BlurRadius="10"/>
                 </Border.Effect>
                 <Grid>
-                <Grid x:Name="grid_mainItemsCatalog" Visibility="Collapsed">
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="auto"/>
@@ -690,7 +793,9 @@
                     <Border Grid.Row="1" Margin="0"  
                         BorderThickness="0 0 0 1" 
                         BorderBrush="{StaticResource LightGrey}"/>
-                    <Grid  Grid.Row="2">
+                        <Grid  x:Name="grid_mainItemsCatalog" 
+                               Visibility="Visible"
+                               Grid.Row="2">
                     <ScrollViewer 
                              Margin="0,0,-5,0" >
                             <WrapPanel x:Name="wp_itemsCard" Margin="5,5,5,5" HorizontalAlignment="Left" >
@@ -835,50 +940,50 @@
 
                         </WrapPanel>
                         </ScrollViewer>
-                    </Grid>
+                    </Grid >
+                        <Grid x:Name="grid_invoiceItemOptions" 
+                              Grid.Row="2"
+                              Visibility="Visible">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border  BorderThickness="0" Grid.Row="0" 
+                        CornerRadius="0"  Background="{StaticResource MainColor}">
+                                <Grid>
 
-                </Grid>
-                    <Grid x:Name="grid_invoiceItemOptions"  Visibility="Visible">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="25"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Border  BorderThickness="0" Grid.Row="0" 
-                    CornerRadius="7,7,0,0"  Background="{StaticResource MainColor}">
-                            <Grid>
-
-                                <Button x:Name="btn_invoiceItemOptionsBack" 
-                                        Click="Btn_invoiceItemOptionsBack_Click"
-                                    Tag="invoiceItemOptions"
-                                          HorizontalAlignment="Right" VerticalAlignment="Center"
-                                    Background="{x:Null}" 
-                             BorderBrush="{x:Null}"  
-                                    Foreground="White" Margin="0" 
-                             FontWeight="SemiBold" Width="35"
-                                    Padding="0"  >
-                                    <Path Fill="{StaticResource White}" Margin="5"
-                              Stretch="Fill" Height="15"  Width="20" 
-                          Data="{StaticResource ArrowRight}"  />
-                                </Button>
-                                <Grid  HorizontalAlignment="Center"  >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="1.2*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <!--<Path Fill="White" Stretch="Fill" Margin="5,0" FlowDirection="LeftToRight"
-                              HorizontalAlignment="Right" Grid.Column="0"  
-                         VerticalAlignment="Center"  Width="20" Height="20"
-                              Data="{StaticResource vendor}"/>-->
-                                    <TextBlock Text="invoiceItemOptions" x:Name="txt_invoiceItemOptionsTitle" Foreground="White" 
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"      Margin="5,0"/>
+                                    <Button x:Name="btn_invoiceItemOptionsBack" 
+                    Click="Btn_invoiceItemOptionsBack_Click"
+                Tag="invoiceItemOptions"
+                      HorizontalAlignment="Right" VerticalAlignment="Center"
+                Background="{x:Null}" 
+         BorderBrush="{x:Null}"  
+                Foreground="White" Margin="0" 
+         FontWeight="SemiBold" Width="35"
+                Padding="0"  >
+                                        <Path Fill="{StaticResource White}" Margin="5"
+          Stretch="Fill" Height="15"  Width="20" 
+      Data="{StaticResource ArrowRight}"  />
+                                    </Button>
+                                    <Grid  HorizontalAlignment="Center"  >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="1.2*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <!--<Path Fill="White" Stretch="Fill" Margin="5,0" FlowDirection="LeftToRight"
+          HorizontalAlignment="Right" Grid.Column="0"  
+     VerticalAlignment="Center"  Width="20" Height="20"
+          Data="{StaticResource vendor}"/>-->
+                                        <TextBlock Text="invoiceItemOptions" x:Name="txt_invoiceItemOptionsTitle" Foreground="White" 
+               HorizontalAlignment="Left" VerticalAlignment="Center" 
+          Grid.Column="1"      Margin="5,0"/>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </Border>
-                        <Grid  Grid.Row="2">
-                            <ScrollViewer 
-                             Margin="0,0,-5,0" >
+                            </Border>
+                            <Grid  Grid.Row="2">
+                                <ScrollViewer 
+         Margin="0,0,-5,0" >
                                     <Grid x:Name="wp_invoiceItemOptions">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"/>
@@ -897,17 +1002,29 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock x:Name="txt_invoiceItemOptionsSettingTitle" 
-                                                       Text="setting"  Foreground="{StaticResource MainColor}" 
-                                            Grid.Column="0" 
-                                   FontWeight="Bold" FontSize="12"  Margin="5"
-                                      />
-                                        <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                   Text="setting"  Foreground="{StaticResource MainColor}" 
+                        Grid.Column="0" 
+               FontWeight="Bold" FontSize="12"  Margin="5"
+                  />
+                                            <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
                                         </Grid>
                                         <WrapPanel x:Name="wp_invoiceItemOptionsSetting"
-                                                   Grid.Row="1"
-                                                   Visibility="Visible" 
-                                           Margin="10,5,10,5" HorizontalAlignment="Left" >
+                               Grid.Row="1"
+                               Visibility="Visible" 
+                       Margin="10,5,10,5" HorizontalAlignment="Left" >
 
+                                            <TextBlock Grid.Row="3" Grid.ColumnSpan="3"  
+                                                 x:Name="txt_invItmOptStatus"
+                                                        Text="Ready" 
+                                                       FontSize="18"
+                                              Foreground="{StaticResource textColor}" 
+                                                HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                Margin="10 5"/>
+                                            <Border   Grid.RowSpan="2" Grid.Column="2" 
+                                            Margin="5"  CornerRadius="0,0,0,0"  
+                                                   Width="1" BorderThickness="0" 
+                                                      Background="{StaticResource MainColor}" />
                                             <Grid x:Name="grid_invItmOptAmount">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="auto"/>
@@ -919,77 +1036,77 @@
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                                           x:Name="txt_invItmOptAmountTitle"
-                                                           Text="Amount" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
+                                       x:Name="txt_invItmOptAmountTitle"
+                                       Text="Amount" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                                           x:Name="btn_invItmOptAmountMinus"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                       x:Name="btn_invItmOptAmountMinus"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
+                     Width="25" Height="25" Kind="Minus" />
                                                 </Button>
                                                 <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptAmount"
-                                                           Text="{Binding amount, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
+                                       x:Name="txt_invItmOptAmount"
+                                       Text="{Binding amount, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                                           x:Name="btn_invItmOptAmountPlus"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                       x:Name="btn_invItmOptAmountPlus"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
+                     Width="25" Height="25" Kind="Plus" />
                                                 </Button>
 
                                             </Grid>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5" Height="40"     BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid >
                                                     <ComboBox 
-                                                        x:Name="cmb_invItmOptUnit"
-                                      SelectedValue="{Binding unit,Mode=OneWay}"
-                                  Padding="10,0,5,0"  Foreground="#4E4E4E"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  materialDesign:HintAssist.Hint="unit..."  
-                                  Grid.Column="1" Height="40"   
-                                 BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-                                  LostFocus="validateEmpty_LostFocus"/>
+                                    x:Name="cmb_invItmOptUnit"
+                  SelectedValue="{Binding unit,Mode=OneWay}"
+              Padding="10,0,5,0"  Foreground="#4E4E4E"
+              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+              materialDesign:HintAssist.Hint="unit..."  
+              Grid.Column="1" Height="40"   
+             BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+              LostFocus="validateEmpty_LostFocus"/>
 
                                                 </Grid>
                                             </Border>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5" Height="40"     BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid >
                                                     <ComboBox 
-                                                        x:Name="cmb_invItmOptDiscount"
-                                      SelectedValue="{Binding discount,Mode=OneWay}"
-                                  Padding="10,0,5,0"  Foreground="#4E4E4E"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  materialDesign:HintAssist.Hint="discount..."  
-                                  Grid.Column="1" Height="40"   
-                                 BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-                                  LostFocus="validateEmpty_LostFocus"/>
+                                    x:Name="cmb_invItmOptDiscount"
+                  SelectedValue="{Binding discount,Mode=OneWay}"
+              Padding="10,0,5,0"  Foreground="#4E4E4E"
+              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+              materialDesign:HintAssist.Hint="discount..."  
+              Grid.Column="1" Height="40"   
+             BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+              LostFocus="validateEmpty_LostFocus"/>
 
                                                 </Grid>
                                             </Border>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
                                             <Grid x:Name="grid_invItmOptBonus">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="auto"/>
@@ -1001,93 +1118,127 @@
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                                           x:Name="txt_invItmOptBonusTitle"
-                                                           Text="Bonus" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
+                                       x:Name="txt_invItmOptBonusTitle"
+                                       Text="Bonus" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                                           x:Name="btn_invItmOptBonusMinus"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                       x:Name="btn_invItmOptBonusMinus"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
+                     Width="25" Height="25" Kind="Minus" />
                                                 </Button>
                                                 <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptBonus"
-                                                           Text="{Binding bonus, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
+                                       x:Name="txt_invItmOptBonus"
+                                       Text="{Binding bonus, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                                           x:Name="btn_invItmOptBonusPlus"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                       x:Name="btn_invItmOptBonusPlus"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
+                     Width="25" Height="25" Kind="Plus" />
                                                 </Button>
 
                                             </Grid>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
                                             <Border  Grid.Column="0" CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
-                                            <Grid   >
+                                                <Grid   >
                                                     <TextBox x:Name="tb_invItmOptPrice" Grid.Row="8"  Padding="10,0,5,0"  
-                                         Text="{Binding price, Mode=OneWay}"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         materialDesign:HintAssist.Hint="price..."    
-                                        Foreground="{StaticResource textColor}"    
-                                     BorderThickness="0" Tag="decimal"
-                                 BorderBrush="AliceBlue" MaxLength="100" PreviewTextInput="Number_PreviewTextInput"
-                                materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                                Height="40"   Margin="0"  PreviewKeyDown="Spaces_PreviewKeyDown"
-                                LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"/>
-                                                    
+                     Text="{Binding price, Mode=OneWay}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="price..."    
+                    Foreground="{StaticResource textColor}"    
+                 BorderThickness="0" Tag="decimal"
+             BorderBrush="AliceBlue" MaxLength="100" PreviewTextInput="Number_PreviewTextInput"
+            materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+            Height="40"   Margin="0"  PreviewKeyDown="Spaces_PreviewKeyDown"
+            LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"/>
+
 
                                                 </Grid>
                                             </Border>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
+                                            <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                                                <Grid   >
+                                                    <ComboBox  
+     SelectedValue="{Binding customerId,Mode=OneWay}"
+ Padding="10,0,5,0"  Foreground="#4E4E4E"
+ Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+ materialDesign:HintAssist.Hint="Notes..."  
+ Grid.Column="1" Height="40"   
+BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+ LostFocus="validateEmpty_LostFocus" 
+       IsEditable="True"
+ IsTextSearchEnabled="False"
+ StaysOpenOnEdit="True"
+ KeyUp="Cb_invoiceItemNotes_KeyUp"/>
+
+                                                </Grid>
+                                            </Border>
+
+                                            <Border   Grid.RowSpan="2" Grid.Column="2" 
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
                                             <Button  x:Name="btn_invItmOptLibraReading" 
-                                                     Margin="5"
-                                                     materialDesign:ButtonAssist.CornerRadius="7"
-                                                    Background="{StaticResource MainColor}"
-                                                     BorderBrush="{StaticResource MainColor}"
-                                                  BorderThickness="1" Padding="0"  >
+                                 Margin="5"
+                                 materialDesign:ButtonAssist.CornerRadius="7"
+                                Background="{StaticResource MainColor}"
+                                 BorderBrush="{StaticResource MainColor}"
+                              BorderThickness="1" Padding="0"  >
                                                 <TextBlock Text="LibraReading" 
-                                                    Foreground="{StaticResource White}" 
-                                                    x:Name="txt_invItmOptLibraReading"
-                                                        Margin="5" />
+                                Foreground="{StaticResource White}" 
+                                x:Name="txt_invItmOptLibraReading"
+                                    Margin="5" />
                                             </Button>
                                             <Button  x:Name="btn_invItmOptQueryItem" 
-                                                     Margin="5"
-                                                     materialDesign:ButtonAssist.CornerRadius="7"
-                                                    Background="{StaticResource MainColor}"
-                                                     BorderBrush="{StaticResource MainColor}"
-                                                  BorderThickness="1" Padding="0"  >
+                                 Margin="5"
+                                 materialDesign:ButtonAssist.CornerRadius="7"
+                                Background="{StaticResource MainColor}"
+                                 BorderBrush="{StaticResource MainColor}"
+                              BorderThickness="1" Padding="0"  >
                                                 <TextBlock Text="QueryItem" 
-                                                    Foreground="{StaticResource White}" 
-                                                    x:Name="txt_invItmOptQueryItem"
-                                                        Margin="5" />
+                                Foreground="{StaticResource White}" 
+                                x:Name="txt_invItmOptQueryItem"
+                                    Margin="5" />
+                                            </Button>
+                                            <Button  x:Name="btn_urgent" 
+                                           Margin="5"
+                                           materialDesign:ButtonAssist.CornerRadius="7"
+                                          Background="{StaticResource MainColor}"
+                                           BorderBrush="{StaticResource MainColor}"
+                                        BorderThickness="1" Padding="0"
+                                                     Click="buttonUrgent_Click">
+                                          <TextBlock Text="QueryItem" 
+                                          Foreground="{StaticResource White}" 
+                                          x:Name="txt_urgent"
+                                              Margin="5" />
                                             </Button>
                                             <Button  x:Name="btn_invItmOptDelete" 
-                                                     Margin="5"
-                                                     materialDesign:ButtonAssist.CornerRadius="7"
-                                                    Background="{StaticResource mediumRed}"
-                                                     BorderBrush="{StaticResource Red}"
-                                                  BorderThickness="1" Padding="0"  >
+                                 Margin="5"
+                                 materialDesign:ButtonAssist.CornerRadius="7"
+                                Background="{StaticResource mediumRed}"
+                                 BorderBrush="{StaticResource Red}"
+                              BorderThickness="1" Padding="0"  >
                                                 <TextBlock Text="Delete" 
-                                                    Foreground="{StaticResource White}" 
-                                                    x:Name="txt_invItmOptDelete"
-                                                        Margin="5" />
+                                Foreground="{StaticResource White}" 
+                                x:Name="txt_invItmOptDelete"
+                                    Margin="5" />
                                             </Button>
 
 
@@ -1098,594 +1249,608 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock x:Name="txt_invoiceItemOptionsDetailsTitle" 
-                                                       Text="Details"  Foreground="{StaticResource MainColor}" 
-                                            Grid.Column="0" 
-                                   FontWeight="Bold" FontSize="12"  Margin="5"
-                                      />
+                                   Text="Details"  Foreground="{StaticResource MainColor}" 
+                        Grid.Column="0" 
+               FontWeight="Bold" FontSize="12"  Margin="5"
+                  />
                                             <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
                                         </Grid>
+                                        
                                         <TextBlock Grid.Row="3" Grid.ColumnSpan="3"  
-                                                           x:Name="txt_invItmOptDetails"
-                                                           Text="Serials: 1564617006, Expire date: 2023/1/1, Color: Red, Size: XL, Location: X159, …. Serials: 1564617006, Expire date: 2023/1/1, Color: Red, Size: XL, Location: X159, …." 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Left"
-                                   Margin="10 5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Left"/>
+                                       x:Name="txt_invItmOptDetails"
+                                       Text="Serials: 1564617006, Expire date: 2023/1/1, Color: Red, Size: XL, Location: X159, …. Serials: 1564617006, Expire date: 2023/1/1, Color: Red, Size: XL, Location: X159, …." 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Left"
+               Margin="10 5"
+               TextWrapping="WrapWithOverflow"
+               TextAlignment="Left"/>
 
                                         <Grid Grid.Row="4" Margin="10,5,0,5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="auto"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                        <TextBlock x:Name="txt_invoiceItemOptionsAddAndDeleteGroupTitle" 
-                                                       Text="AddAndDeleteGroup"  Foreground="{StaticResource MainColor}" 
-                                            Grid.Column="0" 
-                                   FontWeight="Bold" FontSize="12"  Margin="5"
-                                      />
+                                            <TextBlock x:Name="txt_invoiceItemOptionsAddAndDeleteGroupTitle" 
+                                   Text="AddAndDeleteGroup"  Foreground="{StaticResource MainColor}" 
+                        Grid.Column="0" 
+               FontWeight="Bold" FontSize="12"  Margin="5"
+                  />
                                             <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
                                         </Grid>
-                                         <Grid Grid.Row="5">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                        </Grid.RowDefinitions>
-                                        <StackPanel x:Name="sp_invoiceItemOptionsAddGroup"
-                                                    Orientation="Horizontal"
-                                           Margin="10,5,10,5" >
+                                        <Grid Grid.Row="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel x:Name="sp_invoiceItemOptionsAddGroup"
+                                Orientation="Horizontal"
+                       Margin="10,5,10,5" >
 
-                                            
+
                                                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                                           x:Name="txt_invItmOptAddGroupTitle"
-                                                           Text="Hamburger - Kg" 
-                                                       Foreground="{StaticResource Green}" 
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Margin="5"/>
+                                       x:Name="txt_invItmOptAddGroupTitle"
+                                       Text="Hamburger - Kg" 
+                                   Foreground="{StaticResource Green}" 
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                                           x:Name="btn_invItmOptAddGroupMinus"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                       x:Name="btn_invItmOptAddGroupMinus"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
+                     Width="25" Height="25" Kind="Minus" />
                                                 </Button>
                                                 <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptAddGroupAmount"
-                                                           Text="{Binding AddGroup, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
+                                       x:Name="txt_invItmOptAddGroupAmount"
+                                       Text="{Binding AddGroup, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                                           x:Name="btn_invItmOptAddGroupPlus"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                       x:Name="btn_invItmOptAddGroupPlus"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
+                     Width="25" Height="25" Kind="Plus" />
                                                 </Button>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptAddGroupPrice"
-                                                           Text="{Binding Price, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptAddGroupPriceIcon"
-                                                           Text="$" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="0 5 5 5"/>
-                                            <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptAddGroupPrice"
+                                       Text="{Binding Price, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptAddGroupPriceIcon"
+                                       Text="$" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0 5 5 5"/>
+                                                <Border   Grid.RowSpan="2" Grid.Column="2" 
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
 
 
-                                        </StackPanel>
-                                        <StackPanel x:Name="sp_invoiceItemOptionsDeleteGroup"
-                                                    Grid.Row="1"
-                                                    Orientation="Horizontal"
-                                           Margin="10,5,10,5" >
+                                            </StackPanel>
+                                            <StackPanel x:Name="sp_invoiceItemOptionsDeleteGroup"
+                                Grid.Row="1"
+                                Orientation="Horizontal"
+                       Margin="10,5,10,5" >
 
 
-                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                                           x:Name="txt_invItmOptDeleteGroupTitle"
-                                                           Text="Hamburger - Kg" 
-                                                       Foreground="{StaticResource Red}" 
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Margin="5"/>
-                                            <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                                           x:Name="btn_invItmOptDeleteGroupMinus"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
-                                            </Button>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptDeleteGroupAmount"
-                                                           Text="{Binding DeleteGroup, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
-                                            <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                                           x:Name="btn_invItmOptDeleteGroupPlus"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
-                                            </Button>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptDeleteGroupPrice"
-                                                           Text="{Binding Price, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptDeleteGroupPriceIcon"
-                                                           Text="$" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="0 5 5 5"/>
-                                            <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
+                                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
+                                       x:Name="txt_invItmOptDeleteGroupTitle"
+                                       Text="Hamburger - Kg" 
+                                   Foreground="{StaticResource Red}" 
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="5"/>
+                                                <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
+                                       x:Name="btn_invItmOptDeleteGroupMinus"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                    <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Minus" />
+                                                </Button>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptDeleteGroupAmount"
+                                       Text="{Binding DeleteGroup, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
+                                                <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
+                                       x:Name="btn_invItmOptDeleteGroupPlus"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                    <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Plus" />
+                                                </Button>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptDeleteGroupPrice"
+                                       Text="{Binding Price, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptDeleteGroupPriceIcon"
+                                       Text="$" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0 5 5 5"/>
+                                                <Border   Grid.RowSpan="2" Grid.Column="2" 
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
 
 
-                                        </StackPanel>
+                                            </StackPanel>
 
-                                    </Grid>
-                                    <Grid Grid.Row="6">
+                                        </Grid>
+                                        <Grid Grid.Row="6">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0" Margin="10,5,0,5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock x:Name="txt_invoiceItemOptionsGroups1Title" 
+                                   Text="Beverages (1)"  Foreground="{StaticResource MainColor}" 
+                        Grid.Column="0" 
+               FontWeight="Bold" FontSize="12"  Margin="5"
+                  />
+                                                <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                            </Grid>
+                                            <StackPanel x:Name="sp_invoiceItemOptionsGroups1"
+                               Grid.Row="1"
+                                Orientation="Horizontal"
+                       Margin="10,5,10,5" >
+
+
+                                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
+                                       x:Name="txt_invItmOptGroups1Title"
+                                       Text="#28189 - CocaCola" 
+                                   Foreground="{StaticResource textColor}" 
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="5"/>
+                                                <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
+                                       x:Name="btn_invItmOptGroups1Minus"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                    <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Minus" />
+                                                </Button>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptGroups1Amount"
+                                       Text="{Binding Groups1, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
+                                                <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
+                                       x:Name="btn_invItmOptGroups1Plus"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                    <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Plus" />
+                                                </Button>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptGroups1Price"
+                                       Text="{Binding Price, Mode=OneWay}" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                       x:Name="txt_invItmOptGroups1PriceIcon"
+                                       Text="$" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0 5 5 5"/>
+                                                <Border   Grid.RowSpan="2" Grid.Column="2" 
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" 
+          Background="{StaticResource MainColor}" />
+
+
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <!--<StackPanel x:Name="sp_extraItems" 
+                            Grid.Row="6"
+                            Visibility="Visible"
+                       Margin="5,5,5,5"  >
+                        <ScrollViewer x:Name="sv_billDetail" Grid.Row="2"    
+                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="auto"
+                      ScrollViewer.CanContentScroll="True">
+                            <Grid>
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                <TextBlock x:Name="txt_extraTitle" Text="Beverages (1)"  Foreground="{StaticResource MainColor}" 
+                        Grid.Column="0" 
+               FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
+                   HorizontalAlignment="Left" />
+                                    <Border Grid.Row="1"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                    <Grid x:Name="grid_billDetailsContainer" 
+                                      Grid.Row="2"
+                                      Margin="5" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
                                         </Grid.RowDefinitions>
-                                        <Grid Grid.Row="0" Margin="10,5,0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock x:Name="txt_invoiceItemOptionsGroups1Title" 
-                                                       Text="Beverages (1)"  Foreground="{StaticResource MainColor}" 
-                                            Grid.Column="0" 
-                                   FontWeight="Bold" FontSize="12"  Margin="5"
-                                      />
-                                            <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
-                                        </Grid>
-                                        <StackPanel x:Name="sp_invoiceItemOptionsGroups1"
-                                                   Grid.Row="1"
-                                                    Orientation="Horizontal"
-                                           Margin="10,5,10,5" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        -->
+                                        <!--#region  1-->
+                                        <!--
+                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+            Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+      HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                             Foreground="{StaticResource MainColor}" 
+                                  HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5"
+                                       TextWrapping="WrapWithOverflow"
+                                       TextAlignment="Center"/>
+                                        <Button  Grid.Column="2"    Margin="2.5"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Minus" />
+                                        </Button>
+                                        <TextBlock Grid.Column="3"   Text="6" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"
+               TextWrapping="WrapWithOverflow"
+               TextAlignment="Center"/>
+                                        <Button Grid.Column="4"    Margin="2.5"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Plus" />
+                                        </Button>
+                                        -->
+                                        <!--#endregion-->
+                                        <!--<TextBlock Grid.Row="1"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="2"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="3"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="4"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="5"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="6"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="7"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="8"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="9"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="10"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                    <TextBlock Grid.Row="11"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="12"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="13"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Row="14"  Grid.Column="0" Text="1." FontSize="14"  
+              Tag="ssssssss" Foreground="{StaticResource MainColor}" 
+                       FontWeight="Bold" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                                        <!--
 
 
-                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                                           x:Name="txt_invItmOptGroups1Title"
-                                                           Text="#28189 - CocaCola" 
-                                                       Foreground="{StaticResource textColor}" 
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Margin="5"/>
-                                            <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                                           x:Name="btn_invItmOptGroups1Minus"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
-                                            </Button>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptGroups1Amount"
-                                                           Text="{Binding Groups1, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
-                                            <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                                           x:Name="btn_invItmOptGroups1Plus"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
-                                            </Button>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptGroups1Price"
-                                                           Text="{Binding Price, Mode=OneWay}" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"/>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                                           x:Name="txt_invItmOptGroups1PriceIcon"
-                                                           Text="$" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="0 5 5 5"/>
-                                            <Border   Grid.RowSpan="2" Grid.Column="2" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" 
-                              Background="{StaticResource MainColor}" />
 
 
-                                        </StackPanel>
                                     </Grid>
 
-                                    <!--<StackPanel x:Name="sp_extraItems" 
-                                                Grid.Row="6"
-                                                Visibility="Visible"
-                                           Margin="5,5,5,5"  >
-                                            <ScrollViewer x:Name="sv_billDetail" Grid.Row="2"    
-                                                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Width="auto"
-                                          ScrollViewer.CanContentScroll="True">
-                                                <Grid>
-                                                    <Grid >
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                            <RowDefinition Height="auto"/>
-                                                        </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="3"    Text="Group title (4)"  Foreground="{StaticResource MainColor}" 
+                        Grid.Column="0" 
+               FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
+                   HorizontalAlignment="Left" />
+                                    <Border Grid.Row="4"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                    <Grid  
+                                      Grid.Row="5"
+                                      Margin="5" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                                                    <TextBlock x:Name="txt_extraTitle" Text="Beverages (1)"  Foreground="{StaticResource MainColor}" 
-                                            Grid.Column="0" 
-                                   FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
-                                       HorizontalAlignment="Left" />
-                                                        <Border Grid.Row="1"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
-                                                        <Grid x:Name="grid_billDetailsContainer" 
-                                                          Grid.Row="2"
-                                                          Margin="5" >
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                            </Grid.ColumnDefinitions>
+                                        -->
+                                        <!--#region  1-->
+                                        <!--
+                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+            Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+      HorizontalAlignment="Center" VerticalAlignment="Center"  />
 
-                                                            --><!--#region  1--><!--
-                                                            <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
-                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
-                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                             Foreground="{StaticResource MainColor}" 
+                                  HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5"
+                                       TextWrapping="WrapWithOverflow"
+                                       TextAlignment="Center"/>
+                                        <Button  Grid.Column="2"    Margin="2.5"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Minus" />
+                                        </Button>
+                                        <TextBlock Grid.Column="3"   Text="6" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"
+               TextWrapping="WrapWithOverflow"
+               TextAlignment="Center"/>
+                                        <Button Grid.Column="4"    Margin="2.5"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Plus" />
+                                        </Button>
 
-                                                            <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
-                                                 Foreground="{StaticResource MainColor}" 
-                                                      HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center"
-                                                           Margin="5"
-                                                           TextWrapping="WrapWithOverflow"
-                                                           TextAlignment="Center"/>
-                                                            <Button  Grid.Column="2"    Margin="2.5"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
-                                                            </Button>
-                                                            <TextBlock Grid.Column="3"   Text="6" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                                            <Button Grid.Column="4"    Margin="2.5"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
-                                                            </Button>
-                                                            --><!--#endregion-->
-                                                            <!--<TextBlock Grid.Row="1"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                        <TextBlock Grid.Row="2"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                        <TextBlock Grid.Row="3"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                        <TextBlock Grid.Row="4"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="5"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="6"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="7"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="8"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="9"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="10"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                                                        <TextBlock Grid.Row="11"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                        <TextBlock Grid.Row="12"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                        <TextBlock Grid.Row="13"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                        <TextBlock Grid.Row="14"  Grid.Column="0" Text="1." FontSize="14"  
-                                  Tag="ssssssss" Foreground="{StaticResource MainColor}" 
-                                           FontWeight="Bold" Margin="5"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center" />--><!--
-
-
-
-
-                                                        </Grid>
-
-                                                        <TextBlock Grid.Row="3"    Text="Group title (4)"  Foreground="{StaticResource MainColor}" 
-                                            Grid.Column="0" 
-                                   FontWeight="Bold" FontSize="12"  Margin="15,10,5,5"
-                                       HorizontalAlignment="Left" />
-                                                        <Border Grid.Row="4"     Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
-                                                        <Grid  
-                                                          Grid.Row="5"
-                                                          Margin="5" >
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                            </Grid.ColumnDefinitions>
-
-                                                            --><!--#region  1--><!--
-                                                            <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
-                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
-                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
-
-                                                            <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
-                                                 Foreground="{StaticResource MainColor}" 
-                                                      HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center"
-                                                           Margin="5"
-                                                           TextWrapping="WrapWithOverflow"
-                                                           TextAlignment="Center"/>
-                                                            <Button  Grid.Column="2"    Margin="2.5"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
-                                                            </Button>
-                                                            <TextBlock Grid.Column="3"   Text="6" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                                            <Button Grid.Column="4"    Margin="2.5"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
-                                                            </Button>
-
-                                                        </Grid>
-                                                        <Grid  
-                                                          Grid.Row="8"
-                                                          Margin="5" >
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                            </Grid.ColumnDefinitions>
-
-                                                            --><!--#region  1--><!--
-                                                            <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
-                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
-                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
-
-                                                            <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
-                                                 Foreground="{StaticResource MainColor}" 
-                                                      HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center"
-                                                           Margin="5"
-                                                           TextWrapping="WrapWithOverflow"
-                                                           TextAlignment="Center"/>
-                                                            <Button  Grid.Column="2"    Margin="2.5"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
-                                                            </Button>
-                                                            <TextBlock Grid.Column="3"   Text="6" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                                            <Button Grid.Column="4"    Margin="2.5"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
-                                                            </Button>
-
-                                                        </Grid>
-                                                        <Grid  
-                                                          Grid.Row="7"
-                                                          Margin="5" >
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                                <RowDefinition Height="auto"/>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                            </Grid.ColumnDefinitions>
-
-                                                            --><!--#region  1--><!--
-                                                            <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
-                                Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
-                          HorizontalAlignment="Center" VerticalAlignment="Center"  />
-
-                                                            <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
-                                                 Foreground="{StaticResource MainColor}" 
-                                                      HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center"
-                                                           Margin="5"
-                                                           TextWrapping="WrapWithOverflow"
-                                                           TextAlignment="Center"/>
-                                                            <Button  Grid.Column="2"    Margin="2.5"
-                                    Height="25" Width="25" 
-                                                 materialDesign:ButtonAssist.CornerRadius="5"
-                                                 Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Minus" />
-                                                            </Button>
-                                                            <TextBlock Grid.Column="3"   Text="6" 
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5"
-                                   TextWrapping="WrapWithOverflow"
-                                   TextAlignment="Center"/>
-                                                            <Button Grid.Column="4"    Margin="2.5"
-                                    Height="25" Width="25"  Padding="0"
-                                        Background="{StaticResource veryLightGrey}"   BorderThickness="0">
-                                                                <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                                         Width="25" Height="25" Kind="Plus" />
-                                                            </Button>
-
-                                                        </Grid>
-
-
-                                                    </Grid>
-                                                </Grid>
-                                            </ScrollViewer>
-
-
-                                        </StackPanel>-->
                                     </Grid>
-                            </ScrollViewer>
+                                    <Grid  
+                                      Grid.Row="8"
+                                      Margin="5" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        -->
+                                        <!--#region  1-->
+                                        <!--
+                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+            Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+      HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                             Foreground="{StaticResource MainColor}" 
+                                  HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5"
+                                       TextWrapping="WrapWithOverflow"
+                                       TextAlignment="Center"/>
+                                        <Button  Grid.Column="2"    Margin="2.5"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Minus" />
+                                        </Button>
+                                        <TextBlock Grid.Column="3"   Text="6" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"
+               TextWrapping="WrapWithOverflow"
+               TextAlignment="Center"/>
+                                        <Button Grid.Column="4"    Margin="2.5"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Plus" />
+                                        </Button>
+
+                                    </Grid>
+                                    <Grid  
+                                      Grid.Row="7"
+                                      Margin="5" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        -->
+                                        <!--#region  1-->
+                                        <!--
+                                        <Image   Tag="ssssssss"  Grid.Column="0" Source="/pic/no-image-icon-125x125.png"
+            Margin="5" Height="40"   Width="40" Stretch="UniformToFill"
+      HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+                                        <TextBlock Grid.Column="1"   Text="Lorem ipsum dolor sit..." 
+                             Foreground="{StaticResource MainColor}" 
+                                  HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5"
+                                       TextWrapping="WrapWithOverflow"
+                                       TextAlignment="Center"/>
+                                        <Button  Grid.Column="2"    Margin="2.5"
+                Height="25" Width="25" 
+                             materialDesign:ButtonAssist.CornerRadius="5"
+                             Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Minus" />
+                                        </Button>
+                                        <TextBlock Grid.Column="3"   Text="6" 
+                             Foreground="{StaticResource textColor}" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="5"
+               TextWrapping="WrapWithOverflow"
+               TextAlignment="Center"/>
+                                        <Button Grid.Column="4"    Margin="2.5"
+                Height="25" Width="25"  Padding="0"
+                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
+                     Width="25" Height="25" Kind="Plus" />
+                                        </Button>
+
+                                    </Grid>
+
+
+                                </Grid>
+                            </Grid>
+                        </ScrollViewer>
+
+
+                    </StackPanel>-->
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+
                         </Grid>
 
+
                     </Grid>
-                </Grid>
+                    </Grid>
             </Border>
 
             <Grid Grid.Row="2" Grid.RowSpan="2">
@@ -1715,7 +1880,32 @@
                                   HorizontalScrollBarVisibility="Auto" 
                               >
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 -5">
-                        <Button  Grid.Row="1"
+                            <Button  Grid.Row="1"
+                Margin="5"
+                            
+                    x:Name="btn_tables"  materialDesign:ButtonAssist.CornerRadius="7"
+                       Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                                 BorderThickness="1"
+                       Padding="0" 
+                           >
+                                <Grid 
+                            >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+             HorizontalAlignment="Center" Grid.Column="0"  
+        VerticalAlignment="Center" Width="20" Height="20"
+             Data="{StaticResource table}"
+                      FlowDirection="LeftToRight"
+                     Margin="5"/>
+                                    <TextBlock Text="tables" Foreground="{StaticResource MainColor}" x:Name="txt_tables"
+                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+             Grid.Column="1"      Margin="5"/>
+                                </Grid>
+                            </Button>
+                            <Button  Grid.Row="1"
                                  Margin="5" 
                  x:Name="btn_external"  Click="btn_external_Click"
                                  materialDesign:ButtonAssist.CornerRadius="7"
@@ -1767,31 +1957,7 @@
                               Grid.Column="1"      Margin="5"/>
                                 </Grid>
                             </Button>
-                            <Button  Grid.Row="1"
-                                 Margin="5"
-                         
-                 x:Name="btn_tables"  materialDesign:ButtonAssist.CornerRadius="7"
-                    Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
-                              BorderThickness="1"
-                    Padding="0" 
-                        >
-                            <Grid 
-                              >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
-                              HorizontalAlignment="Center" Grid.Column="0"  
-                         VerticalAlignment="Center" Width="20" Height="20"
-                              Data="{StaticResource table}"
-                                       FlowDirection="LeftToRight"
-                                      Margin="5"/>
-                                <TextBlock Text="tables" Foreground="{StaticResource MainColor}" x:Name="txt_tables"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"      Margin="5"/>
-                            </Grid>
-                        </Button>
+                           
                             <Button  Grid.Row="1"
                                  Margin="5"
                          
@@ -1817,6 +1983,32 @@
                               Grid.Column="1"      Margin="5"/>
                                 </Grid>
                             </Button>
+                            <Button  Grid.Row="1"
+                                      Margin="5"
+        
+                    x:Name="btn_internalCustomer"  materialDesign:ButtonAssist.CornerRadius="7"
+                       Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                                 BorderThickness="1"
+                       Padding="0" 
+                             >
+                                <Grid 
+                                   >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+             HorizontalAlignment="Center" Grid.Column="0"  
+        VerticalAlignment="Center" Width="20" Height="20"
+             Data="{StaticResource setTables}"
+                      FlowDirection="LeftToRight"
+                     Margin="5"/>
+                                    <TextBlock Text="internalCustomer" Foreground="{StaticResource MainColor}" x:Name="txt_internalCustomer"
+                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+             Grid.Column="1"      Margin="5"/>
+                                </Grid>
+                            </Button>
+
                         </StackPanel>
                 </ScrollViewer>
 
@@ -2099,14 +2291,14 @@
                         <StackPanel Grid.Column="2" Grid.RowSpan="3"
                                 Margin="5"
                                     VerticalAlignment="Center">
-                            <TextBlock  Text="TOTAL" 
+                            <!--<TextBlock  Text="TOTAL" 
                             x:Name="txt_totalTitle" 
                                     HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                             Foreground="{StaticResource MainColor}" 
                             FontWeight="Bold" FontSize="22" 
                                     
-                            />
+                            />-->
                             
                            
 
@@ -2349,7 +2541,7 @@
                                   VerticalScrollBarVisibility="Auto"  
                                   >
                                 <StackPanel  x:Name="sp_invoiceDetailsSmall"  >
-                                        <!--<Border BorderThickness="1"  
+                                        <Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
                                     Background="{x:Null}" Padding="0" 
@@ -2380,8 +2572,6 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
@@ -2399,52 +2589,53 @@
                                                     Fill="{StaticResource textColor}" 
                                                   Stretch="Fill" 
                                                       FlowDirection="LeftToRight"
-                                                  Height="25"  Width="25" 
-                                              Data="{StaticResource count123}"  />
-                                                
-                                                
-                                                <TextBlock Grid.Column="3"   Text="6" 
+                                                  Height="12"  Width="12" 
+                                              Data="{StaticResource close}"  />
+                                                <StackPanel Grid.Column="2" Orientation="Horizontal">
+
+                                                    <TextBlock Grid.Column="9"   Text="10.2"
+                                                      FontWeight="Regular"
+                                                      FontSize="12"
+                                                         Foreground="{StaticResource textColor}" 
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"
+                                                         Margin="5 0"/>
+                                                     <TextBlock Grid.Column="10"   Text="$" 
+                                                   FontWeight="Regular"
+                                                   FontSize="12"
+                                                        Foreground="{StaticResource textColor}" 
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          Margin="0"/>
+                                                </StackPanel>
+
+
+
+                                                <TextBlock Grid.Column="4"   Text="6" 
                                                  Foreground="{StaticResource textColor}" 
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="5"/>
-                                                <Path Grid.Column="4"
+                                                <Path Grid.Column="5"
                                                       Fill="{StaticResource textColor}" 
                                                   Stretch="Fill" 
                                                       FlowDirection="LeftToRight"
                                                   Height="25"  Width="25" 
                                               Data="{StaticResource discount}"  />
                                                 
-                                                <TextBlock Grid.Column="6"   Text="4" 
+                                                <TextBlock Grid.Column="7"   Text="4" 
                                                  Foreground="{StaticResource textColor}" 
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="5"/>
-                                                <Path Grid.Column="7"
+                                                <Path Grid.Column="8"
                                                       Fill="{StaticResource textColor}" 
                                                   Stretch="Fill" 
                                                       FlowDirection="LeftToRight"
                                                   Height="20"  Width="25" 
-                                              Data="{StaticResource couponBonus}"  />
+                                              Data="{StaticResource bonus}"  />
 
-                                                <StackPanel Grid.Column="9" Orientation="Horizontal">
-                                                    
-                                                <TextBlock Grid.Column="9"   Text="10.2"
-                                                           FontWeight="SemiBold"
-                                                           FontSize="14"
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="5 0"/>
-                                                <TextBlock Grid.Column="10"   Text="$" 
-                                                           FontWeight="SemiBold"
-                                                           FontSize="14"
-                                                 Foreground="{StaticResource textColor}" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Margin="0"/>
-                                                </StackPanel>
-
+                                               
 
 
                                             </Grid>
@@ -2463,31 +2654,28 @@
 
                                     <Grid Grid.Row="3" Margin="5">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
 
+                                                <TextBlock Grid.Column="0"   Text="ready" 
+                                                    Foreground="{StaticResource textColor}" 
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Margin="5"/>
+                                                <Button Grid.Column="1"
+                                                        Content="urgent"  
+                                                            BorderBrush="{x:Null}" 
+                                                            Margin="5"
+                                                            materialDesign:ButtonAssist.CornerRadius="7"
+                                                Background="{StaticResource MainColor}" 
+                                                            Click="Btn_urgent_Click" 
+                                                    Padding="5" Foreground="White" />
 
-                                        <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
-                                            <Grid   >
-                                                        <ComboBox  
-                                      SelectedValue="{Binding customerId,Mode=OneWay}"
-                                  Padding="10,0,5,0"  Foreground="#4E4E4E"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  materialDesign:HintAssist.Hint="Notes..."  
-                                  Grid.Column="1" Height="40"   
-                                 BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-                                  LostFocus="validateEmpty_LostFocus" 
-                                        IsEditable="True"
-                                  IsTextSearchEnabled="False"
-                                  StaysOpenOnEdit="True"
-                                  KeyUp="Cb_invoiceItemNotes_KeyUp"/>
-
-                                                    </Grid>
-                                        </Border>
-
-                                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <StackPanel Grid.Column="3" Orientation="Horizontal">
                                                     <TextBlock Grid.Column="1"   Text="256.51" 
                                                  Foreground="{StaticResource MainColor}" 
                                                    FontSize="14"
@@ -2519,7 +2707,7 @@
                                                 </Button>
                                             </Grid>
                                 </Grid>
-                                    </Border>-->
+                                    </Border>
 
 
                                 </StackPanel>
@@ -2838,7 +3026,7 @@
                 <Border  Grid.Column="1"
                 BorderThickness="0"  
                     CornerRadius="7" BorderBrush="Black"
-                Background="{StaticResource MainColor}"
+                Background="{StaticResource mediumRed}"
                          Padding="0" Margin="0 5 5 5"
                 >
                     <Border.Effect>
@@ -2849,16 +3037,11 @@
                           Opacity="0.3"
                          BlurRadius="10"/>
                     </Border.Effect>
-                    <Button Grid.Column="1" BorderBrush="{x:Null}"  
-                        VerticalAlignment="Center"
-                    Background="{x:Null}" x:Name="btn_newDraft"
-                            Padding="0" Margin="0" 
-                            >
-                        <StackPanel>
-                            <materialDesign:PackIcon   Foreground="{StaticResource White}"
-                                         Width="30" Height="30" Kind="Plus" />
-                        </StackPanel>
-                    </Button>
+                    <Button Content="New"  BorderBrush="{x:Null}" 
+                      FontSize="18" FontWeight="Bold" 
+                      x:Name="btn_newDraft" 
+                              Background="{x:Null}" Click="Btn_newDraft_Click" 
+                        Padding="10 5" Foreground="White" />
                 </Border>
             </Grid>
 
