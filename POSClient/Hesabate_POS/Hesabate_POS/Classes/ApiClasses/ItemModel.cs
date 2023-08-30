@@ -35,6 +35,8 @@ namespace Hesabate_POS.Classes.ApiClasses
 
 
         //extra
+        public bool isUrgent { get; set; }
+
         public string unitName { get; set; }
         /// <summary>
         ///  invoice details
