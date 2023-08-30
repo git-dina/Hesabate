@@ -125,7 +125,7 @@
                     </Border>
 
                 </Button>-->
-                <Button Grid.Column="12" x:Name="btn_setting"
+                <!--<Button Grid.Column="12" x:Name="btn_setting"
                     Background="{x:Null}" BorderBrush="{x:Null}" 
                             Click="Btn_setting_Click"
                     Padding="0" Margin="5 0">
@@ -139,7 +139,7 @@
 
                     </Border>
 
-                </Button>
+                </Button>-->
 
 
                
