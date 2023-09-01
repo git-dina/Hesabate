@@ -303,13 +303,31 @@ namespace Hesabate_POS.View.receipts
             }
             catch { }
         }
+         private  void Btn_newDraft_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         private void Btn_stop_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
+        #region grid0_1
+        private void btn_printInvoice_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void btn_returns_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_discount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
         #region grid1_1
         #region itemsCard
         /*
@@ -1844,6 +1862,10 @@ namespace Hesabate_POS.View.receipts
         {
 
         }
+         private void btn_administration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
 
 
@@ -1927,9 +1949,7 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
 
-        private void btn_printInvoice_Click(object sender, RoutedEventArgs e)
-        {
+       
 
-        }
     }
 }

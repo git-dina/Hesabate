@@ -2541,7 +2541,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                   VerticalScrollBarVisibility="Auto"  
                                   >
                                 <StackPanel  x:Name="sp_invoiceDetailsSmall"  >
-                                        <Border BorderThickness="1"  
+                                        <!--<Border BorderThickness="1"  
                                     CornerRadius="7"
                                     BorderBrush="{StaticResource Grey}"
                                     Background="{x:Null}" Padding="0" 
@@ -2672,7 +2672,6 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                             Margin="5"
                                                             materialDesign:ButtonAssist.CornerRadius="7"
                                                 Background="{StaticResource MainColor}" 
-                                                            Click="Btn_urgent_Click" 
                                                     Padding="5" Foreground="White" />
 
                                                 <StackPanel Grid.Column="3" Orientation="Horizontal">
@@ -2707,7 +2706,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                 </Button>
                                             </Grid>
                                 </Grid>
-                                    </Border>
+                                    </Border>-->
 
 
                                 </StackPanel>
