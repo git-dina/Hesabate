@@ -21,7 +21,13 @@
                 <Grid>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        
+                        <Button Grid.Column="13" x:Name="btn_serverName" Click="btn_serverName_Click"
+                             Margin="5 0"
+                              Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
+                              Padding="0" >
+                            <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Server" 
+                          Width="25" Height="25"/>
+                        </Button>
                         <Button Grid.Column="13" x:Name="btn_minimize" Click="btn_minimize_Click"
                Margin="5 0"
                     Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
@@ -92,7 +98,8 @@
                             <Border  Grid.Column="1"
                         CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                 <Grid   >
-                                    <TextBox  x:Name="tb_userName" Text=""
+                                    <TextBox  x:Name="tb_userName" 
+                                              Text="team.pos@mms.ps"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   Padding="10,0,5,0" 
                                   MaxLength="35"
@@ -125,6 +132,7 @@
                         CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                 <Grid   >
                                     <PasswordBox x:Name="pb_password" 
+                                                 Password="123"
                                          Margin="00"
                                          Padding="10,0,5,0" 
                                          Height="40"
@@ -133,7 +141,6 @@
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                                          materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                          materialDesign:HintAssist.Hint="password"
-                                             Password=""
                                          materialDesign:HintAssist.Foreground="#FF2196F3"
                                          LostFocus="validateEmpty_LostFocus"
                                          PasswordChanged="pb_password_PasswordChanged"
@@ -206,7 +213,7 @@
                                 </Grid>
                             </Border>
                         </Grid>
-                        <Grid Grid.Row="5" Margin="25 0" >
+                        <!--<Grid Grid.Row="5" Margin="25 0" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -222,6 +229,7 @@
                               Data="{StaticResource home}"
                                       />
                             </Button>
+                            
                             <Border x:Name="brd_serverName"  Grid.Column="1" 
                         Visibility="Collapsed"
                                 CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
@@ -245,7 +253,7 @@
 
                                 </Grid>
                             </Border>
-                        </Grid>
+                        </Grid>-->
                         <CheckBox Grid.Row="3" Margin="30 5" x:Name="cbxRemmemberMe" Content="Remmember Me" 
                         VerticalAlignment="Center"  />
                     </StackPanel>

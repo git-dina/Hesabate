@@ -36,7 +36,7 @@ namespace Hesabate_POS.View.windows
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {
             isOk = false;
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         public bool isOk { get; set; }
@@ -68,11 +68,15 @@ namespace Hesabate_POS.View.windows
                 #endregion
 
                 #region read app settings
-                //AppSettings.APIUri = Properties.Settings.Default.APIUri;
-                //if(AppSettings.APIUri.Equals(""))//display server name
-                //{
-
-                //}
+                AppSettings.APIUri = Properties.Settings.Default.APIUri;
+                if (AppSettings.APIUri.Equals(""))//display server name
+                {
+                    Window.GetWindow(this).Opacity = 0.0;
+                    wd_serverName w = new wd_serverName();
+                    w.isFirstTime = true;
+                    w.ShowDialog();
+                    Window.GetWindow(this).Opacity = 1;
+                }
 
                 AppSettings.menuState = Properties.Settings.Default.menuState;
                 #endregion
@@ -82,6 +86,7 @@ namespace Hesabate_POS.View.windows
             catch (Exception ex)
             {
 
+                Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
@@ -124,6 +129,24 @@ namespace Hesabate_POS.View.windows
             try
             {
                 this.WindowState = System.Windows.WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_serverName_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.0;
+                wd_serverName w = new wd_serverName();
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    Window_Loaded(this, null);
+                }
+                Window.GetWindow(this).Opacity = 1;
             }
             catch (Exception ex)
             {
@@ -238,12 +261,12 @@ namespace Hesabate_POS.View.windows
             {
                 if (HelpClass.validate(requiredControlList, this))
                 {
-                    if (AppSettings.APIUri == "")
-                    {
-                        AppSettings.APIUri = tb_serverName.Text;
-                       Properties.Settings.Default.APIUri = AppSettings.APIUri;
-                        Properties.Settings.Default.Save();
-                    }
+                    //if (AppSettings.APIUri == "")
+                    //{
+                    //    AppSettings.APIUri = tb_serverName.Text;
+                    //    Properties.Settings.Default.APIUri = AppSettings.APIUri;
+                    //    Properties.Settings.Default.Save();
+                    //}
 
                     bool canLogin = false;
                     btn_login.IsEnabled = false;
@@ -251,7 +274,7 @@ namespace Hesabate_POS.View.windows
                     string res = "";
 
                     //clear loaded images
-                    _itemService.ClearSavedImages();
+                    //_itemService.ClearSavedImages();
                     if (tb_userName.Text != "" && pb_password.Password != "")
                     {
                         var res1 = await _authService.Login(tb_userName.Text, pb_password.Password, cb_language.SelectedValue.ToString());
@@ -344,7 +367,7 @@ namespace Hesabate_POS.View.windows
                 AppSettings.dir = lang.dir;
             }
         }
-
+        /*
         private void btn_serverName_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -360,5 +383,6 @@ namespace Hesabate_POS.View.windows
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        */
     }
 }
