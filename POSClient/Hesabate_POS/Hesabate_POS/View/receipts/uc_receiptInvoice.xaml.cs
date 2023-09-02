@@ -300,14 +300,14 @@ namespace Hesabate_POS.View.receipts
             {
                 invoice.note = tb_Notes1.Text;
                 invoice.note2 = tb_Notes2.Text;
-                
+
                 var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
             }
             catch { }
         }
-         private  void Btn_newDraft_Click(object sender, RoutedEventArgs e)
+        private void Btn_newDraft_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Btn_stop_Click(object sender, RoutedEventArgs e)
@@ -364,7 +364,7 @@ namespace Hesabate_POS.View.receipts
             int cardWidth = 175;
             int cardHeight = 75;
             int cornerRadius = 7;
-            bool isLast =false;
+            bool isLast = false;
             string cardColor;
             foreach (var item in items)
             {
@@ -573,10 +573,10 @@ namespace Hesabate_POS.View.receipts
                     {
                         // categoryPath
                         //categoryPath.Add(item);
-                      
+
                         categoryPath = _itemService.getCategoryPath(item.id).ToList();
                         buildCategoryPath(categoryPath);
-                      
+
 
                         // itemsCard
                         items = _itemService.getCatItems(item.id);
@@ -587,7 +587,7 @@ namespace Hesabate_POS.View.receipts
                     {
                         var item1 = GeneralInfoService.items.Where(x => x.id == item.id.ToString()).FirstOrDefault();
 
-                        AddItemToInvoice(item1,item.items);
+                        AddItemToInvoice(item1, item.items);
                         //MessageBox.Show("Add me to invoice");
                     }
 
@@ -601,7 +601,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         //private void AddItemToInvoice(CategoryModel item)
-        private void AddItemToInvoice(ItemModel item,List<CategoryModel> extraItems)
+        private void AddItemToInvoice(ItemModel item, List<CategoryModel> extraItems)
         {
             var itemInInvoice = invoiceDetailsList.Where(x => x.id.ToString() == item.id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
@@ -625,9 +625,9 @@ namespace Hesabate_POS.View.receipts
             buildInvoiceDetailsSmall(invoiceDetailsList);
             CalculateInvoiceValues();
         }
-        public async  Task setImg(Button img, string uri)
+        public async Task setImg(Button img, string uri)
         {
-            
+
             ImageBrush imageBrush = new ImageBrush();
             BitmapFrame temp;
 
@@ -645,36 +645,36 @@ namespace Hesabate_POS.View.receipts
                 {
                     // using(MemoryStream ms = await ItemService.DownloadImageAsync(AppSettings.APIUri, uri))
 
-                    
+
                     var localUri = _itemService.GetLocalUri(uri);
                     if (localUri == "")
                     {
-                    Thread t1 = new Thread(async () =>
-                    {
-                        temp = BitmapFrame.Create(new Uri(AppSettings.APIUri + "/" + uri));
-
-                        string remoteUri = AppSettings.APIUri + "/" + uri;
-                        var imgUrl = new Uri(remoteUri);
-                        var imageData = new WebClient().DownloadData(imgUrl);
-                        _itemService.SaveImage(imageData, uri);
-                        this.Dispatcher.Invoke(() =>
+                        Thread t1 = new Thread(async () =>
                         {
+                            temp = BitmapFrame.Create(new Uri(AppSettings.APIUri + "/" + uri));
 
-                            BitmapImage bitmapImage = new BitmapImage();
-                            bitmapImage.BeginInit();
-                            bitmapImage.StreamSource = new MemoryStream(imageData);
-                            bitmapImage.EndInit();
+                            string remoteUri = AppSettings.APIUri + "/" + uri;
+                            var imgUrl = new Uri(remoteUri);
+                            var imageData = new WebClient().DownloadData(imgUrl);
+                            _itemService.SaveImage(imageData, uri);
+                            this.Dispatcher.Invoke(() =>
+                            {
 
-                        //imageBrush.ImageSource = temp;
-                        imageBrush.ImageSource = bitmapImage;
-                            img.Background = imageBrush;
+                                BitmapImage bitmapImage = new BitmapImage();
+                                bitmapImage.BeginInit();
+                                bitmapImage.StreamSource = new MemoryStream(imageData);
+                                bitmapImage.EndInit();
+
+                                //imageBrush.ImageSource = temp;
+                                imageBrush.ImageSource = bitmapImage;
+                                img.Background = imageBrush;
+                            });
                         });
-                    });
 
-                    t1.Start();
+                        t1.Start();
                     }
                     else
-                    { 
+                    {
                         byte[] imageBuffer = _itemService.readLocalImage(localUri);
                         var bitmapImage = new BitmapImage();
                         using (var memoryStream = new System.IO.MemoryStream(imageBuffer))
@@ -686,9 +686,9 @@ namespace Hesabate_POS.View.receipts
                         }
                         img.Background = new ImageBrush(bitmapImage);
 
-                    
+
                     }
-                 
+
 
                 }
                 catch {
@@ -697,7 +697,7 @@ namespace Hesabate_POS.View.receipts
                     imageBrush.ImageSource = temp;
                     img.Background = imageBrush;
                 }
-            }          
+            }
 
         }
         private void rectangle_MouseEnter(object sender, MouseEventArgs e)
@@ -730,7 +730,7 @@ namespace Hesabate_POS.View.receipts
         private async void btn_allItems_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
+            {
                 // categoryPath
                 categoryPath.Clear();
                 buildCategoryPath(categoryPath);
@@ -752,10 +752,10 @@ namespace Hesabate_POS.View.receipts
             sp_categoryPath.Children.Clear();
             foreach (var item in categories)
             {
-               
+
                 #region borderMain
                 Border borderMain = new Border();
-               
+
                 borderMain.Margin = new Thickness(0);
                 borderMain.Padding = new Thickness(0);
                 borderMain.MinWidth = 50;
@@ -775,7 +775,7 @@ namespace Hesabate_POS.View.receipts
                 textName.Text = ">" + item.name;
                 textName.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
                 textName.Margin = new Thickness(5);
-                buttonMain.Content=textName;
+                buttonMain.Content = textName;
                 #endregion
                 borderMain.Child = buttonMain;
                 #endregion
@@ -794,13 +794,13 @@ namespace Hesabate_POS.View.receipts
                     var item = button.DataContext as CategoryModel;
                     // categoryPath
                     //categoryPath.Add(item);
-                  
+
                     categoryPath = _itemService.getCategoryPath(item.id).ToList();
                     buildCategoryPath(categoryPath);
-                    
-                        // itemsCard
-                        items = _itemService.getCatItems(item.id);
-                       await buildItemsCard(items);
+
+                    // itemsCard
+                    items = _itemService.getCatItems(item.id);
+                    await buildItemsCard(items);
 
                 }
             }
@@ -833,7 +833,7 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                    switchGrid1_1(button.Tag.ToString() );
+                switchGrid1_1(button.Tag.ToString());
                 if (selectedInvoiceItemOptions != null && selectedInvoiceItemOptions.index != 0)
                 {
                     MessageBox.Show($"i'm items extra for invoiceItem index : {selectedInvoiceItemOptions.index}");
@@ -851,11 +851,195 @@ namespace Hesabate_POS.View.receipts
         {
             MessageBox.Show("ss");
         }
+        void showInvoiceItemOptions()
+        {
+            wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
+            buildInvoiceItemGroup(selectedInvoiceItemOptions);
+            switchGrid1_1("invoiceItemOptions");
 
+           
+
+        }
+        void buildInvoiceItemGroup(ItemModel item)
+        {
+            sp_groups.Children.Clear();
+            if (item.extraItems != null)
+            {
+                foreach (var extra in item.extraItems)
+                {
+                  
+                    #region GroupTitle
+                    Grid gridTitle = new Grid();
+                    gridTitle.Margin = new Thickness(10,5,0,5);
+                    #region gridSettings
+                    /////////////////////////////////////////////////////
+                    int colCount = 2;
+                    ColumnDefinition[] cd = new ColumnDefinition[colCount];
+                    for (int i = 0; i < colCount; i++)
+                    {
+                        cd[i] = new ColumnDefinition();
+                    }
+                    cd[0].Width = new GridLength(1, GridUnitType.Auto);
+                    cd[1].Width = new GridLength(1, GridUnitType.Star);
+                    for (int i = 0; i < colCount; i++)
+                    {
+                        gridTitle.ColumnDefinitions.Add(cd[i]);
+                    }
+                    #endregion
+                    #region extraTitle
+                    TextBlock extraTitle = new TextBlock();
+                    extraTitle.Text = $"{extra.group_name} ({extra.group_count})";
+                    extraTitle.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    extraTitle.FontWeight = FontWeights.Bold;
+                    extraTitle.Margin = new Thickness(5);
+                   
+                    Grid.SetColumn(extraTitle, 0);
+                    gridTitle.Children.Add(extraTitle);
+                    #endregion
+                    #region extraBorder
+                    Border extraBorder = new Border();
+                    extraBorder.Height = 2;
+                    extraBorder.BorderThickness = new Thickness(0); ;
+                    extraBorder.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+                    Grid.SetColumn(extraBorder, 1);
+                    gridTitle.Children.Add(extraBorder);
+                    #endregion
+                    sp_groups.Children.Add(gridTitle);
+                    #endregion
+                    #region groupItems
+                    WrapPanel wrapPanel = new WrapPanel();
+                    foreach (var groupItem in extra.group_items)
+                    {
+                        
+                        StackPanel stackPanel = new StackPanel();
+                        stackPanel.Orientation = Orientation.Horizontal;
+                        stackPanel.Margin = new Thickness(10,5,10,5);
+                        stackPanel.DataContext = groupItem;
+
+                        #region groupItemName
+                        TextBlock groupItemText = new TextBlock();
+                        groupItemText.Text = $"#{groupItem.id} - {groupItem.name}";
+                        groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
+                        groupItemText.VerticalAlignment = VerticalAlignment.Center;
+                        groupItemText.Margin = new Thickness(5);
+                        stackPanel.Children.Add(groupItemText);
+                        #endregion
+
+                        #region groupItemButtonMinus
+                        Button groupItemButtonMinus = new Button();
+                        groupItemButtonMinus.DataContext = groupItem;
+                        groupItemButtonMinus.Margin = new Thickness(2.5);
+                        groupItemButtonMinus.Height =
+                        groupItemButtonMinus.Width = 25;
+                        groupItemButtonMinus.Padding = new Thickness(0);
+                        groupItemButtonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                        groupItemButtonMinus.BorderThickness = new Thickness(0);
+                        MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonMinus, (new CornerRadius(5)));
+                        #region materialDesign
+                        var minusPackIcon = new PackIcon();
+                        minusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                        minusPackIcon.Height =
+                        minusPackIcon.Width = 25;
+                        minusPackIcon.Kind = PackIconKind.Minus;
+                        groupItemButtonMinus.Content = minusPackIcon;
+                        #endregion
+                        groupItemButtonMinus.Click += groupItemButtonMinus_Click;
+                        stackPanel.Children.Add(groupItemButtonMinus);
+                        /////////////////////////////////
+                        #endregion
+
+                        #region groupItem_start_amount
+                        TextBlock groupItem_start_amount = new TextBlock();
+                        var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
+                        groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
+                        groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
+                        groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
+                        groupItem_start_amount.Margin = new Thickness(5);
+                        stackPanel.Children.Add(groupItem_start_amount);
+                        #endregion
+                        #region groupItemButtonPlus
+                        Button groupItemButtonPlus = new Button();
+                        groupItemButtonPlus.DataContext = groupItem;
+                        groupItemButtonPlus.Margin = new Thickness(2.5);
+                        groupItemButtonPlus.Height =
+                        groupItemButtonPlus.Width = 25;
+                        groupItemButtonPlus.Padding = new Thickness(0);
+                        groupItemButtonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                        groupItemButtonPlus.BorderThickness = new Thickness(0);
+                        MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonPlus, (new CornerRadius(5)));
+                        #region materialDesign
+                        var plusPackIcon = new PackIcon();
+                        plusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                        plusPackIcon.Height =
+                        plusPackIcon.Width = 25;
+                        plusPackIcon.Kind = PackIconKind.Plus;
+                        groupItemButtonPlus.Content = plusPackIcon;
+                        #endregion
+                        groupItemButtonPlus.Click += groupItemButtonPlus_Click;
+                        stackPanel.Children.Add(groupItemButtonPlus);
+                        /////////////////////////////////
+                        #endregion
+                        #region groupItem_add_price
+                        TextBlock groupItem_add_price = new TextBlock();
+                        var groupItem_add_priceBinding = new System.Windows.Data.Binding("add_price");
+                        groupItem_add_price.SetBinding(TextBlock.TextProperty, groupItem_add_priceBinding);
+                        groupItem_add_price.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItem_add_price.HorizontalAlignment = HorizontalAlignment.Center;
+                        groupItem_add_price.VerticalAlignment = VerticalAlignment.Center;
+                        groupItem_add_price.Margin = new Thickness(5);
+                        stackPanel.Children.Add(groupItem_add_price);
+                        #endregion
+                        #region groupItemCurrency
+                        TextBlock groupItemCurrency = new TextBlock();
+                        groupItemCurrency.Text = AppSettings.currency;
+                        groupItemCurrency.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItemCurrency.HorizontalAlignment = HorizontalAlignment.Center;
+                        groupItemCurrency.VerticalAlignment = VerticalAlignment.Center;
+                        groupItemCurrency.Margin = new Thickness(0, 5, 5, 5);
+                        stackPanel.Children.Add(groupItemCurrency);
+                        #endregion
+                        wrapPanel.Children.Add(stackPanel);
+                    }
+                    sp_groups.Children.Add(wrapPanel);
+                    #endregion
+                }
+            }
+        }
+         
+        void groupItemButtonMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                GroupItemModel groupItem = button.DataContext as GroupItemModel;
+                if (groupItem.start_amount > 0)
+                    groupItem.start_amount--;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        void groupItemButtonPlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                GroupItemModel groupItem = button.DataContext as GroupItemModel;
+                    groupItem.start_amount++;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         #endregion
         void switchGrid1_1(string type)
         {
-            
+
 
 
             // first level
@@ -887,13 +1071,13 @@ namespace Hesabate_POS.View.receipts
             }
             */
 
-            
+
         }
 
         #endregion
         #region grid2_1
 
-        
+
         private void btn_external_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -935,7 +1119,7 @@ namespace Hesabate_POS.View.receipts
                         btn_takeAway.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
                         path_takeAway.Fill = Application.Current.Resources["White"] as SolidColorBrush;
                         txt_takeAway.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
-                    
+
                     }
                     else
                     {
@@ -960,7 +1144,7 @@ namespace Hesabate_POS.View.receipts
             {
                 grid_invoiceDetailsBig.Visibility = Visibility.Visible;
                 grid_invoiceDetailsSmall.Visibility = Visibility.Collapsed;
-              
+
                 cd_main1.Width = new GridLength(55, GridUnitType.Star);
                 cd_main2.Width = new GridLength(45, GridUnitType.Star);
             }
@@ -976,24 +1160,25 @@ namespace Hesabate_POS.View.receipts
         #region buildInvoiceDetailsBig
         private void Dg_invoiceDetailsBig_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                try
-                {
-                    HelpClass.StartAwait(grid_main);
+            try
+            {
+                HelpClass.StartAwait(grid_main);
                 //selection
                 if (dg_invoiceDetailsBig.SelectedIndex != -1)
                 {
                     selectedInvoiceItemOptions = dg_invoiceDetailsBig.SelectedItem as ItemModel;
-                    wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
-                    switchGrid1_1("invoiceItemOptions");
+                    //wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
+                    //switchGrid1_1("invoiceItemOptions");
+                    showInvoiceItemOptions();
 
                 }
                 HelpClass.EndAwait(grid_main);
-                }
-                catch (Exception ex)
-                {
-                    HelpClass.EndAwait(grid_main);
-                    HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
         private void locationInvoiceItemRowinDatagrid(object sender, RoutedEventArgs e)
         {
@@ -1201,7 +1386,7 @@ namespace Hesabate_POS.View.receipts
             int index = 1;
             foreach (var item in invoiceDetailsList)
             {
-               
+
                 item.index = index;
                 #region borderMain
                 Border borderMain = new Border();
@@ -1216,7 +1401,7 @@ namespace Hesabate_POS.View.receipts
 
                 #region gridMain
                 Grid gridMain = new Grid();
-                gridMain.Margin = new Thickness(5,5,5,5);
+                gridMain.Margin = new Thickness(5, 5, 5, 5);
 
                 #region gridSettings
                 /////////////////////////////////////////////////////
@@ -1230,12 +1415,12 @@ namespace Hesabate_POS.View.receipts
                 }
                 #endregion
 
-                
+
 
                 #region gridRow0
 
                 Grid gridRow0 = new Grid();
-                gridRow0.Margin = new Thickness(5,2.5,5, 2.5);
+                gridRow0.Margin = new Thickness(5, 2.5, 5, 2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
                 int colCountRow0 = 2;
@@ -1269,7 +1454,7 @@ namespace Hesabate_POS.View.receipts
                 gridRow0.Children.Add(itemIndex);
                 */
                 #endregion
-               
+
                 #region itemName
                 TextBlock itemName = new TextBlock();
                 itemName.Text = item.name;
@@ -1292,11 +1477,11 @@ namespace Hesabate_POS.View.receipts
                 }
                 #endregion
 
-                
+
                 gridMain.Children.Add(gridRow0);
                 #endregion
                 #region gridRow1
-               
+
 
                 Grid gridRow1 = new Grid();
                 gridRow1.Margin = new Thickness(5, 2.5, 5, 2.5);
@@ -1317,7 +1502,7 @@ namespace Hesabate_POS.View.receipts
                 cdRow1[6].Width = new GridLength(1, GridUnitType.Star);
                 cdRow1[7].Width = new GridLength(1, GridUnitType.Auto);
                 cdRow1[8].Width = new GridLength(1, GridUnitType.Auto);
-                
+
                 for (int i = 0; i < colCountRow1; i++)
                 {
                     gridRow1.ColumnDefinitions.Add(cdRow1[i]);
@@ -1423,20 +1608,22 @@ namespace Hesabate_POS.View.receipts
                 itemBonusIcon.FlowDirection = FlowDirection.LeftToRight;
                 itemBonusIcon.Height =
                 itemBonusIcon.Width = 25;
-                itemBonusIcon.Data = App.Current.Resources["couponBonus"] as Geometry;
+                itemBonusIcon.Data = App.Current.Resources["bonus"] as Geometry;
 
                 Grid.SetColumn(itemBonusIcon, 8);
                 gridRow1.Children.Add(itemBonusIcon);
                 #endregion
 
-                
-               
+
+
 
 
                 Grid.SetRow(gridRow1, 1);
                 gridMain.Children.Add(gridRow1);
                 #endregion
+
                 #region stackPanelRow1
+                /*
                 StackPanel stackPanelRow1 = new StackPanel();
                 stackPanelRow1.Margin = new Thickness(5,0,5,0);
                 #region extraItems
@@ -1475,6 +1662,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 Grid.SetRow(stackPanelRow1, 2);
                 gridMain.Children.Add(stackPanelRow1);
+                */
                 #endregion
 
                 #region buttonInfo
@@ -1500,7 +1688,7 @@ namespace Hesabate_POS.View.receipts
                 gridRow3.Margin = new Thickness(2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int colCountRow3 =4;
+                int colCountRow3 = 4;
                 ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow3];
                 for (int i = 0; i < colCountRow3; i++)
                 {
@@ -1559,9 +1747,9 @@ namespace Hesabate_POS.View.receipts
                 buttonUrgent.Padding = new Thickness(5);
                 buttonUrgent.BorderBrush = null;
                 if (item.isUrgent)
-                buttonUrgent.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
+                    buttonUrgent.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
                 else
-                buttonUrgent.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    buttonUrgent.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 buttonUrgent.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
                 MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonUrgent, (new CornerRadius(7)));
 
@@ -1579,7 +1767,7 @@ namespace Hesabate_POS.View.receipts
                 TextBlock textTotal = new TextBlock();
                 var textTotalBinding = new System.Windows.Data.Binding("total");
                 textTotalBinding.Mode = BindingMode.OneWay;
-                textTotalBinding.Converter =new accuracyConverter();
+                textTotalBinding.Converter = new accuracyConverter();
                 textTotal.SetBinding(TextBlock.TextProperty, textTotalBinding);
 
                 textTotal.FontSize = 14;
@@ -1636,7 +1824,7 @@ namespace Hesabate_POS.View.receipts
                 gridMain.Children.Add(gridRow3);
                 #endregion
 
-                
+
 
                 borderMain.Child = gridMain;
                 #endregion
@@ -1667,12 +1855,11 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                //int index = int.Parse(button.Tag.ToString().Replace("info-", ""));
                 ItemModel invoiceDetails = button.DataContext as ItemModel;
                 selectedInvoiceItemOptions = invoiceDetails;
-                wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
-                switchGrid1_1("invoiceItemOptions");
-
+                //wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
+                //switchGrid1_1("invoiceItemOptions");
+                showInvoiceItemOptions();
 
             }
             catch (Exception ex)
@@ -1680,6 +1867,8 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
+        
          void buttonUrgent_Click(object sender, RoutedEventArgs e)
         {
             try
