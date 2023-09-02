@@ -21,7 +21,7 @@ namespace Hesabate_POS.Classes
 
        
         public static string APIUri = "http://s.hesabate.com";
-
+        public static bool menuState = false;
 
         #region folders Paths
         public const string TMPFolder = "Thumb";

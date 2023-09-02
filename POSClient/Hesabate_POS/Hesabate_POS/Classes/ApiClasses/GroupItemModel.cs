@@ -9,7 +9,7 @@ namespace Hesabate_POS.Classes.ApiClasses
     public class GroupItemModel
     {
         public int id { get; set; }
-        public decimal price { get; set; }
+       // public decimal price { get; set; }
         public string name { get; set; }
         public string unit { get; set; }
         public string no_w { get; set; }

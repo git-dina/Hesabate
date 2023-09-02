@@ -108,7 +108,7 @@ namespace Hesabate_POS.View.receipts
 
         private void translate()
         {
-            txt_allItems.Text = Translate.getResource("391");
+            txt_allItems.Text = Translate.getResource("162");
             txt_invoiceTitle.Text = Translate.getResource("1128");
             txt_external.Text = Translate.getResource("695");
             txt_tables.Text = Translate.getResource("167");
@@ -125,6 +125,7 @@ namespace Hesabate_POS.View.receipts
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
 
             btn_save.Content = Translate.getResource("2104");
+            btn_newDraft.Content = Translate.getResource("8");
 
             #region side buttons
             txt_pay.Text = Translate.getResource("2162");
@@ -138,7 +139,7 @@ namespace Hesabate_POS.View.receipts
             txt_points.Text = Translate.getResource("654");
             txt_invoiceCost.Text = Translate.getResource("21");
             txt_export.Text = Translate.getResource("32");
-
+            txt_administration.Text = Translate.getResource("2240");
             #endregion
 
             #region invoice details big
@@ -166,27 +167,28 @@ namespace Hesabate_POS.View.receipts
 
         }
 
-        bool menuState = false;
+        //bool menuState = false;
         private void btn_menu_Click(object sender, RoutedEventArgs e)
         {
             try
             {
 
-                if (!menuState)
+                if (!AppSettings.menuState)
                 {
                     Storyboard sb = this.FindResource("Storyboard1") as Storyboard;
                     sb.Begin();
-                    menuState = true;
+                    AppSettings.menuState = true;
                 }
                 else
                 {
                     Storyboard sb = this.FindResource("Storyboard2") as Storyboard;
                     sb.Begin();
-                    menuState = false;
+                    AppSettings.menuState = false;
                 }
 
+                Properties.Settings.Default.menuState = AppSettings.menuState;
 
-               
+
 
 
             }

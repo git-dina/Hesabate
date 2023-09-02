@@ -67,6 +67,15 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
+                #region read app settings
+                //AppSettings.APIUri = Properties.Settings.Default.APIUri;
+                //if(AppSettings.APIUri.Equals(""))//display server name
+                //{
+
+                //}
+
+                AppSettings.menuState = Properties.Settings.Default.menuState;
+                #endregion
                 await FillCombo.fillLanguages(cb_language);
                 HelpClass.EndAwait(grid_main);
             }
@@ -229,7 +238,11 @@ namespace Hesabate_POS.View.windows
             {
                 if (HelpClass.validate(requiredControlList, this))
                 {
-                    AppSettings.APIUri = tb_serverName.Text;
+                    if (AppSettings.APIUri == "")
+                    {
+                        AppSettings.APIUri = tb_serverName.Text;
+                       Properties.Settings.Default.APIUri = AppSettings.APIUri;
+                    }
 
                     bool canLogin = false;
                     btn_login.IsEnabled = false;
