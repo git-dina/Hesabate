@@ -20,6 +20,7 @@ namespace Hesabate_POS.Classes
         public static List<LanguageTermModel> LanguageTerms ;
         public static List<ItemModel> items ;
         public static List<CashBoxModel> cashBoxes ;
+        public static List<CurrencyModel> currencyList ;
 
         public static async Task<List<LanguageModel>> GetLanguages()
         {

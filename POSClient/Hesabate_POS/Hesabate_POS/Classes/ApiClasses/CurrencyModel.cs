@@ -13,6 +13,5 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string symbol { get; set; }
         public decimal price { get; set; }
         public int parts { get; set; }
-        public decimal first_price { get; set; }
     }
 }

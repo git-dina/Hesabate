@@ -108,9 +108,19 @@ namespace Hesabate_POS.Classes
             AppSettings.MainCurrency = res["MainCurrency"];
             AppSettings.token = res["token"];
 
+            var currencyLst = JObject.Parse(jsonString)["currency"].ToList();
+            GeneralInfoService.currencyList = currencyLst.Select(d => new CurrencyModel
+            {
+                id = (int) d["id"],
+                name = (string) d["name"],
+               parts = (int) d["parts"],
+               price = (decimal) d["price"],
+               symbol = (string) d["symbol"],
+            }).ToList();
             //accuracy
-           // AppSettings.accuracy = GeneralInfo.MainOp.AMain.ToString();
-
+            AppSettings.accuracy = GeneralInfoService.currencyList.Where(x => x.id == AppSettings.MainCurrency).Select(x => x.parts).FirstOrDefault().ToString();
+            
+            
             var boxesLst = JObject.Parse(jsonString)["cash_boxes"].ToList();
 
             GeneralInfoService.cashBoxes = boxesLst.Select(d => new CashBoxModel
