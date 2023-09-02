@@ -188,7 +188,7 @@ namespace Hesabate_POS.View.receipts
 
                 Properties.Settings.Default.menuState = AppSettings.menuState;
 
-
+                Properties.Settings.Default.Save();
 
 
             }

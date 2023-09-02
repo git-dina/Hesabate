@@ -242,6 +242,7 @@ namespace Hesabate_POS.View.windows
                     {
                         AppSettings.APIUri = tb_serverName.Text;
                        Properties.Settings.Default.APIUri = AppSettings.APIUri;
+                        Properties.Settings.Default.Save();
                     }
 
                     bool canLogin = false;
