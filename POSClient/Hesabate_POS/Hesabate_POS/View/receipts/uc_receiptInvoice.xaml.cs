@@ -44,20 +44,20 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        private static uc_receiptInvoice _instance;
-        public static uc_receiptInvoice Instance
-        {
-            get
-            {
-                if (_instance is null)
-                    _instance = new uc_receiptInvoice();
-                return _instance;
-            }
-            set
-            {
-                _instance = value;
-            }
-        }
+        //private static uc_receiptInvoice _instance;
+        //public static uc_receiptInvoice Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance is null)
+        //            _instance = new uc_receiptInvoice();
+        //        return _instance;
+        //    }
+        //    set
+        //    {
+        //        _instance = value;
+        //    }
+        //}
 
         public static List<string> requiredControlList;
         ItemService _itemService = new ItemService();
@@ -66,7 +66,7 @@ namespace Hesabate_POS.View.receipts
         InvoiceModel invoice = new InvoiceModel();
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            Instance = null;
+            //Instance = null;
             GC.Collect();
         }
 
@@ -85,7 +85,6 @@ namespace Hesabate_POS.View.receipts
                 //    grid_main.FlowDirection = FlowDirection.RightToLeft;
                 //}
                 translate();
-                btn_menu_Click(btn_menu, null);
                 requiredControlList = new List<string> { "" };
 
                 //clearInvoice();
@@ -127,20 +126,7 @@ namespace Hesabate_POS.View.receipts
             btn_save.Content = Translate.getResource("2104");
             btn_newDraft.Content = Translate.getResource("8");
 
-            #region side buttons
-            txt_pay.Text = Translate.getResource("2162");
-            txt_using.Text = Translate.getResource("1613");
-            txt_toKitchen.Text = Translate.getResource("1295");
-            txt_pending.Text = Translate.getResource("2154");
-            txt_pendingQuery.Text = Translate.getResource("1281");//استعلام فقط نحتاج استعلام معلق
-            txt_openBox.Text = Translate.getResource("2152");
-            txt_selectAgent.Text = Translate.getResource("526");
-            txt_invoiceDelete.Text = Translate.getResource("2153");
-            txt_points.Text = Translate.getResource("654");
-            txt_invoiceCost.Text = Translate.getResource("21");
-            txt_export.Text = Translate.getResource("32");
-            txt_administration.Text = Translate.getResource("2240");
-            #endregion
+           
 
             #region invoice details big
             col_index.Header = "#";
@@ -168,35 +154,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         //bool menuState = false;
-        private void btn_menu_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
-                if (!AppSettings.menuState)
-                {
-                    Storyboard sb = this.FindResource("Storyboard1") as Storyboard;
-                    sb.Begin();
-                    AppSettings.menuState = true;
-                }
-                else
-                {
-                    Storyboard sb = this.FindResource("Storyboard2") as Storyboard;
-                    sb.Begin();
-                    AppSettings.menuState = false;
-                }
-
-                Properties.Settings.Default.menuState = AppSettings.menuState;
-
-                Properties.Settings.Default.Save();
-
-
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
+        
         #region validate - clearValidate - textChange - lostFocus - . . . . 
         void Clear()
         {
@@ -316,6 +274,8 @@ namespace Hesabate_POS.View.receipts
         }
 
         #region grid0_1
+
+       
         private void btn_printInvoice_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1982,85 +1942,6 @@ namespace Hesabate_POS.View.receipts
             }
             catch { }
         }
-        #endregion
-
-        #region grid0_0
-        private  void btn_pay_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void btn_using_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_toKitchen_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_pending_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_openBox_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_selectAgent_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_invoiceDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_points_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_shiftClose_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_invoiceBonus_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-         private void btn_invoiceCost_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_import_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_export_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-         private void btn_administration_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-
-
         #endregion
 
         #region search
