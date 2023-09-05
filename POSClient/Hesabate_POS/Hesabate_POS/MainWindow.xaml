@@ -10,6 +10,20 @@
         d:DesignHeight="768" d:DesignWidth="1024"
         WindowStartupLocation="CenterScreen"  WindowStyle="None"
         WindowState="Maximized"  Loaded="Window_Loaded" Unloaded="Window_Unloaded">
+    <Window.Resources>
+        <Storyboard x:Key="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Storyboard2">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
     <Grid Margin="0" x:Name="grid_mainWindow"  >
         <Grid >
             <Grid.RowDefinitions>
@@ -18,29 +32,14 @@
                 <RowDefinition Height="3"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition x:Name="cd_main0" Width="auto"/>
+                <ColumnDefinition x:Name="cd_main1" Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid  Grid.Row="0"  Background="{StaticResource MainColor}"  >
+            <Grid  Grid.Row="0" Grid.ColumnSpan="2"
+                   Background="{StaticResource MainColor}"  >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
 
@@ -54,117 +53,667 @@
                                />
                     </StackPanel>
                 </Grid>
-                
-                <StackPanel x:Name="sp_licenseNumber" VerticalAlignment="Center" Orientation="Vertical" 
-                            Grid.Column="1" Margin="5 0">
-                    <TextBlock x:Name="txt_licenseNumberTitle"  Text="licenseNumber" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="txt_licenseNumber"  Text="0026846" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                <StackPanel Grid.Column="1" 
+                            HorizontalAlignment="Right"
+                    Orientation="Horizontal" >
+                    <StackPanel x:Name="sp_receiptInvoice" Orientation="Horizontal">
+                        <!--<Button  Tag="0"
+                            Click="receiptInvoiceSwitch_Click"
+                        Margin="5,0,5,0"
+                        materialDesign:ButtonAssist.CornerRadius="7"
+                   Background="{StaticResource MainColor}"
+                            BorderBrush="{StaticResource White}"
+                             BorderThickness="2"
+                                Padding="0" >
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource White}" 
+                                      Stretch="Fill"  
+                                      Width="20" Height="20"
+                               Data="{StaticResource invoice}"
+                                 FlowDirection="LeftToRight"
+                                Margin="5 5 0 5"/>
+                                <TextBlock Text="#0" 
+                                 Foreground="{StaticResource White}" 
+                                 Margin="0 5 0 5"/>
+                                <Button Tag="0"
+                                  Click="receiptInvoiceDelete_Click"
+                                     Margin="2.5"
+                                 Height="25" Width="25"  
+                                     Padding="0"
+                                    materialDesign:ButtonAssist.CornerRadius="25"
+                                    BorderBrush="{x:Null}"
+                                 Background="{StaticResource Red}">
+                                 <Path Fill="{StaticResource White}" 
+                                      Stretch="Fill" 
+                                      Height="12.5"  Width="12.5" 
+                                  Data="{StaticResource close}"  />
+                                </Button>
+                            </StackPanel>
+                        </Button>-->
+                        <!--<Button  Tag="receiptInvoiceMainButton_1"
+                        Margin="5,0,5,0"
+                     Click="receiptInvoiceSwitch_Click"
+                        materialDesign:ButtonAssist.CornerRadius="7"
+                   Background="{StaticResource White}"
+                            BorderBrush="{StaticResource White}"
+                             BorderThickness="2"
+                                Padding="0" >
+                            <StackPanel Orientation="Horizontal">
+                                <Path Tag="receiptInvoicePath_1"
+                                    Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                               Grid.Column="0"  
+                                      Width="20" Height="20"
+                               Data="{StaticResource invoice}"
+                                 FlowDirection="LeftToRight"
+                                Margin="5 5 5 5"/>
+                                <TextBlock Tag="receiptInvoiceText_1"
+                                    Text="#1" 
+                                           Foreground="{StaticResource MainColor}" 
+                                 Margin="0 5 0 5"/>
+                                <Button Tag="receiptInvoiceCloseButton_1"
+                                 Click="receiptInvoiceDelete_Click"
+                                    Margin="2.5"
+                                Height="25" Width="25"  
+                                    Padding="0"
+                                   materialDesign:ButtonAssist.CornerRadius="25"
+                                   BorderBrush="{x:Null}"
+                                Background="{StaticResource Red}">
+                                    <Path Fill="{StaticResource White}" 
+                                     Stretch="Fill" 
+                                     Height="12.5"  Width="12.5" 
+                                 Data="{StaticResource close}"  />
+                                </Button>
+                            </StackPanel>
+                        </Button>-->
+                    </StackPanel>
+                    <Border Grid.Column="2" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                    <StackPanel x:Name="sp_versionNumber" VerticalAlignment="Center" Orientation="Vertical" 
+                                Grid.Column="1" Margin="5 0">
+                        <TextBlock x:Name="txt_versionNumberTitle"  Text="version" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="txt_versionNumber"  Text="0.0.0.1" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <Border Grid.Column="2" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                    <StackPanel x:Name="sp_licenseNumber" VerticalAlignment="Center" Orientation="Vertical" 
+                                Grid.Column="1" Margin="5 0">
+                        <TextBlock x:Name="txt_licenseNumberTitle"  Text="license" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="txt_licenseNumber"  Text="0026846" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <Border Grid.Column="2" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                    <StackPanel x:Name="sp_posName" VerticalAlignment="Center" Orientation="Vertical" 
+                                Grid.Column="3" Margin="5 0">
+                        <TextBlock x:Name="txt_posNameTitle"  Text="POS Name" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="txt_posName"  Text="POS-158" FontSize="14"
+                                   Foreground="White" HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <Border Grid.Column="6" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                    <StackPanel Grid.Column="7" VerticalAlignment="Center" Margin="5 0">
+                        <TextBlock Name="txtTime" Text="00:00 PM" HorizontalAlignment="Center" Foreground="{StaticResource White}"  FontSize="12" ></TextBlock>
+                        <TextBlock Name="txtDate" Text="2021/5/1" Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="12" ></TextBlock>
+                    </StackPanel>
+                    <Border Grid.Column="8" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
+                    <StackPanel x:Name="stp_userName" VerticalAlignment="Center" Orientation="Vertical" 
+                                Grid.Column="9" Margin="5 0">
+                        <TextBlock x:Name="txt_userNameTitle"  Text="User Name" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="txt_userName"  Text="admin" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
+                        <!--<TextBlock x:Name="txt_userJob"  Text=""   FontSize="12" FontWeight="Light" Foreground="#E8E8E8" HorizontalAlignment="Left" />-->
+                    </StackPanel>
+                    <Button Grid.Column="10" x:Name="btn_addReceiptInvoice"
+                        Background="{x:Null}" BorderBrush="{x:Null}" 
+                                Click="Btn_addReceiptInvoice_Click"
+                        Padding="0" Margin="5 0">
+                        <Border Background="{StaticResource MainColor}" 
+                                CornerRadius="90"
+                                Height="30" Width="30">
+                            <Path Fill="{StaticResource White}"  Stretch="Fill"  
+                                  HorizontalAlignment="Center" Grid.Column="0"  
+                             VerticalAlignment="Center" Height="30" Width="30"
+                                  Data="{StaticResource plusCircle}"
+                                          />
+
+                        </Border>
+
+                    </Button>
+                     <Button Grid.Column="10" x:Name="btn_lockApp"
+                        Background="{x:Null}" BorderBrush="{x:Null}" 
+                                Click="Btn_lockApp_Click"
+                        Padding="0" Margin="5 0">
+                        <Border Background="{StaticResource White}" CornerRadius="90"
+                                Height="30" Width="30">
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                                  HorizontalAlignment="Center" Grid.Column="0"  
+                             VerticalAlignment="Center" Width="15" Height="17.5"
+                                  Data="{StaticResource lock}"
+                                          Margin="5"/>
+
+                        </Border>
+
+                    </Button>
+                    <Button Grid.Column="13" x:Name="BTN_Minimize" Click="BTN_Minimize_Click"
+                   Margin="5 0"
+                        Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
+                        Padding="0" >
+                        <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Minus" 
+                                             Width="25" Height="25"/>
+                    </Button>
+                    <Button Grid.Column="14" x:Name="BTN_Close" Click="BTN_Close_Click"  
+                    Margin="5 0"
+                        Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
+                        Padding="0" >
+                        <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="CloseCircle" 
+                                             Width="25" Height="25"/>
+                    </Button>
                 </StackPanel>
-                <Border Grid.Column="2" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
-                <StackPanel x:Name="sp_posName" VerticalAlignment="Center" Orientation="Vertical" 
-                            Grid.Column="3" Margin="5 0">
-                    <TextBlock x:Name="txt_posNameTitle"  Text="POS Name" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="txt_posName"  Text="POS-158" FontSize="14"
-                               Foreground="White" HorizontalAlignment="Center" />
-                </StackPanel>
-                <!--<Border Grid.Column="4" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>-->
-                <!--<StackPanel VerticalAlignment="Center" Orientation="Vertical" 
-                       Grid.Column="5" Margin="5 0" >
-                    <TextBlock Name="txt_cashTitle"    
-                               Text="Balance"
-                               HorizontalAlignment="Center"   
-                               Foreground="{StaticResource White}"  
-                               FontSize="12" />
-                    <DockPanel HorizontalAlignment="Center" >
-                        <TextBlock Name="txt_cashValue"  Text="0.00" Foreground="{StaticResource White}"   HorizontalAlignment="Center"  FontSize="14" />
-                        <TextBlock Name="txt_cashSympol" Text="KWD"  Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="14" Margin="5,0,5,0"/>
-                    </DockPanel>
-                </StackPanel>-->
-                <Border Grid.Column="6" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
-                <StackPanel Grid.Column="7" VerticalAlignment="Center" Margin="5 0">
-                    <TextBlock Name="txtTime" Text="00:00 PM" HorizontalAlignment="Center" Foreground="{StaticResource White}"  FontSize="12" ></TextBlock>
-                    <TextBlock Name="txtDate" Text="2021/5/1" Foreground="{StaticResource White}" HorizontalAlignment="Center"  FontSize="12" ></TextBlock>
-                </StackPanel>
-                <Border Grid.Column="8" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
-                <StackPanel x:Name="stp_userName" VerticalAlignment="Center" Orientation="Vertical" 
-                            Grid.Column="9" Margin="5 0">
-                    <TextBlock x:Name="txt_userNameTitle"  Text="User Name" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="txt_userName"  Text="admin" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
-                    <!--<TextBlock x:Name="txt_userJob"  Text=""   FontSize="12" FontWeight="Light" Foreground="#E8E8E8" HorizontalAlignment="Left" />-->
-                </StackPanel>
-                <Button Grid.Column="10" x:Name="btn_lockApp"
-                    Background="{x:Null}" BorderBrush="{x:Null}" 
-                            Click="Btn_lockApp_Click"
-                    Padding="0" Margin="5 0">
-                    <Border Background="{StaticResource White}" CornerRadius="90"
-                            Height="30" Width="30">
-                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
-                              HorizontalAlignment="Center" Grid.Column="0"  
-                         VerticalAlignment="Center" Width="15" Height="17.5"
-                              Data="{StaticResource lock}"
-                                      Margin="5"/>
 
-                    </Border>
-
-                </Button>
-                <!--<Button Grid.Column="11" x:Name="btn_lang"
-                    Background="{x:Null}" BorderBrush="{x:Null}" 
-                            Click="Btn_lang_Click"
-                    Padding="0" Margin="5 0">
-                    <Border Background="{StaticResource White}" CornerRadius="90"
-                            Height="30" Width="30">
-
-                        --><!--<TextBlock Name="txt_lang" Text="EN"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="{StaticResource MainColor}"  FontSize="14" ></TextBlock>--><!--
-                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
-                              HorizontalAlignment="Center" Grid.Column="0"  
-                         VerticalAlignment="Center" Width="17.5" Height="17.5"
-                              Data="{StaticResource languageTranslation}"
-                                      Margin="5"/>
-                    </Border>
-
-                </Button>-->
-                <!--<Button Grid.Column="12" x:Name="btn_setting"
-                    Background="{x:Null}" BorderBrush="{x:Null}" 
-                            Click="Btn_setting_Click"
-                    Padding="0" Margin="5 0">
-                    <Border Background="{StaticResource White}" CornerRadius="90"
-                            Height="30" Width="30">
-                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
-                              HorizontalAlignment="Center" Grid.Column="0"  
-                         VerticalAlignment="Center" Width="17.5" Height="17.5"
-                              Data="{StaticResource settings}"
-                                      Margin="5"/>
-
-                    </Border>
-
-                </Button>-->
-
-
-               
-
-                <Button Grid.Column="13" x:Name="BTN_Minimize" Click="BTN_Minimize_Click"
-               Margin="5 0"
-                    Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
-                    Padding="0" >
-                    <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Minus" 
-                                         Width="25" Height="25"/>
-                </Button>
-
-                <Button Grid.Column="14" x:Name="BTN_Close" Click="BTN_Close_Click"  
-                Margin="5 0"
-                    Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
-                    Padding="0" >
-                    <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="CloseCircle" 
-                                         Width="25" Height="25"/>
-                </Button>
-             
             </Grid>
-           
-            <Grid  Background="#EEF2F3" x:Name="grid_main" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Border x:Name="brd_grid0_0"
+               Grid.Row="1" Grid.Column="0" 
+           BorderThickness="0"  
+                   CornerRadius="0"  Padding="0" 
+               Margin="0">
+                <Border.Effect>
+                    <DropShadowEffect
+                         ShadowDepth="1"
+                         Direction="360"
+                         Color="Gray"
+                         Opacity="0.3"
+                        BlurRadius="10"/>
+                </Border.Effect>
+                <!--Width="60"-->
+                <Grid x:Name="grid" Width="60" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0"  
+             Background="{StaticResource White}" RenderTransformOrigin="0.5,0.5" >
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                       Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50" Background="{StaticResource MainColor}" >
 
-            <Grid  Grid.Row="3" Grid.Column="0"   Grid.ColumnSpan="2"
+                        <Button x:Name="btn_menu"
+                           HorizontalAlignment="Right" 
+                           Background="{x:Null}" BorderBrush="{x:Null}" Width="auto"  Click="btn_menu_Click" >
+                            <Path Fill="{StaticResource White}" x:Name="path_menu" Stretch="Fill"  
+                             HorizontalAlignment="Center" Grid.Column="0"  
+                        VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource menu}"/>
+                        </Button>
+                    </Grid>
+                    <ScrollViewer Margin="0,0" Background="{StaticResource MainColor}"  
+                                 Grid.Row="2"  
+                                 VerticalScrollBarVisibility="Auto"   >
+                        <StackPanel Grid.Row="1"   HorizontalAlignment="Left" >
+
+
+                            <Button   x:Name="btn_pay" 
+                             Tag="pay"
+                             Click="btn_pay_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_pay" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource moneyBag}"/>
+                                    <TextBlock  x:Name="txt_pay" Grid.Column="1"
+                                       Text="pay" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_using" 
+                             Tag="using"
+                             Click="btn_using_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_using" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource cookieBite}"/>
+                                    <TextBlock  x:Name="txt_using" Grid.Column="1"
+                                       Text="using" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_toKitchen" 
+                             Tag="toKitchen"
+                             Click="btn_toKitchen_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_toKitchen" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource kitchen}"/>
+                                    <TextBlock  x:Name="txt_toKitchen" Grid.Column="1"
+                                       Text="toKitchen" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_pending" 
+                             Tag="pending"
+                             Click="btn_pending_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_pending" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource pause}"/>
+                                    <TextBlock  x:Name="txt_pending" Grid.Column="1"
+                                       Text="pending" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+
+                            <Button   x:Name="btn_pendingQuery" 
+                             Tag="pendingQuery"
+                             Click="btn_pendingQuery_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_pendingQuery" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource applicationPause}"/>
+                                    <TextBlock  x:Name="txt_pendingQuery" Grid.Column="1"
+                                       Text="pendingQuery" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_openBox" 
+                             Tag="openBox"
+                             Click="btn_openBox_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_openBox" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource POS1}"/>
+                                    <TextBlock  x:Name="txt_openBox" Grid.Column="1"
+                                       Text="openBox" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_selectAgent" 
+                             Tag="selectAgent"
+                             Click="btn_selectAgent_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_selectAgent" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource vendor}"/>
+                                    <TextBlock  x:Name="txt_selectAgent" Grid.Column="1"
+                                       Text="selectAgent" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_invoiceDelete" 
+                             Tag="invoiceDelete"
+                             Click="btn_invoiceDelete_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_invoiceDelete" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource delete}"/>
+                                    <TextBlock  x:Name="txt_invoiceDelete" Grid.Column="1"
+                                       Text="invoiceDelete" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_points" 
+                             Tag="points"
+                             Click="btn_points_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_points" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource star}"/>
+                                    <TextBlock  x:Name="txt_points" Grid.Column="1"
+                                       Text="points" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_shiftClose" 
+                             Tag="shiftClose"
+                             Click="btn_shiftClose_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_shiftClose" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource time}"/>
+                                    <TextBlock  x:Name="txt_shiftClose" Grid.Column="1"
+                                       Text="shiftClose" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_invoiceBonus" 
+     Tag="invoiceBonus"
+     Click="btn_invoiceBonus_Click"
+    Height="50" 
+    HorizontalAlignment="Left"  
+    Background="{StaticResource MainColor}" 
+     BorderBrush="{x:Null}"   
+     Padding="0"  BorderThickness="0" 
+materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+     Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_invoiceBonus" 
+           Grid.Column="0"  
+              FlowDirection="LeftToRight"
+          Fill="{StaticResource White}" 
+          Stretch="Fill"  
+     HorizontalAlignment="Center"
+       VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource bonus}"/>
+                                    <TextBlock  x:Name="txt_invoiceBonus" Grid.Column="1"
+               Text="invoiceBonus" 
+          Foreground="{StaticResource White}" 
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+               Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+
+                            <Button   x:Name="btn_invoiceCost" 
+                             Tag="invoiceCost"
+                             Click="btn_invoiceCost_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_invoiceCost" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource itemsCosting}"/>
+                                    <TextBlock  x:Name="txt_invoiceCost" Grid.Column="1"
+                                       Text="invoiceCost" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_import" 
+                             Tag="import"
+                             Click="btn_import_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_import" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource import}"/>
+                                    <TextBlock  x:Name="txt_import" Grid.Column="1"
+                                       Text="import" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_export" 
+                             Tag="export"
+                             Click="btn_export_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_export" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource export}"/>
+                                    <TextBlock  x:Name="txt_export" Grid.Column="1"
+                                       Text="export" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                            <Button   x:Name="btn_administration" 
+                             Tag="administration"
+                             Click="btn_administration_Click"
+                            Height="50" 
+                            HorizontalAlignment="Left"  
+                            Background="{StaticResource MainColor}" 
+                             BorderBrush="{x:Null}"   
+                             Padding="0"  BorderThickness="0" 
+                        materialDesign:ButtonAssist.CornerRadius="0">
+                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
+                             Height="50"  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path  x:Name="path_administration" 
+                                   Grid.Column="0"  
+                                      FlowDirection="LeftToRight"
+                                  Fill="{StaticResource White}" 
+                                  Stretch="Fill"  
+                             HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Width="20" Height="20"
+                             Data="{StaticResource system}"/>
+                                    <TextBlock  x:Name="txt_administration" Grid.Column="1"
+                                       Text="administration" 
+                                  Foreground="{StaticResource White}" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Margin="10,0,0,0"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+            <Grid 
+                x:Name="grid_main"
+                Grid.Row="1" Grid.Column="1"
+                Background="#EEF2F3"/>
+
+            <Grid  Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"
               Background="{StaticResource MainColor}"  />
 
 

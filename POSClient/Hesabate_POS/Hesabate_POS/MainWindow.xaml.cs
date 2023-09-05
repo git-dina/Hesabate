@@ -17,13 +17,16 @@ using System.Windows.Threading;
 using System.Reflection;
 using System.Resources;
 using Hesabate_POS.View.receipts;
+using System.Windows.Media.Animation;
+using Hesabate_POS.Classes.ApiClasses;
+using MaterialDesignThemes.Wpf;
 
 namespace Hesabate_POS
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-     public partial class MainWindow : Window
+    public partial class MainWindow : Window
     {
         //internal static User userLogin = new User();
         //internal static Pos posLogin;
@@ -61,6 +64,7 @@ namespace Hesabate_POS
             }
             #endregion
         }
+        bool firstLoad = true;
         public async void Window_Loaded(object sender, RoutedEventArgs e)
         {//load
             try
@@ -87,6 +91,7 @@ namespace Hesabate_POS
 
                 }
                 translate();
+                btn_menu_Click(btn_menu, null);
 
                 setHeaderValues();
                 //should be moved to login page
@@ -99,131 +104,34 @@ namespace Hesabate_POS
                 //{
                 //    HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name, false);
                 //}
-                /*
 
-                #region loading 
-                loadingList = new List<keyValueBool>();
-                bool isDone = true;
-                loadingList.Add(new keyValueBool { key = "loading_listObjects", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getGroupObjects", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_globalItemUnitsList", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshBranches", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshBranchesAllWithoutMain", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshByBranchandUser", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshCategory", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshUnit", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshVendors", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_RefreshCards", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getUserPersonalInfo", value = false });
-                //loadingList.Add(new keyValueBool { key = "loading_getUserPath", value = false });//dina
-
-                // loadingList.Add(new keyValueBool { key = "loading_getItemCost", value = false });//dina
-                //  loadingList.Add(new keyValueBool { key = "loading_getPrintCount", value = false });
-                //loadingList.Add(new keyValueBool { key = "loading_getTaxDetails", value = false });//dina
-                //loadingList.Add(new keyValueBool { key = "loading_getDefaultSystemInfo", value = false });//dina
-                // loadingList.Add(new keyValueBool { key = "loading_getDateForm", value = false });//dina
-                //loadingList.Add(new keyValueBool { key = "loading_getRegionAndCurrency", value = false });//dina
-                //loadingList.Add(new keyValueBool { key = "loading_getStorageCost", value = false });//dina
-                //loadingList.Add(new keyValueBool { key = "loading_getAccurac", value = false });//dina
-                loadingList.Add(new keyValueBool { key = "loading_getprintSitting", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_POSList", value = false });
-                //loadingList.Add(new keyValueBool { key = "loading_getTableTimes", value = false });//dina
-                // loadingList.Add(new keyValueBool { key = "loading_getDefaultInvoiceType", value = false });//dina
-                // loadingList.Add(new keyValueBool { key = "loading_getStatusesOfPreparingOrder", value = false });//dina
-                loadingList.Add(new keyValueBool { key = "loading_typesOfService", value = false });
-                //loadingList.Add(new keyValueBool { key = "loading_maxDiscount", value = false });//dina
-                loadingList.Add(new keyValueBool { key = "loading_itemUnitsUsersList", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getSetValues", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getRegions", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_activationSite", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getDefaultServerStatus", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getCountries", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getCities", value = false });
-                loadingList.Add(new keyValueBool { key = "loading_getUsers", value = false });
-
-                loading_listObjects();
-                loading_getGroupObjects();
-                loading_globalItemUnitsList();
-                loading_RefreshBranches();
-                loading_RefreshBranchesAllWithoutMain();
-                loading_RefreshByBranchandUser();
-                loading_RefreshCategory();
-                loading_RefreshUnit();
-                loading_RefreshVendors();
-                loading_RefreshCards();
-                loading_getUserPersonalInfo();
-                loading_getUsers();
-                //loading_getUserPath();//dina
-
-                //  loading_getItemCost();
-                //  loading_getPrintCount();
-                //loading_getTaxDetails();//dina
-                //loading_getDefaultSystemInfo();//dina
-                //loading_getDateForm();//dina
-                //loading_getRegionAndCurrency();
-                //loading_getStorageCost();//dina
-                //loading_getAccurac();
-                loading_getprintSitting();
-                loading_POSList();
-                //loading_getTableTimes();//dina
-                // loading_getDefaultInvoiceType();//dina
-                //loading_getStatusesOfPreparingOrder();//dina
-                loading_typesOfService();
-                //loading_maxDiscount();//dina
-                loading_itemUnitsUsersList();
-                loading_getSetValues();
-                loading_getRegions();
-                loading_getCountries();
-                loading_getCities();
-                loading_activationSite();
-                loading_getDefaultServerStatus();
-
-                do
-                {
-                    isDone = true;
-                    foreach (var item in loadingList)
-                    {
-                        if (item.value == false)
-                        {
-                            isDone = false;
-                            break;
-                        }
-                    }
-                    if (!isDone)
-                    {
-                        //MessageBox.Show("not done");
-                        //string s = "";
-                        //foreach (var item in loadingList)
-                        //{
-                        //    s += item.name + " - " + item.value + "\n";
-                        //}
-                        //MessageBox.Show(s);
-                        await Task.Delay(0500);
-                        //MessageBox.Show("do");
-                    }
-                }
-                while (!isDone);
-                //MessageBox.Show(catchError + " and count: " + catchErrorCount);
-                #endregion
-                */
 
 
                 #region Permision
                 permission();
                 #endregion
 
-                grid_main.Children.Clear();
-                grid_main.Children.Add(uc_receiptInvoice.Instance);
+                //grid_main.Children.Clear();
+                //grid_main.Children.Add(uc_receiptInvoice.Instance);
+                //var receiptInvoice = new uc_receiptInvoice();
+                //receiptInvoice.Tag = "0";
+                //receiptInvoice.tb_Notes1.Text = "0";
+                //receiptInvoiceList.Add(receiptInvoice);
+                //grid_main.Children.Add(receiptInvoiceList.First());
+                //var receiptInvoice1 = new uc_receiptInvoice();
+                //receiptInvoice1.Tag = "1";
+                //receiptInvoice1.tb_Notes1.Text = "1";
+                //receiptInvoiceList.Add(receiptInvoice1);
+                Btn_addReceiptInvoice_Click(btn_addReceiptInvoice, null);
 
                 //SelectAllText
                 EventManager.RegisterClassHandler(typeof(System.Windows.Controls.TextBox), System.Windows.Controls.TextBox.GotKeyboardFocusEvent, new RoutedEventHandler(SelectAllText));
                 //txt_rightReserved.Text = DateTime.Now.Date.Year + " © All Right Reserved for ";
-
+                firstLoad = false;
                 HelpClass.EndAwait(grid_mainWindow, "mainWindow_loaded");
             }
             catch (Exception ex)
             {
-
                 HelpClass.EndAwait(grid_mainWindow, "mainWindow_loaded");
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
@@ -370,7 +278,22 @@ namespace Hesabate_POS
         */
         public void translate()
         {
-           
+
+            #region side buttons
+            txt_pay.Text = Translate.getResource("2162");
+            txt_using.Text = Translate.getResource("1613");
+            txt_toKitchen.Text = Translate.getResource("1295");
+            txt_pending.Text = Translate.getResource("2154");
+            txt_pendingQuery.Text = Translate.getResource("1281");//استعلام فقط نحتاج استعلام معلق
+            txt_openBox.Text = Translate.getResource("2152");
+            txt_selectAgent.Text = Translate.getResource("526");
+            txt_invoiceDelete.Text = Translate.getResource("2153");
+            txt_points.Text = Translate.getResource("654");
+            txt_invoiceCost.Text = Translate.getResource("21");
+            txt_export.Text = Translate.getResource("32");
+            txt_administration.Text = Translate.getResource("2240");
+            #endregion
+
         }
         private void Btn_home_Click(object sender, RoutedEventArgs e)
         {
@@ -421,27 +344,27 @@ namespace Hesabate_POS
             }
         }
 
-      
-
-       /*
-        private void Btn_vendorsData_Click(object sender, RoutedEventArgs e)
-        {
-
-            try
-            {
-                grid_main.Children.Clear();
-                grid_main.Children.Add(uc_vendorsData.Instance);
-                Button button = sender as Button;
-                secondMenuTitleActivate(button.Tag.ToString());
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
 
 
-        }
-        */
+        /*
+         private void Btn_vendorsData_Click(object sender, RoutedEventArgs e)
+         {
+
+             try
+             {
+                 grid_main.Children.Clear();
+                 grid_main.Children.Add(uc_vendorsData.Instance);
+                 Button button = sender as Button;
+                 secondMenuTitleActivate(button.Tag.ToString());
+             }
+             catch (Exception ex)
+             {
+                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+             }
+
+
+         }
+         */
 
         private void Btn_lang_Click(object sender, RoutedEventArgs e)
         {
@@ -484,5 +407,340 @@ namespace Hesabate_POS
         {
 
         }
+
+        #region grid0_0
+        private void btn_menu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                if (!AppSettings.menuState)
+                {
+                    Storyboard sb = this.FindResource("Storyboard1") as Storyboard;
+                    sb.Begin();
+                    AppSettings.menuState = true;
+                }
+                else
+                {
+                    Storyboard sb = this.FindResource("Storyboard2") as Storyboard;
+                    sb.Begin();
+                    AppSettings.menuState = false;
+                }
+                if (!firstLoad)
+                {
+                    Properties.Settings.Default.menuState = AppSettings.menuState;
+                    Properties.Settings.Default.Save();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_pay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_using_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_toKitchen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_pending_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_openBox_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_selectAgent_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_invoiceDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_points_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_shiftClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_invoiceBonus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_invoiceCost_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_import_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btn_administration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region receiptInvoice
+        List<uc_receiptInvoice> receiptInvoiceList = new List<uc_receiptInvoice>();
+        int receiptInvoiceListCounter = 0;
+        private void receiptInvoiceSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+
+                var receiptInvoice = receiptInvoiceList.Where(
+                        x => button.Tag.ToString().Contains(x.Tag.ToString())
+                        ).FirstOrDefault();
+                if (receiptInvoice != null)
+                {
+                    grid_main.Children.Clear();
+                    grid_main.Children.Add(receiptInvoice);
+                    string tagNumber = button.Tag.ToString().Split('_')[1];
+                    receiptInvoiceButtonActive(tagNumber);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        void receiptInvoiceButtonActive(string tag)
+        {
+
+            foreach (Button button in FindControls.FindVisualChildren<Button>(this)
+                .Where(x => x.Tag != null &&  x.Tag.ToString().Contains("receiptInvoiceMainButton")))
+            {
+                if (button.Tag != null)
+                {
+                    if (button.Tag.ToString().Contains(tag))
+                        button.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                    else
+                        button.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+                    Path path = FindControls.FindVisualChildren<Path>(button).FirstOrDefault();
+                    if (path != null  && path.Tag != null)
+                    {
+                        if (path.Tag.ToString().Contains(tag))
+                            path.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        else
+                            path.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                    }
+                    //else
+                    //{
+                    //    foreach (Path path1 in FindControls.FindVisualChildren<Path>(this)
+                    //        .Where(x => x.Tag.ToString().Contains("receiptInvoicePath")))
+                    //    {
+                    //        if (path1.Tag != null)
+                    //        {
+                    //            if (tag == path1.Tag.ToString())
+                    //                path1.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    //            else
+                    //                path1.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                    //        }
+                    //    }
+                    //}
+
+                    TextBlock textBlock = FindControls.FindVisualChildren<TextBlock>(button).FirstOrDefault();
+                    if (textBlock != null  && textBlock.Tag != null)
+                    {
+                        if (textBlock.Tag.ToString().Contains(tag))
+                            textBlock.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        else
+                            textBlock.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                    }
+                }
+            }
+            /*
+            foreach (Path path in FindControls.FindVisualChildren<Path>(this)
+                .Where(x => Tag.ToString().Contains("receiptInvoicePath")))
+            {
+                if (path.Tag != null)
+                {
+                    if (tag == path.Tag.ToString())
+                        path.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    else
+                        path.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                }
+            }
+            foreach (TextBlock textBlock in FindControls.FindVisualChildren<TextBlock>(this)
+                .Where(x => Tag.ToString().Contains("receiptInvoiceText")))
+            {
+                if (textBlock.Tag != null)
+                {
+                    if (tag == textBlock.Tag.ToString())
+                        textBlock.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    else
+                        textBlock.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                }
+            }
+            */
+        }
+        private async void Btn_addReceiptInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                receiptInvoiceListCounter++;
+                var receiptInvoice = new uc_receiptInvoice();
+                receiptInvoice.Tag = receiptInvoiceListCounter.ToString();
+                receiptInvoiceList.Add(receiptInvoice);
+                //grid_main.Children.Clear();
+                //grid_main.Children.Add(receiptInvoice);
+                var newButton = buildReceiptInvoiceButtonTab(receiptInvoice.Tag.ToString());
+                sp_receiptInvoice.Children.Add(newButton);
+                if (firstLoad)
+                    await Task.Delay(0050);
+                receiptInvoiceCheckCount();
+                receiptInvoiceSwitch_Click(newButton,null);
+                //receiptInvoiceButtonActive(receiptInvoice.Tag.ToString());
+
+
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        Button buildReceiptInvoiceButtonTab(string tag)
+        {
+            Button mainButton = new Button();
+            mainButton.Tag = "receiptInvoiceMainButton_" + tag;
+            mainButton.Padding = new Thickness(0);
+            mainButton.Margin = new Thickness(5, 0, 5, 0);
+            mainButton.BorderThickness = new Thickness(2);
+            mainButton.Background = Application.Current.Resources["White"] as SolidColorBrush;
+            mainButton.BorderBrush = Application.Current.Resources["White"] as SolidColorBrush;
+            MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(mainButton, (new CornerRadius(7)));
+            mainButton.Click += receiptInvoiceSwitch_Click;
+            #region stackPanel
+            StackPanel stackPanel = new StackPanel();
+            stackPanel.Orientation = Orientation.Horizontal;
+            #region receiptInvoicePath
+            Path path = new Path();
+            path.Tag = "receiptInvoicePath_" + tag;
+            path.Stretch = Stretch.Fill;
+            path.FlowDirection = FlowDirection.LeftToRight;
+            path.Width =
+            path.Height = 20;
+            path.Data = App.Current.Resources["invoice"] as Geometry;
+            path.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            path.Margin = new Thickness(5);
+            stackPanel.Children.Add(path);
+            #endregion
+            #region receiptInvoiceText
+            TextBlock textBlock = new TextBlock();
+            textBlock.Tag = "receiptInvoiceText_" + tag;
+            textBlock.Text = "#" + tag;
+            textBlock.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            textBlock.Margin = new Thickness(0,5,0,5);
+
+            stackPanel.Children.Add(textBlock);
+            #endregion
+            #region receiptInvoiceCloseButton
+            Button buttonClose = new Button();
+            buttonClose.Tag = "receiptInvoiceCloseButton" + tag;
+            buttonClose.Margin = new Thickness(2.5);
+            buttonClose.Height =
+            buttonClose.Width = 25;
+            buttonClose.Padding = new Thickness(0);
+            buttonClose.Background = Application.Current.Resources["Red"] as SolidColorBrush;
+            buttonClose.BorderBrush = null;
+            buttonClose.BorderThickness = new Thickness(0);
+            MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonClose, (new CornerRadius(25)));
+            #region materialDesign
+            var ClosePackIcon = new PackIcon();
+            ClosePackIcon.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+            ClosePackIcon.Height =
+            ClosePackIcon.Width = 25;
+            ClosePackIcon.Kind = PackIconKind.Close;
+            buttonClose.Content = ClosePackIcon;
+            #endregion
+            buttonClose.Click += receiptInvoiceDelete_Click;
+            stackPanel.Children.Add(buttonClose);
+            #endregion
+            mainButton.Content = stackPanel;
+            #endregion
+
+            return mainButton;
+        }
+        private void receiptInvoiceDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                var receiptInvoice = receiptInvoiceList.Where(
+                        x => button.Tag.ToString().Contains(x.Tag.ToString())
+                        ).FirstOrDefault();
+                if (receiptInvoice != null)
+                {
+                    receiptInvoiceList.Remove(receiptInvoice);
+                    if (grid_main.Children.Contains(receiptInvoice))
+                    {
+                        grid_main.Children.Clear();
+                        var receiptInvoiceSwitch =  receiptInvoiceList.FirstOrDefault();
+                        var buttonSwitch = FindControls.FindVisualChildren<Button>(this)
+                        .Where(x => x.Tag != null && x.Tag.ToString()
+                        .Contains("receiptInvoiceMainButton_" + receiptInvoiceSwitch.Tag)).FirstOrDefault();
+                        if(buttonSwitch!= null)
+                            receiptInvoiceSwitch_Click(buttonSwitch,null);
+                    }
+                    Button father = (button.Parent as StackPanel).Parent as Button;
+                    sp_receiptInvoice.Children.Remove(father);
+                    
+                    receiptInvoiceCheckCount();
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        void receiptInvoiceCheckCount()
+        {
+            if(receiptInvoiceList.Count == 1)
+            {
+                foreach (Button button in FindControls.FindVisualChildren<Button>(this)
+               .Where(x => x.Tag != null && x.Tag.ToString().Contains("receiptInvoiceMainButton")))
+                {
+                    button.Visibility = Visibility.Collapsed;
+                }
+            }
+            else if(receiptInvoiceList.Count == 2)
+            {
+                foreach (Button button in FindControls.FindVisualChildren<Button>(this)
+                .Where(x => x.Tag != null && x.Tag.ToString().Contains("receiptInvoiceMainButton")))
+                {
+                    button.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+
+        #endregion
+
+
     }
 }
