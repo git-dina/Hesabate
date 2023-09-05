@@ -99,7 +99,7 @@
                         CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                 <Grid   >
                                     <TextBox  x:Name="tb_userName" 
-                                              Text="team.pos@mms.ps"
+                                              Text=""
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                   Padding="10,0,5,0" 
                                   MaxLength="35"
@@ -132,7 +132,7 @@
                         CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                 <Grid   >
                                     <PasswordBox x:Name="pb_password" 
-                                                 Password="123"
+                                                 Password=""
                                          Margin="00"
                                          Padding="10,0,5,0" 
                                          Height="40"
@@ -287,7 +287,7 @@
 
                 </Grid>
                
-                <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" 
+                <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="login" 
                           materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="10 10" x:Name="btn_login" Click="Btn_login_Click" 
                           Foreground="White"

@@ -78,6 +78,8 @@ namespace Hesabate_POS.View.windows
                     Window.GetWindow(this).Opacity = 1;
                 }
 
+                tb_userName.Text = Properties.Settings.Default.userName;
+                pb_password.Password = Properties.Settings.Default.password;
                 AppSettings.menuState = Properties.Settings.Default.menuState;
                 #endregion
                 await FillCombo.fillLanguages(cb_language);
@@ -261,12 +263,6 @@ namespace Hesabate_POS.View.windows
             {
                 if (HelpClass.validate(requiredControlList, this))
                 {
-                    //if (AppSettings.APIUri == "")
-                    //{
-                    //    AppSettings.APIUri = tb_serverName.Text;
-                    //    Properties.Settings.Default.APIUri = AppSettings.APIUri;
-                    //    Properties.Settings.Default.Save();
-                    //}
 
                     bool canLogin = false;
                     btn_login.IsEnabled = false;
@@ -330,6 +326,21 @@ namespace Hesabate_POS.View.windows
                     #endregion
                     if (canLogin)
                     {
+                        #region remember me
+                        if (cbxRemmemberMe.IsChecked.Value)
+                        {
+                            Properties.Settings.Default.userName = tb_userName.Text;
+                            Properties.Settings.Default.password = pb_password.Password;
+
+                        }
+                        else
+                        {
+                            Properties.Settings.Default.userName = "";
+                            Properties.Settings.Default.password = "";
+                        }
+                        Properties.Settings.Default.Save();
+                        #endregion
+
                         if (AppSettings.showPx.Equals("1"))
                         {
                             //show custody window
