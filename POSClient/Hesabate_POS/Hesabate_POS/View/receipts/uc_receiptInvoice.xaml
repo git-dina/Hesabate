@@ -1887,9 +1887,9 @@ Margin="5"  CornerRadius="0,0,0,0"
                          BlurRadius="10"/>
                     </Border.Effect>
                     <Grid   Margin="10,0" >
-                        <Border Grid.Row="1" Margin="0"  
+                        <!--<Border Grid.Row="1" Margin="0"  
                         BorderThickness="0 0 0 1" 
-                        BorderBrush="{StaticResource LightGrey}"/>
+                        BorderBrush="{StaticResource LightGrey}"/>-->
                         <StackPanel Grid.Column="2" Grid.RowSpan="3"
                                 Margin="5"
                                     VerticalAlignment="Center">
