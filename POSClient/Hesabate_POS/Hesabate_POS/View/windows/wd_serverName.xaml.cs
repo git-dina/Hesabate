@@ -72,6 +72,7 @@ namespace Hesabate_POS.View.windows
                     grid_main.FlowDirection = FlowDirection.RightToLeft;
                 }
                 */
+                tb_serverName.Text = AppSettings.APIUri;
                 translate();
                 #endregion
 
