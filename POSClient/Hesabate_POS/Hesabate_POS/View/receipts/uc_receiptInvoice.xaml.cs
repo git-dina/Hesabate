@@ -547,7 +547,7 @@ namespace Hesabate_POS.View.receipts
                     {
                         var item1 = GeneralInfoService.items.Where(x => x.id == item.id.ToString()).FirstOrDefault();
 
-                        AddItemToInvoice(item1, item.items);
+                        AddItemToInvoice(item1, item.items,item.addItems,item.deleteItems);
                         //MessageBox.Show("Add me to invoice");
                     }
 
@@ -561,7 +561,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         //private void AddItemToInvoice(CategoryModel item)
-        private void AddItemToInvoice(ItemModel item, List<CategoryModel> extraItems)
+        private void AddItemToInvoice(ItemModel item, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
         {
             var itemInInvoice = invoiceDetailsList.Where(x => x.id.ToString() == item.id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
@@ -579,6 +579,8 @@ namespace Hesabate_POS.View.receipts
                 item.total = item.price;
 
                 item.extraItems = extraItems;
+                item.addsItems = addItems;
+                item.deletesItems = deleteItems;
                 invoiceDetailsList.Add(item);
             }
 
@@ -2278,7 +2280,7 @@ namespace Hesabate_POS.View.receipts
 
                     }
                     else
-                        AddItemToInvoice(item , new List<CategoryModel>());
+                        AddItemToInvoice(item , new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                     tb_search.Text = "";
                     //HelpClass.EndAwait(grid_main);
                 }
