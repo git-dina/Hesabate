@@ -80,6 +80,10 @@ namespace Hesabate_POS.View.windows
 
                 tb_userName.Text = Properties.Settings.Default.userName;
                 pb_password.Password = Properties.Settings.Default.password;
+                if (Properties.Settings.Default.rememberMe)
+                    cbxRemmemberMe.IsChecked = true;
+                else
+                    cbxRemmemberMe.IsChecked = false;
                 AppSettings.menuState = Properties.Settings.Default.menuState;
                 #endregion
                 await FillCombo.fillLanguages(cb_language);
@@ -331,13 +335,14 @@ namespace Hesabate_POS.View.windows
                         {
                             Properties.Settings.Default.userName = tb_userName.Text;
                             Properties.Settings.Default.password = pb_password.Password;
-
                         }
                         else
                         {
                             Properties.Settings.Default.userName = "";
                             Properties.Settings.Default.password = "";
                         }
+                        Properties.Settings.Default.rememberMe = (bool)cbxRemmemberMe.IsChecked;
+
                         Properties.Settings.Default.Save();
                         #endregion
 
