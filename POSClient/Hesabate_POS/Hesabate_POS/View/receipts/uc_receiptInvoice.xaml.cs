@@ -822,7 +822,7 @@ namespace Hesabate_POS.View.receipts
         void buildInvoiceItemAdds(ItemModel item)
         {
             sp_invoiceItemOptionsAdds.Children.Clear();
-            if (item.extraItems != null)
+            if (item.addsItems != null)
             {
                 foreach (var extra in item.addsItems)
                 {
@@ -962,7 +962,7 @@ namespace Hesabate_POS.View.receipts
         void buildInvoiceItemDeletes(ItemModel item)
         {
             sp_invoiceItemOptionsDeletes.Children.Clear();
-            if (item.extraItems != null)
+            if (item.deletesItems != null)
             {
                 foreach (var extra in item.deletesItems)
                 {
