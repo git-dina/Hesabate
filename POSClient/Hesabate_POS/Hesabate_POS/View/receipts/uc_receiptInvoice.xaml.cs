@@ -693,6 +693,8 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                switchGrid1_1("mainItemsCatalog");
+
                 // categoryPath
                 categoryPath.Clear();
                 buildCategoryPath(categoryPath);
@@ -753,6 +755,10 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 if (button.DataContext != null)
                 {
+
+                    switchGrid1_1("mainItemsCatalog");
+
+
                     var item = button.DataContext as CategoryModel;
                     // categoryPath
                     //categoryPath.Add(item);
@@ -774,9 +780,10 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
 
-        #region invoiceItemOptions
-        ItemModel selectedInvoiceItemOptions;
-        private void Btn_invoiceItemOptionsBack_Click(object sender, RoutedEventArgs e)
+        #region invItmOps
+        ItemModel selectedInvItmOps;
+        /*
+        private void Btn_invItmOpsBack_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -789,6 +796,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        */
 
         private void btn_extraItems_Click(object sender, RoutedEventArgs e)
         {
@@ -796,9 +804,9 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 switchGrid1_1(button.Tag.ToString());
-                if (selectedInvoiceItemOptions != null && selectedInvoiceItemOptions.index != 0)
+                if (selectedInvItmOps != null && selectedInvItmOps.index != 0)
                 {
-                    MessageBox.Show($"i'm items extra for invoiceItem index : {selectedInvoiceItemOptions.index}");
+                    MessageBox.Show($"i'm items extra for invoiceItem index : {selectedInvItmOps.index}");
                     string extra = "";
 
                 }
@@ -813,125 +821,140 @@ namespace Hesabate_POS.View.receipts
         {
             MessageBox.Show("ss");
         }
-        void showInvoiceItemOptions()
+        void showInvItmOps()
         {
-            wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
-            buildInvoiceItemAdds(selectedInvoiceItemOptions);
-            buildInvoiceItemDeletes(selectedInvoiceItemOptions);
-            buildInvoiceItemExtra(selectedInvoiceItemOptions);
-            switchGrid1_1("invoiceItemOptions");
+            wp_invItmOpsSetting.DataContext = selectedInvItmOps;
+            if (selectedInvItmOps.addsItems.Count == 0 && selectedInvItmOps.deletesItems.Count == 0)
+            {
+                grid_invItmOpsAddsAndDeletesTitle.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                grid_invItmOpsAddsAndDeletesTitle.Visibility = Visibility.Visible;
+            }
+            buildInvoiceItemAdds(selectedInvItmOps);
+                buildInvoiceItemDeletes(selectedInvItmOps);
+            buildInvoiceItemExtra(selectedInvItmOps);
+            switchGrid1_1("invItmOps");
         }
         void buildInvoiceItemAdds(ItemModel item)
         {
-            sp_invoiceItemOptionsAdds.Children.Clear();
-            if (item.addsItems != null)
+            sp_invItmOpsAdds.Children.Clear();
+
+            foreach (var extra in item.addsItems)
             {
-                foreach (var extra in item.addsItems)
+
+                #region groupItems
+                WrapPanel wrapPanel = new WrapPanel();
+                foreach (var groupItem in extra.group_items)
                 {
-                  
-                    #region groupItems
-                    WrapPanel wrapPanel = new WrapPanel();
-                    foreach (var groupItem in extra.group_items)
-                    {
-                        
-                        StackPanel stackPanel = new StackPanel();
-                        stackPanel.Orientation = Orientation.Horizontal;
-                        stackPanel.Margin = new Thickness(10,5,10,5);
-                        stackPanel.DataContext = groupItem;
 
-                        #region groupItemName
-                        TextBlock groupItemText = new TextBlock();
-                        if (string.IsNullOrEmpty(groupItem.unit))
-                            groupItemText.Text = $"{groupItem.name}";
-                        else
-                            groupItemText.Text = $"{groupItem.name} - {groupItem.unit}";
+                    StackPanel stackPanel = new StackPanel();
+                    stackPanel.Orientation = Orientation.Horizontal;
+                    stackPanel.Margin = new Thickness(10, 5, 10, 5);
+                    stackPanel.DataContext = groupItem;
 
-                        groupItemText.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
-                        groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItemText.VerticalAlignment = VerticalAlignment.Center;
-                        groupItemText.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItemText);
-                        #endregion
+                    #region groupItemName
+                    TextBlock groupItemText = new TextBlock();
+                    //if (string.IsNullOrEmpty(groupItem.unit))
+                    groupItemText.Text = $"{groupItem.name}";
+                    //else
+                    //    groupItemText.Text = $"{groupItem.name} - {groupItem.unit}";
 
-                        #region groupItemButtonMinus
-                        Button groupItemButtonMinus = new Button();
-                        groupItemButtonMinus.DataContext = groupItem;
-                        groupItemButtonMinus.Margin = new Thickness(2.5);
-                        groupItemButtonMinus.Height =
-                        groupItemButtonMinus.Width = 25;
-                        groupItemButtonMinus.Padding = new Thickness(0);
-                        groupItemButtonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
-                        groupItemButtonMinus.BorderThickness = new Thickness(0);
-                        MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonMinus, (new CornerRadius(5)));
-                        #region materialDesign
-                        var minusPackIcon = new PackIcon();
-                        minusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
-                        minusPackIcon.Height =
-                        minusPackIcon.Width = 25;
-                        minusPackIcon.Kind = PackIconKind.Minus;
-                        groupItemButtonMinus.Content = minusPackIcon;
-                        #endregion
-                        groupItemButtonMinus.Click += addsItemButtonMinus_Click;
-                        stackPanel.Children.Add(groupItemButtonMinus);
-                        /////////////////////////////////
-                        #endregion
-
-                        #region groupItem_start_amount
-                        TextBlock groupItem_start_amount = new TextBlock();
-                        var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
-                        groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
-                        groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
-                        groupItem_start_amount.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItem_start_amount);
-                        #endregion
-                        #region groupItemButtonPlus
-                        Button groupItemButtonPlus = new Button();
-                        groupItemButtonPlus.DataContext = groupItem;
-                        groupItemButtonPlus.Margin = new Thickness(2.5);
-                        groupItemButtonPlus.Height =
-                        groupItemButtonPlus.Width = 25;
-                        groupItemButtonPlus.Padding = new Thickness(0);
-                        groupItemButtonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
-                        groupItemButtonPlus.BorderThickness = new Thickness(0);
-                        MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonPlus, (new CornerRadius(5)));
-                        #region materialDesign
-                        var plusPackIcon = new PackIcon();
-                        plusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
-                        plusPackIcon.Height =
-                        plusPackIcon.Width = 25;
-                        plusPackIcon.Kind = PackIconKind.Plus;
-                        groupItemButtonPlus.Content = plusPackIcon;
-                        #endregion
-                        groupItemButtonPlus.Click += addsItemButtonPlus_Click;
-                        stackPanel.Children.Add(groupItemButtonPlus);
-                        /////////////////////////////////
-                        #endregion
-                        #region groupItem_add_price
-                        TextBlock groupItem_add_price = new TextBlock();
-                        var groupItem_add_priceBinding = new System.Windows.Data.Binding("add_price");
-                        groupItem_add_price.SetBinding(TextBlock.TextProperty, groupItem_add_priceBinding);
-                        groupItem_add_price.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItem_add_price.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItem_add_price.VerticalAlignment = VerticalAlignment.Center;
-                        groupItem_add_price.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItem_add_price);
-                        #endregion
-                        #region groupItemCurrency
-                        TextBlock groupItemCurrency = new TextBlock();
-                        groupItemCurrency.Text = AppSettings.currency;
-                        groupItemCurrency.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItemCurrency.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItemCurrency.VerticalAlignment = VerticalAlignment.Center;
-                        groupItemCurrency.Margin = new Thickness(0, 5, 5, 5);
-                        stackPanel.Children.Add(groupItemCurrency);
-                        #endregion
-                        wrapPanel.Children.Add(stackPanel);
-                    }
-                    sp_invoiceItemOptionsAdds.Children.Add(wrapPanel);
+                    groupItemText.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
+                    groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItemText.VerticalAlignment = VerticalAlignment.Center;
+                    groupItemText.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItemText);
                     #endregion
+
+                    #region groupItemButtonMinus
+                    Button groupItemButtonMinus = new Button();
+                    groupItemButtonMinus.DataContext = groupItem;
+                    groupItemButtonMinus.Margin = new Thickness(2.5);
+                    groupItemButtonMinus.Height =
+                    groupItemButtonMinus.Width = 25;
+                    groupItemButtonMinus.Padding = new Thickness(0);
+                    groupItemButtonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                    groupItemButtonMinus.BorderThickness = new Thickness(0);
+                    MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonMinus, (new CornerRadius(5)));
+                    #region materialDesign
+                    var minusPackIcon = new PackIcon();
+                    minusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                    minusPackIcon.Height =
+                    minusPackIcon.Width = 25;
+                    minusPackIcon.Kind = PackIconKind.Minus;
+                    groupItemButtonMinus.Content = minusPackIcon;
+                    #endregion
+                    groupItemButtonMinus.Click += addsItemButtonMinus_Click;
+                    stackPanel.Children.Add(groupItemButtonMinus);
+                    /////////////////////////////////
+                    #endregion
+
+                    #region groupItem_start_amount
+                    TextBlock groupItem_start_amount = new TextBlock();
+                    var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
+                    groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
+                    groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
+                    groupItem_start_amount.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItem_start_amount);
+                    #endregion
+                    #region groupItemButtonPlus
+                    Button groupItemButtonPlus = new Button();
+                    groupItemButtonPlus.DataContext = groupItem;
+                    groupItemButtonPlus.Margin = new Thickness(2.5);
+                    groupItemButtonPlus.Height =
+                    groupItemButtonPlus.Width = 25;
+                    groupItemButtonPlus.Padding = new Thickness(0);
+                    groupItemButtonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                    groupItemButtonPlus.BorderThickness = new Thickness(0);
+                    MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonPlus, (new CornerRadius(5)));
+                    #region materialDesign
+                    var plusPackIcon = new PackIcon();
+                    plusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                    plusPackIcon.Height =
+                    plusPackIcon.Width = 25;
+                    plusPackIcon.Kind = PackIconKind.Plus;
+                    groupItemButtonPlus.Content = plusPackIcon;
+                    #endregion
+                    groupItemButtonPlus.Click += addsItemButtonPlus_Click;
+                    stackPanel.Children.Add(groupItemButtonPlus);
+                    /////////////////////////////////
+                    #endregion
+                    #region groupItem_add_price
+                    TextBlock groupItem_add_price = new TextBlock();
+                    var groupItem_add_priceBinding = new System.Windows.Data.Binding("add_price");
+                    groupItem_add_price.SetBinding(TextBlock.TextProperty, groupItem_add_priceBinding);
+                    groupItem_add_price.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItem_add_price.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItem_add_price.VerticalAlignment = VerticalAlignment.Center;
+                    groupItem_add_price.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItem_add_price);
+                    #endregion
+                    #region groupItemCurrency
+                    TextBlock groupItemCurrency = new TextBlock();
+                    groupItemCurrency.Text = AppSettings.currency;
+                    groupItemCurrency.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItemCurrency.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItemCurrency.VerticalAlignment = VerticalAlignment.Center;
+                    groupItemCurrency.Margin = new Thickness(0, 5, 5, 5);
+                    stackPanel.Children.Add(groupItemCurrency);
+                    #endregion
+                    #region groupItemBorder
+                    Border groupItemBorder = new Border();
+                    groupItemBorder.Margin = new Thickness(5);
+                    groupItemBorder.Width = 1;
+                    groupItemBorder.BorderThickness = new Thickness(0); ;
+                    groupItemBorder.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+                    stackPanel.Children.Add(groupItemBorder);
+                    #endregion
+                    wrapPanel.Children.Add(stackPanel);
                 }
+                sp_invItmOpsAdds.Children.Add(wrapPanel);
+                #endregion
             }
         }
         void addsItemButtonMinus_Click(object sender, RoutedEventArgs e)
@@ -963,115 +986,122 @@ namespace Hesabate_POS.View.receipts
         }
         void buildInvoiceItemDeletes(ItemModel item)
         {
-            sp_invoiceItemOptionsDeletes.Children.Clear();
-            if (item.deletesItems != null)
+            sp_invItmOpsDeletes.Children.Clear();
+
+            foreach (var extra in item.deletesItems)
             {
-                foreach (var extra in item.deletesItems)
+
+                #region groupItems
+                WrapPanel wrapPanel = new WrapPanel();
+                foreach (var groupItem in extra.group_items)
                 {
 
-                    #region groupItems
-                    WrapPanel wrapPanel = new WrapPanel();
-                    foreach (var groupItem in extra.group_items)
-                    {
+                    StackPanel stackPanel = new StackPanel();
+                    stackPanel.Orientation = Orientation.Horizontal;
+                    stackPanel.Margin = new Thickness(10, 5, 10, 5);
+                    stackPanel.DataContext = groupItem;
 
-                        StackPanel stackPanel = new StackPanel();
-                        stackPanel.Orientation = Orientation.Horizontal;
-                        stackPanel.Margin = new Thickness(10, 5, 10, 5);
-                        stackPanel.DataContext = groupItem;
+                    #region groupItemName
+                    TextBlock groupItemText = new TextBlock();
+                    //if (string.IsNullOrEmpty(groupItem.unit))
+                    groupItemText.Text = $"{groupItem.name}";
+                    //else
+                    //    groupItemText.Text = $"{groupItem.name} - {groupItem.unit}";
 
-                        #region groupItemName
-                        TextBlock groupItemText = new TextBlock();
-                        if (string.IsNullOrEmpty(groupItem.unit))
-                            groupItemText.Text = $"{groupItem.name}";
-                        else
-                            groupItemText.Text = $"{groupItem.name} - {groupItem.unit}";
-
-                        groupItemText.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
-                        groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItemText.VerticalAlignment = VerticalAlignment.Center;
-                        groupItemText.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItemText);
-                        #endregion
-
-                        #region groupItemButtonMinus
-                        Button groupItemButtonMinus = new Button();
-                        groupItemButtonMinus.DataContext = groupItem;
-                        groupItemButtonMinus.Margin = new Thickness(2.5);
-                        groupItemButtonMinus.Height =
-                        groupItemButtonMinus.Width = 25;
-                        groupItemButtonMinus.Padding = new Thickness(0);
-                        groupItemButtonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
-                        groupItemButtonMinus.BorderThickness = new Thickness(0);
-                        MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonMinus, (new CornerRadius(5)));
-                        #region materialDesign
-                        var minusPackIcon = new PackIcon();
-                        minusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
-                        minusPackIcon.Height =
-                        minusPackIcon.Width = 25;
-                        minusPackIcon.Kind = PackIconKind.Minus;
-                        groupItemButtonMinus.Content = minusPackIcon;
-                        #endregion
-                        groupItemButtonMinus.Click += deletesItemButtonMinus_Click;
-                        stackPanel.Children.Add(groupItemButtonMinus);
-                        /////////////////////////////////
-                        #endregion
-
-                        #region groupItem_start_amount
-                        TextBlock groupItem_start_amount = new TextBlock();
-                        var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
-                        groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
-                        groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
-                        groupItem_start_amount.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItem_start_amount);
-                        #endregion
-                        #region groupItemButtonPlus
-                        Button groupItemButtonPlus = new Button();
-                        groupItemButtonPlus.DataContext = groupItem;
-                        groupItemButtonPlus.Margin = new Thickness(2.5);
-                        groupItemButtonPlus.Height =
-                        groupItemButtonPlus.Width = 25;
-                        groupItemButtonPlus.Padding = new Thickness(0);
-                        groupItemButtonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
-                        groupItemButtonPlus.BorderThickness = new Thickness(0);
-                        MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonPlus, (new CornerRadius(5)));
-                        #region materialDesign
-                        var plusPackIcon = new PackIcon();
-                        plusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
-                        plusPackIcon.Height =
-                        plusPackIcon.Width = 25;
-                        plusPackIcon.Kind = PackIconKind.Plus;
-                        groupItemButtonPlus.Content = plusPackIcon;
-                        #endregion
-                        groupItemButtonPlus.Click += deletesItemButtonPlus_Click;
-                        stackPanel.Children.Add(groupItemButtonPlus);
-                        /////////////////////////////////
-                        #endregion
-                        #region groupItem_add_price
-                        TextBlock groupItem_add_price = new TextBlock();
-                        var groupItem_add_priceBinding = new System.Windows.Data.Binding("add_price");
-                        groupItem_add_price.SetBinding(TextBlock.TextProperty, groupItem_add_priceBinding);
-                        groupItem_add_price.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItem_add_price.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItem_add_price.VerticalAlignment = VerticalAlignment.Center;
-                        groupItem_add_price.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItem_add_price);
-                        #endregion
-                        #region groupItemCurrency
-                        TextBlock groupItemCurrency = new TextBlock();
-                        groupItemCurrency.Text = AppSettings.currency;
-                        groupItemCurrency.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItemCurrency.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItemCurrency.VerticalAlignment = VerticalAlignment.Center;
-                        groupItemCurrency.Margin = new Thickness(0, 5, 5, 5);
-                        stackPanel.Children.Add(groupItemCurrency);
-                        #endregion
-                        wrapPanel.Children.Add(stackPanel);
-                    }
-                    sp_invoiceItemOptionsDeletes.Children.Add(wrapPanel);
+                    groupItemText.Foreground = Application.Current.Resources["Red"] as SolidColorBrush;
+                    groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItemText.VerticalAlignment = VerticalAlignment.Center;
+                    groupItemText.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItemText);
                     #endregion
+
+                    #region groupItemButtonMinus
+                    Button groupItemButtonMinus = new Button();
+                    groupItemButtonMinus.DataContext = groupItem;
+                    groupItemButtonMinus.Margin = new Thickness(2.5);
+                    groupItemButtonMinus.Height =
+                    groupItemButtonMinus.Width = 25;
+                    groupItemButtonMinus.Padding = new Thickness(0);
+                    groupItemButtonMinus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                    groupItemButtonMinus.BorderThickness = new Thickness(0);
+                    MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonMinus, (new CornerRadius(5)));
+                    #region materialDesign
+                    var minusPackIcon = new PackIcon();
+                    minusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                    minusPackIcon.Height =
+                    minusPackIcon.Width = 25;
+                    minusPackIcon.Kind = PackIconKind.Minus;
+                    groupItemButtonMinus.Content = minusPackIcon;
+                    #endregion
+                    groupItemButtonMinus.Click += deletesItemButtonMinus_Click;
+                    stackPanel.Children.Add(groupItemButtonMinus);
+                    /////////////////////////////////
+                    #endregion
+
+                    #region groupItem_start_amount
+                    TextBlock groupItem_start_amount = new TextBlock();
+                    var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
+                    groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
+                    groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
+                    groupItem_start_amount.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItem_start_amount);
+                    #endregion
+                    #region groupItemButtonPlus
+                    Button groupItemButtonPlus = new Button();
+                    groupItemButtonPlus.DataContext = groupItem;
+                    groupItemButtonPlus.Margin = new Thickness(2.5);
+                    groupItemButtonPlus.Height =
+                    groupItemButtonPlus.Width = 25;
+                    groupItemButtonPlus.Padding = new Thickness(0);
+                    groupItemButtonPlus.Background = Application.Current.Resources["veryLightGrey"] as SolidColorBrush;
+                    groupItemButtonPlus.BorderThickness = new Thickness(0);
+                    MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(groupItemButtonPlus, (new CornerRadius(5)));
+                    #region materialDesign
+                    var plusPackIcon = new PackIcon();
+                    plusPackIcon.Foreground = Application.Current.Resources["ThickGrey"] as SolidColorBrush;
+                    plusPackIcon.Height =
+                    plusPackIcon.Width = 25;
+                    plusPackIcon.Kind = PackIconKind.Plus;
+                    groupItemButtonPlus.Content = plusPackIcon;
+                    #endregion
+                    groupItemButtonPlus.Click += deletesItemButtonPlus_Click;
+                    stackPanel.Children.Add(groupItemButtonPlus);
+                    /////////////////////////////////
+                    #endregion
+                    #region groupItem_add_price
+                    TextBlock groupItem_add_price = new TextBlock();
+                    var groupItem_add_priceBinding = new System.Windows.Data.Binding("add_price");
+                    groupItem_add_price.SetBinding(TextBlock.TextProperty, groupItem_add_priceBinding);
+                    groupItem_add_price.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItem_add_price.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItem_add_price.VerticalAlignment = VerticalAlignment.Center;
+                    groupItem_add_price.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItem_add_price);
+                    #endregion
+                    #region groupItemCurrency
+                    TextBlock groupItemCurrency = new TextBlock();
+                    groupItemCurrency.Text = AppSettings.currency;
+                    groupItemCurrency.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItemCurrency.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItemCurrency.VerticalAlignment = VerticalAlignment.Center;
+                    groupItemCurrency.Margin = new Thickness(0, 5, 5, 5);
+                    stackPanel.Children.Add(groupItemCurrency);
+                    #endregion
+                    #region groupItemBorder
+                    Border groupItemBorder = new Border();
+                    groupItemBorder.Margin = new Thickness(5);
+                    groupItemBorder.Width = 1;
+                    groupItemBorder.BorderThickness = new Thickness(0); ;
+                    groupItemBorder.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+                    stackPanel.Children.Add(groupItemBorder);
+                    #endregion
+                    wrapPanel.Children.Add(stackPanel);
                 }
+                sp_invItmOpsDeletes.Children.Add(wrapPanel);
+                #endregion
             }
         }
         void deletesItemButtonMinus_Click(object sender, RoutedEventArgs e)
@@ -1103,7 +1133,7 @@ namespace Hesabate_POS.View.receipts
         }
         void buildInvoiceItemExtra(ItemModel item)
         {
-            sp_invoiceItemOptionsExtra.Children.Clear();
+            sp_invItmOpsExtra.Children.Clear();
             if (item.extraItems != null)
             {
                 foreach (var extra in item.extraItems)
@@ -1142,11 +1172,12 @@ namespace Hesabate_POS.View.receipts
                     extraBorder.Height = 2;
                     extraBorder.BorderThickness = new Thickness(0); ;
                     extraBorder.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    extraBorder.Margin = new Thickness(10, 2.5, 10, 2.5);
 
                     Grid.SetColumn(extraBorder, 1);
                     gridTitle.Children.Add(extraBorder);
                     #endregion
-                    sp_invoiceItemOptionsExtra.Children.Add(gridTitle);
+                    sp_invItmOpsExtra.Children.Add(gridTitle);
                     #endregion
                     #region groupItems
                     WrapPanel wrapPanel = new WrapPanel();
@@ -1242,9 +1273,18 @@ namespace Hesabate_POS.View.receipts
                         groupItemCurrency.Margin = new Thickness(0, 5, 5, 5);
                         stackPanel.Children.Add(groupItemCurrency);
                         #endregion
+                        #region groupItemBorder
+                        Border groupItemBorder = new Border();
+                        groupItemBorder.Margin = new Thickness(5);
+                        groupItemBorder.Width = 1;
+                        groupItemBorder.BorderThickness = new Thickness(0); ;
+                        groupItemBorder.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+                        stackPanel.Children.Add(groupItemBorder);
+                        #endregion
                         wrapPanel.Children.Add(stackPanel);
                     }
-                    sp_invoiceItemOptionsExtra.Children.Add(wrapPanel);
+                    sp_invItmOpsExtra.Children.Add(wrapPanel);
                     #endregion
                 }
             }
@@ -1287,17 +1327,18 @@ namespace Hesabate_POS.View.receipts
             if (type == "mainItemsCatalog")
             {
                 grid_mainItemsCatalog.Visibility = Visibility.Visible;
-                grid_invoiceItemOptions.Visibility = Visibility.Collapsed;
+                grid_invItmOps.Visibility = Visibility.Collapsed;
+                //wp_invItmOps.Visibility = Visibility.Collapsed;
             }
-            else if (type == "invoiceItemOptions")
+            else if (type == "invItmOps")
             {
                 grid_mainItemsCatalog.Visibility = Visibility.Collapsed;
-                grid_invoiceItemOptions.Visibility = Visibility.Visible;
+                grid_invItmOps.Visibility = Visibility.Visible;
 
 
-                btn_invoiceItemOptionsBack.Tag = "mainItemsCatalog";
-                txt_invoiceItemOptionsTitle.Text = "invoiceItemOptions";
-                wp_invoiceItemOptions.Visibility = Visibility.Visible;
+                //btn_invItmOpsBack.Tag = "mainItemsCatalog";
+                //txt_invItmOpsTitle.Text = "invItmOps";
+                //wp_invItmOps.Visibility = Visibility.Visible;
                 //sp_extraItems.Visibility = Visibility.Collapsed;
             }
             // second level
@@ -1305,9 +1346,9 @@ namespace Hesabate_POS.View.receipts
             else if (type == "extraItems")
             {
                
-                btn_invoiceItemOptionsBack.Tag = "invoiceItemOptions";
-                txt_invoiceItemOptionsTitle.Text = "extraItems";
-                wp_invoiceItemOptions.Visibility = Visibility.Collapsed;
+                btn_invItmOpsBack.Tag = "invItmOps";
+                txt_invItmOpsTitle.Text = "extraItems";
+                wp_invItmOps.Visibility = Visibility.Collapsed;
                 //sp_extraItems.Visibility = Visibility.Visible;
             }
             */
@@ -1407,10 +1448,10 @@ namespace Hesabate_POS.View.receipts
                 //selection
                 if (dg_invoiceDetailsBig.SelectedIndex != -1)
                 {
-                    selectedInvoiceItemOptions = dg_invoiceDetailsBig.SelectedItem as ItemModel;
-                    //wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
-                    //switchGrid1_1("invoiceItemOptions");
-                    showInvoiceItemOptions();
+                    selectedInvItmOps = dg_invoiceDetailsBig.SelectedItem as ItemModel;
+                    //wp_invItmOpsSetting.DataContext = selectedInvItmOps;
+                    //switchGrid1_1("invItmOps");
+                    showInvItmOps();
 
                 }
                 HelpClass.EndAwait(grid_main);
@@ -2097,10 +2138,10 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 ItemModel invoiceDetails = button.DataContext as ItemModel;
-                selectedInvoiceItemOptions = invoiceDetails;
-                //wp_invoiceItemOptionsSetting.DataContext = selectedInvoiceItemOptions;
-                //switchGrid1_1("invoiceItemOptions");
-                showInvoiceItemOptions();
+                selectedInvItmOps = invoiceDetails;
+                //wp_invItmOpsSetting.DataContext = selectedInvItmOps;
+                //switchGrid1_1("invItmOps");
+                showInvItmOps();
 
             }
             catch (Exception ex)
@@ -2119,7 +2160,7 @@ namespace Hesabate_POS.View.receipts
                 if (DataContext != null)
                     invoiceDetails = button.DataContext as ItemModel;
                 else
-                    invoiceDetails = selectedInvoiceItemOptions;
+                    invoiceDetails = selectedInvItmOps;
 
                 invoiceDetails.isUrgent = !invoiceDetails.isUrgent;
                 if (invoiceDetails.isUrgent)
