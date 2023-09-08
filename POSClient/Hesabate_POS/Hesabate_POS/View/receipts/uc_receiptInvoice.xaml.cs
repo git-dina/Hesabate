@@ -1904,47 +1904,66 @@ namespace Hesabate_POS.View.receipts
                 gridMain.Children.Add(gridRow1);
                 #endregion
 
-                #region stackPanelRow1
-                /*
-                StackPanel stackPanelRow1 = new StackPanel();
-                stackPanelRow1.Margin = new Thickness(5,0,5,0);
-                #region extraItems
-                //List<string> extraItems = new List<string>() { "+ extra item", "- item", };
-                if (item.extraItems != null)
-                    foreach (var extra in item.extraItems)
+                #region stackPanelRow2
+                StackPanel stackPanelRow2 = new StackPanel();
+                stackPanelRow2.Margin = new Thickness(5,0,5,0);
+                #region addsItems
+                if (item.addsItems != null)
+                    foreach (var extra in item.addsItems)
                     {
-
-                    TextBlock extraItem = new TextBlock();
-                    extraItem.Text =$"{extra.group_name}:" ;
-                    extraItem.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                    extraItem.HorizontalAlignment = HorizontalAlignment.Left;
-                    extraItem.VerticalAlignment = VerticalAlignment.Center;
-                    extraItem.Margin = new Thickness(0, 2.5, 0, 2.5);
-                    extraItem.TextWrapping = TextWrapping.WrapWithOverflow;
-                    extraItem.TextAlignment = TextAlignment.Center;
-                    stackPanelRow1.Children.Add(extraItem);
+                        TextBlock groupItemText = new TextBlock();
+                        groupItemText.Text = "";
                         foreach (var groupItem in extra.group_items)
                         {
-                            TextBlock groupItemText = new TextBlock();
-                            groupItemText.Text = $"{groupItem.name} ({groupItem.start_amount})"  ;
-                        if (string.IsNullOrWhiteSpace(groupItem.unit))
-                                groupItemText.Text = groupItem.name;
-                        else
-                                groupItemText.Text = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.start_amount})";
+                            string itemString = "";
+                            itemString = $"{groupItem.name} ({groupItem.start_amount}) {groupItem.add_price} {AppSettings.currency}";
+                            //if (string.IsNullOrWhiteSpace(groupItem.unit))
+                            //    itemString = groupItem.name;
+                            //else
+                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.start_amount})";
 
-                            groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                            groupItemText.HorizontalAlignment = HorizontalAlignment.Left;
-                            groupItemText.VerticalAlignment = VerticalAlignment.Center;
-                            groupItemText.Margin = new Thickness(0, 2.5, 0, 2.5);
-                            groupItemText.TextWrapping = TextWrapping.WrapWithOverflow;
-                            groupItemText.TextAlignment = TextAlignment.Center;
-                            stackPanelRow1.Children.Add(groupItemText);
+                            groupItemText.Text +=$"+ {itemString} | ";
                         }
-                }
+                        groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItemText.HorizontalAlignment = HorizontalAlignment.Left;
+                        groupItemText.VerticalAlignment = VerticalAlignment.Center;
+                        groupItemText.Margin = new Thickness(0, 2.5, 0, 2.5);
+                        groupItemText.TextWrapping = TextWrapping.WrapWithOverflow;
+                        groupItemText.TextAlignment = TextAlignment.Center;
+                        stackPanelRow2.Children.Add(groupItemText);
+
+
+
+                    }
                 #endregion
-                Grid.SetRow(stackPanelRow1, 2);
-                gridMain.Children.Add(stackPanelRow1);
-                */
+                #region deletesItems
+                if (item.deletesItems != null)
+                    foreach (var extra in item.deletesItems)
+                    {
+                        TextBlock groupItemText = new TextBlock();
+                        groupItemText.Text = "";
+                        foreach (var groupItem in extra.group_items)
+                        {
+                            string itemString = "";
+                            itemString = $"{groupItem.name} ({groupItem.start_amount}) {groupItem.add_price} {AppSettings.currency}";
+                            //if (string.IsNullOrWhiteSpace(groupItem.unit))
+                            //    itemString = groupItem.name;
+                            //else
+                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.start_amount})";
+
+                            groupItemText.Text += $"- {itemString} | ";
+                        }
+                        groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItemText.HorizontalAlignment = HorizontalAlignment.Left;
+                        groupItemText.VerticalAlignment = VerticalAlignment.Center;
+                        groupItemText.Margin = new Thickness(0, 2.5, 0, 2.5);
+                        groupItemText.TextWrapping = TextWrapping.WrapWithOverflow;
+                        groupItemText.TextAlignment = TextAlignment.Center;
+                        stackPanelRow2.Children.Add(groupItemText);
+                    }
+                #endregion
+                Grid.SetRow(stackPanelRow2, 2);
+                gridMain.Children.Add(stackPanelRow2);
                 #endregion
 
                 #region buttonInfo
