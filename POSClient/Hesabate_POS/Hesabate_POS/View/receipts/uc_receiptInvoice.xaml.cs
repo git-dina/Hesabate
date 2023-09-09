@@ -116,7 +116,8 @@ namespace Hesabate_POS.View.receipts
             txt_SupTotalTitle.Text = Translate.getResource("572");
             txt_ServiceTitle.Text = Translate.getResource("1152");
 
-            txt_taxValueTitle.Text = Translate.getResource("575");
+            txt_taxRateTitle.Text = Translate.getResource("575");
+            txt_taxValueTitle.Text = Translate.getResource("888");
             txt_AutoDiscountTitle.Text = Translate.getResource("1066");
             //txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
@@ -138,6 +139,20 @@ namespace Hesabate_POS.View.receipts
             col_price.Header = Translate.getResource("570");
             col_total.Header = Translate.getResource("572");
 
+            #endregion
+
+            #region item details
+            txt_invItmOptAmountTitle.Text = Translate.getResource("491");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_invItmOptUnit, Translate.getResource("427"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_invItmOptDiscount, Translate.getResource("571"));
+            txt_invItmOptBonusTitle.Text = Translate.getResource("583");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptPrice, Translate.getResource("570"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
+            txt_invItmOptLibraReading.Text = Translate.getResource("2161");
+            txt_invItmOptDelete.Text = Translate.getResource("5");
+
+
+            txt_invItmOpsDetailsTitle.Text = Translate.getResource("28");
             #endregion
         }
 

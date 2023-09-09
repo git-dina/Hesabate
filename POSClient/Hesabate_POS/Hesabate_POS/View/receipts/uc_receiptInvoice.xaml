@@ -658,7 +658,7 @@ Margin="5"  CornerRadius="0,0,0,0"
           Background="{StaticResource MainColor}" />
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid   >
-                                                    <ComboBox  
+                                                    <ComboBox  x:Name="cb_invItemOptNotes"
      SelectedValue="{Binding customerId,Mode=OneWay}"
  Padding="10,0,5,0"  Foreground="#4E4E4E"
  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
