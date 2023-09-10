@@ -279,7 +279,8 @@ namespace Hesabate_POS
         public void translate()
         {
             #region top bar 
-            txt_userNameTitle.Text = Translate.getResource("994");
+            txt_userNameTitle.Text = Translate.getResource("689");
+            txt_licenseNumberTitle.Text = Translate.getResource("2306");
             txt_versionNumberTitle.Text = Translate.getResource("1338");
             #endregion
 
@@ -288,16 +289,16 @@ namespace Hesabate_POS
             txt_using.Text = Translate.getResource("1613");
             txt_toKitchen.Text = Translate.getResource("1295");
             txt_pending.Text = Translate.getResource("2154");
-            txt_pendingQuery.Text = Translate.getResource("1281");//استعلام فقط نحتاج استعلام معلق
+            txt_pendingQuery.Text = Translate.getResource("2155");//استعلام فقط نحتاج استعلام معلق
             txt_openBox.Text = Translate.getResource("2152");
             txt_selectAgent.Text = Translate.getResource("526");
             txt_invoiceDelete.Text = Translate.getResource("2153");
             txt_points.Text = Translate.getResource("654");
-            txt_shiftClose.Text = "shift Close";
+            txt_shiftClose.Text = Translate.getResource("2309");
             txt_invoiceBonus.Text = Translate.getResource("583");
             txt_invoiceCost.Text = Translate.getResource("21");
             txt_import.Text = Translate.getResource("763");
-            txt_export.Text = Translate.getResource("2186");
+            txt_export.Text = Translate.getResource("184");
             txt_administration.Text = Translate.getResource("2240");
             #endregion
 

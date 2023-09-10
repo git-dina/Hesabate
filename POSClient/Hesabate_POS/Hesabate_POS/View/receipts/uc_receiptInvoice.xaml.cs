@@ -109,8 +109,9 @@ namespace Hesabate_POS.View.receipts
         {
             txt_allItems.Text = Translate.getResource("162");
             txt_invoiceTitle.Text = Translate.getResource("1128");
-            txt_external.Text = Translate.getResource("695");
+            txt_external.Text = Translate.getResource("2311");
             txt_tables.Text = Translate.getResource("167");
+            txt_takeAway.Text = Translate.getResource("2307");
             txt_customer.Text = Translate.getResource("2145");
             txt_internalCustomer.Text = Translate.getResource("98");
 
@@ -119,8 +120,8 @@ namespace Hesabate_POS.View.receipts
             txt_ServiceTitle.Text = Translate.getResource("1152");
             txt_taxRateTitle.Text = Translate.getResource("575");
             txt_taxValueTitle.Text = Translate.getResource("888");
-            txt_AutoDiscountTitle.Text = Translate.getResource("571");
-            txt_UserDiscountTitle.Text = Translate.getResource("1066");
+            txt_AutoDiscountTitle.Text = Translate.getResource("2308");
+            txt_UserDiscountTitle.Text = Translate.getResource("571");
             //txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
@@ -130,6 +131,9 @@ namespace Hesabate_POS.View.receipts
             btn_newDraft.Content = Translate.getResource("8");
 
             #region top buttons
+            txt_printInvoice.Text = Translate.getResource("2144");
+            txt_returns.Text = Translate.getResource("133");
+            txt_discount.Text = Translate.getResource("571");
             #endregion
 
             #region invoice details big
@@ -152,10 +156,12 @@ namespace Hesabate_POS.View.receipts
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptPrice, Translate.getResource("570"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
             txt_invItmOptLibraReading.Text = Translate.getResource("2161");
+            txt_urgent.Text = Translate.getResource("2305");
             txt_invItmOptDelete.Text = Translate.getResource("5");
 
 
             txt_invItmOpsDetailsTitle.Text = Translate.getResource("28");
+            txt_invItmOpsAddAndDeleteGroupTitle.Text = Translate.getResource("2310");
             #endregion
         }
 
@@ -1149,6 +1155,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        
         void buildInvoiceItemExtra(ItemModel item)
         {
             sp_invItmOpsExtra.Children.Clear();
@@ -1329,11 +1336,18 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
                     groupItem.start_amount++;
+
+                checkExtraItemsCount();
             }
             catch (Exception ex)
             {
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
+        }
+
+        private void checkExtraItemsCount()
+        {
+
         }
         #endregion
         void switchGrid1_1(string type)
