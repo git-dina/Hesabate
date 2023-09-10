@@ -278,6 +278,10 @@ namespace Hesabate_POS
         */
         public void translate()
         {
+            #region top bar 
+            txt_userNameTitle.Text = Translate.getResource("994");
+            txt_versionNumberTitle.Text = Translate.getResource("1338");
+            #endregion
 
             #region side buttons
             txt_pay.Text = Translate.getResource("2162");
@@ -289,8 +293,11 @@ namespace Hesabate_POS
             txt_selectAgent.Text = Translate.getResource("526");
             txt_invoiceDelete.Text = Translate.getResource("2153");
             txt_points.Text = Translate.getResource("654");
+            txt_shiftClose.Text = "shift Close";
+            txt_invoiceBonus.Text = Translate.getResource("583");
             txt_invoiceCost.Text = Translate.getResource("21");
-            txt_export.Text = Translate.getResource("32");
+            txt_import.Text = Translate.getResource("763");
+            txt_export.Text = Translate.getResource("2186");
             txt_administration.Text = Translate.getResource("2240");
             #endregion
 

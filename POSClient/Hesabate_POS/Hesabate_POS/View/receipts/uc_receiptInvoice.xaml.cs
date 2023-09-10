@@ -112,13 +112,15 @@ namespace Hesabate_POS.View.receipts
             txt_external.Text = Translate.getResource("695");
             txt_tables.Text = Translate.getResource("167");
             txt_customer.Text = Translate.getResource("2145");
+            txt_internalCustomer.Text = Translate.getResource("98");
+
             txt_CountTitle.Text = Translate.getResource("578");
             txt_SupTotalTitle.Text = Translate.getResource("572");
             txt_ServiceTitle.Text = Translate.getResource("1152");
-
             txt_taxRateTitle.Text = Translate.getResource("575");
             txt_taxValueTitle.Text = Translate.getResource("888");
-            txt_AutoDiscountTitle.Text = Translate.getResource("1066");
+            txt_AutoDiscountTitle.Text = Translate.getResource("571");
+            txt_UserDiscountTitle.Text = Translate.getResource("1066");
             //txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
@@ -127,7 +129,8 @@ namespace Hesabate_POS.View.receipts
             btn_save.Content = Translate.getResource("2104");
             btn_newDraft.Content = Translate.getResource("8");
 
-           
+            #region top buttons
+            #endregion
 
             #region invoice details big
             col_index.Header = "#";
