@@ -857,7 +857,7 @@ namespace Hesabate_POS.View.receipts
                 grid_invItmOpsAddsAndDeletesTitle.Visibility = Visibility.Visible;
             }
             buildInvoiceItemAdds(selectedInvItmOps);
-                buildInvoiceItemDeletes(selectedInvItmOps);
+            buildInvoiceItemDeletes(selectedInvItmOps);
             buildInvoiceItemExtra(selectedInvItmOps);
             switchGrid1_1("invItmOps");
         }
@@ -1214,6 +1214,9 @@ namespace Hesabate_POS.View.receipts
                         stackPanel.Margin = new Thickness(10, 5, 10, 5);
                         stackPanel.DataContext = groupItem;
 
+                        #region AssignExtraId
+                        groupItem.groupId = extra.id;
+                        #endregion
                         #region groupItemName
                         TextBlock groupItemText = new TextBlock();
                         groupItemText.Text = $"#{groupItem.id} - {groupItem.name}";
@@ -1335,9 +1338,10 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
+
+                if (checkExtraItemsCount(groupItem.groupId))
                     groupItem.start_amount++;
 
-                checkExtraItemsCount();
             }
             catch (Exception ex)
             {
@@ -1345,9 +1349,14 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        private void checkExtraItemsCount()
+        private bool checkExtraItemsCount(int extraGroupId)
         {
-
+            var group= selectedInvItmOps.extraItems.Where(x => x.id == extraGroupId).FirstOrDefault();
+            var sumCount = group.group_items.Select(x => x.start_amount).Sum();
+            if (sumCount == group.group_count)
+                return false;
+            else
+                return true;
         }
         #endregion
         void switchGrid1_1(string type)
