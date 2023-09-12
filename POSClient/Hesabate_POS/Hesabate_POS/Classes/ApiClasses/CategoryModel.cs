@@ -16,8 +16,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string color { get; set; }
         public List<CategoryModel> level2 { get; set; } // == null there is no sub category
         public List<CategoryModel> items { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
-        public List<CategoryModel> addItems { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
-        public List<CategoryModel> deleteItems { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
+        public List<CategoryModel> addItems { get; set; } // == 
+        public List<CategoryModel> deleteItems { get; set; } // == 
         public decimal discount { get; set; }
         public decimal price { get; set; }
         public string no_w { get; set; }

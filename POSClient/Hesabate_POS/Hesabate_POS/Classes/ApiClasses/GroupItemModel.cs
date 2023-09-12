@@ -26,7 +26,7 @@ namespace Hesabate_POS.Classes.ApiClasses
             {
                 if (_start_amount == value) return;
 
-            _start_amount = value;
+                _start_amount = value;
                 OnPropertyChanged();
             }
         }
@@ -57,5 +57,18 @@ namespace Hesabate_POS.Classes.ApiClasses
 
 
         public int groupId { get; set; }
+
+        private int _BasicAmount;
+        public int BasicAmount {
+            get => _BasicAmount; 
+            set {
+                if (_BasicAmount == value) return;
+                _BasicAmount = _start_amount;
+                OnPropertyChanged();
+            } 
+        }
+
+       
+
     }
 }

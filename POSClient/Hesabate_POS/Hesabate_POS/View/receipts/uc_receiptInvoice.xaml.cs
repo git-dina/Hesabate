@@ -879,6 +879,7 @@ namespace Hesabate_POS.View.receipts
                     stackPanel.Margin = new Thickness(10, 5, 10, 5);
                     stackPanel.DataContext = groupItem;
 
+
                     #region groupItemName
                     TextBlock groupItemText = new TextBlock();
                     //if (string.IsNullOrEmpty(groupItem.unit))
@@ -1341,7 +1342,10 @@ namespace Hesabate_POS.View.receipts
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
 
                 if (checkExtraItemsCount(groupItem.groupId))
+                {
                     groupItem.start_amount++;
+                    calcItemPrice();
+                }
 
             }
             catch (Exception ex)
@@ -2250,6 +2254,21 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
         #region invoice
+        private void calcItemPrice()
+        {
+            decimal totalPrice =  selectedInvItmOps.price;
+           foreach(var group in selectedInvItmOps.extraItems)
+            {
+                foreach(var item in group.group_items)
+                {
+                    if (item.start_amount > item.BasicAmount)
+                        totalPrice += (item.start_amount - item.BasicAmount) * item.add_price;
+                }
+            }
+            totalPrice = totalPrice * selectedInvItmOps.amount;
+           selectedInvItmOps.total = totalPrice;
+            CalculateInvoiceValues();
+        }
         private void CalculateInvoiceValues()
         {
             decimal total = invoiceDetailsList.Select(x => x.total).Sum();

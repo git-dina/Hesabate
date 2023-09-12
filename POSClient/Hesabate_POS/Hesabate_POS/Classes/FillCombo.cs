@@ -47,8 +47,8 @@ namespace Hesabate_POS.Classes
         static public  void fillUnits(ComboBox combo)
         {
             combo.ItemsSource = GeneralInfoService.GeneralInfo.units;
-            combo.SelectedValuePath = "key";
-            combo.DisplayMemberPath = "value";
+            combo.SelectedValuePath = "Key";
+            combo.DisplayMemberPath = "Value";
             combo.SelectedIndex = 0;
 
         }
