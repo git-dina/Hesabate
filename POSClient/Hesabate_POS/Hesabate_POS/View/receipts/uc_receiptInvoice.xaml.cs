@@ -92,6 +92,7 @@ namespace Hesabate_POS.View.receipts
                 switchGrid1_1("mainItemsCatalog");
                 btn_allItems_Click(btn_allItems, null);
 
+                FillCombo.fillUnits(cmb_invItmOptUnit);
                 //invoiceDetailsList = getInvoiceDetails();
                 //buildInvoiceDetailsSmall(invoiceDetailsList);
 
