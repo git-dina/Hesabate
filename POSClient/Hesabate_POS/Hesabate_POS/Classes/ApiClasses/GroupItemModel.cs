@@ -49,8 +49,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int add_price_amount { get; set; }
 
         public decimal sub_price { get; set; }
-        public string allow_add { get; set; }
-        public string allow_sub { get; set; }
+        public int allow_add { get; set; }
+        public int allow_sub { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }

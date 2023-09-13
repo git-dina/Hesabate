@@ -1345,7 +1345,7 @@ namespace Hesabate_POS.View.receipts
                 if (checkExtraItemsCount(groupItem.groupId))
                 {
                     groupItem.basicAmount++;
-                    calcItemPrice();
+                    calculateItemPrice();
                 }
 
             }
@@ -2255,15 +2255,20 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
         #region invoice
-        private void calcItemPrice()
+        private void calculateItemPrice()
         {
             decimal totalPrice =  selectedInvItmOps.price;
            foreach(var group in selectedInvItmOps.extraItems)
             {
                 foreach(var item in group.group_items)
                 {
-                    if (item.start_amount > item.basicAmount)
-                        totalPrice += (item.start_amount - item.basicAmount) * item.add_price;
+
+                    if ( item.basicAmount > item.start_amount)
+                    {
+                        var sup = item.basicAmount - (item.start_amount + item.allow_add);
+                       totalPrice += sup * item.add_price;
+
+                    }
                 }
             }
             totalPrice = totalPrice * selectedInvItmOps.amount;
