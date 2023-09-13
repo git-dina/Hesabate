@@ -20,7 +20,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string discount_per { get; set; }
         private int _start_amount;
         public int start_amount
-    {
+        {
             get => _start_amount;
             set
             {
@@ -58,17 +58,17 @@ namespace Hesabate_POS.Classes.ApiClasses
 
         public int groupId { get; set; }
 
-        private int _BasicAmount;
-        public int BasicAmount {
-            get => _BasicAmount; 
+        private int _basicAmount;
+        public int basicAmount {
+            get => _basicAmount; 
             set {
-                if (_BasicAmount == value) return;
-                _BasicAmount = _start_amount;
+                if (_basicAmount == value) return;
+                _basicAmount = value;
                 OnPropertyChanged();
             } 
         }
-
        
+
 
     }
 }
