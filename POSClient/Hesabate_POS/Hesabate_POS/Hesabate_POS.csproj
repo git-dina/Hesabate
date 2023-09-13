@@ -166,6 +166,9 @@
     <Compile Include="View\windows\wd_messageBoxWithIcon.xaml.cs">
       <DependentUpon>wd_messageBoxWithIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_searchItem.xaml.cs">
+      <DependentUpon>wd_searchItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_selectBox.xaml.cs">
       <DependentUpon>wd_selectBox.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
     <Page Include="View\windows\wd_messageBoxWithIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\windows\wd_searchItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_selectBox.xaml">
       <SubType>Designer</SubType>
