@@ -1,6 +1,7 @@
 ﻿using Hesabate_POS.Classes;
 using Hesabate_POS.Classes.ApiClasses;
 using Hesabate_POS.converters;
+using Hesabate_POS.View.windows;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -917,15 +918,15 @@ namespace Hesabate_POS.View.receipts
                     /////////////////////////////////
                     #endregion
 
-                    #region groupItem_start_amount
-                    TextBlock groupItem_start_amount = new TextBlock();
-                    var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
-                    groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
-                    groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                    groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
-                    groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
-                    groupItem_start_amount.Margin = new Thickness(5);
-                    stackPanel.Children.Add(groupItem_start_amount);
+                    #region groupItem_basicAmount
+                    TextBlock groupItem_basicAmount = new TextBlock();
+                    var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
+                    groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
+                    groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
+                    groupItem_basicAmount.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItem_basicAmount);
                     #endregion
                     #region groupItemButtonPlus
                     Button groupItemButtonPlus = new Button();
@@ -989,8 +990,8 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if (groupItem.start_amount > 0)
-                    groupItem.start_amount--;
+                if (groupItem.basicAmount > 0)
+                    groupItem.basicAmount--;
             }
             catch (Exception ex)
             {
@@ -1003,7 +1004,7 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                groupItem.start_amount++;
+                groupItem.basicAmount++;
             }
             catch (Exception ex)
             {
@@ -1064,15 +1065,15 @@ namespace Hesabate_POS.View.receipts
                     /////////////////////////////////
                     #endregion
 
-                    #region groupItem_start_amount
-                    TextBlock groupItem_start_amount = new TextBlock();
-                    var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
-                    groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
-                    groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                    groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
-                    groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
-                    groupItem_start_amount.Margin = new Thickness(5);
-                    stackPanel.Children.Add(groupItem_start_amount);
+                    #region groupItem_basicAmount
+                    TextBlock groupItem_basicAmount = new TextBlock();
+                    var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
+                    groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
+                    groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                    groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
+                    groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
+                    groupItem_basicAmount.Margin = new Thickness(5);
+                    stackPanel.Children.Add(groupItem_basicAmount);
                     #endregion
                     #region groupItemButtonPlus
                     Button groupItemButtonPlus = new Button();
@@ -1136,8 +1137,8 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if (groupItem.start_amount > 0)
-                    groupItem.start_amount--;
+                if (groupItem.basicAmount > 0)
+                    groupItem.basicAmount--;
             }
             catch (Exception ex)
             {
@@ -1150,7 +1151,7 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                groupItem.start_amount++;
+                groupItem.basicAmount++;
             }
             catch (Exception ex)
             {
@@ -1252,15 +1253,15 @@ namespace Hesabate_POS.View.receipts
                         /////////////////////////////////
                         #endregion
 
-                        #region groupItem_start_amount
-                        TextBlock groupItem_start_amount = new TextBlock();
-                        var groupItem_start_amountBinding = new System.Windows.Data.Binding("start_amount");
-                        groupItem_start_amount.SetBinding(TextBlock.TextProperty, groupItem_start_amountBinding);
-                        groupItem_start_amount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItem_start_amount.HorizontalAlignment = HorizontalAlignment.Center;
-                        groupItem_start_amount.VerticalAlignment = VerticalAlignment.Center;
-                        groupItem_start_amount.Margin = new Thickness(5);
-                        stackPanel.Children.Add(groupItem_start_amount);
+                        #region groupItem_basicAmount
+                        TextBlock groupItem_basicAmount = new TextBlock();
+                        var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
+                        groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
+                        groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                        groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
+                        groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
+                        groupItem_basicAmount.Margin = new Thickness(5);
+                        stackPanel.Children.Add(groupItem_basicAmount);
                         #endregion
                         #region groupItemButtonPlus
                         Button groupItemButtonPlus = new Button();
@@ -1326,8 +1327,8 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if (groupItem.start_amount > 0)
-                    groupItem.start_amount--;
+                if (groupItem.basicAmount > 0)
+                    groupItem.basicAmount--;
             }
             catch (Exception ex)
             {
@@ -1343,7 +1344,7 @@ namespace Hesabate_POS.View.receipts
 
                 if (checkExtraItemsCount(groupItem.groupId))
                 {
-                    groupItem.start_amount++;
+                    groupItem.basicAmount++;
                     calcItemPrice();
                 }
 
@@ -1357,7 +1358,7 @@ namespace Hesabate_POS.View.receipts
         private bool checkExtraItemsCount(int extraGroupId)
         {
             var group= selectedInvItmOps.extraItems.Where(x => x.id == extraGroupId).FirstOrDefault();
-            var sumCount = group.group_items.Select(x => x.start_amount).Sum();
+            var sumCount = group.group_items.Select(x => x.basicAmount).Sum();
             if (sumCount == group.group_count)
                 return false;
             else
@@ -1962,11 +1963,11 @@ namespace Hesabate_POS.View.receipts
                         foreach (var groupItem in extra.group_items)
                         {
                             string itemString = "";
-                            itemString = $"{groupItem.name} ({groupItem.start_amount}) {groupItem.add_price} {AppSettings.currency}";
+                            itemString = $"{groupItem.name} ({groupItem.basicAmount}) {groupItem.add_price} {AppSettings.currency}";
                             //if (string.IsNullOrWhiteSpace(groupItem.unit))
                             //    itemString = groupItem.name;
                             //else
-                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.start_amount})";
+                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.basicAmount})";
 
                             groupItemText.Text +=$"+ {itemString} | ";
                         }
@@ -1991,11 +1992,11 @@ namespace Hesabate_POS.View.receipts
                         foreach (var groupItem in extra.group_items)
                         {
                             string itemString = "";
-                            itemString = $"{groupItem.name} ({groupItem.start_amount}) {groupItem.add_price} {AppSettings.currency}";
+                            itemString = $"{groupItem.name} ({groupItem.basicAmount}) {groupItem.add_price} {AppSettings.currency}";
                             //if (string.IsNullOrWhiteSpace(groupItem.unit))
                             //    itemString = groupItem.name;
                             //else
-                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.start_amount})";
+                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.basicAmount})";
 
                             groupItemText.Text += $"- {itemString} | ";
                         }
@@ -2261,8 +2262,8 @@ namespace Hesabate_POS.View.receipts
             {
                 foreach(var item in group.group_items)
                 {
-                    if (item.start_amount > item.BasicAmount)
-                        totalPrice += (item.start_amount - item.BasicAmount) * item.add_price;
+                    if (item.start_amount > item.basicAmount)
+                        totalPrice += (item.start_amount - item.basicAmount) * item.add_price;
                 }
             }
             totalPrice = totalPrice * selectedInvItmOps.amount;
@@ -2384,6 +2385,7 @@ namespace Hesabate_POS.View.receipts
         }
         private async void Btn_search_Click(object sender, RoutedEventArgs e)
         {
+            /*
             try
             {
                 if (tb_search.Text != "")
@@ -2407,6 +2409,24 @@ namespace Hesabate_POS.View.receipts
                 }
             }
             catch { }
+            */
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_searchItem w = new wd_searchItem();
+                w.ShowDialog();
+                if (w.isOk)
+                {
+
+                }
+
+                Window.GetWindow(this).Opacity = 1;
+            }
+            catch 
+            {
+                Window.GetWindow(this).Opacity = 1;
+            }
+
         }
 
 
