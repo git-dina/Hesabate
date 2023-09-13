@@ -863,6 +863,69 @@ namespace Hesabate_POS.View.receipts
             buildInvoiceItemExtra(selectedInvItmOps);
             switchGrid1_1("invItmOps");
         }
+        private void btn_invItmOptAmountMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+                if (invOptItem.amount >1)
+                {
+                    invOptItem.amount--;
+                    calculateItemPrice();
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_invItmOptAmountPlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+
+                invOptItem.amount++;
+                calculateItemPrice();
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_invItmOptBonusMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+                if (invOptItem.bonus > 0)
+                {
+                    invOptItem.bonus--;
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_invItmOptBonusPlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+
+                invOptItem.bonus++;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         void buildInvoiceItemAdds(ItemModel item)
         {
             sp_invItmOpsAdds.Children.Clear();
@@ -919,6 +982,7 @@ namespace Hesabate_POS.View.receipts
                     #endregion
 
                     #region groupItem_basicAmount
+                    if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount;
                     TextBlock groupItem_basicAmount = new TextBlock();
                     var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
                     groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
@@ -990,7 +1054,8 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if (groupItem.basicAmount > 0)
+                //if (groupItem.basicAmount > 0)
+                if (groupItem.basicAmount > groupItem.start_amount)
                     groupItem.basicAmount--;
             }
             catch (Exception ex)
@@ -1004,7 +1069,11 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                groupItem.basicAmount++;
+                if (groupItem.basicAmount < groupItem.allow_add)
+                {
+                    groupItem.basicAmount++;
+                    calculateItemPrice();
+                }
             }
             catch (Exception ex)
             {
@@ -1066,6 +1135,7 @@ namespace Hesabate_POS.View.receipts
                     #endregion
 
                     #region groupItem_basicAmount
+                    if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount; 
                     TextBlock groupItem_basicAmount = new TextBlock();
                     var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
                     groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
@@ -1151,7 +1221,8 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                groupItem.basicAmount++;
+                if(groupItem.basicAmount < groupItem.allow_sub)
+                    groupItem.basicAmount++;
             }
             catch (Exception ex)
             {
@@ -1218,7 +1289,7 @@ namespace Hesabate_POS.View.receipts
                         stackPanel.DataContext = groupItem;
 
                         #region AssignExtraId
-                        groupItem.groupId = extra.id;
+                        groupItem.groupName = extra.group_name;
                         #endregion
                         #region groupItemName
                         TextBlock groupItemText = new TextBlock();
@@ -1254,6 +1325,7 @@ namespace Hesabate_POS.View.receipts
                         #endregion
 
                         #region groupItem_basicAmount
+                        if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount;
                         TextBlock groupItem_basicAmount = new TextBlock();
                         var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
                         groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
@@ -1342,11 +1414,9 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
 
-                if (checkExtraItemsCount(groupItem.groupId))
-                {
+                if (checkExtraItemsCount(groupItem.groupName))
                     groupItem.basicAmount++;
-                    calculateItemPrice();
-                }
+
 
             }
             catch (Exception ex)
@@ -1355,9 +1425,9 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        private bool checkExtraItemsCount(int extraGroupId)
+        private bool checkExtraItemsCount(string groupName)
         {
-            var group= selectedInvItmOps.extraItems.Where(x => x.id == extraGroupId).FirstOrDefault();
+            var group= selectedInvItmOps.extraItems.Where(x => x.group_name == groupName).FirstOrDefault();
             var sumCount = group.group_items.Select(x => x.basicAmount).Sum();
             if (sumCount == group.group_count)
                 return false;
@@ -2186,7 +2256,10 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 Button button = sender as Button;
-                int index = int.Parse(button.Tag.ToString().Replace("close-", ""));
+                ItemModel invOptItem = button.DataContext as ItemModel;
+
+                //int index = int.Parse(button.Tag.ToString().Replace("close-", ""));
+                int index = invOptItem.index;
 
                 invoiceDetailsList.RemoveAt(index - 1);
 
@@ -2258,19 +2331,34 @@ namespace Hesabate_POS.View.receipts
         private void calculateItemPrice()
         {
             decimal totalPrice =  selectedInvItmOps.price;
-           foreach(var group in selectedInvItmOps.extraItems)
+            //foreach(var group in selectedInvItmOps.extraItems) // extra groups
+            //{
+            //    foreach(var item in group.group_items)
+            //    {
+
+            //        if ( item.basicAmount > (item.start_amount + item.add_price_amount) && item.add_price_amount != 0)
+            //        {
+            //            var sup = (int)item.basicAmount - (item.start_amount + item.add_price_amount);
+            //            totalPrice += sup * item.add_price;
+
+            //        }
+            //    }
+            //}
+
+            foreach (var group in selectedInvItmOps.addsItems) // adds groups
             {
-                foreach(var item in group.group_items)
+                foreach (var item in group.group_items)
                 {
 
-                    if ( item.basicAmount > item.start_amount)
+                    if (item.basicAmount > (item.start_amount + item.add_price_amount) && item.add_price_amount != 0)
                     {
-                        var sup = item.basicAmount - (item.start_amount + item.allow_add);
-                       totalPrice += sup * item.add_price;
+                        var sup = (int)item.basicAmount - (item.start_amount + item.add_price_amount);
+                        totalPrice += sup * item.add_price;
 
                     }
                 }
             }
+          
             totalPrice = totalPrice * selectedInvItmOps.amount;
            selectedInvItmOps.total = totalPrice;
             CalculateInvoiceValues();
@@ -2374,47 +2462,36 @@ namespace Hesabate_POS.View.receipts
         //    }
         //    catch { }
         //}
-        private void tb_search_KeyDown(object sender, KeyEventArgs e)
+        private async void tb_search_KeyDown(object sender, KeyEventArgs e)
         {
-                try
-                {
-                    if (e.Key == Key.Return)
-                    {
-                        Btn_search_Click(btn_search, null);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                }
-        }
-        private async void Btn_search_Click(object sender, RoutedEventArgs e)
-        {
-            /*
             try
             {
-                if (tb_search.Text != "")
+                if (e.Key == Key.Return)
                 {
-                    //HelpClass.StartAwait(grid_main);
-                    ItemModel item;
-                    item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                ItemModel item;
+                item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                if (item == null)
+                {
+                    item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
                     if (item == null)
                     {
-                        item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
-                        if (item == null)
-                        {
-                            //HelpClass.
-                        }
-
+                        //HelpClass.
                     }
-                    else
-                        AddItemToInvoice(item , new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
-                    tb_search.Text = "";
-                    //HelpClass.EndAwait(grid_main);
+
                 }
+                else
+                    AddItemToInvoice(item, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                tb_search.Text = "";
+                //HelpClass.EndAwait(grid_main);
             }
-            catch { }
-            */
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private  void Btn_search_Click(object sender, RoutedEventArgs e)
+        {           
             try
             {
                 Window.GetWindow(this).Opacity = 0.2;
@@ -2446,9 +2523,13 @@ namespace Hesabate_POS.View.receipts
 
 
 
+
+
+
+
+
         #endregion
 
-       
-
+      
     }
 }

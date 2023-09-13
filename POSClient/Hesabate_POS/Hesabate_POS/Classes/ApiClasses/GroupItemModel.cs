@@ -56,10 +56,10 @@ namespace Hesabate_POS.Classes.ApiClasses
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
 
-        public int groupId { get; set; }
+        public string groupName { get; set; }
 
-        private int _basicAmount;
-        public int basicAmount {
+        private int? _basicAmount;
+        public int? basicAmount {
             get => _basicAmount; 
             set {
                 if (_basicAmount == value) return;

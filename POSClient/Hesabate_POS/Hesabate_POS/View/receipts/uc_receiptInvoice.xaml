@@ -525,71 +525,73 @@ VerticalAlignment="Center" Width="20" Height="20"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Margin="5"/>
-                                                <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                       x:Name="btn_invItmOptAmountMinus"
-                Height="25" Width="25" 
-                             materialDesign:ButtonAssist.CornerRadius="5"
-                             Padding="0"
-                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                            <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
+                                            x:Name="btn_invItmOptAmountMinus"
+                                            Height="25" Width="25" 
+                                            materialDesign:ButtonAssist.CornerRadius="5"
+                                            Padding="0"
+                                            Background="{StaticResource veryLightGrey}"   BorderThickness="0"
+                                            Click="btn_invItmOptAmountMinus_Click">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                     Width="25" Height="25" Kind="Minus" />
-                                                </Button>
-                                                <TextBlock Grid.Row="1" Grid.Column="1"   
-                                       x:Name="txt_invItmOptAmount"
-                                       Text="{Binding amount, Mode=OneWay}" 
-                             Foreground="{StaticResource textColor}" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="5"/>
-                                                <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                       x:Name="btn_invItmOptAmountPlus"
-                Height="25" Width="25"  Padding="0"
-                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                    Width="25" Height="25" Kind="Minus" />
+                                            </Button>
+                                            <TextBlock Grid.Row="1" Grid.Column="1"   
+                                            x:Name="txt_invItmOptAmount"
+                                            Text="{Binding amount, Mode=OneWay}" 
+                                            Foreground="{StaticResource textColor}" 
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="5"/>
+                                            <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
+                                            x:Name="btn_invItmOptAmountPlus"
+                                            Height="25" Width="25"  Padding="0"
+                                            Background="{StaticResource veryLightGrey}"   BorderThickness="0"
+                                            Click="btn_invItmOptAmountPlus_Click">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                     Width="25" Height="25" Kind="Plus" />
-                                                </Button>
+                                                    Width="25" Height="25" Kind="Plus" />
+                                            </Button>
 
                                             </Grid>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-Margin="5"  CornerRadius="0,0,0,0"  
-       Width="1" BorderThickness="0" 
-          Background="{StaticResource MainColor}" />
+                                                Margin="5"  CornerRadius="0,0,0,0"  
+                                                Width="1" BorderThickness="0" 
+                                                Background="{StaticResource MainColor}" />
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5" Height="40"     BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid >
                                                     <ComboBox 
-                                    x:Name="cmb_invItmOptUnit"
-                  SelectedValue="{Binding unit,Mode=OneWay}"
-              Padding="10,0,5,0"  Foreground="#4E4E4E"
-              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-              materialDesign:HintAssist.Hint="unit..."  
-              Grid.Column="1" Height="40"   
-             BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-              LostFocus="validateEmpty_LostFocus"/>
+                                                        x:Name="cmb_invItmOptUnit"
+                                                        SelectedValue="{Binding unit,Mode=OneWay}"
+                                                          Padding="10,0,5,0"  Foreground="#4E4E4E"
+                                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                                          materialDesign:HintAssist.Hint="unit..."  
+                                                          Grid.Column="1" Height="40"   
+                                                         BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+                                                          LostFocus="validateEmpty_LostFocus"/>
 
                                                 </Grid>
                                             </Border>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-Margin="5"  CornerRadius="0,0,0,0"  
-       Width="1" BorderThickness="0" 
-          Background="{StaticResource MainColor}" />
+                                                Margin="5"  CornerRadius="0,0,0,0"  
+                                                 Width="1" BorderThickness="0" 
+                                                Background="{StaticResource MainColor}" />
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5" Height="40"     BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid >
                                                     <ComboBox 
-                                    x:Name="cmb_invItmOptDiscount"
-                  SelectedValue="{Binding discount,Mode=OneWay}"
-              Padding="10,0,5,0"  Foreground="#4E4E4E"
-              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-              materialDesign:HintAssist.Hint="discount..."  
-              Grid.Column="1" Height="40"   
-             BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-              LostFocus="validateEmpty_LostFocus"/>
+                                                        x:Name="cmb_invItmOptDiscount"
+                                                      SelectedValue="{Binding discount,Mode=OneWay}"
+                                                  Padding="10,0,5,0"  Foreground="#4E4E4E"
+                                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                                  materialDesign:HintAssist.Hint="discount..."  
+                                                  Grid.Column="1" Height="40"   
+                                                 BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+                                                  LostFocus="validateEmpty_LostFocus"/>
 
                                                 </Grid>
                                             </Border>
                                             <Border   Grid.RowSpan="2" Grid.Column="2" 
-Margin="5"  CornerRadius="0,0,0,0"  
-       Width="1" BorderThickness="0" 
-          Background="{StaticResource MainColor}" />
+                                                Margin="5"  CornerRadius="0,0,0,0"  
+                                               Width="1" BorderThickness="0" 
+                                                  Background="{StaticResource MainColor}" />
                                             <Grid x:Name="grid_invItmOptBonus">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="auto"/>
@@ -601,34 +603,36 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                       x:Name="txt_invItmOptBonusTitle"
-                                       Text="Bonus" 
-                             Foreground="{StaticResource textColor}" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="5"/>
+                                                   x:Name="txt_invItmOptBonusTitle"
+                                                   Text="Bonus" 
+                                                    Foreground="{StaticResource textColor}" 
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
-                                       x:Name="btn_invItmOptBonusMinus"
-                Height="25" Width="25" 
-                             materialDesign:ButtonAssist.CornerRadius="5"
-                             Padding="0"
-                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                     x:Name="btn_invItmOptBonusMinus"
+                                                    Height="25" Width="25" 
+                                                     materialDesign:ButtonAssist.CornerRadius="5"
+                                                     Padding="0"
+                                                    Background="{StaticResource veryLightGrey}"   BorderThickness="0"
+                                                     Click="btn_invItmOptBonusMinus_Click">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                     Width="25" Height="25" Kind="Minus" />
+                                                        Width="25" Height="25" Kind="Minus" />
                                                 </Button>
                                                 <TextBlock Grid.Row="1" Grid.Column="1"   
-                                       x:Name="txt_invItmOptBonus"
-                                       Text="{Binding bonus, Mode=OneWay}" 
-                             Foreground="{StaticResource textColor}" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="5"/>
+                                                   x:Name="txt_invItmOptBonus"
+                                                   Text="{Binding bonus, Mode=OneWay}" 
+                                                    Foreground="{StaticResource textColor}" 
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Margin="5"/>
                                                 <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
-                                       x:Name="btn_invItmOptBonusPlus"
-                Height="25" Width="25"  Padding="0"
-                    Background="{StaticResource veryLightGrey}"   BorderThickness="0">
+                                                    x:Name="btn_invItmOptBonusPlus"
+                                                    Height="25" Width="25"  Padding="0"
+                                                    Background="{StaticResource veryLightGrey}"   BorderThickness="0"
+                                                    Click="btn_invItmOptBonusPlus_Click">
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
-                     Width="25" Height="25" Kind="Plus" />
+                                                        Width="25" Height="25" Kind="Plus" />
                                                 </Button>
 
                                             </Grid>
@@ -713,15 +717,16 @@ Margin="5"  CornerRadius="0,0,0,0"
                                               Margin="5" />
                                             </Button>
                                             <Button  x:Name="btn_invItmOptDelete" 
-                                 Margin="5"
-                                 materialDesign:ButtonAssist.CornerRadius="7"
-                                Background="{StaticResource mediumRed}"
-                                 BorderBrush="{StaticResource Red}"
-                              BorderThickness="1" Padding="0"  >
+                                                Margin="5"
+                                                 materialDesign:ButtonAssist.CornerRadius="7"
+                                                Background="{StaticResource mediumRed}"
+                                                 BorderBrush="{StaticResource Red}"
+                                                BorderThickness="1" Padding="0" 
+                                                     Click="buttonClose_Click">
                                                 <TextBlock Text="Delete" 
-                                Foreground="{StaticResource White}" 
-                                x:Name="txt_invItmOptDelete"
-                                    Margin="5" />
+                                                    Foreground="{StaticResource White}" 
+                                                    x:Name="txt_invItmOptDelete"
+                                                    Margin="5" />
                                             </Button>
 
 
@@ -732,10 +737,10 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock x:Name="txt_invItmOpsDetailsTitle" 
-                                   Text="Details"  Foreground="{StaticResource MainColor}" 
-                        Grid.Column="0" 
-               FontWeight="Bold" FontSize="12"  Margin="5"
-                  />
+                                                Text="Details"  Foreground="{StaticResource MainColor}" 
+                                                Grid.Column="0" 
+                                                FontWeight="Bold" FontSize="12"  Margin="5"
+                                            />
                                             <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
                                         </Grid>
                                         
