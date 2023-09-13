@@ -90,7 +90,8 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            //txt_title.Text = Translate.getResource("104");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
+
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)

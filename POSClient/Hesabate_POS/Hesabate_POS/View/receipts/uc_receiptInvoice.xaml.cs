@@ -158,6 +158,7 @@ namespace Hesabate_POS.View.receipts
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptPrice, Translate.getResource("570"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
             txt_invItmOptLibraReading.Text = Translate.getResource("2161");
+            txt_invItmOptQueryItem.Text = Translate.getResource("2157");
             txt_urgent.Text = Translate.getResource("2305");
             txt_invItmOptDelete.Text = Translate.getResource("5");
 
