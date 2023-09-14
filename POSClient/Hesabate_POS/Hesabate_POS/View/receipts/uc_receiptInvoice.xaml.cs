@@ -2469,18 +2469,13 @@ namespace Hesabate_POS.View.receipts
             {
                 if (e.Key == Key.Return)
                 {
-                ItemModel item;
-                item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                ItemModel item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
                 if (item == null)
                 {
                     item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
-                    if (item == null)
-                    {
-                        //HelpClass.
-                    }
 
                 }
-                else
+                if (item != null)
                     AddItemToInvoice(item, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 tb_search.Text = "";
                 //HelpClass.EndAwait(grid_main);

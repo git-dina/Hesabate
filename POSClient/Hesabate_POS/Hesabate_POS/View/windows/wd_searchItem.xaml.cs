@@ -1,4 +1,5 @@
 ﻿using Hesabate_POS.Classes;
+using Hesabate_POS.Classes.ApiClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,12 @@ namespace Hesabate_POS.View.windows
 
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
 
+            col_index.Header = Translate.getResource("1787");
+            col_name.Header = Translate.getResource("652");
+            col_unit.Header = Translate.getResource("427");
+            col_discount.Header = Translate.getResource("571");
+            col_bonus.Header = Translate.getResource("583");
+            col_price.Header = Translate.getResource("570");
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -255,14 +262,32 @@ namespace Hesabate_POS.View.windows
 
         private void tb_search_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                Search();
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
 
         private void Btn_search_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Search();
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
 
+        private void Search()
+        {
+            ItemModel item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+        }
         private void dg_items_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
