@@ -2264,6 +2264,9 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceDetailsList.RemoveAt(index - 1);
 
+                if(selectedInvItmOps.index == invOptItem.index)
+                switchGrid1_1("mainItemsCatalog");
+
                 buildInvoiceDetailsSmall(invoiceDetailsList);
                 CalculateInvoiceValues();
             }
