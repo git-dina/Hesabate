@@ -572,7 +572,7 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
-                        var item1 = GeneralInfoService.items.Where(x => x.id == item.id.ToString()).FirstOrDefault();
+                        var item1 = GeneralInfoService.items.Where(x => x.product_id == item.id.ToString()).FirstOrDefault();
 
                         AddItemToInvoice(item1, item.items,item.addItems,item.deleteItems);
                         //MessageBox.Show("Add me to invoice");
@@ -590,7 +590,7 @@ namespace Hesabate_POS.View.receipts
         //private void AddItemToInvoice(CategoryModel item)
         private void AddItemToInvoice(ItemModel item, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
         {
-            var itemInInvoice = invoiceDetailsList.Where(x => x.id.ToString() == item.id).FirstOrDefault();
+            var itemInInvoice = invoiceDetailsList.Where(x => x.product_id.ToString() == item.product_id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
             {
                 itemInInvoice.amount++;
@@ -2225,7 +2225,7 @@ namespace Hesabate_POS.View.receipts
                 MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonClose, (new CornerRadius(25)));
                 #region materialDesign
                 var ClosePackIcon = new PackIcon();
-                ClosePackIcon.Tag = "closePackIcon-" + item.id;
+                ClosePackIcon.Tag = "closePackIcon-" + item.product_id;
                 ClosePackIcon.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
                 ClosePackIcon.Height =
                 ClosePackIcon.Width = 25;
@@ -2472,7 +2472,7 @@ namespace Hesabate_POS.View.receipts
             {
                 if (e.Key == Key.Return)
                 {
-                ItemModel item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+                ItemModel item = GeneralInfoService.items.Where(x => x.product_id == tb_search.Text).FirstOrDefault();
                 if (item == null)
                 {
                     item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);

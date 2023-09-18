@@ -10,7 +10,8 @@ namespace Hesabate_POS.Classes.ApiClasses
 {
     public class ItemModel : INotifyPropertyChanged
     {
-        public string id { get; set; }
+        public string id { get; set; } // barcode
+        public string product_id { get; set; } 
         public string name { get; set; }
         public string serial { get; set; } //هل المعلومات هي سيريال أو لا
         public string unit { get; set; } // unit id

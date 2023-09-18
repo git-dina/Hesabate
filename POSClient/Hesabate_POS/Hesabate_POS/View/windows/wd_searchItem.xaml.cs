@@ -286,7 +286,7 @@ namespace Hesabate_POS.View.windows
 
         private void Search()
         {
-            ItemModel item = GeneralInfoService.items.Where(x => x.id == tb_search.Text).FirstOrDefault();
+            ItemModel item = GeneralInfoService.items.Where(x => x.product_id == tb_search.Text).FirstOrDefault();
         }
         private void dg_items_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
