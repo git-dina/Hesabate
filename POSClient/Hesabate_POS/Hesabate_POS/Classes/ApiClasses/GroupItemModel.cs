@@ -14,6 +14,7 @@ namespace Hesabate_POS.Classes.ApiClasses
        // public decimal price { get; set; }
         public string name { get; set; }
         public string unit { get; set; }
+        public string unit_name { get; set; }
         public string no_w { get; set; }
         public string tax_class { get; set; }
         public string measure_id { get; set; }

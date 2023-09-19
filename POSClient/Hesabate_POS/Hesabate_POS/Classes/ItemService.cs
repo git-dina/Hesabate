@@ -255,13 +255,13 @@ namespace Hesabate_POS.Classes
                 }
             }
         }
-        public byte[] readLocalImage(string imageUri)
+        public byte[] readLocalImage(string imagePath)
         {
             byte[] data = null;
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(imageUri);
+            System.IO.FileInfo fileInfo = new System.IO.FileInfo(imagePath);
             // The byte[] to save the data in
             data = new byte[fileInfo.Length];
-            using (var stream = new System.IO.FileStream(imageUri, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            using (var stream = new System.IO.FileStream(imagePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
                 stream.Read(data, 0, data.Length);
             }
@@ -324,33 +324,28 @@ namespace Hesabate_POS.Classes
 
         public async Task< List<ItemModel> >GetItems()
         {
-            //using (var client = new HttpClient())
+
+            var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
+            try
             {
-               // client.Timeout = System.TimeSpan.FromSeconds(3600);
-                //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                var content = new MultipartFormDataContent();
+                content.Add(new StringContent(AppSettings.token), "token");
+                content.Add(new StringContent("13"), "op");
+                request.Content = content;
+                var response = await client.SendAsync(request);
 
-                var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
-                try
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var content = new MultipartFormDataContent();
-                    content.Add(new StringContent(AppSettings.token), "token");
-                    content.Add(new StringContent("13"), "op");
-                    request.Content = content;
-                    var response = await client.SendAsync(request);
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    GeneralInfoService.items = JsonConvert.DeserializeObject<List<ItemModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        var jsonString = await response.Content.ReadAsStringAsync();
-                        GeneralInfoService.items = JsonConvert.DeserializeObject<List<ItemModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-
-                    }
                 }
-                catch (Exception ex)
-                {
-                    return new List<ItemModel>();
-                }
-                return GeneralInfoService.items;
             }
+            catch (Exception ex)
+            {
+                return new List<ItemModel>();
+            }
+            return GeneralInfoService.items;
         } 
         
         public async Task< ItemModel>GetItemInfo(string searchText,string zType,int customerId,string priceId,string sTr="",string unitid="0")
