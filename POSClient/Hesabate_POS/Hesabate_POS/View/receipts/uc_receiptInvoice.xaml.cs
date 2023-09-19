@@ -2498,7 +2498,7 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-
+                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 }
 
                 Window.GetWindow(this).Opacity = 1;

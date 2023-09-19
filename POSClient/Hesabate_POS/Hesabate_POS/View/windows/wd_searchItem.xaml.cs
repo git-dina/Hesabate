@@ -40,12 +40,8 @@ namespace Hesabate_POS.View.windows
             this.Close();
         }
 
-        public string itemStatus { get; set; }
-        public string itemRecieptType { get; set; }
-        public string itemType { get; set; }
-        public string itemTransactionType { get; set; }
-        public decimal? packageWeight { get; set; }
-        public long? packageUnit { get; set; }
+        public ItemModel selectedItem { get; set; }
+        
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
 
@@ -286,11 +282,23 @@ namespace Hesabate_POS.View.windows
 
         private void Search()
         {
-            ItemModel item = GeneralInfoService.items.Where(x => x.product_id == tb_search.Text).FirstOrDefault();
+            var items = GeneralInfoService.items.Where(x => x.product_id.Contains( tb_search.Text)).ToList();
+
+            dg_items.ItemsSource = items;
+            dg_items.Items.Refresh();
         }
         private void dg_items_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            try
+            {
+                selectedItem = (ItemModel)dg_items.SelectedItem;
+                isOk = true;
+                this.Close();
+            }
+            catch
+            {
 
+            }
         }
 
 
