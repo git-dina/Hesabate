@@ -947,10 +947,10 @@ namespace Hesabate_POS.View.receipts
 
                     #region groupItemName
                     TextBlock groupItemText = new TextBlock();
-                    //if (string.IsNullOrEmpty(groupItem.unit))
-                    groupItemText.Text = $"{groupItem.name}";
-                    //else
-                    //    groupItemText.Text = $"{groupItem.name} - {groupItem.unit}";
+                    if (string.IsNullOrEmpty(groupItem.unit_name))
+                        groupItemText.Text = $"{groupItem.name}";
+                    else
+                        groupItemText.Text = $"{groupItem.name} - {groupItem.unit_name}";
 
                     groupItemText.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
                     groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
@@ -1100,10 +1100,10 @@ namespace Hesabate_POS.View.receipts
 
                     #region groupItemName
                     TextBlock groupItemText = new TextBlock();
-                    //if (string.IsNullOrEmpty(groupItem.unit))
-                    groupItemText.Text = $"{groupItem.name}";
-                    //else
-                    //    groupItemText.Text = $"{groupItem.name} - {groupItem.unit}";
+                    if (string.IsNullOrEmpty(groupItem.unit_name))
+                        groupItemText.Text = $"{groupItem.name}";
+                    else
+                        groupItemText.Text = $"{groupItem.name} - {groupItem.unit_name}";
 
                     groupItemText.Foreground = Application.Current.Resources["Red"] as SolidColorBrush;
                     groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
