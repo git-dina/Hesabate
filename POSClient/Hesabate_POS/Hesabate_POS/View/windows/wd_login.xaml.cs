@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Hesabate_POS.View.windows
 {
@@ -377,28 +378,60 @@ namespace Hesabate_POS.View.windows
 
         private void cb_language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cb_language.SelectedValue != null)
-            {
-                var lang = GeneralInfoService.Languages.Where(x => x.id == (int)cb_language.SelectedValue).FirstOrDefault();
-                AppSettings.dir = lang.dir;
-            }
-        }
-        /*
-        private void btn_serverName_Click(object sender, RoutedEventArgs e)
-        {
             try
             {
-                if (brd_serverName.Visibility == Visibility.Visible)
-                    brd_serverName.Visibility = Visibility.Collapsed;
-                else
-                    brd_serverName.Visibility = Visibility.Visible;
 
+                if (cb_language.SelectedValue != null)
+                {
+                    var lang = GeneralInfoService.Languages.Where(x => x.id == (int)cb_language.SelectedValue).FirstOrDefault();
+                    AppSettings.dir = lang.dir;
+                }
             }
             catch (Exception ex)
             {
+                HelpClass.EndAwait(grid_form);
+                btn_login.IsEnabled = true;
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        */
+
+        private void cb_invoiceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                // small, big
+                if (cb_invoiceType.SelectedIndex == 0)
+                {
+                    AppSettings.invoiceDetailsType = "small";
+                }
+                else if (cb_invoiceType.SelectedIndex == 1)
+                {
+                    AppSettings.invoiceDetailsType = "big";
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_form);
+                btn_login.IsEnabled = true;
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        /*
+private void btn_serverName_Click(object sender, RoutedEventArgs e)
+{
+   try
+   {
+       if (brd_serverName.Visibility == Visibility.Visible)
+           brd_serverName.Visibility = Visibility.Collapsed;
+       else
+           brd_serverName.Visibility = Visibility.Visible;
+
+   }
+   catch (Exception ex)
+   {
+       HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+   }
+}
+*/
     }
 }
