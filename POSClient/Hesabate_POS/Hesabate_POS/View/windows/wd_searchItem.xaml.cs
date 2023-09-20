@@ -105,46 +105,49 @@ namespace Hesabate_POS.View.windows
                 {
                     //Btn_save_Click(btn_save, null);
                 }
-                switch (e.Key)
+                if (!tb_search.IsFocused)
                 {
-                    case Key.NumPad0:
-                        tb_search.Text += "0";
-                        break;
-                    case Key.NumPad1:
-                        tb_search.Text += "1";
-                        break;
-                    case Key.NumPad2:
-                        tb_search.Text += "2";
-                        break;
-                    case Key.NumPad3:
-                        tb_search.Text += "3";
-                        break;
-                    case Key.NumPad4:
-                        tb_search.Text += "4";
-                        break;
-                    case Key.NumPad5:
-                        tb_search.Text += "5";
-                        break;
-                    case Key.NumPad6:
-                        tb_search.Text += "6";
-                        break;
-                    case Key.NumPad7:
-                        tb_search.Text += "7";
-                        break;
-                    case Key.NumPad8:
-                        tb_search.Text += "8";
-                        break;
-                    case Key.NumPad9:
-                        tb_search.Text += "9";
-                        break;
-                   case Key.Decimal:
-                        tb_search.Text += ".";
-                        break;
-                   case Key.Back:
-                        btn_del_Click(null, null);
-                        break;
-                   
-                    //default:
+                    switch (e.Key)
+                    {
+                        case Key.NumPad0:
+                            tb_search.Text += "0";
+                            break;
+                        case Key.NumPad1:
+                            tb_search.Text += "1";
+                            break;
+                        case Key.NumPad2:
+                            tb_search.Text += "2";
+                            break;
+                        case Key.NumPad3:
+                            tb_search.Text += "3";
+                            break;
+                        case Key.NumPad4:
+                            tb_search.Text += "4";
+                            break;
+                        case Key.NumPad5:
+                            tb_search.Text += "5";
+                            break;
+                        case Key.NumPad6:
+                            tb_search.Text += "6";
+                            break;
+                        case Key.NumPad7:
+                            tb_search.Text += "7";
+                            break;
+                        case Key.NumPad8:
+                            tb_search.Text += "8";
+                            break;
+                        case Key.NumPad9:
+                            tb_search.Text += "9";
+                            break;
+                        case Key.Decimal:
+                            tb_search.Text += ".";
+                            break;
+                        case Key.Back:
+                            btn_del_Click(null, null);
+                            break;
+
+                            //default:
+                    }
                 }
             }
             catch (Exception ex)
