@@ -1569,6 +1569,12 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                int index = 1 ;
+                foreach(var item in invoiceDetailsList)
+                {
+                    item.index = index;
+                    index++;
+                }
                 dg_invoiceDetailsBig.ItemsSource = invoiceDetailsList;
                 dg_invoiceDetailsBig.Items.Refresh();
             }
@@ -1641,6 +1647,11 @@ namespace Hesabate_POS.View.receipts
                         ItemModel row = (ItemModel)dg_invoiceDetailsBig.SelectedItems[0];
                         invoiceDetailsList.Remove(row);
                         refreshInvoiceDetailsBig();
+
+                        if (selectedInvItmOps.index == row.index)
+                            switchGrid1_1("mainItemsCatalog");
+
+                        CalculateInvoiceValues();
                     }
 
                 HelpClass.EndAwait(grid_main);
@@ -2281,7 +2292,10 @@ namespace Hesabate_POS.View.receipts
                 if(selectedInvItmOps.index == invOptItem.index)
                 switchGrid1_1("mainItemsCatalog");
 
-                buildInvoiceDetailsSmall(invoiceDetailsList);
+                if (AppSettings.invoiceDetailsType == "small")
+                    buildInvoiceDetailsSmall(invoiceDetailsList);
+                else
+                    refreshInvoiceDetailsBig();
                 CalculateInvoiceValues();
             }
             catch (Exception ex)
