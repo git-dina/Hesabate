@@ -211,7 +211,7 @@ namespace Hesabate_POS.View.windows
         }
 
         #endregion
-        private void Btn_save_Click(object sender, RoutedEventArgs e)
+        private async void Btn_save_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -222,6 +222,7 @@ namespace Hesabate_POS.View.windows
                     Properties.Settings.Default.APIUri = AppSettings.APIUri;
                     Properties.Settings.Default.Save();
 
+                    await GeneralInfoService.GetLanguages();
                     isOk = true;
                     this.Close();
                 }
