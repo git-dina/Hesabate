@@ -1854,7 +1854,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="*" x:Name="col_index"  Header="index"   Binding="{Binding Path=index, Mode=OneWay}"/>
-                                    <DataGridTextColumn Width="*" x:Name="col_id"  Header="id"   Binding="{Binding Path=id, Mode=OneWay}"/>
+                                    <DataGridTextColumn Width="*" x:Name="col_id"  Header="product_id"   Binding="{Binding Path=product_id, Mode=OneWay}"/>
                                     <DataGridTextColumn Width="*" x:Name="col_name" Header="name"   Binding="{Binding Path=name, Mode=OneWay}"/>
                                     <DataGridTextColumn Width="*" x:Name="col_unitName" Header="unitName"   Binding="{Binding Path=unitName, Mode=OneWay}"/>
                                     <DataGridTextColumn Width="*" x:Name="col_discount" Header="discount"   Binding="{Binding Path=discount, Mode=OneWay}"/>

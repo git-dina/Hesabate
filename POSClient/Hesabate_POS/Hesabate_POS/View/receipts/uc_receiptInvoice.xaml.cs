@@ -572,9 +572,12 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                     {
-                        var item1 = GeneralInfoService.items.Where(x => x.product_id == item.id.ToString()).FirstOrDefault();
+                        if (GeneralInfoService.items != null)
+                        {
+                            var item1 = GeneralInfoService.items.Where(x => x.product_id == item.id.ToString()).FirstOrDefault();
 
-                        AddItemToInvoice(item1, item.items,item.addItems,item.deleteItems);
+                            AddItemToInvoice(item1, item.items, item.addItems, item.deleteItems);
+                        }
                         //MessageBox.Show("Add me to invoice");
                     }
 
@@ -600,7 +603,7 @@ namespace Hesabate_POS.View.receipts
             {
                 //string extra = string.Empty;
                 if (item.unit != "0")
-                    item.unitName = GeneralInfoService.GeneralInfo.units[item.unit];
+                    item.unit_name = GeneralInfoService.GeneralInfo.units[item.unit];
 
                 item.amount = 1;
                 item.total = item.price;
@@ -611,7 +614,11 @@ namespace Hesabate_POS.View.receipts
                 invoiceDetailsList.Add(item);
             }
 
-            buildInvoiceDetailsSmall(invoiceDetailsList);
+            if (AppSettings.invoiceDetailsType.Equals("small"))
+                buildInvoiceDetailsSmall(invoiceDetailsList);
+            else
+                refreshInvoiceDetailsBig();
+                
             CalculateInvoiceValues();
         }
         public async Task setImg(Button img, string uri)
@@ -1558,6 +1565,15 @@ namespace Hesabate_POS.View.receipts
             }
         }
         #region buildInvoiceDetailsBig
+        private void refreshInvoiceDetailsBig()
+        {
+            try
+            {
+                dg_invoiceDetailsBig.ItemsSource = invoiceDetailsList;
+                dg_invoiceDetailsBig.Items.Refresh();
+            }
+            catch { }
+        }
         private void Dg_invoiceDetailsBig_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -1611,7 +1627,7 @@ namespace Hesabate_POS.View.receipts
         }
         private void deleteInvoiceItemRowinDatagrid(object sender, RoutedEventArgs e)
         {
-            /*
+         
             try
             {
                 HelpClass.StartAwait(grid_main);
@@ -1620,23 +1636,21 @@ namespace Hesabate_POS.View.receipts
                     if (vis is DataGridRow)
                     {
 
-                        btn_addSupplierPhone.IsEnabled = false;
-                        dg_supplierPhone.IsEnabled = false;
-                        SupplierPhone row = (SupplierPhone)dg_supplierPhone.SelectedItems[0];
-                        SupplierPhones.Remove(row);
-                        RefreshSupplierPhoneDataGrid();
+                        //btn_addSupplierPhone.IsEnabled = false;
+                        //dg_invoiceDetailsBig.IsEnabled = false;
+                        ItemModel row = (ItemModel)dg_invoiceDetailsBig.SelectedItems[0];
+                        invoiceDetailsList.Remove(row);
+                        refreshInvoiceDetailsBig();
                     }
 
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
             {
-                dg_supplierPhone.IsEnabled = true;
-                btn_addSupplierPhone.IsEnabled = true;
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
-            */
+        
         }
         #endregion
         List<ItemModel> invoiceDetailsList = new List<ItemModel>();
@@ -1865,10 +1879,10 @@ namespace Hesabate_POS.View.receipts
                 gridRow0.Children.Add(itemName);
                 #endregion
                 #region itemUnit
-                if (string.IsNullOrWhiteSpace(item.unitName))
+                if (string.IsNullOrWhiteSpace(item.unit_name))
                 {
                     TextBlock itemUnit = new TextBlock();
-                    itemUnit.Text = item.unitName;
+                    itemUnit.Text = item.unit_name;
                     itemUnit.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     itemUnit.Margin = new Thickness(5);
 

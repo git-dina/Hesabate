@@ -11,7 +11,7 @@ namespace Hesabate_POS.Classes.ApiClasses
     public class ItemModel : INotifyPropertyChanged
     {
         public string id { get; set; } // barcode
-        public string product_id { get; set; } 
+        public string product_id { get; set; } // item id
         public string name { get; set; }
         public string serial { get; set; } //هل المعلومات هي سيريال أو لا
         public string unit { get; set; } // unit id
@@ -49,7 +49,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         //extra
         public bool isUrgent { get; set; }
 
-        public string unitName { get; set; }
+        public string unit_name { get; set; }
         /// <summary>
         ///  invoice details
         /// </summary>
@@ -71,7 +71,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         {
             get
             {
-                return (string.IsNullOrWhiteSpace(unit) ? $"{name}" : $"{name} - {unit}");
+                return (string.IsNullOrWhiteSpace(unit_name) ? $"{name}" : $"{name} - {unit_name}");
             }
             set
             {
