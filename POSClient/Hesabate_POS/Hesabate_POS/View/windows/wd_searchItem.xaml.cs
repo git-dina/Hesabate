@@ -89,7 +89,7 @@ namespace Hesabate_POS.View.windows
 
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
 
-            col_index.Header = Translate.getResource("1787");
+            col_index.Header = Translate.getResource("2263");
             col_name.Header = Translate.getResource("652");
             col_unit.Header = Translate.getResource("427");
             col_discount.Header = Translate.getResource("571");
@@ -285,7 +285,10 @@ namespace Hesabate_POS.View.windows
 
         private void Search()
         {
-            var items = GeneralInfoService.items.Where(x => x.product_id.Contains( tb_search.Text)).ToList();
+            var items = GeneralInfoService.items.Where(x => 
+                    x.id.Contains( tb_search.Text)
+                    || x.name.Contains( tb_search.Text )
+                    ).ToList();
 
             dg_items.ItemsSource = items;
             dg_items.Items.Refresh();
@@ -327,6 +330,18 @@ namespace Hesabate_POS.View.windows
                 {
                     tb_search.Text = tb_search.Text.Remove(tb_search.Text.Length - 1);
                 }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void tb_search_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                Search();
             }
             catch (Exception ex)
             {

@@ -73,7 +73,7 @@
                Height="50"  Margin="0 0 0 0" 
            VerticalAlignment="Center"
                       materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                   KeyDown="tb_search_KeyDown"
+                  KeyUp="tb_search_KeyUp"
                      
                     />
                             </Grid>
@@ -125,7 +125,7 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="*" x:Name="col_index"  Header="index"   Binding="{Binding Path=index, Mode=OneWay}"/>
+                            <DataGridTextColumn Width="*" x:Name="col_index"  Header="index"   Binding="{Binding Path=id, Mode=OneWay}"/>
                             <DataGridTextColumn Width="*" x:Name="col_name"  Header="name"   Binding="{Binding Path=name, Mode=OneWay}"/>
                             <DataGridTextColumn Width="*" x:Name="col_unit"  Header="unit"   Binding="{Binding Path=unit, Mode=OneWay}"/>
                             <DataGridTextColumn Width="*" x:Name="col_discount" Header="discount" Binding="{Binding Path=discount, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
