@@ -315,6 +315,7 @@ namespace Hesabate_POS.View.windows
             try
             {
                 tb_search.Text += (sender as Button).Content;
+                Search();
             }
             catch (Exception ex)
             {

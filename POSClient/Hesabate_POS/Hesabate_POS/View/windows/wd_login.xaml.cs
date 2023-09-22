@@ -76,6 +76,7 @@ namespace Hesabate_POS.View.windows
                     wd_serverName w = new wd_serverName();
                     w.isFirstTime = true;
                     w.ShowDialog();
+                    await FillCombo.fillLanguages(cb_language);
                     Window.GetWindow(this).Opacity = 1;
                 }
 
