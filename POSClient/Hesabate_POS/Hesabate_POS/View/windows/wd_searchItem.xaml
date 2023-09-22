@@ -127,7 +127,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="*" x:Name="col_index"  Header="index"   Binding="{Binding Path=id, Mode=OneWay}"/>
                             <DataGridTextColumn Width="*" x:Name="col_name"  Header="name"   Binding="{Binding Path=name, Mode=OneWay}"/>
-                            <DataGridTextColumn Width="*" x:Name="col_unit"  Header="unit"   Binding="{Binding Path=unit, Mode=OneWay}"/>
+                            <DataGridTextColumn Width="*" x:Name="col_unit"  Header="unit"   Binding="{Binding Path=unit_name, Mode=OneWay}"/>
                             <DataGridTextColumn Width="*" x:Name="col_discount" Header="discount" Binding="{Binding Path=discount, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
                             <DataGridTextColumn Width="*" x:Name="col_bonus" Header="bonus" Binding="{Binding Path=bonus, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
                             <DataGridTextColumn Width="*" x:Name="col_price" Header="price" Binding="{Binding Path=price, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
