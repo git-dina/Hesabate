@@ -1890,7 +1890,7 @@ namespace Hesabate_POS.View.receipts
                 gridRow0.Children.Add(itemName);
                 #endregion
                 #region itemUnit
-                if (string.IsNullOrWhiteSpace(item.unit_name))
+                if (!string.IsNullOrWhiteSpace(item.unit_name))
                 {
                     TextBlock itemUnit = new TextBlock();
                     itemUnit.Text = item.unit_name;
