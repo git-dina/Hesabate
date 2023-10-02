@@ -40,7 +40,8 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="2*"/>
+                        <!--<ColumnDefinition Width="2*"/>-->
+                        <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
