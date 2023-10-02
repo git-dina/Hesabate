@@ -747,10 +747,39 @@ namespace Hesabate_POS
         {
             if(receiptInvoiceList.Count == 1)
             {
+                receiptInvoiceListCounter = 1;
                 foreach (Button button in FindControls.FindVisualChildren<Button>(this)
                .Where(x => x.Tag != null && x.Tag.ToString().Contains("receiptInvoiceMainButton")))
                 {
                     button.Visibility = Visibility.Collapsed;
+                    button.Tag = "receiptInvoiceMainButton_" + receiptInvoiceListCounter;
+                }
+
+                var textBlock = FindControls.FindVisualChildren<TextBlock>(this)
+               .Where(x => x.Tag != null && x.Tag.ToString().Contains("receiptInvoiceText")).FirstOrDefault();
+                if(textBlock != null)
+                {
+                    textBlock.Tag = "receiptInvoiceText_" + receiptInvoiceListCounter;
+                    textBlock.Text = "#" + receiptInvoiceListCounter;
+                }
+
+                var path = FindControls.FindVisualChildren<Path>(this)
+              .Where(x => x.Tag != null && x.Tag.ToString().Contains("receiptInvoicePath")).FirstOrDefault();
+                if (path != null)
+                {
+                    path.Tag = "receiptInvoicePath_" + receiptInvoiceListCounter;
+                }
+                var buttonClose = FindControls.FindVisualChildren<Button>(this)
+              .Where(x => x.Tag != null && x.Tag.ToString().Contains("receiptInvoiceCloseButton")).FirstOrDefault();
+                if (buttonClose != null)
+                {
+                    buttonClose.Tag = "receiptInvoiceCloseButton" + receiptInvoiceListCounter;
+                }
+
+                var receiptInvoice = receiptInvoiceList.FirstOrDefault();
+                if (receiptInvoice != null)
+                {
+                    receiptInvoice.Tag = receiptInvoiceListCounter.ToString();
                 }
             }
             else if(receiptInvoiceList.Count == 2)

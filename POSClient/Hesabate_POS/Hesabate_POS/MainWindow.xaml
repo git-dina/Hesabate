@@ -126,6 +126,22 @@
                             </StackPanel>
                         </Button>-->
                     </StackPanel>
+                    <Button Grid.Column="10" x:Name="btn_addReceiptInvoice"
+     Background="{x:Null}" BorderBrush="{x:Null}" 
+             Click="Btn_addReceiptInvoice_Click"
+     Padding="0" Margin="5 0">
+                        <Border Background="{StaticResource MainColor}" 
+             CornerRadius="90"
+             Height="30" Width="30">
+                            <Path Fill="{StaticResource White}"  Stretch="Fill"  
+               HorizontalAlignment="Center" Grid.Column="0"  
+          VerticalAlignment="Center" Height="30" Width="30"
+               Data="{StaticResource plusCircle}"
+                       />
+
+                        </Border>
+
+                    </Button>
                     <Border Grid.Column="2" Height="30" BorderBrush="{StaticResource White}" BorderThickness="1,0,0,0" Margin="5" VerticalAlignment="Center" ></Border>
                     <StackPanel x:Name="sp_versionNumber" VerticalAlignment="Center" Orientation="Vertical" 
                                 Grid.Column="1" Margin="5 0">
@@ -157,22 +173,7 @@
                         <TextBlock x:Name="txt_userName"  Text="admin" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
                         <!--<TextBlock x:Name="txt_userJob"  Text=""   FontSize="12" FontWeight="Light" Foreground="#E8E8E8" HorizontalAlignment="Left" />-->
                     </StackPanel>
-                    <Button Grid.Column="10" x:Name="btn_addReceiptInvoice"
-                        Background="{x:Null}" BorderBrush="{x:Null}" 
-                                Click="Btn_addReceiptInvoice_Click"
-                        Padding="0" Margin="5 0">
-                        <Border Background="{StaticResource MainColor}" 
-                                CornerRadius="90"
-                                Height="30" Width="30">
-                            <Path Fill="{StaticResource White}"  Stretch="Fill"  
-                                  HorizontalAlignment="Center" Grid.Column="0"  
-                             VerticalAlignment="Center" Height="30" Width="30"
-                                  Data="{StaticResource plusCircle}"
-                                          />
-
-                        </Border>
-
-                    </Button>
+                   
                      <Button Grid.Column="10" x:Name="btn_lockApp"
                         Background="{x:Null}" BorderBrush="{x:Null}" 
                                 Click="Btn_lockApp_Click"
