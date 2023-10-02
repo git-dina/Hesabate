@@ -166,6 +166,9 @@
     <Compile Include="View\windows\wd_messageBoxWithIcon.xaml.cs">
       <DependentUpon>wd_messageBoxWithIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_pauseScreen.xaml.cs">
+      <DependentUpon>wd_pauseScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_searchItem.xaml.cs">
       <DependentUpon>wd_searchItem.xaml</DependentUpon>
     </Compile>
@@ -208,6 +211,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_messageBoxWithIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\windows\wd_pauseScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

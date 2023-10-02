@@ -20,6 +20,7 @@ using Hesabate_POS.View.receipts;
 using System.Windows.Media.Animation;
 using Hesabate_POS.Classes.ApiClasses;
 using MaterialDesignThemes.Wpf;
+using Hesabate_POS.View.windows;
 
 namespace Hesabate_POS
 {
@@ -413,7 +414,23 @@ namespace Hesabate_POS
 
         private void Btn_lockApp_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                Window.GetWindow(this).Visibility = Visibility.Collapsed;
+                wd_pauseScreen w = new wd_pauseScreen();
+                w.ShowDialog();
+                Window.GetWindow(this).Visibility = Visibility.Visible;
 
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+
+                Window.GetWindow(this).Visibility = Visibility.Visible;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
 
         #region grid0_0

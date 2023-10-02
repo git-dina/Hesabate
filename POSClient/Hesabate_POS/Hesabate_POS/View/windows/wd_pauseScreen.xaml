@@ -1,0 +1,148 @@
+﻿<Window x:Class="Hesabate_POS.View.windows.wd_pauseScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hesabate_POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0"
+         Height="200" Width="350"  Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded"  >
+    <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid   >
+            <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0"  Background="{StaticResource MainColor}">
+                <Grid>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button Grid.Column="13" x:Name="btn_minimize" Click="btn_minimize_Click"
+               Margin="5 0"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
+                    Padding="0" >
+                            <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Minus" 
+                                         Width="25" Height="25"/>
+                        </Button>
+                        <Button   IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0"  x:Name="btn_colse" Click="Btn_colse_Click"
+                             FontWeight="SemiBold" Width="24" Padding="0" ToolTip="Close"  FontSize="14">
+                            <materialDesign:PackIcon Foreground="White" Kind="Close" 
+                                         Width="20" Height="20"/>
+                        </Button>
+                    </StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <!--<ColumnDefinition Width="1.2*"/>-->
+                        </Grid.ColumnDefinitions>
+                        <!--<Path Fill="White" Stretch="Fill" Margin="5,0" FlowDirection="LeftToRight"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center"  Width="20" Height="20"
+                              Data="{StaticResource vendor}"/>-->
+                        <TextBlock Text="title" x:Name="txt_title" 
+                                   Foreground="White" 
+                                   FontSize="18" FontWeight="SemiBold"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="15,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid  Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--<Grid  x:Name="grid_form">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>-->
+                <Grid x:Name="grid_form">
+                    <StackPanel x:Name="sp_form">
+                        <Grid Grid.Row="2" Margin="25 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="30" Height="30"
+                              Data="{StaticResource lock}"
+                                      Margin="5"/>
+                            <Border  Grid.Column="1"
+                        CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                                <Grid   >
+                                    <PasswordBox x:Name="pb_password" 
+                                                 Password=""
+                                         Margin="00"
+                                         Padding="10,0,5,0" 
+                                         Height="40"
+                                         BorderThickness="0"
+                                         Foreground="{StaticResource textColor}"
+                                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                         materialDesign:HintAssist.Hint="password"
+                                         materialDesign:HintAssist.Foreground="#FF2196F3"
+                                         LostFocus="validateEmpty_LostFocus"
+                                         PasswordChanged="pb_password_PasswordChanged"
+                                         KeyDown="pb_password_KeyDown"
+                                         />
+                                    <Path Fill="#E81123" Grid.Row="8" Stretch="Fill" Margin="5,5,15,5"
+                                  HorizontalAlignment="Right" Grid.Column="2"  Visibility="Collapsed"   
+                             VerticalAlignment="Center" Width="15"  Height="15"
+                                 Data="{StaticResource infoCircle}">
+                                    </Path>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                       
+                    </StackPanel>
+                </Grid>
+                <ScrollViewer Grid.Row="1"  
+                                  VerticalScrollBarVisibility="Auto"  
+                                  >
+                    <TextBlock x:Name="txt_message"
+                               Text=""
+                           Foreground="{StaticResource mediumRed}" 
+                               FontSize="14"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="25 5"
+                        TextWrapping="WrapWithOverflow"
+                        TextAlignment="Center"/>
+                </ScrollViewer>
+
+                <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="login" 
+                          materialDesign:ButtonAssist.CornerRadius="7"
+                       Margin="10 10" x:Name="btn_login" Click="Btn_login_Click" 
+                          Foreground="White"
+                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+</Window>
