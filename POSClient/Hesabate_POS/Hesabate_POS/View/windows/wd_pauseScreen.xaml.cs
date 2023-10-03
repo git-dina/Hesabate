@@ -222,12 +222,12 @@ namespace Hesabate_POS.View.windows
 
         #endregion
 
-        
+        AuthService _authService = new AuthService();
         private async void Btn_login_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                /*
+
 
             if (HelpClass.validate(requiredControlList, this))
             {
@@ -236,30 +236,24 @@ namespace Hesabate_POS.View.windows
                 btn_login.IsEnabled = false;
                 txt_message.Text = "";
 
-                //clear temp files
-                HelpClass.ClearTmpFiles();
 
-                string password = Md5Encription.MD5Hash("Inc-m" + pb_password.Password);
-                var user = await FillCombo.user.LoginUser(MainWindow.userLogin.LoginName, password);
+                string password =  pb_password.Password;
+                var res1 = await _authService.Login(AppSettings.loginName, pb_password.Password, AppSettings.langId.ToString());
+                var res = Convert.ToString(res1);
 
-                if (user.UserName == null || user.UserId == 0)
-                {
-                    //user not found
-
-                    txt_message.Text = AppSettings.resourcemanager.GetString("trWrongPassword");
-
-                }
+                // show message
+                if (res != "")
+                    txt_message.Text = res;
                 else
-                {
                     this.Close();
-                }
+
 
                 HelpClass.EndAwait(grid_form);
 
                 btn_login.IsEnabled = true;
 
             }
-                */
+        
             }
             catch (Exception ex)
             {

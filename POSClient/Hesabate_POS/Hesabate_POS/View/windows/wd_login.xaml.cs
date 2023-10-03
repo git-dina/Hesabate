@@ -338,6 +338,7 @@ namespace Hesabate_POS.View.windows
                     #endregion
                     if (canLogin)
                     {
+                        AppSettings.loginName = tb_userName.Text.Trim();
                         #region remember me
                         if (cbxRemmemberMe.IsChecked.Value)
                         {
@@ -392,6 +393,7 @@ namespace Hesabate_POS.View.windows
                 {
                     var lang = GeneralInfoService.Languages.Where(x => x.id == (int)cb_language.SelectedValue).FirstOrDefault();
                     AppSettings.dir = lang.dir;
+                    AppSettings.langId = lang.id;
                 }
             }
             catch (Exception ex)

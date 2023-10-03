@@ -36,7 +36,7 @@ namespace Hesabate_POS.Classes
         public static string dateFormat = "ShortDatePattern";
 
 
-    
+
         // app version
         //static public string CurrentVersion
         //{
@@ -47,13 +47,16 @@ namespace Hesabate_POS.Classes
         //               : Assembly.GetExecutingAssembly().GetName().Version.ToString();
         //    }
         //}
-
+        #region language
         public static string lang = "ar";
+        public static int langId ;
         public static string dir = "rtl";
+        #endregion
         // small, big
         public static string invoiceDetailsType = "small";
 
         #region User Info
+        public static string loginName; // login Name
         public static string userId;//رقم المستخدم على النظام
         public static string userName;//اسم المستخدم على النظام
         public static string database_id;//رقم قاعدة البيانات التي يعمل عليها النظام في برنامج المحاسبة
