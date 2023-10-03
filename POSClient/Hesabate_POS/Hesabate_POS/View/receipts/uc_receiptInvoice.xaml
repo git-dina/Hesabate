@@ -519,13 +519,13 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                     <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
-                                       x:Name="txt_invItmOptAmountTitle"
-                                       Text="Amount" 
-                             Foreground="{StaticResource textColor}" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="5"/>
+                                                         <!--<TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
+                                                        x:Name="txt_invItmOptAmountTitle"
+                                                        Text="Amount" 
+                                                      Foreground="{StaticResource textColor}" 
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Margin="5"/>-->
                                             <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
                                             x:Name="btn_invItmOptAmountMinus"
                                             Height="25" Width="25" 
@@ -536,13 +536,20 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
                                                     Width="25" Height="25" Kind="Minus" />
                                             </Button>
-                                            <TextBlock Grid.Row="1" Grid.Column="1"   
-                                            x:Name="txt_invItmOptAmount"
-                                            Text="{Binding amount, Mode=OneWay}" 
-                                            Foreground="{StaticResource textColor}" 
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Margin="5"/>
+                                                <Border Grid.Row="1" Grid.Column="1" CornerRadius="0" Margin="5,5,5,5" Height="40"     BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                                                    <Grid >
+                                                        <TextBox x:Name="tb_invItmOptAmount" Grid.Row="8"  Padding="10,0,5,0"  
+                                                                 Text="{Binding amount, Mode=TwoWay}"
+                                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                                 materialDesign:HintAssist.Hint="amount..."    
+                                                                Foreground="{StaticResource textColor}"    
+                                                             BorderThickness="0" Tag="decimal"
+                                                         BorderBrush="AliceBlue" MaxLength="100" PreviewTextInput="Number_PreviewTextInput"
+                                                        materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                                        Height="40"   Margin="0"  PreviewKeyDown="Spaces_PreviewKeyDown"
+                                                        LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"/>
+                                                    </Grid>
+                                                </Border>
                                             <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
                                             x:Name="btn_invItmOptAmountPlus"
                                             Height="25" Width="25"  Padding="0"
@@ -561,7 +568,7 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                 <Grid >
                                                     <ComboBox 
                                                         x:Name="cmb_invItmOptUnit"
-                                                        SelectedValue="{Binding unit,Mode=OneWay}"
+                                                        SelectedValue="{Binding unit,Mode=TwoWay}"
                                                           Padding="10,0,5,0"  Foreground="#4E4E4E"
                                                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                                           materialDesign:HintAssist.Hint="unit..."  
@@ -579,7 +586,7 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                 <Grid >
                                                     <ComboBox 
                                                         x:Name="cmb_invItmOptDiscount"
-                                                      SelectedValue="{Binding discount,Mode=OneWay}"
+                                                      SelectedValue="{Binding discount,Mode=TwoWay}"
                                                   Padding="10,0,5,0"  Foreground="#4E4E4E"
                                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                                   materialDesign:HintAssist.Hint="discount..."  
@@ -603,13 +610,13 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                     <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
+                                                <!--<TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
                                                    x:Name="txt_invItmOptBonusTitle"
                                                    Text="Bonus" 
                                                     Foreground="{StaticResource textColor}" 
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
-                                                    Margin="5"/>
+                                                    Margin="5"/>-->
                                                 <Button Grid.Row="1" Grid.Column="0"    Margin="2.5"
                                                      x:Name="btn_invItmOptBonusMinus"
                                                     Height="25" Width="25" 
@@ -620,13 +627,28 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                     <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
                                                         Width="25" Height="25" Kind="Minus" />
                                                 </Button>
-                                                <TextBlock Grid.Row="1" Grid.Column="1"   
+                                                <!--<TextBlock Grid.Row="1" Grid.Column="1"   
                                                    x:Name="txt_invItmOptBonus"
                                                    Text="{Binding bonus, Mode=OneWay}" 
                                                     Foreground="{StaticResource textColor}" 
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
-                                                   Margin="5"/>
+                                                   Margin="5"/>-->
+                                                <Border Grid.Row="1" Grid.Column="1" CornerRadius="0" Margin="5,5,5,5" Height="40"     BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                                                    <Grid >
+                                                        <TextBox x:Name="tb_invItmOptBonus" Grid.Row="8"  Padding="10,0,5,0"  
+                                                        Text="{Binding bonus, Mode=TwoWay}"
+                                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                        materialDesign:HintAssist.Hint="bonus..."    
+                                                       Foreground="{StaticResource textColor}"    
+                                                    BorderThickness="0" Tag="int"
+                                                BorderBrush="AliceBlue" MaxLength="100" PreviewTextInput="Number_PreviewTextInput"
+                                               materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                               Height="40"   Margin="0"  PreviewKeyDown="Spaces_PreviewKeyDown"
+                                               LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"/>
+                                                    </Grid>
+                                                </Border>
+
                                                 <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
                                                     x:Name="btn_invItmOptBonusPlus"
                                                     Height="25" Width="25"  Padding="0"
@@ -645,7 +667,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                      Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid   >
                                                     <TextBox x:Name="tb_invItmOptPrice" Grid.Row="8"  Padding="10,0,5,0"  
-                     Text="{Binding price, Mode=OneWay}"
+                     Text="{Binding price, Mode=TwoWay}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="price..."    
                     Foreground="{StaticResource textColor}"    
@@ -665,7 +687,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5"  Height="40"  BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid   >
                                                     <ComboBox  x:Name="cb_invItemOptNotes"
-     SelectedValue="{Binding customerId,Mode=OneWay}"
+     SelectedValue="{Binding customerId,Mode=TwoWay}"
  Padding="10,0,5,0"  Foreground="#4E4E4E"
  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
  materialDesign:HintAssist.Hint="Notes..."  

@@ -151,10 +151,12 @@ namespace Hesabate_POS.View.receipts
             #endregion
 
             #region item details
-            txt_invItmOptAmountTitle.Text = Translate.getResource("491");
+            //txt_invItmOptAmountTitle.Text = Translate.getResource("491");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptAmount, Translate.getResource("491"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_invItmOptUnit, Translate.getResource("427"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_invItmOptDiscount, Translate.getResource("571"));
-            txt_invItmOptBonusTitle.Text = Translate.getResource("583");
+            //txt_invItmOptBonusTitle.Text = Translate.getResource("583");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptBonus, Translate.getResource("583"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptPrice, Translate.getResource("570"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
             txt_invItmOptLibraReading.Text = Translate.getResource("2161");
