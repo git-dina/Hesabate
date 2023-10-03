@@ -246,7 +246,7 @@
                         </Grid>
 
                         <CheckBox Grid.Row="3" Margin="30 5" x:Name="cbxRemmemberMe" Content="Remmember Me" 
-                        VerticalAlignment="Center"  />
+                        VerticalAlignment="Center" Foreground="{StaticResource textColor}" />
                     </StackPanel>
                 </Grid>
                 <ScrollViewer Grid.Row="1"  
@@ -269,12 +269,22 @@
                     </Grid.ColumnDefinitions> 
                     <ProgressBar x:Name="pb_main"
                           Grid.Row="2"  
-                        Margin="25 5"
+                        Margin="25 5 5 5"
                         Height="20"
                         Value="0" 
                         Foreground="{StaticResource MainColor}"
                         Visibility="Visible"
                      />
+                    <TextBlock x:Name="txt_progressBarValue"
+                        Grid.Column="1"
+                             Text="0%"
+                         Foreground="{StaticResource textColor}" 
+                             FontSize="14"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Margin="5 5 25 5"
+                      TextWrapping="WrapWithOverflow"
+                      TextAlignment="Center"/>
 
                 </Grid>
                

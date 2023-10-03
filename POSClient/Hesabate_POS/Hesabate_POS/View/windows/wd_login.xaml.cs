@@ -302,15 +302,19 @@ namespace Hesabate_POS.View.windows
                         canLogin = true;
 
                         pb_main.Visibility = Visibility.Visible;
+                        txt_progressBarValue.Visibility = Visibility.Visible;
                         pb_main.Value = 0;
-
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
                         int taskCount = 3;
                         await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
                         pb_main.Value += 100 / taskCount;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
                         await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
                         pb_main.Value += 100 / taskCount;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
                         await _itemService.GetItems();
                         pb_main.Value = 100;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
                     }
                     #region  selectBox
                     if (res == "" && AppSettings.cashBoxId == "0")
@@ -326,7 +330,9 @@ namespace Hesabate_POS.View.windows
                             canLogin = false;
 
                         pb_main.Visibility = Visibility.Collapsed;
+                        txt_progressBarValue.Visibility = Visibility.Collapsed;
                         pb_main.Value = 0;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
                         Window.GetWindow(this).Opacity = 1;
                     }
                     #endregion
