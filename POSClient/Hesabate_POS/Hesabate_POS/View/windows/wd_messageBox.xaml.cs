@@ -65,13 +65,14 @@ namespace Hesabate_POS.View.windows
         {
             //if (string.IsNullOrWhiteSpace(titleText2))
             //    txt_title.Text = MainWindow.resourcemanager.GetString("trMessage");
+          tb_content.Text = Translate.getResource("2022");
             btn_ok.Content = Translate.getResource("27");
         }
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                isOk = false;
+                isOk = true;
                 this.Close();
             }
             catch (Exception ex)

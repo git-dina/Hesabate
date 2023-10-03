@@ -170,10 +170,19 @@ namespace Hesabate_POS.View.receipts
             #endregion
         }
 
-        private void clearInvoice()
+        private async Task clearInvoice()
         {
             invoice = new InvoiceModel();
 
+            invoiceDetailsList = new List<ItemModel>();
+
+            if (AppSettings.invoiceDetailsType == "small")
+                await buildItemsCard(new List<CategoryModel>());
+            else
+                refreshInvoiceDetailsBig();
+
+            CalculateInvoiceValues();
+            
             //txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
             //txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
         }
@@ -285,16 +294,44 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                HelpClass.StartAwait(grid_main);
+
                 invoice.note = tb_Notes1.Text;
                 invoice.note2 = tb_Notes2.Text;
 
                 var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                HelpClass.EndAwait(grid_main);
             }
-            catch { }
+            catch {
+                HelpClass.EndAwait(grid_main);
+            }
         }
-        private void Btn_newDraft_Click(object sender, RoutedEventArgs e)
+        private async void Btn_newDraft_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (invoiceDetailsList != null && invoiceDetailsList.Count > 0)
+                {
+                    HelpClass.StartAwait(grid_main);
 
+                
+                    #region confirm window
+                    wd_messageBox w = new wd_messageBox();
+                    w.ShowDialog();
+                    #endregion
+                    if (w.isOk)
+                    {
+                        await clearInvoice();
+                    }
+                HelpClass.EndAwait(grid_main);
+                }
+
+            }
+            catch
+            {
+                HelpClass.EndAwait(grid_main);
+
+            }
         }
 
         private void Btn_stop_Click(object sender, RoutedEventArgs e)

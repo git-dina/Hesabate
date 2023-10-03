@@ -41,7 +41,7 @@
                 <ScrollViewer  Margin="10 10 10 10"
                     Grid.Row="0" Grid.ColumnSpan="2" 
                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
-                    <TextBlock   Text="{Binding contentText2 }" Foreground="#737373" FontWeight="Bold"  FontSize="14"
+                    <TextBlock x:Name="tb_content"   Text="{Binding contentText2 }" Foreground="#737373" FontWeight="Bold"  FontSize="14"
                      TextWrapping="Wrap" TextAlignment="Center"  VerticalAlignment="Center"  HorizontalAlignment="Center"  
                         Margin="5"/>
                 </ScrollViewer>
