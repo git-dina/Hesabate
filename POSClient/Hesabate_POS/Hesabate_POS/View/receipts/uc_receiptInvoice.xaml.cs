@@ -170,14 +170,14 @@ namespace Hesabate_POS.View.receipts
             #endregion
         }
 
-        private async Task clearInvoice()
+        private void clearInvoice()
         {
             invoice = new InvoiceModel();
 
             invoiceDetailsList = new List<ItemModel>();
 
             if (AppSettings.invoiceDetailsType == "small")
-                await buildItemsCard(new List<CategoryModel>());
+                buildInvoiceDetailsSmall(invoiceDetailsList);
             else
                 refreshInvoiceDetailsBig();
 
@@ -321,7 +321,7 @@ namespace Hesabate_POS.View.receipts
                     #endregion
                     if (w.isOk)
                     {
-                        await clearInvoice();
+                         clearInvoice();
                     }
                 HelpClass.EndAwait(grid_main);
                 }
@@ -2229,6 +2229,7 @@ namespace Hesabate_POS.View.receipts
                 buttonUrgent.Margin = new Thickness(5);
                 buttonUrgent.Padding = new Thickness(5);
                 buttonUrgent.BorderBrush = null;
+                buttonUrgent.Content = Translate.getResource("2305");
                 if (item.isUrgent)
                     buttonUrgent.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
                 else
@@ -2370,8 +2371,12 @@ namespace Hesabate_POS.View.receipts
                 if (DataContext != null)
                     invoiceDetails = button.DataContext as ItemModel;
                 else
-                    invoiceDetails = selectedInvItmOps;
+                {
 
+                    selectedInvItmOps = button.DataContext as ItemModel;
+
+                    invoiceDetails = selectedInvItmOps;
+                }
                 invoiceDetails.isUrgent = !invoiceDetails.isUrgent;
                 if (invoiceDetails.isUrgent)
                     button.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
