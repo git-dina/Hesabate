@@ -272,6 +272,9 @@ namespace Hesabate_POS.Classes
             string dir = Directory.GetCurrentDirectory();
             string tmpPath = Path.Combine(dir, AppSettings.ItemsImgPath);
 
+            if (!Directory.Exists(tmpPath))
+                Directory.CreateDirectory(tmpPath);
+
             var files = Directory.GetFiles(tmpPath);
             foreach (var f in files)
                 File.Delete(f);
