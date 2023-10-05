@@ -147,6 +147,7 @@
     <Compile Include="Classes\ItemService.cs" />
     <Compile Include="Classes\Translate.cs" />
     <Compile Include="converters\accuracyConverter.cs" />
+    <Compile Include="converters\urgentColorConverter.cs" />
     <Compile Include="en_file.Designer.cs" />
     <Compile Include="View\receipts\uc_receiptInvoice.xaml.cs">
       <DependentUpon>uc_receiptInvoice.xaml</DependentUpon>

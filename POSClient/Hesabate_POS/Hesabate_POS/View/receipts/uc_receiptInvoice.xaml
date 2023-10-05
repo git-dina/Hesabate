@@ -731,14 +731,27 @@ Margin="5"  CornerRadius="0,0,0,0"
                                             <Button  x:Name="btn_urgent" 
                                            Margin="5"
                                            materialDesign:ButtonAssist.CornerRadius="7"
-                                          Background="{StaticResource MainColor}"
+                                          Background="{Binding isUrgent, Mode=OneWay, Converter={StaticResource urgentColorConverter },UpdateSourceTrigger=PropertyChanged}"
                                            BorderBrush="{x:Null}"
                                         BorderThickness="1" Padding="0"
                                                      Click="buttonUrgent_Click">
+                                                
                                                 <TextBlock Text="urgent" 
                                           Foreground="{StaticResource White}" 
                                           x:Name="txt_urgent"
                                               Margin="5" />
+                                                <!--<Button.Style>
+                                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding isUrgent,Mode=OneWay}" Value="false">
+                                                                    <Setter Property="Background" Value="{StaticResource MainColor}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding isUrgent,Mode=OneWay}" Value="true">
+                                                                <Setter Property="Background" Value="{StaticResource White}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>-->
                                             </Button>
                                             <Button  x:Name="btn_invItmOptDelete" 
                                                 Margin="5"

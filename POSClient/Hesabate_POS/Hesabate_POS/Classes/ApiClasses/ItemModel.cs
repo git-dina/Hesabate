@@ -47,8 +47,19 @@ namespace Hesabate_POS.Classes.ApiClasses
 
 
         //extra
-        public bool isUrgent { get; set; }
+        //public bool isUrgent { get; set; }
+        private bool _isUrgent;
+        public bool isUrgent
+        {
+            get => _isUrgent;
+            set
+            {
+                if (_isUrgent == value) return;
 
+                _isUrgent = value;
+                OnPropertyChanged();
+            }
+        }
         public string unit_name { get; set; }
         /// <summary>
         ///  invoice details

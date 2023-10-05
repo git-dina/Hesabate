@@ -2,7 +2,7 @@
 using Hesabate_POS.Classes.ApiClasses;
 using Hesabate_POS.converters;
 using Hesabate_POS.View.windows;
-using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf; 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -2230,10 +2230,18 @@ namespace Hesabate_POS.View.receipts
                 buttonUrgent.Padding = new Thickness(5);
                 buttonUrgent.BorderBrush = null;
                 buttonUrgent.Content = Translate.getResource("2305");
-                if (item.isUrgent)
-                    buttonUrgent.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
-                else
-                    buttonUrgent.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                //if (item.isUrgent)
+                //    buttonUrgent.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
+                //else
+                //    buttonUrgent.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                ////Background = "{Binding isUrgent, Mode=OneWay, Converter={StaticResource urgentColorConverter },UpdateSourceTrigger=PropertyChanged}"
+                var buttonUrgentColorBinding = new System.Windows.Data.Binding("isUrgent");
+                buttonUrgentColorBinding.Mode = BindingMode.OneWay;
+                buttonUrgentColorBinding.Converter = new urgentColorConverter();
+                buttonUrgent.SetBinding(Button.BackgroundProperty,buttonUrgentColorBinding);
+
+
+
                 buttonUrgent.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
                 MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonUrgent, (new CornerRadius(7)));
 
@@ -2378,10 +2386,10 @@ namespace Hesabate_POS.View.receipts
                     invoiceDetails = selectedInvItmOps;
                 }
                 invoiceDetails.isUrgent = !invoiceDetails.isUrgent;
-                if (invoiceDetails.isUrgent)
-                    button.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
-                else
-                    button.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                //if (invoiceDetails.isUrgent)
+                //    button.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
+                //else
+                //    button.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
 
             }
             catch (Exception ex)
