@@ -322,7 +322,9 @@ namespace Hesabate_POS.View.receipts
                     #endregion
                     if (w.isOk)
                     {
+                        await SaveDraft();
                          clearInvoice();
+
                     }
                 HelpClass.EndAwait(grid_main);
                 }
@@ -335,6 +337,13 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
+        private async Task SaveDraft()
+        {
+            invoice.note = tb_Notes1.Text;
+            invoice.note2 = tb_Notes2.Text;
+
+            var res = await _invoiceService.ArchiveInvoice(invoiceDetailsList, invoice);
+        }
         private void Btn_stop_Click(object sender, RoutedEventArgs e)
         {
 
