@@ -293,7 +293,7 @@ namespace Hesabate_POS.View.windows
             dg_items.ItemsSource = items;
             dg_items.Items.Refresh();
         }
-        private void dg_items_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dg_items_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -306,10 +306,6 @@ namespace Hesabate_POS.View.windows
 
             }
         }
-
-
-       
-
         private void btn_num_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -349,5 +345,7 @@ namespace Hesabate_POS.View.windows
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
+       
     }
 }
