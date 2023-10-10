@@ -39,6 +39,7 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 InitializeComponent();
+
             }
             catch (Exception ex)
             {
@@ -111,11 +112,11 @@ namespace Hesabate_POS.View.receipts
         {
             txt_allItems.Text = Translate.getResource("162");
             txt_invoiceTitle.Text = Translate.getResource("1128");
-            txt_external.Text = Translate.getResource("2311");
-            txt_tables.Text = Translate.getResource("167");
-            txt_takeAway.Text = Translate.getResource("2307");
-            txt_customer.Text = Translate.getResource("2145");
-            txt_internalCustomer.Text = Translate.getResource("98");
+            //txt_external.Text = Translate.getResource("2311");
+            //txt_tables.Text = Translate.getResource("167");
+            //txt_takeAway.Text = Translate.getResource("2307");
+            //txt_customer.Text = Translate.getResource("2145");
+            //txt_internalCustomer.Text = Translate.getResource("98");
 
             txt_CountTitle.Text = Translate.getResource("578");
             txt_SupTotalTitle.Text = Translate.getResource("572");
@@ -133,9 +134,9 @@ namespace Hesabate_POS.View.receipts
             btn_newDraft.Content = Translate.getResource("8");
 
             #region top buttons
-            txt_printInvoice.Text = Translate.getResource("2144");
-            txt_returns.Text = Translate.getResource("133");
-            txt_discount.Text = Translate.getResource("571");
+            //txt_printInvoice.Text = Translate.getResource("2144");
+            //txt_returns.Text = Translate.getResource("133");
+            //txt_discount.Text = Translate.getResource("571");
             #endregion
 
             #region invoice details big
@@ -517,7 +518,11 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region textName
                 TextBlock textName = new TextBlock();
+                if(item.name.Length < 21)
                 textName.Text = item.name;
+                else
+                    textName.Text = item.name.Substring(0, 17) + "...";
+
                 textName.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                 textName.FontSize = 12;
                 textName.FontWeight = FontWeights.Regular;
@@ -1536,14 +1541,14 @@ namespace Hesabate_POS.View.receipts
 
                         btn_external.Background = Application.Current.Resources["White"] as SolidColorBrush;
                         path_external.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                        txt_external.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        //txt_external.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                     }
                     else
                     {
                         invoice.external = "1";
                         btn_external.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
                         path_external.Fill = Application.Current.Resources["White"] as SolidColorBrush;
-                        txt_external.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                        //txt_external.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
                     }
                 }
@@ -1564,7 +1569,7 @@ namespace Hesabate_POS.View.receipts
                         invoice.takeaway = "0";
                         btn_takeAway.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
                         path_takeAway.Fill = Application.Current.Resources["White"] as SolidColorBrush;
-                        txt_takeAway.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                        //txt_takeAway.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
                     }
                     else
@@ -1572,7 +1577,7 @@ namespace Hesabate_POS.View.receipts
                         invoice.takeaway = "1";
                         btn_takeAway.Background = Application.Current.Resources["White"] as SolidColorBrush;
                         path_takeAway.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                        txt_takeAway.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        //txt_takeAway.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                     }
                 }
             }
@@ -1869,7 +1874,7 @@ namespace Hesabate_POS.View.receipts
 
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int rowCount = 4;
+                int rowCount = 5;
                 RowDefinition[] rd = new RowDefinition[rowCount];
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -1882,19 +1887,19 @@ namespace Hesabate_POS.View.receipts
 
 
                 #region gridRow0
-
                 Grid gridRow0 = new Grid();
                 gridRow0.Margin = new Thickness(5, 2.5, 5, 2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int colCountRow0 = 2;
+                int colCountRow0 = 3;
                 ColumnDefinition[] cdRow0 = new ColumnDefinition[colCountRow0];
                 for (int i = 0; i < colCountRow0; i++)
                 {
                     cdRow0[i] = new ColumnDefinition();
                 }
-                cdRow0[0].Width = new GridLength(1, GridUnitType.Star);
-                cdRow0[1].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow0[0].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow0[1].Width = new GridLength(1, GridUnitType.Star);
+                cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
                 //cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
                 for (int i = 0; i < colCountRow0; i++)
                 {
@@ -1903,29 +1908,28 @@ namespace Hesabate_POS.View.receipts
                 #endregion
 
                 #region itemIndex
-                /*
                 TextBlock itemIndex = new TextBlock();
-                itemIndex.Text = $"{item.index}-" ;
+                itemIndex.Text = $"{item.index}-";
                 itemIndex.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 itemIndex.HorizontalAlignment = HorizontalAlignment.Center;
                 itemIndex.VerticalAlignment = VerticalAlignment.Center;
-                itemIndex.Margin = new Thickness(5,5,0,5);
+                itemIndex.Margin = new Thickness(5, 5, 0, 5);
                 itemIndex.TextWrapping = TextWrapping.WrapWithOverflow;
                 itemIndex.TextAlignment = TextAlignment.Center;
-
-
                 Grid.SetColumn(itemIndex, 0);
                 gridRow0.Children.Add(itemIndex);
-                */
                 #endregion
 
                 #region itemName
                 TextBlock itemName = new TextBlock();
-                itemName.Text = item.name;
+                if (item.name.Length < 21)
+                    itemName.Text = item.name;
+                else
+                    itemName.Text = item.name.Substring(0, 17) + "...";
                 itemName.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 itemName.Margin = new Thickness(5);
 
-                Grid.SetColumn(itemName, 0);
+                Grid.SetColumn(itemName, 1);
                 gridRow0.Children.Add(itemName);
                 #endregion
                 #region itemUnit
@@ -1936,7 +1940,7 @@ namespace Hesabate_POS.View.receipts
                     itemUnit.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     itemUnit.Margin = new Thickness(5);
 
-                    Grid.SetColumn(itemUnit, 1);
+                    Grid.SetColumn(itemUnit, 2);
                     gridRow0.Children.Add(itemUnit);
                 }
                 #endregion
@@ -2085,7 +2089,6 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRow(gridRow1, 1);
                 gridMain.Children.Add(gridRow1);
                 #endregion
-
                 #region stackPanelRow2
                 StackPanel stackPanelRow2 = new StackPanel();
                 stackPanelRow2.Margin = new Thickness(5,0,5,0);
@@ -2147,7 +2150,6 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRow(stackPanelRow2, 2);
                 gridMain.Children.Add(stackPanelRow2);
                 #endregion
-
                 #region buttonInfo
                 Rectangle rectangleInfo = new Rectangle();
                 Grid.SetRowSpan(rectangleInfo, 4);
@@ -2163,9 +2165,6 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRowSpan(buttonInfo, 4);
                 gridMain.Children.Add(buttonInfo);
                 #endregion
-
-
-
                 #region gridRow3
                 Grid gridRow3 = new Grid();
                 gridRow3.Margin = new Thickness(2.5);
@@ -2315,7 +2314,27 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRow(gridRow3, 3);
                 gridMain.Children.Add(gridRow3);
                 #endregion
+                #region gridRow4
+                //if (!string.IsNullOrEmpty(item.notes))
+                //{ 
+                Grid gridRow4 = new Grid();
+                gridRow4.Margin = new Thickness(5, 2.5, 5, 2.5);
 
+                #region itemotes
+                TextBlock itemNotes = new TextBlock();
+                itemNotes.Text = item.notes;
+                var itemNotesBinding = new System.Windows.Data.Binding("notes");
+                itemNotes.SetBinding(TextBlock.TextProperty, itemNotesBinding);
+                itemNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemNotes.Margin = new Thickness(10,0,10,5);
+                itemNotes.TextWrapping = TextWrapping.Wrap;
+                itemNotes.TextAlignment = TextAlignment.Left;
+                gridRow4.Children.Add(itemNotes);
+                    #endregion
+                    Grid.SetRow(gridRow4, 4);
+                    gridMain.Children.Add(gridRow4);
+                //}
+                #endregion
 
 
                 borderMain.Child = gridMain;
@@ -2488,22 +2507,25 @@ namespace Hesabate_POS.View.receipts
             decimal overDiscountPercentage = 0;
 
             //manual discount
+            /*
             decimal manualDiscount = 0;
             manualDiscount = decimal.Parse(tb_UserDiscount.Text);
             if (chk_UserDiscountType.IsChecked == true)
                 manualDiscount = HelpClass.calcPercentage(totalAfterTax, manualDiscount);
-
             overDiscount += manualDiscount;
+            */
             if(totalAfterTax != 0)
                 overDiscountPercentage = (overDiscount * 100) / totalAfterTax;
             //over discount
             invoice.over_discount = overDiscount.ToString();
             invoice.over_discount_percentage = overDiscountPercentage.ToString();
             #endregion
+
             decimal totalNet = totalAfterTax - overDiscount;
 
 
             invoice.total_after_discount = totalNet;
+
             //display
             txt_Count.Text = invoiceDetailsList.Select(x => x.amount).Sum().ToString();
             txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.total).Sum());

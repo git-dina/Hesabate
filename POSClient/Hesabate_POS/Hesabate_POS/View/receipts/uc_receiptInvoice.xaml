@@ -70,9 +70,9 @@
                                  Data="{StaticResource printer}"
                                           FlowDirection="LeftToRight"
                                          Margin="5"/>
-                                <TextBlock Text="printInvoice" Foreground="{StaticResource MainColor}" x:Name="txt_printInvoice"
+                                <!--<TextBlock Text="printInvoice" Foreground="{StaticResource MainColor}" x:Name="txt_printInvoice"
                                       HorizontalAlignment="Left" VerticalAlignment="Center" 
-                                 Grid.Column="1"      Margin="5"/>
+                                 Grid.Column="1"      Margin="5"/>-->
                             </Grid>
                         </Button>
                         <Button  Grid.Row="1"
@@ -97,9 +97,9 @@
          Data="{StaticResource returns}"
                   FlowDirection="LeftToRight"
                  Margin="5"/>
-                                <TextBlock Text="returns" Foreground="{StaticResource MainColor}" x:Name="txt_returns"
+                                <!--<TextBlock Text="returns" Foreground="{StaticResource MainColor}" x:Name="txt_returns"
               HorizontalAlignment="Left" VerticalAlignment="Center" 
-         Grid.Column="1"      Margin="5"/>
+         Grid.Column="1"      Margin="5"/>-->
                             </Grid>
                         </Button>
                         <Button  Grid.Row="1"
@@ -124,9 +124,9 @@ VerticalAlignment="Center" Width="20" Height="20"
      Data="{StaticResource discount}"
               FlowDirection="LeftToRight"
              Margin="5"/>
-                                <TextBlock Text="discount" Foreground="{StaticResource MainColor}" x:Name="txt_discount"
+                                <!--<TextBlock Text="discount" Foreground="{StaticResource MainColor}" x:Name="txt_discount"
           HorizontalAlignment="Left" VerticalAlignment="Center" 
-     Grid.Column="1"      Margin="5"/>
+     Grid.Column="1"      Margin="5"/>-->
                             </Grid>
                         </Button>
                          
@@ -509,6 +509,18 @@ VerticalAlignment="Center" Width="20" Height="20"
                                             Margin="5"  CornerRadius="0,0,0,0"  
                                                    Width="1" BorderThickness="0" 
                                                       Background="{StaticResource MainColor}" />
+                                             <TextBlock Grid.Row="3" Grid.ColumnSpan="3"  
+                                                 x:Name="txt_invItmOptProduct_id"
+                                                        Text="{Binding product_id,Mode=OneWay}" 
+                                                       FontSize="18"
+                                              Foreground="{StaticResource textColor}" 
+                                                HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                Margin="10 5"/>
+                                            <Border   Grid.RowSpan="2" Grid.Column="2" 
+                                            Margin="5"  CornerRadius="0,0,0,0"  
+                                                   Width="1" BorderThickness="0" 
+                                                      Background="{StaticResource MainColor}" />
                                             <Grid x:Name="grid_invItmOptAmount">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="auto"/>
@@ -687,17 +699,17 @@ Margin="5"  CornerRadius="0,0,0,0"
                                             <Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5"  Height="40"  BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid   >
                                                     <ComboBox  x:Name="cb_invItemOptNotes"
-     SelectedValue="{Binding customerId,Mode=TwoWay}"
- Padding="10,0,5,0"  Foreground="#4E4E4E"
- Style="{StaticResource MaterialDesignFloatingHintComboBox}"
- materialDesign:HintAssist.Hint="Notes..."  
- Grid.Column="1" Height="40"   
-BorderBrush="#737373"   BorderThickness="0" Margin="0" 
- LostFocus="validateEmpty_LostFocus" 
-       IsEditable="True"
- IsTextSearchEnabled="False"
- StaysOpenOnEdit="True"
- KeyUp="Cb_invoiceItemNotes_KeyUp"/>
+                                                 Text="{Binding notes,Mode=TwoWay}"
+                                             Padding="10,0,5,0"  Foreground="#4E4E4E"
+                                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                             materialDesign:HintAssist.Hint="Notes..."  
+                                             Grid.Column="1" Height="40"   
+                                            BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+                                             LostFocus="validateEmpty_LostFocus" 
+                                                   IsEditable="True"
+                                             IsTextSearchEnabled="False"
+                                             StaysOpenOnEdit="True"
+                                             KeyUp="Cb_invoiceItemNotes_KeyUp"/>
 
                                                 </Grid>
                                             </Border>
@@ -1057,9 +1069,9 @@ Margin="5"  CornerRadius="0,0,0,0"
              Data="{StaticResource table}"
                       FlowDirection="LeftToRight"
                      Margin="5"/>
-                                    <TextBlock Text="tables" Foreground="{StaticResource MainColor}" x:Name="txt_tables"
+                                    <!--<TextBlock Text="tables" Foreground="{StaticResource MainColor}" x:Name="txt_tables"
                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-             Grid.Column="1"      Margin="5"/>
+             Grid.Column="1"      Margin="5"/>-->
                                 </Grid>
                             </Button>
                             <Button  Grid.Row="1"
@@ -1083,9 +1095,9 @@ Margin="5"  CornerRadius="0,0,0,0"
                               Data="{StaticResource delivery}"
                                        FlowDirection="LeftToRight"
                                       Margin="5"/>
-                                    <TextBlock x:Name="txt_external" Text="external" Foreground="{StaticResource MainColor}"
+                                    <!--<TextBlock x:Name="txt_external" Text="external" Foreground="{StaticResource MainColor}"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"      Margin="5"/>
+                              Grid.Column="1"      Margin="5"/>-->
                             </Grid>
                         </Button>
                             <Button  Grid.Row="1"
@@ -1106,12 +1118,12 @@ Margin="5"  CornerRadius="0,0,0,0"
                                         Fill="{StaticResource MainColor}"  Stretch="Fill"  
                               HorizontalAlignment="Center" Grid.Column="0"  
                          VerticalAlignment="Center" Width="20" Height="20"
-                              Data="{StaticResource takeAway}"
+                              Data="{StaticResource handPackage}"
                                        FlowDirection="LeftToRight"
                                       Margin="5"/>
-                                    <TextBlock x:Name="txt_takeAway" Text="takeAway" Foreground="{StaticResource MainColor}"
+                                    <!--<TextBlock x:Name="txt_takeAway" Text="takeAway" Foreground="{StaticResource MainColor}"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"      Margin="5"/>
+                              Grid.Column="1"      Margin="5"/>-->
                                 </Grid>
                             </Button>
                            
@@ -1135,9 +1147,9 @@ Margin="5"  CornerRadius="0,0,0,0"
                               Data="{StaticResource customer}"
                                        FlowDirection="LeftToRight"
                                       Margin="5"/>
-                                    <TextBlock Text="customer" Foreground="{StaticResource MainColor}" x:Name="txt_customer"
+                                    <!--<TextBlock Text="customer" Foreground="{StaticResource MainColor}" x:Name="txt_customer"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"      Margin="5"/>
+                              Grid.Column="1"      Margin="5"/>-->
                                 </Grid>
                             </Button>
                             <Button  Grid.Row="1"
@@ -1160,9 +1172,9 @@ Margin="5"  CornerRadius="0,0,0,0"
              Data="{StaticResource setTables}"
                       FlowDirection="LeftToRight"
                      Margin="5"/>
-                                    <TextBlock Text="internalCustomer" Foreground="{StaticResource MainColor}" x:Name="txt_internalCustomer"
+                                    <!--<TextBlock Text="internalCustomer" Foreground="{StaticResource MainColor}" x:Name="txt_internalCustomer"
                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-             Grid.Column="1"      Margin="5"/>
+             Grid.Column="1"      Margin="5"/>-->
                                 </Grid>
                             </Button>
 
@@ -1246,33 +1258,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                              FontSize="12"  
                             Margin="5 0"/>
                             </Grid>
-                            <Border   Grid.RowSpan="2" Grid.Column="4" 
-                    Margin="5"  CornerRadius="0,0,0,0"  
-                           Width="1" BorderThickness="0" Background="{StaticResource MainColor}" />
-
-                            <Grid x:Name="Service">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                                <!--<ColumnDefinition Width="auto"/>-->
-                            </Grid.ColumnDefinitions>
-                                <TextBlock  Text="Service" 
-                            x:Name="txt_ServiceTitle" 
-                                        VerticalAlignment="Center"
-                            Foreground="{StaticResource MainColor}" 
-                            FontWeight="Bold" FontSize="12" 
-                            />
-                            <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
-                            x:Name="txt_Service" 
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource textColor}" 
-                             FontSize="12"  
-                            Margin="5 0"/>
-                                <!--<materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
-                                                             Width="15" Height="15"
-                                             Margin="0 0 5 0"
-                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />-->
-                            </Grid>
+                          
 
                             <Border   Grid.RowSpan="2" Grid.Column="4" 
                     Margin="5"  CornerRadius="0,0,0,0"  
@@ -1385,7 +1371,19 @@ Margin="5"  CornerRadius="0,0,0,0"
                             Foreground="{StaticResource MainColor}" 
                             FontWeight="Bold" FontSize="12" 
                             />
-                        <StackPanel Grid.Row="1" Grid.Column="1"
+                              <TextBlock  Text="00" Grid.Row="0" Grid.Column="1"
+                                x:Name="txt_UserDiscountRate" 
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource textColor}" 
+                                 FontSize="12"  
+                                Margin="5 0"/>
+                                <materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                 Width="15" Height="15"
+                 Margin="0 0 5 0"
+                                 HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+
+                                <!--<StackPanel Grid.Row="1" Grid.Column="1"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
                                     >
@@ -1396,11 +1394,11 @@ Margin="5"  CornerRadius="0,0,0,0"
                             Margin="5 0"
                             Tag="decimal" PreviewTextInput="Number_PreviewTextInput"
                             TextChanged="tb_UserDiscount_TextChanged"/>
-                            <!--<materialDesign:PackIcon Grid.Column="1" Foreground="{StaticResource Grey}" Kind="PercentOutline"   
+                            --><!--<materialDesign:PackIcon Grid.Column="1" Foreground="{StaticResource Grey}" Kind="PercentOutline"   
                                                              Width="15" Height="15"
                                              Margin="0 0 5 0"
-                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />-->
-                        </StackPanel>
+                                                             HorizontalAlignment="Right" VerticalAlignment="Center" />--><!--
+                        </StackPanel>-->
                                     <!--<Grid  Grid.Column="2"  >
                                     <ComboBox x:Name="cb_UserDiscount"   
                                  Padding="0"
@@ -1411,7 +1409,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                   Grid.Column="0" Height="17" Margin="5 0"
                                       />
                                     </Grid>-->
-                                <Border Grid.Column="2"  Margin="5 0" Background="White" CornerRadius="16" Height="17">
+                                <!--<Border Grid.Column="2"  Margin="5 0" Background="White" CornerRadius="16" Height="17">
                                     <CheckBox x:Name="chk_UserDiscountType"  
                               Background="{StaticResource MainColor}"
                                               FontSize="10"
@@ -1419,11 +1417,65 @@ Margin="5"  CornerRadius="0,0,0,0"
                               Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
                                Margin=" 0 0 0 0" Height="17"
                               />
-                                </Border>
+                                </Border>-->
 
                             </Grid>
-                        
-                    </StackPanel>
+                            <Border   Grid.RowSpan="2" Grid.Column="4" 
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" Background="{StaticResource MainColor}" />
+
+                            <Grid x:Name="Service">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <!--<ColumnDefinition Width="auto"/>-->
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  Text="Service" 
+        x:Name="txt_ServiceTitle" 
+                    VerticalAlignment="Center"
+        Foreground="{StaticResource MainColor}" 
+        FontWeight="Bold" FontSize="12" 
+        />
+                                <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
+        x:Name="txt_Service" 
+        VerticalAlignment="Center"
+        Foreground="{StaticResource textColor}" 
+         FontSize="12"  
+        Margin="5 0"/>
+                                <!--<materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                         Width="15" Height="15"
+                         Margin="0 0 5 0"
+                                         HorizontalAlignment="Right" VerticalAlignment="Center" />-->
+                            </Grid>
+                            <Border   Grid.RowSpan="2" Grid.Column="4" 
+Margin="5"  CornerRadius="0,0,0,0"  
+       Width="1" BorderThickness="0" Background="{StaticResource MainColor}" />
+
+                            <Grid x:Name="ServiceRate">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  Text="Service" 
+        x:Name="txt_ServiceRateTitle" 
+                    VerticalAlignment="Center"
+        Foreground="{StaticResource MainColor}" 
+        FontWeight="Bold" FontSize="12" 
+        />
+                                <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
+        x:Name="txt_ServiceRate" 
+        VerticalAlignment="Center"
+        Foreground="{StaticResource textColor}" 
+         FontSize="12"  
+        Margin="5 0"/>
+                                <materialDesign:PackIcon Grid.Column="2" Foreground="{StaticResource textColor}" Kind="PercentOutline"   
+                                         Width="15" Height="15"
+                         Margin="0 0 5 0"
+                                         HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            </Grid>
+
+                        </StackPanel>
                    
                    
 
@@ -1448,17 +1500,15 @@ Margin="5"  CornerRadius="0,0,0,0"
                         <StackPanel Grid.Column="2" Grid.RowSpan="3"
                                 Margin="5"
                                     VerticalAlignment="Center">
-                            <!--<TextBlock  Text="TOTAL" 
+                            <TextBlock  Text="TOTAL" 
                             x:Name="txt_totalTitle" 
                                     HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                             Foreground="{StaticResource MainColor}" 
-                            FontWeight="Bold" FontSize="22" 
+                                        FontWeight="SemiBold"
+                            FontSize="18" 
                                     
-                            />-->
-                            
-                           
-
+                            />
                             <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" 
                                        HorizontalAlignment="Center"
                             VerticalAlignment="Center"  >
@@ -1874,9 +1924,10 @@ Margin="5"  CornerRadius="0,0,0,0"
                         <Grid x:Name="grid_invoiceDetailsBig" Visibility="Collapsed">
                             <Border Margin="5,5,5,17.5"   Grid.Row="1" CornerRadius="10" x:Name="brd_roundDataGrid" BorderThickness="0" 
                             Background="White"/>
-                            <DataGrid  Margin="5,5,5,5" Grid.Row="1"  IsReadOnly="True"   HeadersVisibility="Column"
+                            <DataGrid  Margin="5,5,5,5" Grid.Row="1"  IsReadOnly="False"   HeadersVisibility="Column"
                        x:Name="dg_invoiceDetailsBig" SelectionChanged="Dg_invoiceDetailsBig_SelectionChanged"  AutoGenerateColumns="False"   Background="White"
-                        ColumnWidth="SizeToHeader"    AlternatingRowBackground="#f3f3f3" AlternationCount="2">
+                        AlternatingRowBackground="#f3f3f3" AlternationCount="2"
+                                      ColumnWidth="Auto" MaxColumnWidth="200"  >
                                 <DataGrid.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=brd_roundDataGrid}"/>
                                 </DataGrid.OpacityMask>
@@ -1890,15 +1941,14 @@ Margin="5"  CornerRadius="0,0,0,0"
                                     </Style>
                                 </DataGrid.Resources>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn  x:Name="col_index"  Header="index"   Binding="{Binding Path=index, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_id"  Header="product_id"   Binding="{Binding Path=product_id, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_name" Header="name"   Binding="{Binding Path=name, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_unitName" Header="unitName"   Binding="{Binding Path=unit_name, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_discount" Header="discount"   Binding="{Binding Path=discount, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_amount" Header="amount"   Binding="{Binding Path=amount, Mode=OneWay}"/>
+                                    <DataGridTextColumn  x:Name="col_index"  Header="index"  IsReadOnly="True" Binding="{Binding Path=index, Mode=OneWay}"/>
+                                    <DataGridTextColumn  x:Name="col_id"  Header="product_id" IsReadOnly="True"   Binding="{Binding Path=product_id, Mode=OneWay}"/>
+                                    <DataGridTextColumn  x:Name="col_name" Header="name"  IsReadOnly="False"  Binding="{Binding Path=name}"/>
+                                    <DataGridTextColumn  x:Name="col_unitName" Header="unitName" IsReadOnly="True"   Binding="{Binding Path=unit_name, Mode=OneWay}"/>
+                                    <DataGridTextColumn  x:Name="col_discount" Header="discount" IsReadOnly="True"   Binding="{Binding Path=discount, Mode=OneWay}"/>
+                                    <DataGridTextColumn  x:Name="col_amount" Header="amount" IsReadOnly="True"   Binding="{Binding Path=amount, Mode=OneWay}"/>
                                     <DataGridTextColumn  x:Name="col_price" Header="price" Binding="{Binding Path=price, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
-                                    <DataGridTextColumn  x:Name="col_total" Header="total" Binding="{Binding Path=total, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
-
+                                    <DataGridTextColumn  x:Name="col_total" Header="total" IsReadOnly="True" Binding="{Binding Path=total, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
                                     <DataGridTemplateColumn Header="Location" IsReadOnly="True" >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
