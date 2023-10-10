@@ -121,11 +121,12 @@ namespace Hesabate_POS.View.receipts
             txt_CountTitle.Text = Translate.getResource("578");
             txt_SupTotalTitle.Text = Translate.getResource("572");
             txt_ServiceTitle.Text = Translate.getResource("1152");
+            txt_ServiceRateTitle.Text = Translate.getResource("658");
             txt_taxRateTitle.Text = Translate.getResource("575");
-            txt_taxValueTitle.Text = Translate.getResource("888");
+            txt_taxValueTitle.Text = Translate.getResource("2314");
             txt_AutoDiscountTitle.Text = Translate.getResource("2308");
             txt_UserDiscountTitle.Text = Translate.getResource("571");
-            //txt_totalTitle.Text = Translate.getResource("727");
+            txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
