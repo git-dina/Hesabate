@@ -285,10 +285,9 @@ namespace Hesabate_POS.View.windows
 
         private void Search()
         {
-            var items = GeneralInfoService.items.Where(x => 
-                    x.id.Contains( tb_search.Text)
-                    || x.name.Contains( tb_search.Text )
-                    ).ToList();
+            var items = GeneralInfoService.items.Where(x =>
+                    x.id.Length >= 4 ? x.id.Substring(x.id.Length - 4, 4).Contains(tb_search.Text) : x.id.Contains(tb_search.Text)
+                  ).ToList();
 
             dg_items.ItemsSource = items;
             dg_items.Items.Refresh();
