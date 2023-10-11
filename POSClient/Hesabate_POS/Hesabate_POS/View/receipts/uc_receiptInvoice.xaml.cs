@@ -364,7 +364,22 @@ namespace Hesabate_POS.View.receipts
         }
         private void btn_discount_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_discount w = new wd_discount();
+                w.ShowDialog();
+                if (w.isOk)
+                {
 
+                }
+
+                Window.GetWindow(this).Opacity = 1;
+            }
+            catch
+            {
+                Window.GetWindow(this).Opacity = 1;
+            }
         }
         #endregion
         #region grid1_1
@@ -2621,26 +2636,28 @@ namespace Hesabate_POS.View.receipts
             }
 
         }
+        private void Btn_searchBarcode_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_searchItem w = new wd_searchItem();
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                }
 
+                Window.GetWindow(this).Opacity = 1;
+            }
+            catch
+            {
+                Window.GetWindow(this).Opacity = 1;
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
         #endregion
 
-      
+
     }
 }

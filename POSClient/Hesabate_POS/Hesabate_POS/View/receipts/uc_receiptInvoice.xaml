@@ -45,6 +45,7 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="1" Orientation="Horizontal"
                                 Margin="5 0 0 0">
@@ -170,6 +171,26 @@ VerticalAlignment="Center" Width="20" Height="20"
                               Unchecked="searchType_uncheck"/>
                     </Border>-->
                     <Border Grid.Column="4" Height="50" Width="50" 
+      CornerRadius="0" Margin="1 0"
+      Padding="0" Background="{StaticResource MainColor}">
+                        <Button  BorderBrush="{x:Null}"  
+  Background="{x:Null}" Height="50"
+      x:Name="btn_searchBarcode" 
+      materialDesign:ButtonAssist.CornerRadius="15"
+      Padding="0" 
+               Click="Btn_searchBarcode_Click"
+>
+                            <StackPanel Orientation="Horizontal" Margin="5 0" >
+                                <!--<TextBlock x:Name="txt_search" Text="search"  Foreground="White" Margin="5"/>-->
+
+                                <Path Fill="{StaticResource White}" Margin="5"
+            Stretch="Fill" Height="20"  Width="20" x:Name="path_searchBarcode"
+        Data="{StaticResource serialNumber}"  />
+                            </StackPanel>
+
+                        </Button>
+                    </Border>
+                    <Border Grid.Column="5" Height="50" Width="50" 
                         CornerRadius="0 7 7 0"
                         Margin="0" Padding="0" Background="{StaticResource MainColor}">
                         <Button  BorderBrush="{x:Null}"  
@@ -1506,7 +1527,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                         VerticalAlignment="Center"
                             Foreground="{StaticResource MainColor}" 
                                         FontWeight="SemiBold"
-                            FontSize="18" 
+                            FontSize="12" 
                                     
                             />
                             <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" 
