@@ -173,8 +173,21 @@
                         <TextBlock x:Name="txt_userName"  Text="admin" FontSize="14" Foreground="White" HorizontalAlignment="Center" />
                         <!--<TextBlock x:Name="txt_userJob"  Text=""   FontSize="12" FontWeight="Light" Foreground="#E8E8E8" HorizontalAlignment="Left" />-->
                     </StackPanel>
-                   
-                     <Button Grid.Column="10" x:Name="btn_lockApp"
+                    <Button Grid.Column="10" x:Name="btn_Keyboard"
+Background="{x:Null}" BorderBrush="{x:Null}" 
+        Click="Btn_Keyboard_Click"
+Padding="0" Margin="5 0">
+                        <Border Background="{StaticResource White}" CornerRadius="90"
+        Height="30" Width="30">
+                            <materialDesign:PackIcon Foreground="{StaticResource MainColor}" Kind="Keyboard"  FlowDirection="LeftToRight"
+                     Width="25" Height="25"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"/>
+
+                        </Border>
+
+                    </Button>
+                    <Button Grid.Column="10" x:Name="btn_lockApp"
                         Background="{x:Null}" BorderBrush="{x:Null}" 
                                 Click="Btn_lockApp_Click"
                         Padding="0" Margin="5 0">
@@ -189,6 +202,7 @@
                         </Border>
 
                     </Button>
+                    
                     <Button Grid.Column="13" x:Name="BTN_Minimize" Click="BTN_Minimize_Click"
                    Margin="5 0"
                         Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 

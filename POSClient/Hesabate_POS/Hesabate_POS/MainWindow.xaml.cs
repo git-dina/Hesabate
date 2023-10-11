@@ -21,6 +21,7 @@ using System.Windows.Media.Animation;
 using Hesabate_POS.Classes.ApiClasses;
 using MaterialDesignThemes.Wpf;
 using Hesabate_POS.View.windows;
+using WPFTabTip;
 
 namespace Hesabate_POS
 {
@@ -432,7 +433,23 @@ namespace Hesabate_POS
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        private void Btn_Keyboard_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
 
+                if (TabTip.Close())
+                {
+             #pragma warning disable CS0436 // Type conflicts with imported type
+                    TabTip.OpenUndockedAndStartPoolingForClosedEvent();
+                #pragma warning restore CS0436 // Type conflicts with imported type
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         #region grid0_0
         private void btn_menu_Click(object sender, RoutedEventArgs e)
         {
@@ -793,8 +810,9 @@ namespace Hesabate_POS
         }
 
 
+
         #endregion
 
-
+       
     }
 }
