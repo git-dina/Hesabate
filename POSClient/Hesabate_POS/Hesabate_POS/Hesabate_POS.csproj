@@ -105,6 +105,15 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Reactive">
+      <HintPath>..\packages\System.Reactive.4.0.0\lib\net46\System.Reactive.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
@@ -149,11 +158,22 @@
     <Compile Include="converters\accuracyConverter.cs" />
     <Compile Include="converters\urgentColorConverter.cs" />
     <Compile Include="en_file.Designer.cs" />
+    <Compile Include="Keyboard\AnimationHelper.cs" />
+    <Compile Include="Keyboard\EnvironmentEx.cs" />
+    <Compile Include="Keyboard\HardwareKeyboard.cs" />
+    <Compile Include="Keyboard\PoolingTimer.cs" />
+    <Compile Include="Keyboard\Screen.cs" />
+    <Compile Include="Keyboard\TabTip.cs" />
+    <Compile Include="Keyboard\TabTipAutomation.cs" />
+    <Compile Include="Keyboard\Taskbar.cs" />
     <Compile Include="View\receipts\uc_receiptInvoice.xaml.cs">
       <DependentUpon>uc_receiptInvoice.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_chromiumWebBrowser.xaml.cs">
       <DependentUpon>wd_chromiumWebBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\windows\wd_discount.xaml.cs">
+      <DependentUpon>wd_discount.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_getUserCardData.xaml.cs">
       <DependentUpon>wd_getUserCardData.xaml</DependentUpon>
@@ -176,6 +196,9 @@
     <Compile Include="View\windows\wd_selectBox.xaml.cs">
       <DependentUpon>wd_selectBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_selectUnit.xaml.cs">
+      <DependentUpon>wd_selectUnit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_serverName.xaml.cs">
       <DependentUpon>wd_serverName.xaml</DependentUpon>
     </Compile>
@@ -196,6 +219,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_chromiumWebBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_discount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_selectBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_selectUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
