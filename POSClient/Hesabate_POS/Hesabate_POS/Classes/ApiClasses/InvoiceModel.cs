@@ -16,8 +16,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string is_do { get; set; } = "0";//0 : save invoice , 1: Update invoice , 2 : Hold Invoice , 3 : Update Hold Invoice
         public decimal total_after_discount { get; set; }//invoice total
         public int UNo { get; set; } = 0;//customer id
-        public string over_discount { get; set; }//discount amount
-        public string over_discount_percentage { get; set; }//discount percentage
+        public decimal over_discount { get; set; }//discount amount
+        public decimal over_discount_percentage { get; set; }//discount percentage
         public decimal vat { get; set; }//vat percent
         public string vat_included { get; set; } = "0"; //is vat included ??from where
         public decimal vat_amount { get; set; }//calculateed vat amount
@@ -38,6 +38,9 @@ namespace Hesabate_POS.Classes.ApiClasses
         public decimal request { get; set; }//id of holded invoice changed from
 
 
+        //extra
+        public string discountType { get; set; } = "rate";
+        public decimal manualDiscount { get; set; } 
     }
 
     public class InvoiceItem

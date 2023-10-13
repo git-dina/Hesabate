@@ -41,6 +41,8 @@ namespace Hesabate_POS.View.windows
         }
 
         public ItemModel selectedItem { get; set; }
+        public decimal manualDiscount { get; set; }
+        public string discountType { get; set; }
 
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
@@ -53,7 +55,7 @@ namespace Hesabate_POS.View.windows
 
 
                 HelpClass.StartAwait(grid_main);
-                requiredControlList = new List<string> { "", };
+                requiredControlList = new List<string> { "discount"};
 
                 #region translate
 
@@ -280,8 +282,18 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-                isOk = true;
-                this.Close();
+                if (HelpClass.validate(requiredControlList, this))
+                {
+                    if (chk_UserDiscountType.IsChecked == true)
+                        discountType = "rate";
+                    else
+                        discountType = "value";
+
+                    manualDiscount = decimal.Parse(tb_discount.Text);
+
+                    isOk = true;
+                    this.Close();
+                }
             }
             catch
             {

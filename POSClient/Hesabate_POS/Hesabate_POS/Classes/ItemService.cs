@@ -279,51 +279,51 @@ namespace Hesabate_POS.Classes
             foreach (var f in files)
                 File.Delete(f);
         }
-        public  async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
-        {
+        //public  async Task<byte[]> DownloadImageAsync(string apiUri,string imagePath)
+        //{
 
-            string remoteUri = apiUri+"/"+imagePath;
-            using (var httpClient = new HttpClient())
-            {
-                    var url = new Uri(remoteUri);
-                    // Get the file extension
-                    var uriWithoutQuery = url.GetLeftPart(UriPartial.Path);
-                var fileName = "";
+        //    string remoteUri = apiUri+"/"+imagePath;
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //            var url = new Uri(remoteUri);
+        //            // Get the file extension
+        //            var uriWithoutQuery = url.GetLeftPart(UriPartial.Path);
+        //        var fileName = "";
 
-                var s = url.AbsolutePath.Split('/');
-                fileName = s[s.Length - 1];
+        //        var s = url.AbsolutePath.Split('/');
+        //        fileName = s[s.Length - 1];
            
     
-                    var fileExtension = Path.GetExtension(uriWithoutQuery);
+        //            var fileExtension = Path.GetExtension(uriWithoutQuery);
 
-                    // Create file path and ensure directory exists
-                    //var fileName = "dd";
-                    string directoryPath = Directory.GetCurrentDirectory();
-                    string path = Path.Combine(directoryPath,AppSettings.ItemsImgPath);
-                    if (!Directory.Exists(path))
-                        Directory.CreateDirectory(path);
-                    path = Path.Combine(path, fileName);
-                    // var path = Path.Combine(directoryPath, $"{fileName}{fileExtension}");
-                    //Directory.CreateDirectory(directoryPath);
+        //            // Create file path and ensure directory exists
+        //            //var fileName = "dd";
+        //            string directoryPath = Directory.GetCurrentDirectory();
+        //            string path = Path.Combine(directoryPath,AppSettings.ItemsImgPath);
+        //            if (!Directory.Exists(path))
+        //                Directory.CreateDirectory(path);
+        //            path = Path.Combine(path, fileName);
+        //            // var path = Path.Combine(directoryPath, $"{fileName}{fileExtension}");
+        //            //Directory.CreateDirectory(directoryPath);
 
-                    // Download the image and write to the file
-                   // var imageBytes = await httpClient.GetByteArrayAsync(remoteUri);
-                    var imageBytes1 = await client.GetByteArrayAsync(remoteUri);
+        //            // Download the image and write to the file
+        //           // var imageBytes = await httpClient.GetByteArrayAsync(remoteUri);
+        //            var imageBytes1 = await client.GetByteArrayAsync(remoteUri);
 
-                return imageBytes1;
-               //return new  MemoryStream(imageBytes);
-               //if (imageBytes != null)
-               //{
-               //    using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
-               //    {
-               //        fs.Write(imageBytes, 0, imageBytes.Length);
-               //    }
-               //}
-               //File.WriteAllBytes(path, imageBytes);
-               //    return path;
+        //        return imageBytes1;
+        //       //return new  MemoryStream(imageBytes);
+        //       //if (imageBytes != null)
+        //       //{
+        //       //    using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+        //       //    {
+        //       //        fs.Write(imageBytes, 0, imageBytes.Length);
+        //       //    }
+        //       //}
+        //       //File.WriteAllBytes(path, imageBytes);
+        //       //    return path;
 
-            }
-        }
+        //    }
+        //}
 
         public async Task< List<ItemModel> >GetItems()
         {

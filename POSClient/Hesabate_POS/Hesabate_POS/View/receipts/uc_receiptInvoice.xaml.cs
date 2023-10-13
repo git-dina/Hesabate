@@ -369,9 +369,14 @@ namespace Hesabate_POS.View.receipts
                 Window.GetWindow(this).Opacity = 0.2;
                 wd_discount w = new wd_discount();
                 w.ShowDialog();
+                w.discountType = invoice.discountType;
+                w.manualDiscount = invoice.manualDiscount;
+
                 if (w.isOk)
                 {
-
+                    invoice.discountType = w.discountType;
+                    invoice.manualDiscount = w.manualDiscount;
+                    CalculateInvoiceValues();
                 }
 
                 Window.GetWindow(this).Opacity = 1;
@@ -2532,18 +2537,27 @@ namespace Hesabate_POS.View.receipts
             decimal overDiscountPercentage = 0;
 
             //manual discount
-            /*
+           
             decimal manualDiscount = 0;
-            manualDiscount = decimal.Parse(tb_UserDiscount.Text);
-            if (chk_UserDiscountType.IsChecked == true)
-                manualDiscount = HelpClass.calcPercentage(totalAfterTax, manualDiscount);
+            decimal manualDiscountRate = 0;
+
+            if (invoice.discountType == "rate")
+            {
+                manualDiscount = HelpClass.calcPercentage(totalAfterTax, invoice.manualDiscount);
+                manualDiscountRate = invoice.manualDiscount;
+            }
+            else
+            {
+                manualDiscount = invoice.over_discount;
+                manualDiscountRate = (manualDiscount * 100) / totalAfterTax;
+            }
             overDiscount += manualDiscount;
-            */
+        
             if(totalAfterTax != 0)
                 overDiscountPercentage = (overDiscount * 100) / totalAfterTax;
             //over discount
-            invoice.over_discount = overDiscount.ToString();
-            invoice.over_discount_percentage = overDiscountPercentage.ToString();
+            invoice.over_discount = overDiscount;
+            invoice.over_discount_percentage = overDiscountPercentage;
             #endregion
 
             decimal totalNet = totalAfterTax - overDiscount;
@@ -2556,6 +2570,7 @@ namespace Hesabate_POS.View.receipts
             txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.total).Sum());
             txt_Service.Text = HelpClass.DecTostring(serviceAmount);
             txt_taxValue.Text = HelpClass.DecTostring(taxAmount);
+            txt_UserDiscountRate.Text = HelpClass.DecTostring(manualDiscountRate);
             txt_total.Text = HelpClass.DecTostring(totalNet);
         }
 
