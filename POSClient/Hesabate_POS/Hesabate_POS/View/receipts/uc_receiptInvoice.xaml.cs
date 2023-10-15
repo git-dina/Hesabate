@@ -2348,7 +2348,7 @@ namespace Hesabate_POS.View.receipts
                 //if (!string.IsNullOrEmpty(item.notes))
                 //{ 
                 Grid gridRow4 = new Grid();
-                gridRow4.Margin = new Thickness(5, 2.5, 5, 2.5);
+                gridRow4.Margin = new Thickness(5, 0, 5, 0);
 
                 #region itemotes
                 TextBlock itemNotes = new TextBlock();
@@ -2356,13 +2356,13 @@ namespace Hesabate_POS.View.receipts
                 var itemNotesBinding = new System.Windows.Data.Binding("notes");
                 itemNotes.SetBinding(TextBlock.TextProperty, itemNotesBinding);
                 itemNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                itemNotes.Margin = new Thickness(10,0,10,5);
+                itemNotes.Margin = new Thickness(10, 0, 10, 0);
                 itemNotes.TextWrapping = TextWrapping.Wrap;
                 itemNotes.TextAlignment = TextAlignment.Left;
                 gridRow4.Children.Add(itemNotes);
-                    #endregion
-                    Grid.SetRow(gridRow4, 4);
-                    gridMain.Children.Add(gridRow4);
+                #endregion
+                Grid.SetRow(gridRow4, 4);
+                gridMain.Children.Add(gridRow4);
                 //}
                 #endregion
 
