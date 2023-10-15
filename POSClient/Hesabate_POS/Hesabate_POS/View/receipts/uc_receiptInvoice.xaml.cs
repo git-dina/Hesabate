@@ -171,7 +171,65 @@ namespace Hesabate_POS.View.receipts
             txt_invItmOpsAddAndDeleteGroupTitle.Text = Translate.getResource("2310");
             #endregion
         }
+        #region
+        /*
+        Point scrollMousePoint = new Point();
+        double hOff = 1;
+        private void scrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            scrollMousePoint = e.GetPosition(scrollViewer);
+            hOff = scrollViewer.HorizontalOffset;
+            scrollViewer.CaptureMouse();
+        }
 
+        private void scrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            if (scrollViewer.IsMouseCaptured)
+            {
+                scrollViewer.ScrollToHorizontalOffset(hOff + (scrollMousePoint.X - e.GetPosition(scrollViewer).X));
+            }
+        }
+
+        private void scrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            scrollViewer.ReleaseMouseCapture();
+        }
+
+        private void scrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + e.Delta);
+        }
+        */
+        #endregion
+        /*
+        Point oldMousePosition;
+        private void sp_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point newMousePosition = Mouse.GetPosition(sp_invoiceDetailsSmall);
+            //tb.Text = newMousePosition.X + " | " + newMousePosition.Y;
+
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                if (newMousePosition.Y < oldMousePosition.Y)
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset + 1);
+                if (newMousePosition.Y > oldMousePosition.Y)
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - 1);
+
+                if (newMousePosition.X < oldMousePosition.X)
+                    sv.ScrollToHorizontalOffset(sv.HorizontalOffset + 1);
+                if (newMousePosition.X > oldMousePosition.X)
+                    sv.ScrollToHorizontalOffset(sv.HorizontalOffset - 1);
+            }
+            else
+            {
+                oldMousePosition = newMousePosition;
+            }
+        }
+        */
         private void clearInvoice()
         {
             invoice = new InvoiceModel();
