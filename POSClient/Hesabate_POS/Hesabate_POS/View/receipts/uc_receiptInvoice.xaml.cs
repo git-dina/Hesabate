@@ -415,7 +415,10 @@ namespace Hesabate_POS.View.receipts
         {
 
         }
+        private void Mi_printInvoiceTax_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
         private void btn_returns_Click(object sender, RoutedEventArgs e)
         {
 
@@ -2729,8 +2732,9 @@ namespace Hesabate_POS.View.receipts
             }
 
         }
+
         #endregion
 
-
+       
     }
 }

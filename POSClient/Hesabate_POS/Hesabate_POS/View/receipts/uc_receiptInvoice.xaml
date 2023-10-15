@@ -49,33 +49,60 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="1" Orientation="Horizontal"
                                 Margin="5 0 0 0">
-                        <Button  Grid.Row="1"
-                                    Margin="5,0,5,0"
+
+                        <Border Height="30" 
+                        CornerRadius="7"
+                        Margin="0" Padding="0" 
+                                BorderBrush="{StaticResource MainColor}"
+                                BorderThickness="1">
+                        <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                                <Button  Grid.Row="1"
+            Margin="0"
                     
-                                        x:Name="btn_printInvoice"
-                                 Click="btn_printInvoice_Click"
-                                 materialDesign:ButtonAssist.CornerRadius="7"
-                                           Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
-                                                     BorderThickness="1"
-                                           Padding="0" 
-                                 >
-                                          <Grid 
-                                  >
-                                              <Grid.ColumnDefinitions>
-                                                  <ColumnDefinition Width="auto"/>
-                                                  <ColumnDefinition Width="*"/>
-                                              </Grid.ColumnDefinitions>
-                                              <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
-                                 HorizontalAlignment="Center" Grid.Column="0"  
-                            VerticalAlignment="Center" Width="20" Height="20"
-                                 Data="{StaticResource printer}"
-                                          FlowDirection="LeftToRight"
-                                         Margin="5"/>
-                                <!--<TextBlock Text="printInvoice" Foreground="{StaticResource MainColor}" x:Name="txt_printInvoice"
-                                      HorizontalAlignment="Left" VerticalAlignment="Center" 
-                                 Grid.Column="1"      Margin="5"/>-->
-                            </Grid>
-                        </Button>
+                x:Name="btn_printInvoice"
+         Click="btn_printInvoice_Click"
+         materialDesign:ButtonAssist.CornerRadius="7"
+                   Background="{x:Null}" 
+                             BorderThickness="0"
+                   Padding="0" 
+         >
+                                <Grid 
+          >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+         HorizontalAlignment="Center" Grid.Column="0"  
+    VerticalAlignment="Center" Width="20" Height="20"
+         Data="{StaticResource printer}"
+                  FlowDirection="LeftToRight"
+                 Margin="5"/>
+                                    <!--<TextBlock Text="printInvoice" Foreground="{StaticResource MainColor}" x:Name="txt_printInvoice"
+              HorizontalAlignment="Left" VerticalAlignment="Center" 
+         Grid.Column="1"      Margin="5"/>-->
+                                </Grid>
+                            </Button>
+                                <StackPanel  Margin="0,0,0,0"   Grid.Column="10" VerticalAlignment="Center">
+                                    <Menu  Height="30" Margin="0 0 4 0">
+                                        <MenuItem Height="30" Padding="0,0,0,0" VerticalAlignment="Center">
+                                            <MenuItem.Header>
+                                                <materialDesign:PackIcon Foreground="{StaticResource MainColor}"
+                                                  Kind="MenuDown" 
+                                                Width="25" Height="25"/>
+                                            </MenuItem.Header>
+                                            <MenuItem   Foreground="{StaticResource MainColor}" 
+                                                        BorderThickness="0,0,0,1" 
+                                                        BorderBrush="#DEDEDE"
+                                                 Header="طباعة ضريبة" Click="Mi_printInvoiceTax_Click"
+                                                        />
+                                        </MenuItem>
+                                    </Menu>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
                         <Button  Grid.Row="1"
             Margin="5,0,5,0"
                     
