@@ -842,20 +842,19 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
-                                            <WrapPanel x:Name="sp_invItmOpsAdds">
-                                                <!--<StackPanel x:Name="sp_invItmOpsAddGroup"
+                                            <WrapPanel x:Name="sp_invItmOpsAdds" >
+                                                <!--<StackPanel x:Name="sp_invItmOpsAddsGroup"
+                                Grid.Row="1"
                                 Orientation="Horizontal"
-                       Margin="10,5,10,5" >
-
-
-                                                    <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  
+                                 Margin="10,5,10,5" >
+                                                    <TextBlock Grid.Row="0" Grid.Column="0"
                                        x:Name="txt_invItmOptAddGroupTitle"
                                        Text="Hamburger - Kg" 
                                    Foreground="{StaticResource Green}" 
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Margin="5"/>
-                                                    <Button  Margin="2.5"
+                                                    <Button  Margin="2.5"  Grid.Row="0" Grid.Column="1"
                                        x:Name="btn_invItmOptAddGroupMinus"
                 Height="25" Width="25" 
                              materialDesign:ButtonAssist.CornerRadius="5"
@@ -864,38 +863,38 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                         <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
                      Width="25" Height="25" Kind="Minus" />
                                                     </Button>
-                                                    <TextBlock Grid.Row="1" Grid.Column="1"   
+                                                    <TextBlock  Grid.Row="0" Grid.Column="2"  
                                        x:Name="txt_invItmOptAddGroupAmount"
                                        Text="{Binding AddGroup, Mode=OneWay}" 
                              Foreground="{StaticResource textColor}" 
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Margin="5"/>
-                                                    <Button Grid.Row="1" Grid.Column="2"    Margin="2.5"
+                                                    <Button  Grid.Row="0" Grid.Column="3"    Margin="2.5"
                                        x:Name="btn_invItmOptAddGroupPlus"
                 Height="25" Width="25"  Padding="0"
                     Background="{StaticResource veryLightGrey}"   BorderThickness="0">
                                                         <materialDesign:PackIcon   Foreground="{StaticResource ThickGrey}"
                      Width="25" Height="25" Kind="Plus" />
                                                     </Button>
-                                                    <TextBlock Grid.Row="1" Grid.Column="1"   
+                                                    <TextBlock  Grid.Row="0" Grid.Column="4"  
                                        x:Name="txt_invItmOptAddGroupPrice"
                                        Text="{Binding Price, Mode=OneWay}" 
                              Foreground="{StaticResource textColor}" 
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Margin="5"/>
-                                                    <TextBlock Grid.Row="1" Grid.Column="1"   
+                                                    <TextBlock  Grid.Row="0" Grid.Column="5"
                                        x:Name="txt_invItmOptAddGroupPriceIcon"
                                        Text="$" 
                              Foreground="{StaticResource textColor}" 
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Margin="0 5 5 5"/>
-                                                    <Border   Grid.RowSpan="2" Grid.Column="2" 
-Margin="5"  CornerRadius="0,0,0,0"  
-       Width="1" BorderThickness="0" 
-          Background="{StaticResource MainColor}" />
+                                                    <Border   Grid.Row="0" Grid.Column="6"
+                                                        Margin="5"  CornerRadius="0,0,0,0"  
+                                                               Width="1" BorderThickness="0" 
+                                                                  Background="{StaticResource MainColor}" />
 
 
                                                 </StackPanel>-->
