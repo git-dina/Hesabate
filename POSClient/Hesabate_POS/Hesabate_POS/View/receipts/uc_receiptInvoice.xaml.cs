@@ -2192,6 +2192,7 @@ namespace Hesabate_POS.View.receipts
                         foreach (var groupItem in extra.group_items)
                         {
                             string itemString = "";
+                            if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount;
                             itemString = $"{groupItem.name} ({groupItem.basicAmount}) {groupItem.add_price} {AppSettings.currency}";
                             //if (string.IsNullOrWhiteSpace(groupItem.unit))
                             //    itemString = groupItem.name;
