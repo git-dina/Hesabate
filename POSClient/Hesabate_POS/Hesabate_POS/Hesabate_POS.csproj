@@ -169,6 +169,9 @@
     <Compile Include="View\receipts\uc_receiptInvoice.xaml.cs">
       <DependentUpon>uc_receiptInvoice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_acceptCancelPopup.xaml.cs">
+      <DependentUpon>wd_acceptCancelPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_chromiumWebBrowser.xaml.cs">
       <DependentUpon>wd_chromiumWebBrowser.xaml</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\receipts\uc_receiptInvoice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\windows\wd_acceptCancelPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
