@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Title="SC Commerce" Height="195" Width="300"  Background="Transparent" AllowsTransparency="True"
+         Title="SC Hesabate_POS" Height="195" Width="300"  Background="Transparent" AllowsTransparency="True"
         Loaded="Window_Loaded"  MouseDown="Window_MouseDown" >
     <Grid Grid.Column="1" Grid.Row="1"  x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Grid    >
             <Border  BorderThickness="0" Grid.Row="0" 
-                    CornerRadius="7,7,0,0"  Background="#178DD2">
+                    CornerRadius="7,7,0,0"  Background="{StaticResource MainColor}">
                 <Grid>
                     <TextBlock Text="warning" x:Name="txt_title" Foreground="White" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -50,8 +50,8 @@
                     Kind="InfoCircle" Margin="10"
                      Width="100" Height="100"    />
                 <Button   Grid.Row="1"   Content="Ok" Grid.ColumnSpan="2" materialDesign:ButtonAssist.CornerRadius="7"
-                       Margin="10,7.5" x:Name="btn_ok" Click="Btn_colse_Click"
-                          Background="#178DD2" BorderBrush="{x:Null}" />
+                       Margin="10,7.5" x:Name="btn_ok" Click="Btn_colse_Click" Foreground="White"
+                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />
 
             </Grid>
         </Border>

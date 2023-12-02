@@ -42,14 +42,14 @@ namespace Hesabate_POS.View.windows
             {
 
                 #region translate
-                if (AppSettings.lang.Equals("en"))
-                {
-                    grid_main.FlowDirection = FlowDirection.LeftToRight;
-                }
-                else
-                {
-                    grid_main.FlowDirection = FlowDirection.RightToLeft;
-                }
+                //if (AppSettings.lang.Equals("en"))
+                //{
+                //    grid_main.FlowDirection = FlowDirection.LeftToRight;
+                //}
+                //else
+                //{
+                //    grid_main.FlowDirection = FlowDirection.RightToLeft;
+                //}
                 translate();
                 #endregion
 
@@ -62,7 +62,7 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
             btn_ok.Content = Translate.getResource("27");
-            //txt_title.Text = MainWindow.resourcemanager.GetString("trWarning");
+            txt_title.Text = AppSettings.resourcemanager.GetString("trWarning");
         }
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {
@@ -81,7 +81,7 @@ namespace Hesabate_POS.View.windows
         #region contentText1
         public static readonly DependencyProperty contentText1DependencyProperty = DependencyProperty.Register("contentText1",
             typeof(string),
-            typeof(wd_messageBoxWithIcon),
+            typeof(wd_messageBox),
             new PropertyMetadata("DEFAULT"));
         public string contentText1
         {
@@ -98,10 +98,7 @@ namespace Hesabate_POS.View.windows
             {
                 DragMove();
             }
-            catch (Exception)
-            {
-
-            }
+            catch { }
         }
 
 
