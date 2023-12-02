@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Title="SC Commerce" Height="175" Width="300"  Background="Transparent" AllowsTransparency="True"
+         Title="SC Hesabate_POS" Height="175" Width="300"  Background="Transparent" AllowsTransparency="True"
         Loaded="Window_Loaded"  MouseDown="Window_MouseDown" >
     <Grid Grid.Column="1" Grid.Row="1"  x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -17,9 +17,9 @@
         </Grid.RowDefinitions>
         <Grid    >
             <Border  BorderThickness="0" Grid.Row="0" 
-                    CornerRadius="7,7,0,0"  Background="#178DD2">
+                    CornerRadius="7,7,0,0"  Background="{StaticResource MainColor}">
                 <Grid>
-                    <TextBlock Text="{Binding titleText2 }" x:Name="txt_title" Foreground="White" 
+                    <TextBlock Text="warning" x:Name="txt_title" Foreground="White" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" 
                               Grid.Column="1"      Margin="5,0"/>
                     <Button   IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
@@ -38,16 +38,12 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer  Margin="10 10 10 10"
-                    Grid.Row="0" Grid.ColumnSpan="2" 
-                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
-                    <TextBlock x:Name="tb_content"   Text="{Binding contentText2 }" Foreground="#737373" FontWeight="Bold"  FontSize="14"
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2"  Text="{Binding contentText2 }" Foreground="#737373" FontWeight="Bold"  FontSize="14"
                      TextWrapping="Wrap" TextAlignment="Center"  VerticalAlignment="Center"  HorizontalAlignment="Center"  
                         Margin="5"/>
-                </ScrollViewer>
                 <Button   Grid.Row="1"   Content="Ok" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="10,7.5" x:Name="btn_ok" Click="Btn_colse_Click"
-                          Background="#178DD2" BorderBrush="{x:Null}" />
+                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" Foreground="White" />
 
             </Grid>
         </Border>

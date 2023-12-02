@@ -31,7 +31,7 @@ namespace Hesabate_POS.View.windows
             }
             catch (Exception ex)
             {
-               HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
 
@@ -41,16 +41,14 @@ namespace Hesabate_POS.View.windows
             {
 
                 #region translate
-
-                if (AppSettings.lang.Equals("en"))
-                {
-                    grid_main.FlowDirection = FlowDirection.LeftToRight;
-                }
-                else
-                {
-                    grid_main.FlowDirection = FlowDirection.RightToLeft;
-                }
-
+                //if (AppSettings.lang.Equals("en"))
+                //{
+                //    grid_main.FlowDirection = FlowDirection.LeftToRight;
+                //}
+                //else
+                //{
+                //    grid_main.FlowDirection = FlowDirection.RightToLeft;
+                //}
                 #endregion
                 translate();
 
@@ -58,26 +56,24 @@ namespace Hesabate_POS.View.windows
             }
             catch (Exception ex)
             {
-               HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
         private void translate()
         {
-            //if (string.IsNullOrWhiteSpace(titleText2))
-            //    txt_title.Text = MainWindow.resourcemanager.GetString("trMessage");
-          tb_content.Text = Translate.getResource("2022");
+            txt_title.Text = AppSettings.resourcemanager.GetString("trMessage");
             btn_ok.Content = Translate.getResource("27");
         }
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                isOk = true;
+                isOk = false;
                 this.Close();
             }
             catch (Exception ex)
             {
-               HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
         
@@ -95,19 +91,6 @@ namespace Hesabate_POS.View.windows
             { return (string)GetValue(contentText2DependencyProperty); }
         }
         #endregion
-        #region titleText2
-        public static readonly DependencyProperty titleText2DependencyProperty = DependencyProperty.Register("titleText2",
-            typeof(string),
-            typeof(wd_messageBox),
-            new PropertyMetadata(""));
-        public string titleText2
-        {
-            set
-            { SetValue(titleText2DependencyProperty, value); }
-            get
-            { return (string)GetValue(titleText2DependencyProperty); }
-        }
-        #endregion
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -115,10 +98,7 @@ namespace Hesabate_POS.View.windows
             {
                 DragMove();
             }
-            catch (Exception)
-            {
-
-            }
+            catch { }
         }
 
 
