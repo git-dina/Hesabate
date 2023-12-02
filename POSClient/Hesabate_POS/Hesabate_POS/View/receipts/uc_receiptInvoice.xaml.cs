@@ -374,9 +374,10 @@ namespace Hesabate_POS.View.receipts
                 {
                     HelpClass.StartAwait(grid_main);
 
-                
+
                     #region confirm window
-                    wd_messageBox w = new wd_messageBox();
+                    wd_acceptCancelPopup w = new wd_acceptCancelPopup();
+                    w.contentText = Translate.getResource("2022");
                     w.ShowDialog();
                     #endregion
                     if (w.isOk)
@@ -609,8 +610,8 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 #region textName
                 TextBlock textName = new TextBlock();
-                if(item.name.Length < 21)
-                textName.Text = item.name;
+                if (item.name.Length <= 20)
+                        textName.Text = item.name;
                 else
                     textName.Text = item.name.Substring(0, 17) + "...";
 
