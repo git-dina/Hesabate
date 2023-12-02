@@ -9,7 +9,7 @@
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
          Height="515" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
-        Loaded="Window_Loaded" Closing="Window_Closing" 
+        Loaded="Window_Loaded" 
         >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -77,6 +77,11 @@
          materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
          Height="40"   Margin="0"  PreviewKeyDown="Spaces_PreviewKeyDown"
          LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"/>
+                                <Path Fill="{StaticResource Red}"   Stretch="Fill" Margin="5,5,15,5"
+     HorizontalAlignment="Right" Visibility="Collapsed"    x:Name="p_error_discount"
+VerticalAlignment="Center" Width="15"  Height="15"
+    Data="{StaticResource infoCircle}">
+                                </Path>
                             </Grid>
                         </Border>
                         <Border Grid.Column="2"  Margin="5 0 10 0" Background="White" 
