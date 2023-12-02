@@ -1,0 +1,72 @@
+﻿<Window x:Class="Hesabate_POS.View.windows.wd_acceptCancelPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hesabate_POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0" AllowsTransparency="True" Background="Transparent"
+        Title="wd_itemsList" Height="175" Width="300"  
+        Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+    <Border CornerRadius="2.5"  Background="White">
+        <Grid x:Name="grid_main">
+        <Grid.RowDefinitions>
+                <RowDefinition Height="2.5"/>
+                <RowDefinition Height="2.2*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="2.5,2.5,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Background="{StaticResource MainColor}"/>
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2"  Text="{Binding contentText }" Foreground="#737373" FontWeight="Bold"  FontSize="14"
+                     TextWrapping="Wrap" TextAlignment="Center"  VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                        Margin="5"/>
+            <Border  Grid.Row="2"  Grid.Column="0"   CornerRadius="0,0,0,2.5" Background="#E65B65">
+                <Button x:Name="btn_cancel"    IsCancel="true" Foreground="White"
+                           BorderBrush="{x:Null}" Background="{x:Null}"
+                     Click="Btn_cancel_Click" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock  FontSize="16" Foreground="White"  Name="txt_cancel" Text="Cancel" VerticalAlignment="Center"/>
+                            <!--<materialDesign:PackIcon Name="path_cancel" Foreground="White"
+                                                 Kind="CloseBold" VerticalAlignment="Center" 
+                                                 Width="15"  Height="15" Margin="4,1,0,0"/>-->
+
+                        </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip x:Name="tt_cancel" Content="Cancel"
+                                    Placement="left" 
+                                    HorizontalOffset="15"
+                                    PlacementRectangle="50,0,0,0"
+                                    VerticalOffset="30"/>
+                        </Button.ToolTip>
+                    </Button>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1" Background="{StaticResource Blue}"  CornerRadius="0,0,2.5,0" >
+                <Button x:Name="btn_ok"  Foreground="White"
+                           BorderBrush="{x:Null}" Background="{x:Null}"
+                     Click="Btn_ok_Click" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="16"  Foreground="White"  Name="txt_ok" Text="OK" VerticalAlignment="Center"/>
+                        <!--<materialDesign:PackIcon Name="path_ok"
+                                                 Kind="Like" VerticalAlignment="Center" 
+                                                 Width="15"  Height="15" Margin="4,1,0,0"/>-->
+
+                    </StackPanel>
+                    <Button.ToolTip>
+                        <ToolTip x:Name="tt_ok" Content="Ok"
+                                    Placement="left" 
+                                    HorizontalOffset="15"
+                                    PlacementRectangle="50,0,0,0"
+                                    VerticalOffset="30"/>
+                    </Button.ToolTip>
+                </Button>
+            </Border>
+
+        </Grid>
+    </Border>
+
+</Window>
