@@ -89,7 +89,7 @@ namespace Hesabate_POS.View.windows
 
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
 
-            col_index.Header = Translate.getResource("2263");
+            col_index.Header = Translate.getResource("469");
             col_name.Header = Translate.getResource("652");
             col_unit.Header = Translate.getResource("427");
             col_discount.Header = Translate.getResource("571");

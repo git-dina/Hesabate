@@ -123,8 +123,8 @@ namespace Hesabate_POS.View.receipts
             txt_ServiceTitle.Text = Translate.getResource("1152");
             txt_ServiceRateTitle.Text = Translate.getResource("658");
             txt_taxRateTitle.Text = Translate.getResource("575");
-            txt_taxValueTitle.Text = Translate.getResource("2314");
-            txt_AutoDiscountTitle.Text = Translate.getResource("2308");
+            txt_taxValueTitle.Text = Translate.getResource("361");
+            txt_AutoDiscountTitle.Text = Translate.getResource("2283");
             txt_UserDiscountTitle.Text = Translate.getResource("571");
             txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
@@ -163,12 +163,12 @@ namespace Hesabate_POS.View.receipts
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
             txt_invItmOptLibraReading.Text = Translate.getResource("2161");
             txt_invItmOptQueryItem.Text = Translate.getResource("2157");
-            txt_urgent.Text = Translate.getResource("2305");
+            txt_urgent.Text = Translate.getResource("2252");
             txt_invItmOptDelete.Text = Translate.getResource("5");
 
 
             txt_invItmOpsDetailsTitle.Text = Translate.getResource("28");
-            txt_invItmOpsAddAndDeleteGroupTitle.Text = Translate.getResource("2310");
+            txt_invItmOpsAddAndDeleteGroupTitle.Text = Translate.getResource("2284");
             #endregion
         }
         #region
@@ -2321,7 +2321,7 @@ namespace Hesabate_POS.View.receipts
                 buttonUrgent.Margin = new Thickness(5);
                 buttonUrgent.Padding = new Thickness(5);
                 buttonUrgent.BorderBrush = null;
-                buttonUrgent.Content = Translate.getResource("2305");
+                buttonUrgent.Content = Translate.getResource("2252");
                 //if (item.isUrgent)
                 //    buttonUrgent.Background = Application.Current.Resources["mediumRed"] as SolidColorBrush;
                 //else
