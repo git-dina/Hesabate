@@ -81,10 +81,10 @@ namespace Hesabate_POS.View.windows
 
         private void translate()
         {
-            txt_title.Text = AppSettings.resourcemanager.GetString("trLoginInformation");
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, AppSettings.resourcemanager.GetString("trPasswordHint"));
+            txt_title.Text =  Translate.getResource("14");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, Translate.getResource("553"));
 
-            btn_login.Content = AppSettings.resourcemanager.GetString("trLogIn");
+            btn_login.Content = Translate.getResource("27");
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
