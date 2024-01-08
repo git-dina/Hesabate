@@ -296,7 +296,8 @@ namespace Hesabate_POS
             txt_selectAgent.Text = Translate.getResource("526");
             txt_invoiceDelete.Text = Translate.getResource("2153");
             txt_points.Text = Translate.getResource("654");
-            txt_shiftClose.Text = Translate.getResource("2309");
+           // txt_shiftClose.Text = Translate.getResource("2309");
+            txt_shiftClose.Text = "قفل فترة العمل";
             txt_invoiceBonus.Text = Translate.getResource("2158");
             txt_invoiceCost.Text = Translate.getResource("21");
             txt_import.Text = Translate.getResource("763");
