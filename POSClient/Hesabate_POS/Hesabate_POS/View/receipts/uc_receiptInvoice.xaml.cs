@@ -230,9 +230,11 @@ namespace Hesabate_POS.View.receipts
             }
         }
         */
-        private void clearInvoice()
+        private void clearInvoice(string BillId="")
         {
             invoice = new InvoiceModel();
+            if (BillId != "")
+                invoice.BillId = BillId;
 
             invoiceDetailsList = new List<ItemModel>();
 
@@ -360,6 +362,7 @@ namespace Hesabate_POS.View.receipts
                 invoice.note2 = tb_Notes2.Text;
 
                 var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                clearInvoice(res.next_billid);
                 HelpClass.EndAwait(grid_main);
             }
             catch {

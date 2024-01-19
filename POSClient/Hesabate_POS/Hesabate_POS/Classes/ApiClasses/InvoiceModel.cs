@@ -10,7 +10,7 @@ namespace Hesabate_POS.Classes.ApiClasses
     {
 
         public int CustomerId { get; set; }
-        public string BillId { get; set; }
+        public string BillId { get; set; } = "000000";
         public string next_billid { get; set; }
         public string table_id { get; set; } = "0";
         public string is_do { get; set; } = "0";//0 : save invoice , 1: Update invoice , 2 : Hold Invoice , 3 : Update Hold Invoice
