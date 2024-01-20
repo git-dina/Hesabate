@@ -1,16 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hesabate_POS.Classes.ApiClasses
 {
-    public class InvoiceModel
+    public class InvoiceModel : INotifyPropertyChanged
     {
 
         public int CustomerId { get; set; }
-        public string BillId { get; set; } = "000000";
+        //public string BillId { get; set; } = "000000";
+        private string _BillId = "000000";
+        public string BillId
+        {
+            get => _BillId;
+            set
+            {
+                if (_BillId == value) return;
+
+                _BillId = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         public string next_billid { get; set; }
         public string table_id { get; set; } = "0";
         public string is_do { get; set; } = "0";//0 : save invoice , 1: Update invoice , 2 : Hold Invoice , 3 : Update Hold Invoice
@@ -40,7 +57,12 @@ namespace Hesabate_POS.Classes.ApiClasses
 
         //extra
         public string discountType { get; set; } = "rate";
-        public decimal manualDiscount { get; set; } 
+        public decimal manualDiscount { get; set; }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+
     }
 
     public class InvoiceItem

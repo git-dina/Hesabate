@@ -237,6 +237,7 @@ namespace Hesabate_POS.View.receipts
             invoice = new InvoiceModel();
             if (BillId != "")
                 invoice.BillId = BillId;
+            //(this.DataContext as InvoiceModel).BillId
 
             invoiceDetailsList = new List<ItemModel>();
 
@@ -246,9 +247,10 @@ namespace Hesabate_POS.View.receipts
                 refreshInvoiceDetailsBig();
 
             CalculateInvoiceValues();
-            
+
             //txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
             //txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
+            this.DataContext = invoice;
         }
         private void btn_home_Click(object sender, RoutedEventArgs e)
         {
@@ -261,7 +263,7 @@ namespace Hesabate_POS.View.receipts
         void Clear()
         {
 
-            this.DataContext = new InvoiceModel();
+            //this.DataContext = new InvoiceModel();
 
 
             // last 
@@ -2454,7 +2456,7 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceDetailsList.RemoveAt(index - 1);
 
-                if(selectedInvItmOps != null &&   selectedInvItmOps.index == invOptItem.index)
+                if(selectedInvItmOps != null ||   selectedInvItmOps.index == invOptItem.index)
                 switchGrid1_1("mainItemsCatalog");
 
                 if (AppSettings.invoiceDetailsType == "small")
@@ -2740,6 +2742,7 @@ namespace Hesabate_POS.View.receipts
             }
 
         }
+
 
         #endregion
 
