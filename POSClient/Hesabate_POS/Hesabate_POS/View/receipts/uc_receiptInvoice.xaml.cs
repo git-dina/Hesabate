@@ -158,7 +158,7 @@ namespace Hesabate_POS.View.receipts
             //txt_invItmOptAmountTitle.Text = Translate.getResource("491");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptAmount, Translate.getResource("491"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_invItmOptUnit, Translate.getResource("427"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_invItmOptDiscount, Translate.getResource("571"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptDiscount, Translate.getResource("571"));
             //txt_invItmOptBonusTitle.Text = Translate.getResource("583");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptBonus, Translate.getResource("583"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptPrice, Translate.getResource("570"));
@@ -1041,6 +1041,36 @@ namespace Hesabate_POS.View.receipts
                 invOptItem.amount++;
                 calculateItemPrice();
 
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_invItmOptDiscountMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+                if (invOptItem.discount > 0)
+                {
+                    invOptItem.discount--;
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_invItmOptDiscountPlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+
+                invOptItem.discount++;
             }
             catch (Exception ex)
             {

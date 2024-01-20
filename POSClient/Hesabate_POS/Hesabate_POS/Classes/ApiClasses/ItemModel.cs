@@ -23,7 +23,19 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string measure_id { get; set; }
         public decimal min_p { get; set; } // min price 
         public decimal max_p { get; set; } // max price
-        public decimal discount { get; set; } // الخصم الصافي على الصنف
+        //public decimal discount { get; set; } // الخصم الصافي على الصنف
+        private decimal _discount;
+        public decimal discount
+        {
+            get => _discount;
+            set
+            {
+                if (_discount == value) return;
+
+                _discount = value;
+                OnPropertyChanged();
+            }
+        }
         public string serial_text { get; set; } // السيريال الذي تم بيعه في هذه العملية
         public string detail { get; set; }//note
 
