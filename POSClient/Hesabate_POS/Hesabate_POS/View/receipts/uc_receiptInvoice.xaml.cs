@@ -98,6 +98,8 @@ namespace Hesabate_POS.View.receipts
                 //invoiceDetailsList = getInvoiceDetails();
                 //buildInvoiceDetailsSmall(invoiceDetailsList);
 
+                this.DataContext = invoice;
+
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -259,7 +261,7 @@ namespace Hesabate_POS.View.receipts
         void Clear()
         {
 
-            //this.DataContext = new Receipt();
+            this.DataContext = new InvoiceModel();
 
 
             // last 
@@ -2452,7 +2454,7 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceDetailsList.RemoveAt(index - 1);
 
-                if(selectedInvItmOps.index == invOptItem.index)
+                if(selectedInvItmOps != null &&   selectedInvItmOps.index == invOptItem.index)
                 switchGrid1_1("mainItemsCatalog");
 
                 if (AppSettings.invoiceDetailsType == "small")
@@ -2638,6 +2640,7 @@ namespace Hesabate_POS.View.receipts
             txt_taxValue.Text = HelpClass.DecTostring(taxAmount);
             txt_UserDiscountRate.Text = HelpClass.DecTostring(manualDiscountRate);
             txt_total.Text = HelpClass.DecTostring(totalNet);
+
         }
 
         private void tb_UserDiscount_TextChanged(object sender, TextChangedEventArgs e)
