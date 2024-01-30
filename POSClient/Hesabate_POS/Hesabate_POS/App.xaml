@@ -13,6 +13,7 @@
             <converters:receiptTypeConverter x:Key="receiptTypeConverter"/>-->
             <converters:accuracyConverter x:Key="accuracyConverter"/>
             <converters:urgentColorConverter x:Key="urgentColorConverter"/>
+            <converters:boolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
             
             <!--#region Fonts-->
             <FontFamily x:Key="Font-cairo-light" >cairo light, /Hesabate_POS;component/fonts/cairo-font/#cairo light, Arial</FontFamily>

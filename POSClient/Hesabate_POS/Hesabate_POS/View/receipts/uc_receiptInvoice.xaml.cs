@@ -2487,6 +2487,11 @@ namespace Hesabate_POS.View.receipts
                 buttonUrgent.SetBinding(Button.BackgroundProperty,buttonUrgentColorBinding);
 
 
+                var buttonUrgentVisibilityBinding = new System.Windows.Data.Binding("isUrgent");
+                buttonUrgentVisibilityBinding.Mode = BindingMode.OneWay;
+                buttonUrgentVisibilityBinding.Converter = new boolToVisibilityConverter();
+                buttonUrgent.SetBinding(Button.VisibilityProperty, buttonUrgentVisibilityBinding);
+
 
                 buttonUrgent.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
                 MaterialDesignThemes.Wpf.ButtonAssist.SetCornerRadius(buttonUrgent, (new CornerRadius(7)));

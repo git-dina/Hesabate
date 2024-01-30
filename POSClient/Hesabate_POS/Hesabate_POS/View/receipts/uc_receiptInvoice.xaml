@@ -923,7 +923,8 @@ Margin="5"  CornerRadius="0,0,0,0"
 
 
                                         </WrapPanel>
-                                        <Grid Grid.Row="2" Margin="10,5,0,5">
+                                        <Grid Grid.Row="2" Margin="10,5,0,5"
+                                              Visibility="Collapsed">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="auto"/>
                                                 <ColumnDefinition Width="*"/>
@@ -935,8 +936,8 @@ Margin="5"  CornerRadius="0,0,0,0"
                                             />
                                             <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
                                         </Grid>
-                                        
-                                        <TextBlock Grid.Row="3" Grid.ColumnSpan="3"  
+                                        <TextBlock Grid.Row="3" Grid.ColumnSpan="3" 
+                                                   Visibility="Collapsed"
                                        x:Name="txt_invItmOptDetails"
                                        Text="Serials: 1564617006, Expire date: 2023/1/1, Color: Red, Size: XL, Location: X159, …. Serials: 1564617006, Expire date: 2023/1/1, Color: Red, Size: XL, Location: X159, …." 
                              Foreground="{StaticResource textColor}" 
