@@ -1099,13 +1099,15 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 var textBox = (TextBox)sender;
+                ItemModel invOptItem = textBox.DataContext as ItemModel;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
                 w.inputValue = decimal.Parse(textBox.Text);
+                w.hasRate = true;
+                w.valueForRate = invOptItem.price;
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    ItemModel invOptItem = textBox.DataContext as ItemModel;
-                    invOptItem.discount = int.Parse(w.outputValue.ToString());
+                    invOptItem.discount = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
 
@@ -1210,7 +1212,7 @@ namespace Hesabate_POS.View.receipts
                 if (w.isOk)
                 {
                     ItemModel invOptItem = textBox.DataContext as ItemModel;
-                    invOptItem.price = int.Parse(w.outputValue.ToString());
+                    invOptItem.price = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
 

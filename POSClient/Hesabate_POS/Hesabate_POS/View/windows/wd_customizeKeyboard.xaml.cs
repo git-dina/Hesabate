@@ -44,6 +44,7 @@ namespace Hesabate_POS.View.windows
         public decimal inputValue { get; set; }
         public decimal outputValue { get; set; }
         public bool hasRate { get; set; }
+        public decimal valueForRate { get; set; }
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
 
@@ -278,7 +279,7 @@ namespace Hesabate_POS.View.windows
                     if (chk_discountType.IsChecked == true)
                     {
                         //discountType = "rate";
-                        outputValue = (inputValue *  decimal.Parse(tb_discount.Text)) / 100;
+                        outputValue = (valueForRate *  decimal.Parse(tb_discount.Text)) / 100;
                     }
                     else
                     {
