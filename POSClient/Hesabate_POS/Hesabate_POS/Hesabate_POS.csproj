@@ -156,6 +156,7 @@
     <Compile Include="Classes\ItemService.cs" />
     <Compile Include="Classes\Translate.cs" />
     <Compile Include="converters\accuracyConverter.cs" />
+    <Compile Include="converters\boolToVisibilityConverter.cs" />
     <Compile Include="converters\urgentColorConverter.cs" />
     <Compile Include="en_file.Designer.cs" />
     <Compile Include="Keyboard\AnimationHelper.cs" />
@@ -174,6 +175,9 @@
     </Compile>
     <Compile Include="View\windows\wd_chromiumWebBrowser.xaml.cs">
       <DependentUpon>wd_chromiumWebBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\windows\wd_customizeKeyboard.xaml.cs">
+      <DependentUpon>wd_customizeKeyboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_discount.xaml.cs">
       <DependentUpon>wd_discount.xaml</DependentUpon>
@@ -226,6 +230,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\windows\wd_chromiumWebBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_customizeKeyboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
