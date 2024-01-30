@@ -390,9 +390,11 @@ namespace Hesabate_POS.View.receipts
                     if (w.isOk)
                     {
                         await SaveDraft();
-                         clearInvoice();
+                        clearInvoice();
 
                     }
+                    else
+                        clearInvoice();
                 HelpClass.EndAwait(grid_main);
                 }
 
