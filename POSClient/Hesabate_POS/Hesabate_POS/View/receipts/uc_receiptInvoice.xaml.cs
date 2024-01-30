@@ -345,14 +345,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-
-
-
-
-
-
-
-
+        
 
 
         #endregion
@@ -1016,23 +1009,6 @@ namespace Hesabate_POS.View.receipts
             buildInvoiceItemExtra(selectedInvItmOps);
             switchGrid1_1("invItmOps");
         }
-        private void btn_invItmOptAmountMinus_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-                ItemModel invOptItem = button.DataContext as ItemModel;
-                if (invOptItem.amount >1)
-                {
-                    invOptItem.amount--;
-                    calculateItemPrice();
-                }
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
         private void btn_invItmOptAmountPlus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1049,6 +1025,58 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        private void btn_invItmOptAmountMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+                if (invOptItem.amount > 1)
+                {
+                    invOptItem.amount--;
+                    calculateItemPrice();
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void tb_invItmOptAmount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var textBox = (TextBox)sender;
+                wd_customizeKeyboard w = new wd_customizeKeyboard();
+                w.inputValue = decimal.Parse(textBox.Text);
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    ItemModel invOptItem = textBox.DataContext as ItemModel;
+                    invOptItem.amount = int.Parse(w.outputValue.ToString());
+                    calculateItemPrice();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void btn_invItmOptDiscountPlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+                invOptItem.discount++;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         private void btn_invItmOptDiscountMinus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1058,6 +1086,7 @@ namespace Hesabate_POS.View.receipts
                 if (invOptItem.discount > 0)
                 {
                     invOptItem.discount--;
+                    calculateItemPrice();
                 }
             }
             catch (Exception ex)
@@ -1065,14 +1094,36 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        private void btn_invItmOptDiscountPlus_Click(object sender, RoutedEventArgs e)
+        private void tb_invItmOptDiscount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var textBox = (TextBox)sender;
+                wd_customizeKeyboard w = new wd_customizeKeyboard();
+                w.inputValue = decimal.Parse(textBox.Text);
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    ItemModel invOptItem = textBox.DataContext as ItemModel;
+                    invOptItem.discount = int.Parse(w.outputValue.ToString());
+                    calculateItemPrice();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private void btn_invItmOptBonusPlus_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Button button = sender as Button;
                 ItemModel invOptItem = button.DataContext as ItemModel;
 
-                invOptItem.discount++;
+                invOptItem.bonus++;
             }
             catch (Exception ex)
             {
@@ -1095,20 +1146,82 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        private void btn_invItmOptBonusPlus_Click(object sender, RoutedEventArgs e)
+        private void tb_invItmOptBonus_GotFocus(object sender, RoutedEventArgs e)
         {
             try
             {
-                Button button = sender as Button;
-                ItemModel invOptItem = button.DataContext as ItemModel;
+                var textBox = (TextBox)sender;
+                wd_customizeKeyboard w = new wd_customizeKeyboard();
+                w.inputValue = decimal.Parse(textBox.Text);
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    ItemModel invOptItem = textBox.DataContext as ItemModel;
+                    invOptItem.bonus = int.Parse(w.outputValue.ToString());
+                    calculateItemPrice();
+                }
 
-                invOptItem.bonus++;
             }
             catch (Exception ex)
             {
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
+
+        private void btn_invItmOptPricePlus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+
+                invOptItem.price++;
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void btn_invItmOptPriceMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                ItemModel invOptItem = button.DataContext as ItemModel;
+                if (invOptItem.price > 0)
+                {
+                    invOptItem.price--;
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        private void tb_invItmOptPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var textBox = (TextBox)sender;
+                wd_customizeKeyboard w = new wd_customizeKeyboard();
+                w.inputValue = decimal.Parse(textBox.Text);
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    ItemModel invOptItem = textBox.DataContext as ItemModel;
+                    invOptItem.price = int.Parse(w.outputValue.ToString());
+                    calculateItemPrice();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+
         void buildInvoiceItemAdds(ItemModel item)
         {
             sp_invItmOpsAdds.Children.Clear();
@@ -2776,8 +2889,11 @@ namespace Hesabate_POS.View.receipts
         }
 
 
+
+
+
         #endregion
 
-       
+        
     }
 }
