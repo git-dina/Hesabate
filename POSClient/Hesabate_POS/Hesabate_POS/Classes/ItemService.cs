@@ -329,8 +329,8 @@ namespace Hesabate_POS.Classes
         {
 
             var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
-            try
-            {
+           // try
+           // {
                 var content = new MultipartFormDataContent();
                 content.Add(new StringContent(AppSettings.token), "token");
                 content.Add(new StringContent("13"), "op");
@@ -343,11 +343,11 @@ namespace Hesabate_POS.Classes
                     GeneralInfoService.items = JsonConvert.DeserializeObject<List<ItemModel>>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
                 }
-            }
-            catch (Exception ex)
-            {
-                return new List<ItemModel>();
-            }
+           // }
+            //catch (Exception ex)
+            //{
+            //    return new List<ItemModel>();
+            //}
             return GeneralInfoService.items;
         } 
         

@@ -43,7 +43,7 @@ namespace Hesabate_POS.Classes
 
                     }
                 }
-                catch  {
+                catch  (Exception e){
                     Languages = new List<LanguageModel>();
                 }
             }
