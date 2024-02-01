@@ -18,6 +18,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public List<CategoryModel> items { get; set; } // == null (maybe has sub category if level2 != null or this is last item)
         public List<CategoryModel> addItems { get; set; } // == 
         public List<CategoryModel> deleteItems { get; set; } // == 
+        public List<CategoryModel> isbasic { get; set; } // == 
         public decimal discount { get; set; }
         public decimal price { get; set; }
         public string no_w { get; set; }
