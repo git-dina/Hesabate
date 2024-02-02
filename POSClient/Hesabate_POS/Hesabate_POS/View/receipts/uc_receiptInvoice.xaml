@@ -527,6 +527,9 @@ VerticalAlignment="Center" Width="20" Height="20"
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
                                         </Grid.RowDefinitions>
                                         <Grid Margin="10,0,0,0">
                                             <Grid.ColumnDefinitions>
@@ -629,13 +632,16 @@ VerticalAlignment="Center" Width="20" Height="20"
                                                 <Grid >
                                                     <ComboBox 
                                                         x:Name="cmb_invItmOptUnit"
+                                                        ItemsSource="{Binding unitList}"
+                                                        DisplayMemberPath="name"
                                                         SelectedValue="{Binding unit,Mode=TwoWay}"
                                                           Padding="10,0,5,0"  Foreground="#4E4E4E"
                                                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                                           materialDesign:HintAssist.Hint="unit..."  
                                                           Grid.Column="1" Height="40"   
                                                          BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-                                                          LostFocus="validateEmpty_LostFocus"/>
+                                                          LostFocus="validateEmpty_LostFocus"
+                                                        SelectionChanged="cmb_invItmOptUnit_SelectionChanged"/>
 
                                                 </Grid>
                                             </Border>
@@ -945,26 +951,25 @@ Margin="5"  CornerRadius="0,0,0,0"
                Margin="10 5"
                TextWrapping="WrapWithOverflow"
                TextAlignment="Left"/>
-
-                                        <Grid x:Name="grid_invItmOpsAddsAndDeletesTitle"
+                                        <StackPanel x:Name="sp_invItmOpsBasic"
+                                                   Grid.Row="4">
+                                           
+                                        </StackPanel>
+                                        <Grid x:Name="grid_invItmOpsAddsTitle"
                                               Visibility="Collapsed"
-                                            Grid.Row="4" Margin="10,5,0,5">
+                                            Grid.Row="5" Margin="10,5,0,5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="auto"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock x:Name="txt_invItmOpsAddAndDeleteGroupTitle" 
-                                   Text="AddAndDeleteGroup"  Foreground="{StaticResource MainColor}" 
+                                            <TextBlock x:Name="txt_invItmOpsAddGroupTitle" 
+                                   Text="AddGroup"  Foreground="{StaticResource MainColor}" 
                         Grid.Column="0" 
                FontWeight="Bold" FontSize="12"  Margin="5"
                   />
                                             <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
                                         </Grid>
-                                        <Grid Grid.Row="5">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
+                                        <Grid Grid.Row="6">
                                             <WrapPanel x:Name="sp_invItmOpsAdds" >
                                                 <!--<StackPanel x:Name="sp_invItmOpsAddsGroup"
                                 Grid.Row="1"
@@ -1022,6 +1027,23 @@ Margin="5"  CornerRadius="0,0,0,0"
 
                                                 </StackPanel>-->
                                             </WrapPanel>
+                                           </Grid>
+                                        <Grid x:Name="grid_invItmOpsDeletesTitle"
+                               Visibility="Collapsed"
+                             Grid.Row="7" Margin="10,5,0,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock x:Name="txt_invItmOpsDeleteGroupTitle" 
+                    Text="DeleteGroup"  Foreground="{StaticResource MainColor}" 
+         Grid.Column="0" 
+FontWeight="Bold" FontSize="12"  Margin="5"
+   />
+                                            <Border Grid.Column="1"  Margin="10,2.5"     Height="2" BorderThickness="0" Background="{StaticResource MainColor}" />
+                                        </Grid>
+
+                                        <Grid Grid.Row="8">
                                             <WrapPanel  x:Name="sp_invItmOpsDeletes"
                                                 Grid.Row="1">
                                                 <!--<StackPanel x:Name="sp_invItmOpsDeleteGroup"
@@ -1084,7 +1106,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                             </WrapPanel>
                                         </Grid>
                                         <StackPanel x:Name="sp_invItmOpsExtra"
-                                                    Grid.Row="6">
+                                                    Grid.Row="9">
                                             <!--<Grid Grid.Row="0" Margin="10,5,0,5">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="auto"/>
