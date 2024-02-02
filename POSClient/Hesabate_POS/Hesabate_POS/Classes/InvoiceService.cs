@@ -276,5 +276,31 @@ namespace Hesabate_POS.Classes
             return invoiceRes;
 
         }
+
+        public async Task<InvoiceModel> GetInvoiceInfo(string type,string invoiceId)
+        {
+            InvoiceModel invoice = new InvoiceModel();
+            var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
+
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(AppSettings.token), "token");
+            content.Add(new StringContent("14"), "op");
+            content.Add(new StringContent(type), "type");
+            content.Add(new StringContent(invoiceId), "id");
+            content.Add(new StringContent("0"), "table_id");
+            content.Add(new StringContent("0"), "request");
+            content.Add(new StringContent("1"), "priceid");
+            request.Content = content;
+            var response = await client.SendAsync(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                invoice = JsonConvert.DeserializeObject<InvoiceModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+
+            }
+
+            return invoice;
+        }
     }
 }

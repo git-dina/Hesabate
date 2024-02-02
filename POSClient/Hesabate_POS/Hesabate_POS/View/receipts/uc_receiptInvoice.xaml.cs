@@ -3158,8 +3158,37 @@ namespace Hesabate_POS.View.receipts
 
 
 
+
         #endregion
 
-        
+        #region Invoice Navigation
+        private async void btn_next_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var res = await _invoiceService.GetInvoiceInfo("0", invoice.BillId);
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        private async void btn_previous_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var res = await _invoiceService.GetInvoiceInfo("1",invoice.BillId);
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        #endregion
+
+
     }
 }
