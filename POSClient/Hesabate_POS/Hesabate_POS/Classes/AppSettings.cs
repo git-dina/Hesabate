@@ -12,7 +12,11 @@ namespace Hesabate_POS.Classes
 {
     public class AppSettings
     {
-        public static readonly HttpClient httpClient = new HttpClient();
+        public static readonly HttpClient httpClient = new HttpClient()
+        {
+            Timeout = TimeSpan.FromMinutes(3),
+            
+    };
 
         public static ResourceManager resourcemanager;
         public static ResourceManager resourcemanagerreport;
@@ -20,7 +24,7 @@ namespace Hesabate_POS.Classes
         public static ResourceManager resourcemanagerEn;
 
        
-        public static string APIUri = "http://s.hesabate.com";
+        public static string APIUri ;
         public static bool menuState = false;
 
         #region folders Paths
