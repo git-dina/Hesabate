@@ -717,7 +717,7 @@ namespace Hesabate_POS.View.receipts
                         {
                             var item1 = GeneralInfoService.items.Where(x => x.product_id == item.id.ToString()).FirstOrDefault();
 
-                            AddItemToInvoice(item1, item.items, item.addItems, item.deleteItems);
+                            AddItemToInvoice(item1,item.isbasic, item.items, item.addItems, item.deleteItems);
                         }
                         //MessageBox.Show("Add me to invoice");
                     }
@@ -732,7 +732,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         //private void AddItemToInvoice(CategoryModel item)
-        private void AddItemToInvoice(ItemModel item, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
+        private void AddItemToInvoice(ItemModel item, List<CategoryModel> basicItems, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
         {
             var itemInInvoice = invoiceDetailsList.Where(x => x.product_id.ToString() == item.product_id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
@@ -749,6 +749,7 @@ namespace Hesabate_POS.View.receipts
                 item.amount = 1;
                 item.total = item.price;
 
+                item.basicItems = basicItems;
                 item.extraItems = extraItems;
                 item.addsItems = addItems;
                 item.deletesItems = deleteItems;
@@ -973,6 +974,7 @@ namespace Hesabate_POS.View.receipts
         }
         */
 
+        /*
         private void btn_extraItems_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -992,6 +994,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        */
         private void btn_deleteItems_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("ss");
@@ -1022,6 +1025,11 @@ namespace Hesabate_POS.View.receipts
             {
                 if (selectedInvItmOps != null)
                 {
+                    ComboBox cmb = sender as ComboBox;
+                    ItemModel invOptItem = cmb.DataContext as ItemModel;
+
+                     selectedInvItmOps.unit = cmb.SelectedValue.ToString();
+                    selectedInvItmOps.unit_name = cmb.Text;
                     MessageBox.Show(selectedInvItmOps.unit);
                 }
             }
@@ -1092,6 +1100,7 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 ItemModel invOptItem = button.DataContext as ItemModel;
                 invOptItem.discount++;
+                calculateItemPrice();
             }
             catch (Exception ex)
             {
@@ -1128,7 +1137,10 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    invOptItem.discount = decimal.Parse(w.outputValue.ToString());
+                    if (w.hasRate)
+                        invOptItem.discount = HelpClass.calcPercentage(invOptItem.price, decimal.Parse(w.outputValue.ToString()));
+                    else
+                        invOptItem.discount = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
 
@@ -1181,7 +1193,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     ItemModel invOptItem = textBox.DataContext as ItemModel;
                     invOptItem.bonus = int.Parse(w.outputValue.ToString());
-                    calculateItemPrice();
+                    //calculateItemPrice();
                 }
 
             }
@@ -1200,6 +1212,8 @@ namespace Hesabate_POS.View.receipts
                 ItemModel invOptItem = button.DataContext as ItemModel;
 
                 invOptItem.price++;
+                calculateItemPrice();
+
             }
             catch (Exception ex)
             {
@@ -1215,6 +1229,8 @@ namespace Hesabate_POS.View.receipts
                 if (invOptItem.price > 0)
                 {
                     invOptItem.price--;
+                    calculateItemPrice();
+
                 }
             }
             catch (Exception ex)
@@ -1388,7 +1404,7 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if (groupItem.basicAmount < groupItem.allow_add)
+                //if (groupItem.basicAmount < groupItem.allow_add)
                 {
                     groupItem.basicAmount++;
                     calculateItemPrice();
@@ -1540,7 +1556,7 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if(groupItem.basicAmount < groupItem.allow_sub)
+                //if(groupItem.basicAmount < groupItem.allow_sub)
                     groupItem.basicAmount++;
             }
             catch (Exception ex)
@@ -1920,8 +1936,12 @@ namespace Hesabate_POS.View.receipts
             {
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
-                if (groupItem.basicAmount > 0)
+                if (groupItem.basicAmount > 0 && checkBasicItemsCount(groupItem.groupName))
+                {
                     groupItem.basicAmount--;
+                    calculateItemPrice();
+                }
+
             }
             catch (Exception ex)
             {
@@ -1935,9 +1955,9 @@ namespace Hesabate_POS.View.receipts
                 Button button = sender as Button;
                 GroupItemModel groupItem = button.DataContext as GroupItemModel;
 
-                if (checkBasicItemsCount(groupItem.groupName))
-                    groupItem.basicAmount++;
-
+                
+                groupItem.basicAmount++;
+                calculateItemPrice();
 
             }
             catch (Exception ex)
@@ -2909,6 +2929,7 @@ namespace Hesabate_POS.View.receipts
         private void calculateItemPrice()
         {
             decimal totalPrice =  selectedInvItmOps.price;
+            decimal discount = selectedInvItmOps.discount;
             //foreach(var group in selectedInvItmOps.extraItems) // extra groups
             //{
             //    foreach(var item in group.group_items)
@@ -2928,7 +2949,7 @@ namespace Hesabate_POS.View.receipts
                 foreach (var item in group.group_items)
                 {
 
-                    if (item.basicAmount > (item.start_amount + item.add_price_amount) && item.add_price_amount != 0)
+                    if (item.basicAmount > (item.start_amount + item.add_price_amount) )
                     {
                         var sup = (int)item.basicAmount - (item.start_amount + item.add_price_amount);
                         totalPrice += sup * item.add_price;
@@ -2936,9 +2957,23 @@ namespace Hesabate_POS.View.receipts
                     }
                 }
             }
-          
+
+            foreach (var group in selectedInvItmOps.basicItems) // adds groups
+            {
+                foreach (var item in group.group_items)
+                {
+
+                    if (item.basicAmount > (item.start_amount + item.add_price_amount) )
+                    {
+                        var sup = (int)item.basicAmount - (item.start_amount + item.add_price_amount);
+                        totalPrice += sup * item.add_price;
+
+                    }
+                }
+            }
+
             totalPrice = totalPrice * selectedInvItmOps.amount;
-           selectedInvItmOps.total = totalPrice;
+           selectedInvItmOps.total = totalPrice - discount;
             CalculateInvoiceValues();
         }
         private void CalculateInvoiceValues()
@@ -3067,7 +3102,7 @@ namespace Hesabate_POS.View.receipts
 
                 }
                 if (item != null)
-                    AddItemToInvoice(item, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    AddItemToInvoice(item, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 tb_search.Text = "";
                 //HelpClass.EndAwait(grid_main);
             }
@@ -3086,7 +3121,7 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(),new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 }
 
                 Window.GetWindow(this).Opacity = 1;
@@ -3106,7 +3141,7 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 }
 
                 Window.GetWindow(this).Opacity = 1;
