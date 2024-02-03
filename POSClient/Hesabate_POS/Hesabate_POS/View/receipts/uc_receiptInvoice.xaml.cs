@@ -743,8 +743,8 @@ namespace Hesabate_POS.View.receipts
             else
             {
                 //string extra = string.Empty;
-                if (item.unit != "0")
-                    item.unit_name = GeneralInfoService.GeneralInfo.units[item.unit];
+                //if (item.unit != "0")
+                    //item.unit_name = item.unitList.Where(x=> x.id ==item.unit).FirstOrDefault().name;
 
                 item.amount = 1;
                 item.total = item.price;
@@ -1025,11 +1025,12 @@ namespace Hesabate_POS.View.receipts
             {
                 if (selectedInvItmOps != null)
                 {
-                    ComboBox cmb = sender as ComboBox;
-                    ItemModel invOptItem = cmb.DataContext as ItemModel;
+                    //ComboBox cmb = sender as ComboBox;
+                    //ItemModel invOptItem = cmb.DataContext as ItemModel;
 
-                     selectedInvItmOps.unit = cmb.SelectedValue.ToString();
-                    selectedInvItmOps.unit_name = cmb.Text;
+                    // selectedInvItmOps.unit = cmb.SelectedValue.ToString();
+                    //selectedInvItmOps.unit_name = cmb.Text;
+                    selectedInvItmOps.price = selectedInvItmOps.unitList.Where(x => x.id == selectedInvItmOps.unit).First().price;
                     MessageBox.Show(selectedInvItmOps.unit);
                 }
             }
@@ -3186,6 +3187,16 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
+        }
+
+        private void displayInvoice()
+        {
+            this.DataContext = invoice;
+
+            if (AppSettings.invoiceDetailsType == "small")
+                buildInvoiceDetailsSmall(invoiceDetailsList);
+            else
+                refreshInvoiceDetailsBig();
         }
         #endregion
 
