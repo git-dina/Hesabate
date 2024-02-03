@@ -15,7 +15,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int[] reserved { get; set; }
         public int BILL_ID { get; set; }
         public List<CategoryModel> buttons_cat { get; set; } // for items
-        public Dictionary<string,string> units { get; set; }
+        //public Dictionary<string,string> units { get; set; }
 
         public string[] campage_item_only { get; set; }
         public string[] campage_all_only { get; set; }

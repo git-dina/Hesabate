@@ -44,14 +44,14 @@ namespace Hesabate_POS.Classes
         #endregion
         
         #region unit
-        static public  void fillUnits(ComboBox combo)
-        {
-            combo.ItemsSource = GeneralInfoService.GeneralInfo.units;
-            combo.SelectedValuePath = "Key";
-            combo.DisplayMemberPath = "Value";
-            combo.SelectedIndex = 0;
+        //static public  void fillUnits(ComboBox combo)
+        //{
+        //    combo.ItemsSource = GeneralInfoService.GeneralInfo.units;
+        //    combo.SelectedValuePath = "Key";
+        //    combo.DisplayMemberPath = "Value";
+        //    combo.SelectedIndex = 0;
 
-        }
+        //}
         #endregion
 
     }
