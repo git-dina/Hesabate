@@ -87,6 +87,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public List<ExtraItemModel> extraItems = new List<ExtraItemModel>();
         public List<ExtraItemModel> addsItems = new List<ExtraItemModel>();
         public List<ExtraItemModel> deletesItems = new List<ExtraItemModel>();
+        public List<ExtraItemModel> isBasics = new List<ExtraItemModel>();
     }
 
     public class ExtraItemModel

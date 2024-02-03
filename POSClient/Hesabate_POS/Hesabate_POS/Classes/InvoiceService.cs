@@ -34,6 +34,20 @@ namespace Hesabate_POS.Classes
                         
                     }
                 } 
+                List<ExtraItemModel> basics = new List<ExtraItemModel>();
+                if(item.extraItems != null )
+                {
+                    foreach (var row in item.basicItems)
+                    {
+                        basics.Add(new ExtraItemModel()
+                        {
+                            group_name = row.group_name,
+                            group_count = row.group_count,
+                            group_items = row.group_items,
+                        });
+                        
+                    }
+                } 
                  List<ExtraItemModel> adds = new List<ExtraItemModel>();
                 if(item.addsItems != null )
                 {
@@ -89,6 +103,7 @@ namespace Hesabate_POS.Classes
                     extraItems = extras,
                     addsItems = adds,
                     deletesItems = deletes,
+                    isBasics = basics
                 }
                 );
             }

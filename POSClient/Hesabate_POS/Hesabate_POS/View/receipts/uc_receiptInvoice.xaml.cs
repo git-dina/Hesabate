@@ -250,7 +250,7 @@ namespace Hesabate_POS.View.receipts
                 refreshInvoiceDetailsBig();
 
             CalculateInvoiceValues();
-
+            switchGrid1_1("mainItemsCatalog");
             //txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
             //txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
             this.DataContext = invoice;
@@ -263,15 +263,7 @@ namespace Hesabate_POS.View.receipts
         //bool menuState = false;
         
         #region validate - clearValidate - textChange - lostFocus - . . . . 
-        void Clear()
-        {
 
-            //this.DataContext = new InvoiceModel();
-
-
-            // last 
-            HelpClass.clearValidate(requiredControlList, this);
-        }
         string input;
         decimal _decimal = 0;
         private void Number_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -3191,12 +3183,14 @@ namespace Hesabate_POS.View.receipts
 
         private void displayInvoice()
         {
-            this.DataContext = invoice;
 
             if (AppSettings.invoiceDetailsType == "small")
                 buildInvoiceDetailsSmall(invoiceDetailsList);
             else
                 refreshInvoiceDetailsBig();
+
+            this.DataContext = invoice;
+
         }
         #endregion
 
