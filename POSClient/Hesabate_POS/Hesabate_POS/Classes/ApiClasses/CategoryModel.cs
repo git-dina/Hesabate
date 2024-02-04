@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hesabate_POS.Classes.ApiClasses
 {
-    public class CategoryModel
+    public class CategoryModel: ICloneable
     {
         public int id { get; set; }
         public int? id2 { get; set; } // for extras
@@ -41,5 +41,97 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string group_name { get; set; }
         public int group_count { get; set; }
         public List<GroupItemModel> group_items { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        public CategoryModel Copy(CategoryModel item)
+        {
+            var itemCopy = new CategoryModel()
+            {
+                no_w = item.no_w,
+                name = item.name,
+                x_vat = item.x_vat,
+                addItems = Copy( item.addItems),
+                addons = item.addons,
+                alias = item.alias,
+                but_mast_id = item.but_mast_id,
+                color = item.color,
+                deleteItems = Copy(item.deleteItems),
+                discount = item.discount,
+                discount_per = item.discount_per,
+                group_count = item.group_count,
+                group_items = item.group_items,
+                group_name = item.group_name,
+                id = item.id,
+                id2 = item.id2,
+                img = item.img,
+                isbasic = Copy(item.isbasic),
+                is_special = item.is_special,
+                items = Copy(item.items),
+                level2 = Copy(item.level2),
+                max_p = item.max_p,
+                measure_id = item.measure_id,
+                min_p = item.min_p,
+                plimit = item.plimit,
+                price = item.price,
+                read_it = item.read_it,
+                tax_class = item.tax_class,
+                unit = item.unit,
+                unit_parts = item.unit_parts
+
+            };
+
+            return itemCopy;
+        }
+
+        public List<CategoryModel> Copy(List<CategoryModel> itemList)
+        {
+            List<CategoryModel> copyList = new List<CategoryModel> ();
+            if(itemList != null) 
+            foreach (var item in itemList)
+            {
+                var itemCopy = new CategoryModel()
+                {
+                    no_w = item.no_w,
+                    name = item.name,
+                    x_vat = item.x_vat,
+                    addItems = Copy(item.addItems),
+                    addons = item.addons,
+                    alias = item.alias,
+                    but_mast_id = item.but_mast_id,
+                    color = item.color,
+                    deleteItems = item.deleteItems,
+                    discount = item.discount,
+                    discount_per = item.discount_per,
+                    group_count = item.group_count,
+                    group_items = item.group_items,
+                    group_name = item.group_name,
+                    id = item.id,
+                    id2 = item.id2,
+                    img = item.img,
+                    isbasic = item.isbasic,
+                    is_special = item.is_special,
+                    items = item.items,
+                    level2 = item.level2,
+                    max_p = item.max_p,
+                    measure_id = item.measure_id,
+                    min_p = item.min_p,
+                    plimit = item.plimit,
+                    price = item.price,
+                    read_it = item.read_it,
+                    tax_class = item.tax_class,
+                    unit = item.unit,
+                    unit_parts = item.unit_parts
+
+                };
+
+                copyList.Add(itemCopy);
+            }
+            return copyList;
+        }
     }
+
+    
 }

@@ -25,6 +25,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using Path = System.Windows.Shapes.Path;
 
 namespace Hesabate_POS.View.receipts
@@ -66,6 +67,7 @@ namespace Hesabate_POS.View.receipts
         InvoiceService _invoiceService = new InvoiceService();
         List<CategoryModel> items = new List<CategoryModel>();
         InvoiceModel invoice = new InvoiceModel();
+        CategoryModel _categoryModel = new CategoryModel();
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             //Instance = null;
@@ -686,19 +688,20 @@ namespace Hesabate_POS.View.receipts
                 {
                     //int itemId = int.Parse(button.Tag.ToString());
                     var item = button.DataContext as CategoryModel;
+                    CategoryModel itemCopy = (CategoryModel) item.Clone();
                     // is not Last
                     //if ( item.level2 != null || (item.items != null && item.items.Count != 0))
-                    if (!ItemService.itemIsLast(item))
+                    if (!ItemService.itemIsLast(itemCopy))
                     {
                         // categoryPath
                         //categoryPath.Add(item);
 
-                        categoryPath = _itemService.getCategoryPath(item.id).ToList();
+                        categoryPath = _itemService.getCategoryPath(itemCopy.id).ToList();
                         buildCategoryPath(categoryPath);
 
 
                         // itemsCard
-                        items = _itemService.getCatItems(item.id);
+                        items = _itemService.getCatItems(itemCopy.id);
                         await buildItemsCard(items);
 
                     }
@@ -706,47 +709,49 @@ namespace Hesabate_POS.View.receipts
                     {
                         if (GeneralInfoService.items != null)
                         {
-                            var item1 = GeneralInfoService.items.Where(x => x.product_id == item.id.ToString()).FirstOrDefault();
-                            //#region copy item1
-                            //var item2 = new ItemModel()
-                            //{
-                            //    addsItems = item1.addsItems,
-                            //    amount = item1.amount,
-                            //    basicItems = item1.basicItems,
-                            //    bonus =item1.bonus,
-                            //    dangure = item1.dangure,
-                            //    deletesItems = item1.deletesItems,
-                            //    detail = item1.detail,
-                            //    discount = item1.discount,
-                            //    discount_per = item1.discount_per,
-                            //    extraItems = item1.extraItems,
-                            //    id = item1.id,
-                            //    index = item1.index,
-                            //    isUrgent = item1.isUrgent,
-                            //    is_ext = item1.is_ext,
-                            //    is_special = item1.is_special,
-                            //    max_p = item1.max_p,
-                            //    measure_id = item1.measure_id,
-                            //    min_p = item1.min_p,
-                            //    name   = item1.name,
-                            //    //nameUnit = item1.nameUnit,
-                            //    notes = item1.notes,
-                            //    no_w = item1.no_w,
-                            //    price = item1.price,
-                            //    product_id = item1.product_id,
-                            //    serial = item1.serial,
-                            //    serial_text = item1.serial_text,
-                            //    tax_class = item1.tax_class,
-                            //    total = item1.total,
-                            //    unit = item1.unit,
-                            //    unitList = item1.unitList,
-                            //    unit_name = item1.unit_name,
-                            //    x_discount = item1.x_discount,
-                            //    x_vat=item1.x_vat,
+                            var item1 = GeneralInfoService.items.Where(x => x.product_id == itemCopy.id.ToString()).FirstOrDefault();
 
-                            //};
+                            //#region copy item1
+                            var item2 = new ItemModel()
+                            {
+                                addsItems = item1.addsItems,
+                                amount = item1.amount,
+                                basicItems = item1.basicItems,
+                                bonus = item1.bonus,
+                                dangure = item1.dangure,
+                                deletesItems = item1.deletesItems,
+                                detail = item1.detail,
+                                discount = item1.discount,
+                                discount_per = item1.discount_per,
+                                extraItems = item1.extraItems,
+                                id = item1.id,
+                                index = item1.index,
+                                isUrgent = item1.isUrgent,
+                                is_ext = item1.is_ext,
+                                is_special = item1.is_special,
+                                max_p = item1.max_p,
+                                measure_id = item1.measure_id,
+                                min_p = item1.min_p,
+                                name = item1.name,
+                                //nameUnit = item1.nameUnit,
+                                notes = item1.notes,
+                                no_w = item1.no_w,
+                                price = item1.price,
+                                product_id = item1.product_id,
+                                serial = item1.serial,
+                                serial_text = item1.serial_text,
+                                tax_class = item1.tax_class,
+                                total = item1.total,
+                                unit = item1.unit,
+                                unitList = item1.unitList,
+                                unit_name = item1.unit_name,
+                                x_discount = item1.x_discount,
+                                x_vat = item1.x_vat,
+
+                            };
                             //#endregion
-                            AddItemToInvoice(item1,item.isbasic, item.items, item.addItems, item.deleteItems);
+  
+                            AddItemToInvoice(item2,itemCopy.isbasic, itemCopy.items, itemCopy.addItems, itemCopy.deleteItems);
                         }
                     }
 
