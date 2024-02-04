@@ -240,7 +240,6 @@ namespace Hesabate_POS.View.receipts
             invoice = new InvoiceModel();
             if (BillId != "")
                 invoice.BillId = BillId;
-            //(this.DataContext as InvoiceModel).BillId
 
             invoiceDetailsList = new List<ItemModel>();
 
@@ -708,10 +707,47 @@ namespace Hesabate_POS.View.receipts
                         if (GeneralInfoService.items != null)
                         {
                             var item1 = GeneralInfoService.items.Where(x => x.product_id == item.id.ToString()).FirstOrDefault();
+                            //#region copy item1
+                            //var item2 = new ItemModel()
+                            //{
+                            //    addsItems = item1.addsItems,
+                            //    amount = item1.amount,
+                            //    basicItems = item1.basicItems,
+                            //    bonus =item1.bonus,
+                            //    dangure = item1.dangure,
+                            //    deletesItems = item1.deletesItems,
+                            //    detail = item1.detail,
+                            //    discount = item1.discount,
+                            //    discount_per = item1.discount_per,
+                            //    extraItems = item1.extraItems,
+                            //    id = item1.id,
+                            //    index = item1.index,
+                            //    isUrgent = item1.isUrgent,
+                            //    is_ext = item1.is_ext,
+                            //    is_special = item1.is_special,
+                            //    max_p = item1.max_p,
+                            //    measure_id = item1.measure_id,
+                            //    min_p = item1.min_p,
+                            //    name   = item1.name,
+                            //    //nameUnit = item1.nameUnit,
+                            //    notes = item1.notes,
+                            //    no_w = item1.no_w,
+                            //    price = item1.price,
+                            //    product_id = item1.product_id,
+                            //    serial = item1.serial,
+                            //    serial_text = item1.serial_text,
+                            //    tax_class = item1.tax_class,
+                            //    total = item1.total,
+                            //    unit = item1.unit,
+                            //    unitList = item1.unitList,
+                            //    unit_name = item1.unit_name,
+                            //    x_discount = item1.x_discount,
+                            //    x_vat=item1.x_vat,
 
+                            //};
+                            //#endregion
                             AddItemToInvoice(item1,item.isbasic, item.items, item.addItems, item.deleteItems);
                         }
-                        //MessageBox.Show("Add me to invoice");
                     }
 
 
@@ -1017,13 +1053,10 @@ namespace Hesabate_POS.View.receipts
             {
                 if (selectedInvItmOps != null)
                 {
-                    //ComboBox cmb = sender as ComboBox;
-                    //ItemModel invOptItem = cmb.DataContext as ItemModel;
 
-                    // selectedInvItmOps.unit = cmb.SelectedValue.ToString();
-                    //selectedInvItmOps.unit_name = cmb.Text;
                     selectedInvItmOps.price = selectedInvItmOps.unitList.Where(x => x.id == selectedInvItmOps.unit).First().price;
-                    MessageBox.Show(selectedInvItmOps.unit);
+                    calculateItemPrice();
+                    //MessageBox.Show(selectedInvItmOps.unit);
                 }
             }
             catch (Exception ex)
@@ -1130,10 +1163,7 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    if (w.hasRate)
-                        invOptItem.discount = HelpClass.calcPercentage(invOptItem.price, decimal.Parse(w.outputValue.ToString()));
-                    else
-                        invOptItem.discount = decimal.Parse(w.outputValue.ToString());
+                    invOptItem.discount = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
 
