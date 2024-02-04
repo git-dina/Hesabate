@@ -37,6 +37,8 @@ namespace Hesabate_POS.View.windows
         private void Btn_colse_Click(object sender, RoutedEventArgs e)
         {
             isOk = false;
+            AppSettings.httpClient.Dispose();
+
             Application.Current.Shutdown();
         }
 
@@ -297,7 +299,7 @@ namespace Hesabate_POS.View.windows
 
                     HelpClass.StartAwait(grid_form);
 
-                    if (res == "")
+                    if (res == "" )
                     {
                         canLogin = true;
 

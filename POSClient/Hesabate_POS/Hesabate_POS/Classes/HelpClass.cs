@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 //using Tulpep.NotificationWindow;
 using System.Globalization;
 using System.Reflection;
+using Newtonsoft.Json;
 //using System.Drawing.Printing;
 namespace Hesabate_POS.Classes
 {
@@ -713,6 +714,17 @@ namespace Hesabate_POS.Classes
             }
 
             return count;
+        }
+
+    }
+
+
+    public static class SystemExtension
+    {
+        public static T Clone<T>(this T source)
+        {
+            var serialized = JsonConvert.SerializeObject(source);
+            return JsonConvert.DeserializeObject<T>(serialized);
         }
     }
 }

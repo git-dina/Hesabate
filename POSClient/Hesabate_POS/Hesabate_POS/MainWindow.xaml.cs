@@ -22,6 +22,7 @@ using Hesabate_POS.Classes.ApiClasses;
 using MaterialDesignThemes.Wpf;
 using Hesabate_POS.View.windows;
 using WPFTabTip;
+using System.Net.Http;
 
 namespace Hesabate_POS
 {
@@ -217,7 +218,7 @@ namespace Hesabate_POS
 
                 {
                     //await close();
-
+                    AppSettings.httpClient.Dispose();
                     //HelpClass.deleteDirectoryFiles(Global.TMPFolder);
 
                     Application.Current.Shutdown();

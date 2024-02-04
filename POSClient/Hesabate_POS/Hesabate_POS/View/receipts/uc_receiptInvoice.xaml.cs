@@ -688,7 +688,9 @@ namespace Hesabate_POS.View.receipts
                 {
                     //int itemId = int.Parse(button.Tag.ToString());
                     var item = button.DataContext as CategoryModel;
-                    CategoryModel itemCopy = (CategoryModel) item.Clone();
+
+                    CategoryModel itemCopy = SystemExtension.Clone(item);
+
                     // is not Last
                     //if ( item.level2 != null || (item.items != null && item.items.Count != 0))
                     if (!ItemService.itemIsLast(itemCopy))
