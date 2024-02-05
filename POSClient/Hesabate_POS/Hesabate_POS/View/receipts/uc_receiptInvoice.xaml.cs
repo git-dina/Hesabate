@@ -2020,6 +2020,9 @@ namespace Hesabate_POS.View.receipts
                 grid_mainItemsCatalog.Visibility = Visibility.Visible;
                 grid_invItmOps.Visibility = Visibility.Collapsed;
                 //wp_invItmOps.Visibility = Visibility.Collapsed;
+
+                // test for clear cache
+                selectedInvItmOps = null;
             }
             else if (type == "invItmOps")
             {
