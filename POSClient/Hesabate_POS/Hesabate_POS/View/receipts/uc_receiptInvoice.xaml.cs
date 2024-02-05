@@ -1110,7 +1110,7 @@ namespace Hesabate_POS.View.receipts
             {
                 var textBox = (TextBox)sender;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                //w.inputValue = decimal.Parse(textBox.Text);
+                w.inputValue = decimal.Parse(textBox.Text);
                 w.title = Translate.getResource("491");
                 w.ShowDialog();
                 if (w.isOk)
@@ -1165,9 +1165,9 @@ namespace Hesabate_POS.View.receipts
                 var textBox = (TextBox)sender;
                 ItemModel invOptItem = textBox.DataContext as ItemModel;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                //w.inputValue = decimal.Parse(textBox.Text);
+                w.inputValue = decimal.Parse(textBox.Text);
                 w.title = Translate.getResource("571");
-                    w.hasRate = true;
+                w.hasRate = true;
                 w.valueForRate = invOptItem.price;
                 w.ShowDialog();
                 if (w.isOk)
@@ -1176,6 +1176,7 @@ namespace Hesabate_POS.View.receipts
                     calculateItemPrice();
                 }
 
+
             }
             catch (Exception ex)
             {
@@ -1183,6 +1184,7 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
+        
         private void btn_invItmOptBonusPlus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1220,7 +1222,7 @@ namespace Hesabate_POS.View.receipts
                 var textBox = (TextBox)sender;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
                 w.title = Translate.getResource("583");
-                //w.inputValue = decimal.Parse(textBox.Text);
+                w.inputValue = decimal.Parse(textBox.Text);
                 w.ShowDialog();
                 if (w.isOk)
                 {
@@ -1277,7 +1279,7 @@ namespace Hesabate_POS.View.receipts
             {
                 var textBox = (TextBox)sender;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                //w.inputValue = decimal.Parse(textBox.Text);
+                w.inputValue = decimal.Parse(textBox.Text);
                 w.title = Translate.getResource("570");
                 w.ShowDialog();
                 if (w.isOk)
@@ -3347,8 +3349,9 @@ namespace Hesabate_POS.View.receipts
             this.DataContext = invoice;
 
         }
+
         #endregion
 
-
+       
     }
 }
