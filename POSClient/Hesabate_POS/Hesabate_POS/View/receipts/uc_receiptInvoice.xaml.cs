@@ -1661,7 +1661,7 @@ namespace Hesabate_POS.View.receipts
                         #endregion
                         #region groupItemName
                         TextBlock groupItemText = new TextBlock();
-                        groupItemText.Text = $"#{groupItem.id} - {groupItem.name}";
+                        groupItemText.Text = $"{groupItem.id} - {groupItem.name}";
                         groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                         groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
                         groupItemText.VerticalAlignment = VerticalAlignment.Center;
@@ -1864,7 +1864,7 @@ namespace Hesabate_POS.View.receipts
                         #endregion
                         #region groupItemName
                         TextBlock groupItemText = new TextBlock();
-                        groupItemText.Text = $"#{groupItem.id} - {groupItem.name}";
+                        groupItemText.Text = $"{groupItem.id} - {groupItem.name}";
                         groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                         groupItemText.HorizontalAlignment = HorizontalAlignment.Center;
                         groupItemText.VerticalAlignment = VerticalAlignment.Center;
