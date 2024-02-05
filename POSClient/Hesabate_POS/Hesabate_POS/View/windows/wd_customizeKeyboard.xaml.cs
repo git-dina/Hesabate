@@ -41,7 +41,7 @@ namespace Hesabate_POS.View.windows
         }
 
         public string title { get; set; }
-        public decimal inputValue { get; set; }
+        public decimal? inputValue { get; set; }
         public decimal outputValue { get; set; }
         public bool hasRate { get; set; }
         public decimal valueForRate { get; set; }
@@ -94,6 +94,9 @@ namespace Hesabate_POS.View.windows
                 txt_title.Text = "Keyboard";
             else 
                 txt_title.Text = title;
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_discount, Translate.getResource("576"));
+
+            btn_save.Content = Translate.getResource("2104");
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)

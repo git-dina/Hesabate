@@ -174,8 +174,8 @@ namespace Hesabate_POS.View.receipts
 
 
             txt_invItmOpsDetailsTitle.Text = Translate.getResource("28");
-            txt_invItmOpsAddGroupTitle.Text = Translate.getResource("2284");
-            txt_invItmOpsDeleteGroupTitle.Text = Translate.getResource("2284");
+            txt_invItmOpsAddGroupTitle.Text = "الإضافات";
+            txt_invItmOpsDeleteGroupTitle.Text = "المحذوفات";
             #endregion
         }
         #region
@@ -1110,7 +1110,8 @@ namespace Hesabate_POS.View.receipts
             {
                 var textBox = (TextBox)sender;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                w.inputValue = decimal.Parse(textBox.Text);
+                //w.inputValue = decimal.Parse(textBox.Text);
+                w.title = Translate.getResource("491");
                 w.ShowDialog();
                 if (w.isOk)
                 {
@@ -1164,8 +1165,9 @@ namespace Hesabate_POS.View.receipts
                 var textBox = (TextBox)sender;
                 ItemModel invOptItem = textBox.DataContext as ItemModel;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                w.inputValue = decimal.Parse(textBox.Text);
-                w.hasRate = true;
+                //w.inputValue = decimal.Parse(textBox.Text);
+                w.title = Translate.getResource("571");
+                    w.hasRate = true;
                 w.valueForRate = invOptItem.price;
                 w.ShowDialog();
                 if (w.isOk)
@@ -1217,7 +1219,8 @@ namespace Hesabate_POS.View.receipts
             {
                 var textBox = (TextBox)sender;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                w.inputValue = decimal.Parse(textBox.Text);
+                w.title = Translate.getResource("583");
+                //w.inputValue = decimal.Parse(textBox.Text);
                 w.ShowDialog();
                 if (w.isOk)
                 {
@@ -1274,7 +1277,8 @@ namespace Hesabate_POS.View.receipts
             {
                 var textBox = (TextBox)sender;
                 wd_customizeKeyboard w = new wd_customizeKeyboard();
-                w.inputValue = decimal.Parse(textBox.Text);
+                //w.inputValue = decimal.Parse(textBox.Text);
+                w.title = Translate.getResource("570");
                 w.ShowDialog();
                 if (w.isOk)
                 {
@@ -2993,17 +2997,22 @@ namespace Hesabate_POS.View.receipts
                 foreach (var item in group.group_items)
                 {
 
-                    if (item.basicAmount > (item.start_amount + item.add_price_amount) )
+                    if (item.basicAmount > (item.start_amount + item.add_price_amount))
                     {
                         var sup = (int)item.basicAmount - (item.start_amount + item.add_price_amount);
                         totalPrice += sup * item.add_price;
 
                     }
+                    else if (item.basicAmount < item.start_amount)
+                    {
+                        var sup =  item.start_amount  - (int)item.basicAmount;
+                        totalPrice -= sup * item.add_price;
+                    }
                 }
             }
+            totalPrice = (totalPrice - discount) * selectedInvItmOps.amount;
 
-            totalPrice = totalPrice * selectedInvItmOps.amount;
-           selectedInvItmOps.total = totalPrice - discount;
+           selectedInvItmOps.total = totalPrice ;
             CalculateInvoiceValues();
         }
         private void CalculateInvoiceValues()

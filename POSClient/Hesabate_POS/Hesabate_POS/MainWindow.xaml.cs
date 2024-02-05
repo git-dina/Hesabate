@@ -283,7 +283,7 @@ namespace Hesabate_POS
         {
             #region top bar 
             txt_userNameTitle.Text = Translate.getResource("689");
-            txt_licenseNumberTitle.Text = Translate.getResource("2306");
+            txt_licenseNumberTitle.Text = "رقم الترخيص";
             txt_versionNumberTitle.Text = Translate.getResource("1338");
             #endregion
 
