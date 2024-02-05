@@ -25,7 +25,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using Path = System.Windows.Shapes.Path;
 
 namespace Hesabate_POS.View.receipts
@@ -2617,34 +2616,136 @@ namespace Hesabate_POS.View.receipts
                 stackPanelRow2.Margin = new Thickness(5,0,5,0);
                 #region addsItems
                 if (item.addsItems != null)
+                {
+                    WrapPanel wrapPanel = new WrapPanel();
+                    wrapPanel.HorizontalAlignment = HorizontalAlignment.Left;
                     foreach (var extra in item.addsItems)
                     {
-                        TextBlock groupItemText = new TextBlock();
-                        groupItemText.Text = "";
                         foreach (var groupItem in extra.group_items)
                         {
-                            string itemString = "";
-                            if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount;
-                            itemString = $"{groupItem.name} ({groupItem.basicAmount}) {groupItem.add_price} {AppSettings.currency}";
-                            //if (string.IsNullOrWhiteSpace(groupItem.unit))
-                            //    itemString = groupItem.name;
-                            //else
-                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.basicAmount})";
+                            StackPanel stackPanel = new StackPanel();
+                            stackPanel.DataContext = groupItem;
+                            stackPanel.Orientation = Orientation.Horizontal;
 
-                            groupItemText.Text +=$"+ {itemString} | ";
+                            var stackPanelVisibilityBinding = new System.Windows.Data.Binding("basicAmount");
+                            stackPanelVisibilityBinding.Mode = BindingMode.OneWay;
+                            stackPanelVisibilityBinding.Converter = new NotZeroToVisibilityConverter();
+                            stackPanel.SetBinding(StackPanel.VisibilityProperty, stackPanelVisibilityBinding);
+
+                            //if (groupItem.basicAmount != null && groupItem.basicAmount>0)
+                            {
+                                if (groupItem.basicAmount == null)
+                                    groupItem.basicAmount = 0;
+                                #region groupItem_firstPart
+                                TextBlock groupItem_firstPart = new TextBlock();
+                                groupItem_firstPart.Text = $"+ {groupItem.name} (";
+                                groupItem_firstPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_firstPart.HorizontalAlignment = HorizontalAlignment.Left;
+                                groupItem_firstPart.VerticalAlignment = VerticalAlignment.Center;
+                                groupItem_firstPart.Margin = new Thickness(0, 2.5, 0, 2.5);
+                                groupItem_firstPart.TextWrapping = TextWrapping.WrapWithOverflow;
+                                groupItem_firstPart.TextAlignment = TextAlignment.Center;
+
+                                stackPanel.Children.Add(groupItem_firstPart);
+                                #endregion
+                                #region groupItem_basicAmount
+                                if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount;
+                                TextBlock groupItem_basicAmount = new TextBlock();
+                                //groupItem_basicAmount.DataContext = groupItem;
+                                var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
+                                groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
+                                groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
+                                groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
+                                groupItem_basicAmount.Margin = new Thickness(5);
+                                stackPanel.Children.Add(groupItem_basicAmount);
+                                #endregion
+                                #region groupItem_lastPart
+                                TextBlock groupItem_lastPart = new TextBlock();
+                                groupItem_lastPart.Text = $") {groupItem.add_price} {AppSettings.currency} | ";
+                                groupItem_lastPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_lastPart.HorizontalAlignment = HorizontalAlignment.Left;
+                                groupItem_lastPart.VerticalAlignment = VerticalAlignment.Center;
+                                groupItem_lastPart.Margin = new Thickness(0, 2.5, 0, 2.5);
+                                groupItem_lastPart.TextWrapping = TextWrapping.WrapWithOverflow;
+                                groupItem_lastPart.TextAlignment = TextAlignment.Center;
+                                stackPanel.Children.Add(groupItem_lastPart);
+                                #endregion
+                            }
+                            wrapPanel.Children.Add(stackPanel);
+
                         }
-                        groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                        groupItemText.HorizontalAlignment = HorizontalAlignment.Left;
-                        groupItemText.VerticalAlignment = VerticalAlignment.Center;
-                        groupItemText.Margin = new Thickness(0, 2.5, 0, 2.5);
-                        groupItemText.TextWrapping = TextWrapping.WrapWithOverflow;
-                        groupItemText.TextAlignment = TextAlignment.Center;
-                        stackPanelRow2.Children.Add(groupItemText);
-
-
-
                     }
+                        stackPanelRow2.Children.Add(wrapPanel);
+                }
                 #endregion
+
+                #region deletesItems
+                if (item.deletesItems != null)
+                {
+                    WrapPanel wrapPanel = new WrapPanel();
+                    wrapPanel.HorizontalAlignment = HorizontalAlignment.Left;
+                    foreach (var extra in item.deletesItems)
+                    {
+                        foreach (var groupItem in extra.group_items)
+                        {
+                            StackPanel stackPanel = new StackPanel();
+                            stackPanel.DataContext = groupItem;
+                            stackPanel.Orientation = Orientation.Horizontal;
+
+                            var stackPanelVisibilityBinding = new System.Windows.Data.Binding("basicAmount");
+                            stackPanelVisibilityBinding.Mode = BindingMode.OneWay;
+                            stackPanelVisibilityBinding.Converter = new NotZeroToVisibilityConverter();
+                            stackPanel.SetBinding(StackPanel.VisibilityProperty, stackPanelVisibilityBinding);
+
+                            //if (groupItem.basicAmount != null && groupItem.basicAmount>0)
+                            {
+                                if (groupItem.basicAmount == null)
+                                    groupItem.basicAmount = 0;
+                                #region groupItem_firstPart
+                                TextBlock groupItem_firstPart = new TextBlock();
+                                groupItem_firstPart.Text = $"- {groupItem.name} (";
+                                groupItem_firstPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_firstPart.HorizontalAlignment = HorizontalAlignment.Left;
+                                groupItem_firstPart.VerticalAlignment = VerticalAlignment.Center;
+                                groupItem_firstPart.Margin = new Thickness(0, 2.5, 0, 2.5);
+                                groupItem_firstPart.TextWrapping = TextWrapping.WrapWithOverflow;
+                                groupItem_firstPart.TextAlignment = TextAlignment.Center;
+
+                                stackPanel.Children.Add(groupItem_firstPart);
+                                #endregion
+                                #region groupItem_basicAmount
+                                if (groupItem.basicAmount is null) groupItem.basicAmount = groupItem.start_amount;
+                                TextBlock groupItem_basicAmount = new TextBlock();
+                                //groupItem_basicAmount.DataContext = groupItem;
+                                var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
+                                groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
+                                groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
+                                groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
+                                groupItem_basicAmount.Margin = new Thickness(5);
+                                stackPanel.Children.Add(groupItem_basicAmount);
+                                #endregion
+                                #region groupItem_lastPart
+                                TextBlock groupItem_lastPart = new TextBlock();
+                                groupItem_lastPart.Text = $") {groupItem.add_price} {AppSettings.currency} | ";
+                                groupItem_lastPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_lastPart.HorizontalAlignment = HorizontalAlignment.Left;
+                                groupItem_lastPart.VerticalAlignment = VerticalAlignment.Center;
+                                groupItem_lastPart.Margin = new Thickness(0, 2.5, 0, 2.5);
+                                groupItem_lastPart.TextWrapping = TextWrapping.WrapWithOverflow;
+                                groupItem_lastPart.TextAlignment = TextAlignment.Center;
+                                stackPanel.Children.Add(groupItem_lastPart);
+                                #endregion
+                            }
+                            wrapPanel.Children.Add(stackPanel);
+
+                        }
+                    }
+                    stackPanelRow2.Children.Add(wrapPanel);
+                }
+                #endregion
+                /*
                 #region deletesItems
                 if (item.deletesItems != null)
                     foreach (var extra in item.deletesItems)
@@ -2655,11 +2756,6 @@ namespace Hesabate_POS.View.receipts
                         {
                             string itemString = "";
                             itemString = $"{groupItem.name} ({groupItem.basicAmount}) {groupItem.add_price} {AppSettings.currency}";
-                            //if (string.IsNullOrWhiteSpace(groupItem.unit))
-                            //    itemString = groupItem.name;
-                            //else
-                            //    itemString = $"{groupItem.name} - {GeneralInfoService.GeneralInfo.units[groupItem.unit]} ({groupItem.basicAmount})";
-
                             groupItemText.Text += $"- {itemString} | ";
                         }
                         groupItemText.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
@@ -2671,6 +2767,7 @@ namespace Hesabate_POS.View.receipts
                         stackPanelRow2.Children.Add(groupItemText);
                     }
                 #endregion
+                */
                 Grid.SetRow(stackPanelRow2, 2);
                 gridMain.Children.Add(stackPanelRow2);
                 #endregion
@@ -2843,12 +2940,12 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRow(gridRow3, 3);
                 gridMain.Children.Add(gridRow3);
                 #endregion
+
                 #region gridRow4
                 //if (!string.IsNullOrEmpty(item.notes))
                 //{ 
                 Grid gridRow4 = new Grid();
                 gridRow4.Margin = new Thickness(5, 0, 5, 0);
-
                 #region itemotes
                 TextBlock itemNotes = new TextBlock();
                 itemNotes.Text = item.notes;
@@ -2858,6 +2955,14 @@ namespace Hesabate_POS.View.receipts
                 itemNotes.Margin = new Thickness(10, 0, 10, 0);
                 itemNotes.TextWrapping = TextWrapping.Wrap;
                 itemNotes.TextAlignment = TextAlignment.Left;
+
+
+                var itemNotesVisibilityBinding = new System.Windows.Data.Binding("notes");
+                itemNotesVisibilityBinding.Mode = BindingMode.OneWay;
+                itemNotesVisibilityBinding.Converter = new NotZeroToVisibilityConverter();
+                itemNotes.SetBinding(TextBlock.VisibilityProperty, itemNotesVisibilityBinding);
+
+
                 gridRow4.Children.Add(itemNotes);
                 #endregion
                 Grid.SetRow(gridRow4, 4);
