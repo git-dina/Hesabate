@@ -1120,6 +1120,8 @@ namespace Hesabate_POS.View.receipts
                     calculateItemPrice();
                 }
 
+                btn_allItems.Focus();
+
             }
             catch (Exception ex)
             {
@@ -1175,6 +1177,7 @@ namespace Hesabate_POS.View.receipts
                     invOptItem.discount = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
+                btn_allItems.Focus();
 
 
             }
@@ -1230,6 +1233,7 @@ namespace Hesabate_POS.View.receipts
                     invOptItem.bonus = int.Parse(w.outputValue.ToString());
                     //calculateItemPrice();
                 }
+                btn_allItems.Focus();
 
             }
             catch (Exception ex)
@@ -1288,6 +1292,7 @@ namespace Hesabate_POS.View.receipts
                     invOptItem.price = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
+                btn_allItems.Focus();
 
             }
             catch (Exception ex)
