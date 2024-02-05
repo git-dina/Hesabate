@@ -1037,16 +1037,17 @@ namespace Hesabate_POS.View.receipts
         {
             wp_invItmOpsSetting.DataContext = selectedInvItmOps;
             //selectedInvItmOps.unitList
-            if (selectedInvItmOps.addsItems.Count == 0 && selectedInvItmOps.deletesItems.Count == 0)
-            {
+
+            if (selectedInvItmOps.addsItems.Count == 0 )
                 grid_invItmOpsAddsTitle.Visibility = Visibility.Collapsed;
-                grid_invItmOpsDeletesTitle.Visibility = Visibility.Collapsed;
-            }
             else
-            {
                 grid_invItmOpsAddsTitle.Visibility = Visibility.Visible;
+
+            if ( selectedInvItmOps.deletesItems.Count == 0)
+                grid_invItmOpsDeletesTitle.Visibility = Visibility.Collapsed;
+            else
                 grid_invItmOpsDeletesTitle.Visibility = Visibility.Visible;
-            }
+
             buildInvoiceItemAdds(selectedInvItmOps);
             buildInvoiceItemDeletes(selectedInvItmOps);
             buildInvoiceItemExtra(selectedInvItmOps);
