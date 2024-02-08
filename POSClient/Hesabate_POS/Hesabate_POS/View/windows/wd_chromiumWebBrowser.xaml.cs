@@ -85,7 +85,7 @@ namespace Hesabate_POS.View.windows
 
                  bmMain = new System.Windows.Forms.WebBrowser();
 
-                 _callBackObjectForJs = new external(bmMain);
+                 _callBackObjectForJs = new external(bmMain,this);
                // Mainchrome.RegisterJsObject("external", _callBackObjectForJs);
 
                 CefSharpSettings.WcfEnabled = true;
@@ -243,10 +243,12 @@ namespace Hesabate_POS.View.windows
     public class external
     {
         System.Windows.Forms.WebBrowser bmMain;
+        wd_chromiumWebBrowser mainWindowBrowser;
 
-        public external(System.Windows.Forms.WebBrowser bmMain1)
+        public external(System.Windows.Forms.WebBrowser bmMain1, wd_chromiumWebBrowser _mainWindowBrowser)
         {
             bmMain = bmMain1;
+            mainWindowBrowser = _mainWindowBrowser;
             bmMain.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(WDocumentCompleted);
         }
         //public string is_externalK() { return "1"; }
@@ -284,7 +286,10 @@ namespace Hesabate_POS.View.windows
             {
                 AppSettings.returnedId = metaData;
                 //Yasin
-                //window.Close();
+                mainWindowBrowser.Dispatcher.Invoke(() =>
+                {
+                    mainWindowBrowser.Close();
+                });
 
                 return metaData;
             }
