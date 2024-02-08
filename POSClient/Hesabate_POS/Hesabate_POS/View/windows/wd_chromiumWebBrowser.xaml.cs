@@ -3,6 +3,7 @@ using CefSharp.Handler;
 using CefSharp.Wpf;
 using Hesabate_POS.Classes;
 using Hesabate_POS.Classes.ApiClasses;
+using Hesabate_POS.Properties;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace Hesabate_POS.View.windows
         public string title{get;set;}
 
         public bool isOk { get; set; }
-        //public static List<string> requiredControlList;
+        public string returnedValue { get; set; }
 
         ChromiumWebBrowser Mainchrome;
         System.Windows.Forms.WebBrowser bmMain;
@@ -79,12 +80,13 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
-                string windowURL = AppSettings.APIUri + "/POS/" + url;
+                string windowURL = AppSettings.APIUri  + url;
                 Mainchrome = new ChromiumWebBrowser(windowURL);
 
                  bmMain = new System.Windows.Forms.WebBrowser();
+
                  _callBackObjectForJs = new external(bmMain);
-                //Mainchrome.RegisterJsObject("external", _callBackObjectForJs);
+               // Mainchrome.RegisterJsObject("external", _callBackObjectForJs);
 
                 CefSharpSettings.WcfEnabled = true;
                 Mainchrome.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
@@ -94,11 +96,8 @@ namespace Hesabate_POS.View.windows
                 // Add this  for request handler
                 Mainchrome.RequestHandler = new CustomRequestHandler();
 
-                //Mainchrome.MenuHandler = new MyCustomMenuHandler();
                 grid_webBrowser.Children.Add(Mainchrome);
 
-                //Mainchrome.Dock = DockStyle.Fill;
-                //Mainchrome.BrowserSettings.Javascript = CefState.Enabled;
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -279,67 +278,82 @@ namespace Hesabate_POS.View.windows
             public string RespCode { get; set; }
             public string RespDesc { get; set; }
         }
-        public string KioskPOS(double amount, string bill_id, int Currency)
+        public string KioskPOS(string metaData)
         {
             try
             {
-                //POS pos = new POS();
-                //pos.baudRate = 9600;
-                //pos.comPort = "COM" + Settings.Default.POSCom;
-                //if (Currency == 400) amount *= 1000;
-                //else amount *= 100;
-                ////MessageBox.Show(amount.ToString());
-                //string Purchasestring = pos.Purchase(bill_id, Int32Parse(amount.ToString()).ToString(), Currency, 1, 1, 120);
-                //pos = null;
-                string Purchasestring = "";
-                string filePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Responce.txt");
+                AppSettings.returnedId = metaData;
+                //Yasin
+                //window.Close();
 
-                using (StreamWriter writer = new StreamWriter(filePath, true))
-                {
-                    writer.WriteLine(Purchasestring);
-                    writer.WriteLine(Environment.NewLine + "-----------------------------------------------------------------------------" + Environment.NewLine);
-                    writer.Close();
-                }
-
-                Int32 position1 = Purchasestring.IndexOf('{');
-                // MessageBox.Show(position1.ToString());
-                Int32 position2 = Purchasestring.IndexOf('}');
-                if (position1 < 0 || position2 < 0)
-                {
-                    if (position1 >= 0)
-                    {
-                        string Code = "";
-                        /*solve this issue : the string is not complete*/
-                        string[] tmpR = Purchasestring.Split(',');
-                        for (int l = 0; l < tmpR.Length; l++)
-                        {
-                            if (tmpR[l].IndexOf("RespCode") >= 0)
-                            {
-                                string[] tmpR2 = tmpR[l].Split(':');
-                                if (tmpR2.Length > 1) Code += tmpR2[1].Replace("\"", "");
-                            }
-                            if (Code.Length > 0)
-                                if (tmpR[l].IndexOf("RespDesc") >= 0)
-                                {
-                                    string[] tmpR2 = tmpR[l].Split(':');
-                                    if (tmpR2.Length > 1) Code += " : " + tmpR2[1].Replace("\"", "");
-                                }
-                        }
-                        if (Code.Length > 0) return Code;
-                    }
-
-                    else return "Error Connecting : " + Purchasestring;
-                }
-                string returnstring = Purchasestring.Substring(position1, position2 - position1 + 1);
-                Result m = JsonConvert.DeserializeObject<Result>(returnstring);
-                return m.RespCode + " : " + m.RespDesc;
+                return metaData;
             }
             catch (Exception EXXX)
             {
                 return EXXX.ToString();
             }
         }
-       
+        //public string KioskPOS(double amount, string bill_id, int Currency)
+        //{
+        //    try
+        //    {
+        //        //POS pos = new POS();
+        //        //pos.baudRate = 9600;
+        //        //pos.comPort = "COM" + Settings.Default.POSCom;
+        //        //if (Currency == 400) amount *= 1000;
+        //        //else amount *= 100;
+        //        ////MessageBox.Show(amount.ToString());
+        //        //string Purchasestring = pos.Purchase(bill_id, Int32Parse(amount.ToString()).ToString(), Currency, 1, 1, 120);
+        //        //pos = null;
+        //        string Purchasestring = "";
+        //        string filePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Responce.txt");
+
+        //        using (StreamWriter writer = new StreamWriter(filePath, true))
+        //        {
+        //            writer.WriteLine(Purchasestring);
+        //            writer.WriteLine(Environment.NewLine + "-----------------------------------------------------------------------------" + Environment.NewLine);
+        //            writer.Close();
+        //        }
+
+        //        Int32 position1 = Purchasestring.IndexOf('{');
+        //        // MessageBox.Show(position1.ToString());
+        //        Int32 position2 = Purchasestring.IndexOf('}');
+        //        if (position1 < 0 || position2 < 0)
+        //        {
+        //            if (position1 >= 0)
+        //            {
+        //                string Code = "";
+        //                /*solve this issue : the string is not complete*/
+        //                string[] tmpR = Purchasestring.Split(',');
+        //                for (int l = 0; l < tmpR.Length; l++)
+        //                {
+        //                    if (tmpR[l].IndexOf("RespCode") >= 0)
+        //                    {
+        //                        string[] tmpR2 = tmpR[l].Split(':');
+        //                        if (tmpR2.Length > 1) Code += tmpR2[1].Replace("\"", "");
+        //                    }
+        //                    if (Code.Length > 0)
+        //                        if (tmpR[l].IndexOf("RespDesc") >= 0)
+        //                        {
+        //                            string[] tmpR2 = tmpR[l].Split(':');
+        //                            if (tmpR2.Length > 1) Code += " : " + tmpR2[1].Replace("\"", "");
+        //                        }
+        //                }
+        //                if (Code.Length > 0) return Code;
+        //            }
+
+        //            else return "Error Connecting : " + Purchasestring;
+        //        }
+        //        string returnstring = Purchasestring.Substring(position1, position2 - position1 + 1);
+        //        Result m = JsonConvert.DeserializeObject<Result>(returnstring);
+        //        return m.RespCode + " : " + m.RespDesc;
+        //    }
+        //    catch (Exception EXXX)
+        //    {
+        //        return EXXX.ToString();
+        //    }
+        //}
+
 
         void WDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -371,8 +385,9 @@ namespace Hesabate_POS.View.windows
             
         }
 
-        public void OnLoadingStateChange(IWebBrowser chromiumWebBrowser, LoadingStateChangedEventArgs loadingStateChangedArgs)
+        public void OnLoadingStateChange(IWebBrowser chromiumWebBrowser, LoadingStateChangedEventArgs e)
         {
+           
             //bmMain.ExecuteScriptAsync("CefSharp.BindObjectAsync(\"external\",\"bound\");");
         }
     }
@@ -403,7 +418,7 @@ namespace Hesabate_POS.View.windows
              // Add another example item
              model.AddItem((CefMenuCommand)26503, "Display alert message");*/
         }
-
+       
         public bool OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
         {
             // React to the first ID (show dev tools method)
@@ -487,11 +502,17 @@ namespace Hesabate_POS.View.windows
 
     public class CustomRequestHandler : CefSharp.Handler.RequestHandler
     {
+         string invoiceQuery = AppSettings.APIUri.Replace("\\\\", "//") + "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token;
         protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
         {
+            
             Console.WriteLine("In GetResourceRequestHandler : " + request.Url);
             //Only intercept specific Url's
             if (request.Url == "http://s.hesabate.com/POS/pp2.php?token=S0N2V1Y4YmdzSktqVEJzTkRqSldDdFp1ckY3YkJKUE9yYVNEdE9KMjdQWWtQVFRvcWt6RHNWUlZYaWxFd1VrUEtUa1dHU3hZSW9kYXBLS1FXUzVIbng1cHVMZ05oZkgzM2hPT09TRVpBbHpzZnlTMmFseG9Nc2JiUDE5THNjc25iTk1MRkJnRE50Mit4TXJVUVhEbGhKWUhCLyt2U0NIeUR1Yjg5ay9JNnMrd0NvRzRZaFYzdnpvTW15VzltaHNNbzJJR1NKemI0a3lGV204S3Z6V2hycGRvbWtNTldMM3licUlDalBxMVJCWVRwdWZJMkFDYXNJTWFBTXdSYnZ4Zg==" || request.Url == "https://cefsharp.github.io/")
+            {
+                return new MyCustomResourceRequestHandler();
+            }
+            else if (request.Url ==  invoiceQuery )
             {
                 return new MyCustomResourceRequestHandler();
             }

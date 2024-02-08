@@ -3355,8 +3355,23 @@ namespace Hesabate_POS.View.receipts
 
         }
 
+        private void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
+                custodyWindow.title = Translate.getResource("1740");
+                custodyWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                custodyWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         #endregion
 
-       
+
     }
 }
