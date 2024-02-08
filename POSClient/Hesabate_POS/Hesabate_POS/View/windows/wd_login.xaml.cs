@@ -357,7 +357,7 @@ namespace Hesabate_POS.View.windows
                         Properties.Settings.Default.Save();
                         #endregion
 
-                        //if (AppSettings.showPx.Equals("1"))
+                        if (AppSettings.showPx.Equals("1"))
                         {
                             //show custody window
                             wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();

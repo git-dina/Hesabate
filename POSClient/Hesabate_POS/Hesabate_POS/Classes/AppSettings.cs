@@ -87,8 +87,6 @@ namespace Hesabate_POS.Classes
 
         #endregion
 
-        #region returned from Web View
-        public static string returnedId = "";
-        #endregion
+
     }
 }

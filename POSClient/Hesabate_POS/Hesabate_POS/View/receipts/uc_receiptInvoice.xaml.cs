@@ -3355,15 +3355,19 @@ namespace Hesabate_POS.View.receipts
 
         }
 
-        private void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
+        private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
-                custodyWindow.title = Translate.getResource("1740");
-                custodyWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                invoiceWindow.title = Translate.getResource("1740");
+                invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
                 //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
-                custodyWindow.ShowDialog();
+                invoiceWindow.ShowDialog();
+                if(invoiceWindow.isOk)
+                {
+                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                }
             }
             catch (Exception ex)
             {

@@ -284,7 +284,8 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-                AppSettings.returnedId = metaData;
+                mainWindowBrowser.returnedValue = metaData;
+                mainWindowBrowser.isOk = true;
                 //Yasin
                 mainWindowBrowser.Dispatcher.Invoke(() =>
                 {
