@@ -146,8 +146,8 @@ namespace Hesabate_POS.View.receipts
             #endregion
 
             #region invoice details big
-            col_index.Header = "#";
-            col_id.Header = Translate.getResource("567");
+            //col_index.Header = "#";
+            col_id.Header = "#";
             col_name.Header = Translate.getResource("568");
             col_unitName.Header = Translate.getResource("427");
             col_amount.Header = Translate.getResource("491");
@@ -2179,9 +2179,9 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        /*
         private void locationInvoiceItemRowinDatagrid(object sender, RoutedEventArgs e)
         {
-            /*
             try
             {
                 HelpClass.StartAwait(grid_main);
@@ -2206,8 +2206,8 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
-            */
         }
+        */
         private void deleteInvoiceItemRowinDatagrid(object sender, RoutedEventArgs e)
         {
          
