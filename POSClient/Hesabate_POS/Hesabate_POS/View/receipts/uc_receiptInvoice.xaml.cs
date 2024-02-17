@@ -240,7 +240,7 @@ namespace Hesabate_POS.View.receipts
         {
             invoice = new InvoiceModel();
             if (BillId != "")
-                invoice.BillId = BillId;
+                invoice.id = BillId;
 
             invoiceDetailsList = new List<ItemModel>();
 
@@ -710,7 +710,7 @@ namespace Hesabate_POS.View.receipts
                     {
                         if (GeneralInfoService.items != null)
                         {
-                            var item1 = GeneralInfoService.items.Where(x => x.product_id == itemCopy.id.ToString()).FirstOrDefault();
+                            var item1 = GeneralInfoService.items.Where(x => x.product_id == itemCopy.id).FirstOrDefault();
 
                             //#region copy item1
                             var item2 = new ItemModel()
@@ -768,7 +768,7 @@ namespace Hesabate_POS.View.receipts
         //private void AddItemToInvoice(CategoryModel item)
         private void AddItemToInvoice(ItemModel item, List<CategoryModel> basicItems, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
         {
-            var itemInInvoice = invoiceDetailsList.Where(x => x.product_id.ToString() == item.product_id).FirstOrDefault();
+            var itemInInvoice = invoiceDetailsList.Where(x => x.product_id == item.product_id).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
             {
                 itemInInvoice.amount++;
@@ -2987,6 +2987,7 @@ namespace Hesabate_POS.View.receipts
                 sp_invoiceDetailsSmall.Children.Add(borderMain);
                 #endregion
                 index++;
+        
             }
         }
         void buttonClose_Click(object sender, RoutedEventArgs e)
@@ -3250,10 +3251,10 @@ namespace Hesabate_POS.View.receipts
             {
                 if (e.Key == Key.Return)
                 {
-                ItemModel item = GeneralInfoService.items.Where(x => x.product_id == tb_search.Text).FirstOrDefault();
+                ItemModel item = GeneralInfoService.items.Where(x => x.product_id ==int.Parse( tb_search.Text)).FirstOrDefault();
                 if (item == null)
                 {
-                    item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.CustomerId, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
+                    item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.customer_id, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
 
                 }
                 if (item != null)
@@ -3321,7 +3322,7 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                var res = await _invoiceService.GetInvoiceInfo("0", invoice.BillId);
+                var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
 
             }
             catch (Exception ex)
@@ -3334,7 +3335,7 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                var res = await _invoiceService.GetInvoiceInfo("1",invoice.BillId);
+                var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
 
             }
             catch (Exception ex)
@@ -3343,16 +3344,214 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        private void displayInvoice()
+        private void displayInvoice(InvoiceModel invoiceModel)
         {
+            invoiceDetailsList = new List<ItemModel>();
+
+           
+            List<CategoryModel> addsGroup;
+            List<CategoryModel> extraGroup;
+            List<CategoryModel> deletesGroup;
+            List<CategoryModel> basicGroup;
+            foreach (var it in invoiceModel.items)
+            {
+                decimal totalPrice = it.price;
+
+                addsGroup = new List<CategoryModel>();
+                extraGroup = new List<CategoryModel>();
+                deletesGroup = new List<CategoryModel>();
+                basicGroup = new List<CategoryModel>();
+                #region addsItems
+                foreach (var add in it.addsitems)
+                {
+                    if(addsGroup.Count.Equals(0))
+                    {
+                        addsGroup.Add(new CategoryModel()
+                        {
+                            group_name = add.group_name,
+                            group_count = add.group_count,
+                        });
+                        addsGroup[0].group_items = new List<GroupItemModel>();
+                    }
+                    foreach (var addItem in add.group_items)
+                    {
+                        if (addItem.basicAmount > (addItem.start_amount + addItem.add_price_amount))
+                        {
+                            var sup = (int)addItem.basicAmount - (addItem.start_amount + addItem.add_price_amount);
+                            totalPrice += sup * addItem.add_price;
+
+                        }
+                        addsGroup[0].group_items.Add(new GroupItemModel()
+                        {
+                            add_price = addItem.add_price,
+                            add_price_amount = addItem.add_price_amount,
+                            allow_add = addItem.allow_add,
+                            allow_sub = addItem.allow_sub,
+                            basicAmount = addItem.basicAmount,
+                            id = addItem.id,
+                            sub_price = addItem.sub_price,
+                            start_amount = addItem.start_amount,
+                            unit = addItem.unit,
+                            unit_name = addItem.unit_name,
+                            name = addItem.name,
+
+
+                        });
+                    }
+                }
+                #endregion 
+                #region extraItems
+                foreach (var extra in it.extraitems)
+                {
+                    if(extraGroup.Count.Equals(0))
+                    {
+                        extraGroup.Add(new CategoryModel()
+                        {
+                            group_name = extra.group_name,
+                            group_count = extra.group_count,
+                        });
+                        extraGroup[0].group_items = new List<GroupItemModel>();
+                    }
+                    foreach (var extraItem in extra.group_items)
+                    {
+                        extraGroup[0].group_items.Add(new GroupItemModel()
+                        {
+                            add_price = extraItem.add_price,
+                            add_price_amount = extraItem.add_price_amount,
+                            allow_add = extraItem.allow_add,
+                            allow_sub = extraItem.allow_sub,
+                            basicAmount = extraItem.basicAmount,
+                            id = extraItem.id,
+                            sub_price = extraItem.sub_price,
+                            start_amount = extraItem.start_amount,
+                            unit = extraItem.unit,
+                            unit_name = extraItem.unit_name,
+                            name = extraItem.name,
+
+
+                        });
+                    }
+                }
+                #endregion 
+                #region deletesItems
+                foreach (var delete in it.deletesitems)
+                {
+                    if(deletesGroup.Count.Equals(0))
+                    {
+                        deletesGroup.Add(new CategoryModel()
+                        {
+                            group_name = delete.group_name,
+                            group_count = delete.group_count,
+                        });
+                        deletesGroup[0].group_items = new List<GroupItemModel>();
+                    }
+                    foreach (var deleteItem in delete.group_items)
+                    {
+                        deletesGroup[0].group_items.Add(new GroupItemModel()
+                        {
+                            add_price = deleteItem.add_price,
+                            add_price_amount = deleteItem.add_price_amount,
+                            allow_add = deleteItem.allow_add,
+                            allow_sub = deleteItem.allow_sub,
+                            basicAmount = deleteItem.basicAmount,
+                            id = deleteItem.id,
+                            sub_price = deleteItem.sub_price,
+                            start_amount = deleteItem.start_amount,
+                            unit = deleteItem.unit,
+                            unit_name = deleteItem.unit_name,
+                            name = deleteItem.name,
+
+
+                        });
+                    }
+                }
+                #endregion 
+                #region basicItems
+                foreach (var basic in it.isbasics)
+                {
+                    if(basicGroup.Count.Equals(0))
+                    {
+                        basicGroup.Add(new CategoryModel()
+                        {
+                            group_name = basic.group_name,
+                            group_count = basic.group_count,
+                        });
+                        basicGroup[0].group_items = new List<GroupItemModel>();
+                    }
+                    foreach (var basicItem in basic.group_items)
+                    {
+                        if (basicItem.basicAmount > (basicItem.start_amount + basicItem.add_price_amount))
+                        {
+                            var sup = (int)basicItem.basicAmount - (basicItem.start_amount + basicItem.add_price_amount);
+                            totalPrice += sup * basicItem.add_price;
+
+                        }
+                        else if (basicItem.basicAmount < basicItem.start_amount)
+                        {
+                            var sup = basicItem.start_amount - (int)basicItem.basicAmount;
+                            totalPrice -= sup * basicItem.add_price;
+                        }
+
+                        basicGroup[0].group_items.Add(new GroupItemModel()
+                        {
+                            add_price = basicItem.add_price,
+                            add_price_amount = basicItem.add_price_amount,
+                            allow_add = basicItem.allow_add,
+                            allow_sub = basicItem.allow_sub,
+                            basicAmount = basicItem.basicAmount,
+                            id = basicItem.id,
+                            sub_price = basicItem.sub_price,
+                            start_amount = basicItem.start_amount,
+                            unit = basicItem.unit,
+                            unit_name = basicItem.unit_name,
+                            name = basicItem.name,
+
+
+                        });
+                    }
+                }
+                #endregion
+                totalPrice = (totalPrice - it.discount) * it.amount;
+                invoiceDetailsList.Add(new ItemModel()
+                {
+                    addsItems =addsGroup,
+                    amount = it.amount,
+                   basicItems = basicGroup,
+                    deletesItems = deletesGroup,
+                    extraItems = extraGroup,
+                    bonus = it.bonus,
+                    detail = it.detail,
+                    discount = it.discount,
+                    discount_per = it.discount_per,
+                    product_id = it.id,
+                    isUrgent = it.isUrgent,
+                    is_ext = it.is_ext,
+                    is_special = it.is_special,
+                    max_p = it.max_p,
+                    measure_id = it.measure_id,
+                    min_p = it.min_p,
+                    name = it.name,
+                    notes = it.notes,
+                    no_w = it.no_w,
+                    price = it.price,
+                    serial_text = it.serial_text,
+                    x_discount = it.x_discount,
+                    x_vat = it.x_vat,
+                    unit = it.unit,
+                    unitList = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList,
+                    unit_name = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList.Where(x => x.id == it.unit).FirstOrDefault().name,
+                    total = totalPrice,
+                });
+            }
+
+            this.DataContext = invoice;
 
             if (AppSettings.invoiceDetailsType == "small")
                 buildInvoiceDetailsSmall(invoiceDetailsList);
             else
                 refreshInvoiceDetailsBig();
 
-            this.DataContext = invoice;
-
+            CalculateInvoiceValues();
         }
 
         private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
@@ -3360,13 +3559,15 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                invoiceWindow.title = Translate.getResource("1740");
+                invoiceWindow.title = Translate.getResource("318");
                 invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
                 //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
                 invoiceWindow.ShowDialog();
                 if(invoiceWindow.isOk)
                 {
-                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    //var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    var res = await _invoiceService.GetInvoiceInfo("2", "9");
+                    displayInvoice(res);
                 }
             }
             catch (Exception ex)

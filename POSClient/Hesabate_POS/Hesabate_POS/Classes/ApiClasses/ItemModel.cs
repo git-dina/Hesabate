@@ -11,7 +11,7 @@ namespace Hesabate_POS.Classes.ApiClasses
     public class ItemModel : INotifyPropertyChanged
     {
         public string id { get; set; } // barcode
-        public string product_id { get; set; } // item id
+        public int product_id { get; set; } // item id
         public string name { get; set; }
         public string serial { get; set; } //هل المعلومات هي سيريال أو لا
         public string unit { get; set; } // unit id
@@ -42,7 +42,7 @@ namespace Hesabate_POS.Classes.ApiClasses
 
         public string x_vat { get; set; } //ضريبة العنصر
         public string is_special { get; set; }//غير موجود في اجراء getitems
-        public string x_discount { get; set; }//غير موجود في اجراء getitems
+        public decimal x_discount { get; set; }//غير موجود في اجراء getitems
         private int _bonus;
         public int bonus
         {

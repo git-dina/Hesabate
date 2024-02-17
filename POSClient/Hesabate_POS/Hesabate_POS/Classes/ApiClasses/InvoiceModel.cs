@@ -11,10 +11,10 @@ namespace Hesabate_POS.Classes.ApiClasses
     public class InvoiceModel : INotifyPropertyChanged
     {
 
-        public int CustomerId { get; set; }
+        public int customer_id { get; set; }
         //public string BillId { get; set; } = "000000";
         private string _BillId = GeneralInfoService.GeneralInfo.BILL_ID.ToString();
-        public string BillId
+        public string id
         {
             get => _BillId;
             set
@@ -46,6 +46,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string external { get; set; } = "0"; //is invoice external
         public decimal service { get; set; }//service amount ??value or percentage
         public string emp { get; set; } = "0"; //employer id
+        public string empn { get; set; }  //employer name
         public string for_use { get; set; } = "0";//is this invoice for internal use not sale
         public string takeaway { get; set; } = "0";//is this takeaway invoice
         public string on_table { get; set; } = "0";//on table seletced ( like external and takeaway)
@@ -58,7 +59,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         //extra
         public string discountType { get; set; } = "rate";
         public decimal manualDiscount { get; set; }
-
+        public List<InvoiceItem> items { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
@@ -67,15 +68,17 @@ namespace Hesabate_POS.Classes.ApiClasses
 
     public class InvoiceItem
     {
-        public string product_id { get; set; } // item id
+        public int id { get; set; } // item id
+        public string detail { get; set; } // item id
         public string unit { get; set; } // unit id
+        public string name { get; set; } // item name
         public string discount_per { get; set; }//نسبة الخصم المثبت في بطاقة الصنف
         public string measure_id { get; set; }
         public decimal discount { get; set; } // الخصم الصافي على الصنف
         public string serial_text { get; set; } // السيريال الذي تم بيعه في هذه العملية
         public string x_vat { get; set; } //ضريبة العنصر
         public string is_special { get; set; }
-        public string x_discount { get; set; }
+        public decimal x_discount { get; set; }
         public int bonus { get; set; }
         public string is_ext { get; set; }
         public bool isUrgent { get; set; }
@@ -83,11 +86,15 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int amount { get; set; }
         public decimal price { get; set; }
         public string notes { get; set; }
+        public string no_w { get; set; }
+        public string back_val { get; set; }
+        public decimal min_p { get; set; }
+        public decimal max_p { get; set; }
 
-        public List<ExtraItemModel> extraItems = new List<ExtraItemModel>();
-        public List<ExtraItemModel> addsItems = new List<ExtraItemModel>();
-        public List<ExtraItemModel> deletesItems = new List<ExtraItemModel>();
-        public List<ExtraItemModel> isBasics = new List<ExtraItemModel>();
+        public List<ExtraItemModel> extraitems = new List<ExtraItemModel>();
+        public List<ExtraItemModel> addsitems = new List<ExtraItemModel>();
+        public List<ExtraItemModel> deletesitems = new List<ExtraItemModel>();
+        public List<ExtraItemModel> isbasics = new List<ExtraItemModel>();
     }
 
     public class ExtraItemModel

@@ -1887,7 +1887,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{Binding BillId, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource White}" 
+                                <TextBlock Text="{Binding id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource White}" 
                                            x:Name="txt_invoiceNumber"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
                               Grid.Column="1"      Margin="5"
