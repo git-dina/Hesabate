@@ -71,6 +71,7 @@ namespace Hesabate_POS.View.windows
                 #endregion
 
                 #region read app settings
+                AppSettings.invoiceDetailsType = Properties.Settings.Default.invoiceDetailsType;
                 AppSettings.APIUri = Properties.Settings.Default.APIUri;
                 if (AppSettings.APIUri.Equals(""))//display server name
                 {
@@ -106,7 +107,7 @@ namespace Hesabate_POS.View.windows
 
         private void translate()
         {
-            
+
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -274,7 +275,7 @@ namespace Hesabate_POS.View.windows
 
                     bool canLogin = false;
                     btn_login.IsEnabled = false;
-                    txt_message.Text = "";
+                    //txt_message.Text = "";
                     string res = "";
 
                     //clear loaded images
@@ -291,15 +292,20 @@ namespace Hesabate_POS.View.windows
                     }
 
                     // show message
+                    /*
                     if (res != "")
                         txt_message.Text = res;
                     else
                         txt_message.Text = "";
+                    */
+                    wd_messageBoxWithIcon messageWin = new wd_messageBoxWithIcon();
+                    messageWin.contentText1 = "Hello World!";
+                    messageWin.ShowDialog();
 
 
                     HelpClass.StartAwait(grid_form);
 
-                    if (res == "" )
+                    if (res == "")
                     {
                         canLogin = true;
 
@@ -406,27 +412,7 @@ namespace Hesabate_POS.View.windows
             }
         }
 
-        private void cb_invoiceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                // small, big
-                if (cb_invoiceType.SelectedIndex == 0)
-                {
-                    AppSettings.invoiceDetailsType = "small";
-                }
-                else if (cb_invoiceType.SelectedIndex == 1)
-                {
-                    AppSettings.invoiceDetailsType = "big";
-                }
-            }
-            catch (Exception ex)
-            {
-                HelpClass.EndAwait(grid_form);
-                btn_login.IsEnabled = true;
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
+       
         /*
 private void btn_serverName_Click(object sender, RoutedEventArgs e)
 {

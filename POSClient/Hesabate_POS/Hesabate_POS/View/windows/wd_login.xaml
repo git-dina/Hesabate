@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Height="500" Width="350"  Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+         Height="380" Width="350"  Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
                              Margin="5 0"
                               Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" 
                               Padding="0" >
-                            <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Server" 
+                            <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Settings" 
                           Width="25" Height="25"/>
                         </Button>
                         <Button Grid.Column="13" x:Name="btn_minimize" Click="btn_minimize_Click"
@@ -213,43 +213,12 @@
                                 </Grid>
                             </Border>
                         </Grid>
-                        <Grid Grid.Row="4" Margin="25 0" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
-       HorizontalAlignment="Center" Grid.Column="0"  
-  VerticalAlignment="Center" Width="30" Height="30"
-       Data="{StaticResource invoice}"
-               Margin="5"/>
-                            <Border  Grid.Column="1"
- CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
-                                <Grid   >
-                                    <ComboBox x:Name="cb_invoiceType"    
-           Padding="10,0,5,0"  TextBlock.Foreground="{StaticResource textColor}"
-           materialDesign:HintAssist.Hint="invoiceType..."  
-                SelectionChanged="cb_invoiceType_SelectionChanged"
-            Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-           Grid.Column="0" Height="40"  Margin="0,0"
-           BorderBrush="#737373" BorderThickness="0" 
-                                              SelectedIndex="0">
-                                        <ComboBoxItem>Small</ComboBoxItem>
-                                        <ComboBoxItem>Big</ComboBoxItem>
-                                    </ComboBox>
-                                    <Path Fill="#E81123" x:Name="p_error_invoiceType" Stretch="Fill" Margin="5,5,20,5"
-       HorizontalAlignment="Right" Grid.Row="8"  Visibility="Collapsed"   
-  VerticalAlignment="Center" Width="15"  Height="15" 
-      Data="{StaticResource infoCircle}"/>
-                                </Grid>
-                            </Border>
-                        </Grid>
-
+                       
                         <CheckBox Grid.Row="3" Margin="30 5" x:Name="cbxRemmemberMe" Content="Remmember Me" 
                         VerticalAlignment="Center" Foreground="{StaticResource textColor}" />
                     </StackPanel>
                 </Grid>
-                <ScrollViewer Grid.Row="1"  
+                <!--<ScrollViewer Grid.Row="1"  
                                   VerticalScrollBarVisibility="Auto"  
                                   >
                     <TextBlock x:Name="txt_message"
@@ -261,7 +230,7 @@
                         Margin="25 5"
                         TextWrapping="WrapWithOverflow"
                         TextAlignment="Center"/>
-                </ScrollViewer>
+                </ScrollViewer>-->
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
