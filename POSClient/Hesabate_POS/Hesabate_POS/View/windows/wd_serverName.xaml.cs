@@ -76,7 +76,12 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
- 
+                if (AppSettings.invoiceDetailsType == "small")
+                    cb_invoiceType.SelectedIndex = 0;
+                else
+                    cb_invoiceType.SelectedIndex = 1;
+
+
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -132,6 +137,27 @@ namespace Hesabate_POS.View.windows
             }
             catch { }
         }
+
+        private void cb_invoiceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                // small, big
+                if (cb_invoiceType.SelectedIndex == 0)
+                {
+                    AppSettings.invoiceDetailsType = "small";
+                }
+                else if (cb_invoiceType.SelectedIndex == 1)
+                {
+                    AppSettings.invoiceDetailsType = "big";
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
         #region events
         string input;
         decimal _decimal = 0;
@@ -220,6 +246,7 @@ namespace Hesabate_POS.View.windows
                 {
                     AppSettings.APIUri = tb_serverName.Text;
                     Properties.Settings.Default.APIUri = AppSettings.APIUri;
+                    Properties.Settings.Default.invoiceDetailsType = AppSettings.invoiceDetailsType;
                     Properties.Settings.Default.Save();
 
                     await GeneralInfoService.GetLanguages();

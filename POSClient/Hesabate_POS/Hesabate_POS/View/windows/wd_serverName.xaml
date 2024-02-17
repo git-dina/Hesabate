@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Height="155" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+         Height="200" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
         Loaded="Window_Loaded" Closing="Window_Closing" >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -47,14 +47,26 @@
             <Grid  Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Border x:Name="brd_serverName"  Grid.Column="1" 
+
+                <Grid  Margin="10 0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+      HorizontalAlignment="Center" Grid.Column="0"  
+ VerticalAlignment="Center" Width="30" Height="25"
+      Data="{StaticResource webLink}"
+              Margin="5"/>
+                    <Border x:Name="brd_serverName"  Grid.Column="1" 
                             CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
-                    <Grid   >
-                        <TextBox  x:Name="tb_serverName" 
+                        <Grid>
+                            <TextBox  x:Name="tb_serverName" 
                                  Text=""
       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
       Padding="10,0,5,0" 
@@ -66,16 +78,48 @@
 Grid.Column="1"  Height="40" TextWrapping="Wrap"
                                   LostFocus="validateEmpty_LostFocus"
               TextChanged="ValidateEmpty_TextChange"/>
-                        <Path x:Name="p_error_serverName"
+                            <Path x:Name="p_error_serverName"
                             Fill="#E81123" Grid.Row="8" Stretch="Fill" Margin="5,5,15,5"
       HorizontalAlignment="Right" Grid.Column="2"  Visibility="Collapsed"   
  VerticalAlignment="Center" Width="15"  Height="15"
      Data="{StaticResource infoCircle}">
-                        </Path>
+                            </Path>
 
-                    </Grid>
-                </Border>
+                        </Grid>
+                    </Border>
 
+                </Grid>
+                
+                <Grid Grid.Row="1" Margin="10 0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+      HorizontalAlignment="Center" Grid.Column="0"  
+ VerticalAlignment="Center" Width="30" Height="30"
+      Data="{StaticResource invoice}"
+              Margin="5"/>
+                    <Border  Grid.Column="1"
+CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                        <Grid   >
+                            <ComboBox x:Name="cb_invoiceType"    
+          Padding="10,0,5,0"  TextBlock.Foreground="{StaticResource textColor}"
+          materialDesign:HintAssist.Hint="invoiceType..."  
+               SelectionChanged="cb_invoiceType_SelectionChanged"
+           Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+          Grid.Column="0" Height="40"  Margin="0,0"
+          BorderBrush="#737373" BorderThickness="0" >
+                                <ComboBoxItem>Small</ComboBoxItem>
+                                <ComboBoxItem>Big</ComboBoxItem>
+                            </ComboBox>
+                            <Path Fill="#E81123" x:Name="p_error_invoiceType" Stretch="Fill" Margin="5,5,20,5"
+                      HorizontalAlignment="Right" Grid.Row="8"  Visibility="Collapsed"   
+                 VerticalAlignment="Center" Width="15"  Height="15" 
+                     Data="{StaticResource infoCircle}"/>   
+                        </Grid>
+                    </Border>
+                </Grid>
 
                 <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="5,10" x:Name="btn_save" Click="Btn_save_Click" Foreground="White"
