@@ -2431,7 +2431,7 @@ namespace Hesabate_POS.View.receipts
                     cdRow0[i] = new ColumnDefinition();
                 }
                 cdRow0[0].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow0[1].Width = new GridLength(1, GridUnitType.Star);
+                cdRow0[1].Width = new GridLength(1, GridUnitType.Auto);
                 cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
                 //cdRow0[2].Width = new GridLength(1, GridUnitType.Auto);
                 for (int i = 0; i < colCountRow0; i++)
@@ -2439,7 +2439,6 @@ namespace Hesabate_POS.View.receipts
                     gridRow0.ColumnDefinitions.Add(cdRow0[i]);
                 }
                 #endregion
-
                 #region itemIndex
                 TextBlock itemIndex = new TextBlock();
                 itemIndex.Text = $"{item.index}-";
@@ -2452,7 +2451,6 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetColumn(itemIndex, 0);
                 gridRow0.Children.Add(itemIndex);
                 #endregion
-
                 #region itemName
                 TextBlock itemName = new TextBlock();
                 if (item.name.Length < 21)
@@ -2469,7 +2467,7 @@ namespace Hesabate_POS.View.receipts
                 if (!string.IsNullOrWhiteSpace(item.unit_name))
                 {
                     TextBlock itemUnit = new TextBlock();
-                    itemUnit.Text = item.unit_name;
+                    itemUnit.Text =$"({item.unit_name})";
                     itemUnit.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
                     itemUnit.Margin = new Thickness(5);
 
@@ -2650,7 +2648,7 @@ namespace Hesabate_POS.View.receipts
                                 #region groupItem_firstPart
                                 TextBlock groupItem_firstPart = new TextBlock();
                                 groupItem_firstPart.Text = $"+ {groupItem.name} (";
-                                groupItem_firstPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_firstPart.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
                                 groupItem_firstPart.HorizontalAlignment = HorizontalAlignment.Left;
                                 groupItem_firstPart.VerticalAlignment = VerticalAlignment.Center;
                                 groupItem_firstPart.Margin = new Thickness(0, 2.5, 0, 2.5);
@@ -2665,7 +2663,7 @@ namespace Hesabate_POS.View.receipts
                                 //groupItem_basicAmount.DataContext = groupItem;
                                 var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
                                 groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
-                                groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_basicAmount.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
                                 groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
                                 groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
                                 groupItem_basicAmount.Margin = new Thickness(5);
@@ -2674,7 +2672,7 @@ namespace Hesabate_POS.View.receipts
                                 #region groupItem_lastPart
                                 TextBlock groupItem_lastPart = new TextBlock();
                                 groupItem_lastPart.Text = $") {groupItem.add_price} {AppSettings.currency} | ";
-                                groupItem_lastPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_lastPart.Foreground = Application.Current.Resources["Green"] as SolidColorBrush;
                                 groupItem_lastPart.HorizontalAlignment = HorizontalAlignment.Left;
                                 groupItem_lastPart.VerticalAlignment = VerticalAlignment.Center;
                                 groupItem_lastPart.Margin = new Thickness(0, 2.5, 0, 2.5);
@@ -2716,7 +2714,7 @@ namespace Hesabate_POS.View.receipts
                                 #region groupItem_firstPart
                                 TextBlock groupItem_firstPart = new TextBlock();
                                 groupItem_firstPart.Text = $"- {groupItem.name} (";
-                                groupItem_firstPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_firstPart.Foreground = Application.Current.Resources["Red"] as SolidColorBrush;
                                 groupItem_firstPart.HorizontalAlignment = HorizontalAlignment.Left;
                                 groupItem_firstPart.VerticalAlignment = VerticalAlignment.Center;
                                 groupItem_firstPart.Margin = new Thickness(0, 2.5, 0, 2.5);
@@ -2731,7 +2729,7 @@ namespace Hesabate_POS.View.receipts
                                 //groupItem_basicAmount.DataContext = groupItem;
                                 var groupItem_basicAmountBinding = new System.Windows.Data.Binding("basicAmount");
                                 groupItem_basicAmount.SetBinding(TextBlock.TextProperty, groupItem_basicAmountBinding);
-                                groupItem_basicAmount.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_basicAmount.Foreground = Application.Current.Resources["Red"] as SolidColorBrush;
                                 groupItem_basicAmount.HorizontalAlignment = HorizontalAlignment.Center;
                                 groupItem_basicAmount.VerticalAlignment = VerticalAlignment.Center;
                                 groupItem_basicAmount.Margin = new Thickness(5);
@@ -2740,7 +2738,7 @@ namespace Hesabate_POS.View.receipts
                                 #region groupItem_lastPart
                                 TextBlock groupItem_lastPart = new TextBlock();
                                 groupItem_lastPart.Text = $") {groupItem.add_price} {AppSettings.currency} | ";
-                                groupItem_lastPart.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                                groupItem_lastPart.Foreground = Application.Current.Resources["Red"] as SolidColorBrush;
                                 groupItem_lastPart.HorizontalAlignment = HorizontalAlignment.Left;
                                 groupItem_lastPart.VerticalAlignment = VerticalAlignment.Center;
                                 groupItem_lastPart.Margin = new Thickness(0, 2.5, 0, 2.5);
@@ -2782,6 +2780,35 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRow(stackPanelRow2, 2);
                 gridMain.Children.Add(stackPanelRow2);
                 #endregion
+                
+                #region gridRow3
+                //if (!string.IsNullOrEmpty(item.notes))
+                //{ 
+                Grid gridRow3 = new Grid();
+                gridRow3.Margin = new Thickness(5, 0, 5, 0);
+                #region itemotes
+                TextBlock itemNotes = new TextBlock();
+                itemNotes.Text = item.notes;
+                var itemNotesBinding = new System.Windows.Data.Binding("notes");
+                itemNotes.SetBinding(TextBlock.TextProperty, itemNotesBinding);
+                itemNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
+                itemNotes.Margin = new Thickness(10, 0, 10, 0);
+                itemNotes.TextWrapping = TextWrapping.Wrap;
+                itemNotes.TextAlignment = TextAlignment.Left;
+
+
+                var itemNotesVisibilityBinding = new System.Windows.Data.Binding("notes");
+                itemNotesVisibilityBinding.Mode = BindingMode.OneWay;
+                itemNotesVisibilityBinding.Converter = new NotZeroToVisibilityConverter();
+                itemNotes.SetBinding(TextBlock.VisibilityProperty, itemNotesVisibilityBinding);
+
+
+                gridRow3.Children.Add(itemNotes);
+                #endregion
+                Grid.SetRow(gridRow3, 3);
+                gridMain.Children.Add(gridRow3);
+                //}
+                #endregion
                 #region buttonInfo
                 Rectangle rectangleInfo = new Rectangle();
                 Grid.SetRowSpan(rectangleInfo, 4);
@@ -2797,24 +2824,24 @@ namespace Hesabate_POS.View.receipts
                 Grid.SetRowSpan(buttonInfo, 4);
                 gridMain.Children.Add(buttonInfo);
                 #endregion
-                #region gridRow3
-                Grid gridRow3 = new Grid();
-                gridRow3.Margin = new Thickness(2.5);
+                #region gridRow4
+                Grid gridRow4 = new Grid();
+                gridRow4.Margin = new Thickness(2.5);
                 #region gridSettings
                 /////////////////////////////////////////////////////
-                int colCountRow3 = 4;
-                ColumnDefinition[] cdRow3 = new ColumnDefinition[colCountRow3];
-                for (int i = 0; i < colCountRow3; i++)
+                int colCountRow4 = 4;
+                ColumnDefinition[] cdRow4 = new ColumnDefinition[colCountRow4];
+                for (int i = 0; i < colCountRow4; i++)
                 {
-                    cdRow3[i] = new ColumnDefinition();
+                    cdRow4[i] = new ColumnDefinition();
                 }
-                cdRow3[0].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow3[1].Width = new GridLength(1, GridUnitType.Star);
-                cdRow3[2].Width = new GridLength(1, GridUnitType.Auto);
-                cdRow3[3].Width = new GridLength(1, GridUnitType.Auto);
-                for (int i = 0; i < colCountRow3; i++)
+                cdRow4[0].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow4[1].Width = new GridLength(1, GridUnitType.Star);
+                cdRow4[2].Width = new GridLength(1, GridUnitType.Auto);
+                cdRow4[3].Width = new GridLength(1, GridUnitType.Auto);
+                for (int i = 0; i < colCountRow4; i++)
                 {
-                    gridRow3.ColumnDefinitions.Add(cdRow3[i]);
+                    gridRow4.ColumnDefinitions.Add(cdRow4[i]);
                 }
                 #endregion
 
@@ -2849,7 +2876,7 @@ namespace Hesabate_POS.View.receipts
                 #endregion
 
                 Grid.SetColumn(borderNotes, 0);
-                gridRow3.Children.Add(borderNotes);
+                gridRow4.Children.Add(borderNotes);
                 */
                 #endregion
 
@@ -2869,7 +2896,7 @@ namespace Hesabate_POS.View.receipts
                 var buttonUrgentColorBinding = new System.Windows.Data.Binding("isUrgent");
                 buttonUrgentColorBinding.Mode = BindingMode.OneWay;
                 buttonUrgentColorBinding.Converter = new urgentColorConverter();
-                buttonUrgent.SetBinding(Button.BackgroundProperty,buttonUrgentColorBinding);
+                buttonUrgent.SetBinding(Button.BackgroundProperty, buttonUrgentColorBinding);
 
 
                 var buttonUrgentVisibilityBinding = new System.Windows.Data.Binding("isUrgent");
@@ -2886,7 +2913,7 @@ namespace Hesabate_POS.View.receipts
 
                 buttonUrgent.Click += buttonUrgent_Click;
                 Grid.SetColumn(buttonUrgent, 0);
-                gridRow3.Children.Add(buttonUrgent);
+                gridRow4.Children.Add(buttonUrgent);
                 #endregion
                 #region stackPanelTotal
                 StackPanel stackPanelTotal = new StackPanel();
@@ -2920,7 +2947,7 @@ namespace Hesabate_POS.View.receipts
                 stackPanelTotal.Children.Add(textTotalAccuracy);
                 #endregion
                 Grid.SetColumn(stackPanelTotal, 1);
-                gridRow3.Children.Add(stackPanelTotal);
+                gridRow4.Children.Add(stackPanelTotal);
                 #endregion
                 #region   close
                 Button buttonClose = new Button();
@@ -2943,44 +2970,14 @@ namespace Hesabate_POS.View.receipts
                 #endregion
                 buttonClose.Click += buttonClose_Click;
                 Grid.SetColumn(buttonClose, 2);
-                gridRow3.Children.Add(buttonClose);
+                gridRow4.Children.Add(buttonClose);
                 /////////////////////////////////
                 #endregion
 
 
-                Grid.SetRow(gridRow3, 3);
-                gridMain.Children.Add(gridRow3);
-                #endregion
-
-                #region gridRow4
-                //if (!string.IsNullOrEmpty(item.notes))
-                //{ 
-                Grid gridRow4 = new Grid();
-                gridRow4.Margin = new Thickness(5, 0, 5, 0);
-                #region itemotes
-                TextBlock itemNotes = new TextBlock();
-                itemNotes.Text = item.notes;
-                var itemNotesBinding = new System.Windows.Data.Binding("notes");
-                itemNotes.SetBinding(TextBlock.TextProperty, itemNotesBinding);
-                itemNotes.Foreground = Application.Current.Resources["textColor"] as SolidColorBrush;
-                itemNotes.Margin = new Thickness(10, 0, 10, 0);
-                itemNotes.TextWrapping = TextWrapping.Wrap;
-                itemNotes.TextAlignment = TextAlignment.Left;
-
-
-                var itemNotesVisibilityBinding = new System.Windows.Data.Binding("notes");
-                itemNotesVisibilityBinding.Mode = BindingMode.OneWay;
-                itemNotesVisibilityBinding.Converter = new NotZeroToVisibilityConverter();
-                itemNotes.SetBinding(TextBlock.VisibilityProperty, itemNotesVisibilityBinding);
-
-
-                gridRow4.Children.Add(itemNotes);
-                #endregion
                 Grid.SetRow(gridRow4, 4);
                 gridMain.Children.Add(gridRow4);
-                //}
                 #endregion
-
 
                 borderMain.Child = gridMain;
                 #endregion
