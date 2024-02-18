@@ -327,24 +327,24 @@ namespace Hesabate_POS.View.windows
                         txt_progressBarValue.Text = $"{pb_main.Value}%";
                     }
                     #region  selectBox
-                    if (res == "" && AppSettings.cashBoxId == "0")
-                    {
-                        Window.GetWindow(this).Opacity = 0.0;
-                        wd_selectBox w = new wd_selectBox();
-                        w.ShowDialog();
-                        if (w.isOk)
-                        {
+                    //if (res == "" && AppSettings.cashBoxId == "0")
+                    //{
+                    //    Window.GetWindow(this).Opacity = 0.0;
+                    //    wd_selectBox w = new wd_selectBox();
+                    //    w.ShowDialog();
+                    //    if (w.isOk)
+                    //    {
 
-                        }
-                        else
-                            canLogin = false;
+                    //    }
+                    //    else
+                    //        canLogin = false;
 
-                        pb_main.Visibility = Visibility.Collapsed;
-                        txt_progressBarValue.Visibility = Visibility.Collapsed;
-                        pb_main.Value = 0;
-                        txt_progressBarValue.Text = $"{pb_main.Value}%";
-                        Window.GetWindow(this).Opacity = 1;
-                    }
+                    //    pb_main.Visibility = Visibility.Collapsed;
+                    //    txt_progressBarValue.Visibility = Visibility.Collapsed;
+                    //    pb_main.Value = 0;
+                    //    txt_progressBarValue.Text = $"{pb_main.Value}%";
+                    //    Window.GetWindow(this).Opacity = 1;
+                    //}
                     #endregion
                     if (canLogin)
                     {
