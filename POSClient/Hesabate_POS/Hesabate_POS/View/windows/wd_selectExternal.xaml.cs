@@ -67,7 +67,7 @@ namespace Hesabate_POS.View.windows
                 #endregion
                 FillCombo.FillExternalType(cmb_externalType);
 
-
+                cmb_externalType.SelectedValue = externalType;
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -83,8 +83,9 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            //txt_title.Text = Translate.getResource("104");
+            txt_title.Text = Translate.getResource("695");
             btn_save.Content = Translate.getResource("27");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_externalType, Translate.getResource("576"));
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -194,6 +195,7 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
+                externalType = cmb_externalType.SelectedValue.ToString();
                 isOk = true;
 
                 this.Close();
