@@ -2020,8 +2020,6 @@ namespace Hesabate_POS.View.receipts
         void switchGrid1_1(string type)
         {
 
-
-
             // first level
             if (type == "mainItemsCatalog")
             {
@@ -2066,28 +2064,40 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                Window.GetWindow(this).Opacity = 0.2;
+
+
+
+                wd_selectExternal w = new wd_selectExternal();
+                w.externalType = invoice.external;
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    invoice.external = w.externalType;
+                }
+
                 if (invoice != null)
                 {
-                    if (invoice.external.Equals("1"))
+                    if (invoice.external.Equals("1") || invoice.external.Equals("2"))
                     {
-                        invoice.external = "0";
+                        btn_external.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        path_external.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+ }
+                    else
+                    {
 
                         btn_external.Background = Application.Current.Resources["White"] as SolidColorBrush;
                         path_external.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                        //txt_external.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                    }
-                    else
-                    {
-                        invoice.external = "1";
-                        btn_external.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                        path_external.Fill = Application.Current.Resources["White"] as SolidColorBrush;
-                        //txt_external.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
                     }
                 }
+                Window.GetWindow(this).Opacity = 1;
+
+                
             }
             catch (Exception ex)
             {
+                Window.GetWindow(this).Opacity = 1;
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
