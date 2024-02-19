@@ -3384,7 +3384,7 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
-
+                displayInvoice(res);
             }
             catch (Exception ex)
             {
@@ -3397,7 +3397,7 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
-
+                displayInvoice(res);
             }
             catch (Exception ex)
             {
