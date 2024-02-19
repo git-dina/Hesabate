@@ -154,6 +154,7 @@
     <Compile Include="Classes\HelpClass.cs" />
     <Compile Include="Classes\InvoiceService.cs" />
     <Compile Include="Classes\ItemService.cs" />
+    <Compile Include="Classes\KeyValue.cs" />
     <Compile Include="Classes\Translate.cs" />
     <Compile Include="converters\accuracyConverter.cs" />
     <Compile Include="converters\boolToVisibilityConverter.cs" />
@@ -204,6 +205,9 @@
     </Compile>
     <Compile Include="View\windows\wd_selectBox.xaml.cs">
       <DependentUpon>wd_selectBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\windows\wd_selectExternal.xaml.cs">
+      <DependentUpon>wd_selectExternal.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_selectUnit.xaml.cs">
       <DependentUpon>wd_selectUnit.xaml</DependentUpon>
@@ -268,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_selectBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_selectExternal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
