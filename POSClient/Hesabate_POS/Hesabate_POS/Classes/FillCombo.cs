@@ -79,5 +79,30 @@ namespace Hesabate_POS.Classes
         }
         #endregion
 
+        #region returnType
+
+        static public List<keyValueString> returnTypeList;
+        static public List<keyValueString> RefreshReturnTypeList()
+        {
+            returnTypeList = new List<keyValueString> {
+                new keyValueString { key = "default" ,  value = "-" },
+                new keyValueString { key = "full" ,  value ="full"},
+                new keyValueString { key = "replace" ,  value ="replace"},
+                new keyValueString { key = "manual" ,  value ="manual"},
+                 };
+            return returnTypeList;
+        }
+        static public void FillReturnType(ComboBox cmb)
+        {
+            #region fill ReturnType
+            if (returnTypeList is null)
+                RefreshReturnTypeList();
+            cmb.SelectedValuePath = "key";
+            cmb.DisplayMemberPath = "value";
+            cmb.ItemsSource = returnTypeList;
+            #endregion
+        }
+        #endregion
+
     }
 }
