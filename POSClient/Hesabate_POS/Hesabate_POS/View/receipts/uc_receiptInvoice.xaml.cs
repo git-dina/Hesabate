@@ -448,14 +448,14 @@ namespace Hesabate_POS.View.receipts
             {
                 Window.GetWindow(this).Opacity = 0.2;
                 wd_discount w = new wd_discount();
-                w.ShowDialog();
+               
                 w.discountType = invoice.discountType;
-                w.manualDiscount = invoice.manualDiscount;
-
+                w.discountValue = invoice.over_discount;
+                w.ShowDialog();
                 if (w.isOk)
                 {
                     invoice.discountType = w.discountType;
-                    invoice.manualDiscount = w.manualDiscount;
+                    invoice.manualDiscount = w.discountValue;
                     CalculateInvoiceValues();
                 }
 
@@ -3245,7 +3245,7 @@ namespace Hesabate_POS.View.receipts
             }
             else
             {
-                manualDiscount = invoice.over_discount;
+                manualDiscount = invoice.manualDiscount;
                 manualDiscountRate = (manualDiscount * 100) / totalAfterTax;
             }
             overDiscount += manualDiscount;
@@ -3261,13 +3261,13 @@ namespace Hesabate_POS.View.receipts
 
 
             invoice.total_after_discount = totalNet;
-
+            invoice.total = invoiceDetailsList.Select(x => x.total).Sum();
             //display
             txt_Count.Text = invoiceDetailsList.Select(x => x.amount).Sum().ToString();
-            txt_SupTotal.Text = HelpClass.DecTostring(invoiceDetailsList.Select(x => x.total).Sum());
+            txt_SupTotal.Text = HelpClass.DecTostring(total);
             txt_Service.Text = HelpClass.DecTostring(serviceAmount);
             txt_taxValue.Text = HelpClass.DecTostring(taxAmount);
-            txt_UserDiscountRate.Text = HelpClass.DecTostring(manualDiscountRate);
+            txt_UserDiscountRate.Text = HelpClass.DecTostring(overDiscountPercentage);
             txt_total.Text = HelpClass.DecTostring(totalNet);
 
         }

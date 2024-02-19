@@ -41,7 +41,7 @@ namespace Hesabate_POS.View.windows
         }
 
         public ItemModel selectedItem { get; set; }
-        public decimal manualDiscount { get; set; }
+        public decimal discountValue { get; set; }
         public string discountType { get; set; }
 
         public bool isOk { get; set; }
@@ -73,8 +73,9 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
-
                 HelpClass.EndAwait(grid_main);
+                tb_discount.Text = discountValue.ToString();
+
             }
             catch (Exception ex)
             {
@@ -88,8 +89,10 @@ namespace Hesabate_POS.View.windows
 
         private void translate()
         {
+            txt_title.Text = Translate.getResource("571");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_discount, Translate.getResource("576"));
+            btn_save.Content = Translate.getResource("2104");
 
-           
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -289,7 +292,8 @@ namespace Hesabate_POS.View.windows
                     else
                         discountType = "value";
 
-                    manualDiscount = decimal.Parse(tb_discount.Text);
+
+                    discountValue = decimal.Parse(tb_discount.Text);
 
                     isOk = true;
                     this.Close();
