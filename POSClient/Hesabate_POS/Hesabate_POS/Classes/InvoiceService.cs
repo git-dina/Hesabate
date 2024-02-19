@@ -263,7 +263,7 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.note), "note");
                 content.Add(new StringContent(invoice.note2), "note2");
                 content.Add(new StringContent(invoice.over_discount_percentage.ToString()), "over_discount_percentage");
-                content.Add(new StringContent(invoice.external), "external");//0,1
+                content.Add(new StringContent(invoice.external), "external");//0,1,2
                 content.Add(new StringContent(invoice.service.ToString()), "service");
                 content.Add(new StringContent(invoice.emp), "emp");//empId
                 content.Add(new StringContent(invoice.for_use), "for_use");//0,1

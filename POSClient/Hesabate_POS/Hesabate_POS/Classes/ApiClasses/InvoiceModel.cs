@@ -43,12 +43,12 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string paid { get; set; } = "0";//payment type(0 not paid, 1 paid)
         public string note { get; set; }
         public string note2 { get; set; }
-        public string external { get; set; } = "0"; //is invoice external
+        public string external { get; set; } = "0"; //is invoice external {0: normal, 1: delivery, 2: Pending delivery}
         public decimal service { get; set; }//service amount ??value or percentage
         public string emp { get; set; } = "0"; //employer id
         public string empn { get; set; }  //employer name
         public string for_use { get; set; } = "0";//is this invoice for internal use not sale
-        public string takeaway { get; set; } = "0";//is this takeaway invoice
+        public string takeaway { get; set; } = "0";//is this takeaway invoice {0: normal, 1: takeaway}
         public string on_table { get; set; } = "0";//on table seletced ( like external and takeaway)
         public int room_reservation_id { get; set; } = 0;//room reservation id if used
         public decimal round_dis { get; set; }//discount calculated through round mathmatics
@@ -59,6 +59,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         //extra
         public string discountType { get; set; } = "rate";
         public decimal manualDiscount { get; set; }
+        public decimal total { get; set; }
+        public string invType { get; set; }
         public List<InvoiceItem> items { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
