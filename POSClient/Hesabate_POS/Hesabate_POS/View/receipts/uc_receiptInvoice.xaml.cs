@@ -419,7 +419,28 @@ namespace Hesabate_POS.View.receipts
         }
         private void btn_returns_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
 
+                wd_selectReturnType w = new wd_selectReturnType();
+                //w.returnType = "default";
+                w.ShowDialog();
+                if (w.isOk)
+                {
+
+                }
+
+               
+                Window.GetWindow(this).Opacity = 1;
+
+
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
         private void btn_discount_Click(object sender, RoutedEventArgs e)
         {
