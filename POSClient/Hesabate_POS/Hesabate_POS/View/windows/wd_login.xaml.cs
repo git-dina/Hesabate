@@ -301,7 +301,7 @@ namespace Hesabate_POS.View.windows
                     if (res != "")
                     {
                         wd_messageBoxWithIcon messageWin = new wd_messageBoxWithIcon();
-                        messageWin.contentText1 = "Hello World!";
+                        messageWin.contentText1 = res;
                         messageWin.ShowDialog();
                     }
 
