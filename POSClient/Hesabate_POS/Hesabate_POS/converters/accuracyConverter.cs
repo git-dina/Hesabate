@@ -38,7 +38,7 @@ namespace Hesabate_POS.converters
                             break;
                     }
 
-                    if (num == 0)
+                   // if (num == 0)
                         s = string.Format("{0:G29}", decimal.Parse(s));
                     return decimal.Parse(s);
                 }
