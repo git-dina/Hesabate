@@ -165,7 +165,7 @@ namespace Hesabate_POS.View.receipts
             //txt_invItmOptBonusTitle.Text = Translate.getResource("583");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptBonus, Translate.getResource("583"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_invItmOptPrice, Translate.getResource("570"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_invItemOptNotes, Translate.getResource("411"));
             txt_invItmOptLibraReading.Text = Translate.getResource("2161");
             txt_invItmOptQueryItem.Text = Translate.getResource("2157");
             txt_urgent.Text = Translate.getResource("2252");
@@ -3062,8 +3062,41 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        
-         void buttonUrgent_Click(object sender, RoutedEventArgs e)
+        void buttonNotes_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
+
+
+
+                Button button = sender as Button;
+                var invoiceDetails = new ItemModel();
+                if (DataContext != null)
+                    invoiceDetails = button.DataContext as ItemModel;
+                else
+                {
+                    selectedInvItmOps = button.DataContext as ItemModel;
+                    invoiceDetails = selectedInvItmOps;
+                }
+
+                wd_selectMultipleNotes w = new wd_selectMultipleNotes();
+                //w.returnType = invoiceDetails.notes;
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    //invoiceDetails.notes = w.returnType;
+                }
+
+                Window.GetWindow(this).Opacity = 1;
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        void buttonUrgent_Click(object sender, RoutedEventArgs e)
         {
             try
             {
