@@ -209,6 +209,9 @@
     <Compile Include="View\windows\wd_selectExternal.xaml.cs">
       <DependentUpon>wd_selectExternal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_selectReturnType.xaml.cs">
+      <DependentUpon>wd_selectReturnType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_selectUnit.xaml.cs">
       <DependentUpon>wd_selectUnit.xaml</DependentUpon>
     </Compile>
@@ -276,6 +279,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_selectExternal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_selectReturnType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
