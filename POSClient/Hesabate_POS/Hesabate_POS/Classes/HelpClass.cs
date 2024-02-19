@@ -403,7 +403,7 @@ namespace Hesabate_POS.Classes
                         sdc = string.Format("{0:F1}", dc);
                         break;
                 }
-                if (dc == 0)
+               // if (dc == 0)
                     sdc = string.Format("{0:G29}", decimal.Parse(sdc));
             }
 
