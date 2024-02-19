@@ -42,7 +42,7 @@ namespace Hesabate_POS.Classes
 
         }
         #endregion
-        
+
         #region unit
         //static public  void fillUnits(ComboBox combo)
         //{
@@ -52,6 +52,31 @@ namespace Hesabate_POS.Classes
         //    combo.SelectedIndex = 0;
 
         //}
+        #endregion
+
+        #region externalType
+        
+        static public List<keyValueString> externalTypeList;
+        static public List<keyValueString> RefreshExternalTypeList()
+        {
+            externalTypeList = new List<keyValueString> {
+                new keyValueString { key = "0" ,  value = "-" },
+                new keyValueString { key = "1" ,  value ="حفظ كفاتورة"},
+                new keyValueString { key = "2" ,  value ="حفظ كفاتورة معلقة"},
+                 };
+            return externalTypeList;
+        }
+        static public void FillExternalType(ComboBox cmb)
+        {
+            #region fill ExternalType
+            if (externalTypeList is null)
+                RefreshExternalTypeList();
+            cmb.SelectedValuePath = "key";
+            cmb.DisplayMemberPath = "value";
+            cmb.ItemsSource = externalTypeList;
+            //cmb.SelectedIndex = 0;
+            #endregion
+        }
         #endregion
 
     }
