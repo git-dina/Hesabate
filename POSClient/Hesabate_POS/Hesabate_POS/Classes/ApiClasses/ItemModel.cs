@@ -138,6 +138,7 @@ namespace Hesabate_POS.Classes.ApiClasses
                 OnPropertyChanged();
             }
         }
+        public List<string> production_extra_notes { get; set; }
         public List<CategoryModel> extraItems = new List<CategoryModel>();
         public List<CategoryModel> basicItems = new List<CategoryModel>();
         public List<CategoryModel> addsItems = new List<CategoryModel>();
