@@ -144,7 +144,19 @@ namespace Hesabate_POS.Classes.ApiClasses
         public List<CategoryModel> addsItems = new List<CategoryModel>();
         public List<CategoryModel> deletesItems = new List<CategoryModel>();
         public List<Unit> unitList { get; set; }
-        public String itemType { get; set; } = "0"; //"0:sales" ,"1:return"
+        private string _itemType = "0";  //"0:sales" ,"1:return"
+            public string itemType
+        {
+            get => _itemType;
+            set
+            {
+                if (_itemType == value) return;
+
+                _itemType = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _notes;
         public string notes
         {
