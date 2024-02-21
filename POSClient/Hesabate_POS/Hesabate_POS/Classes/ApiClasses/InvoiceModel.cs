@@ -60,7 +60,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string discountType { get; set; } = "rate";
         public decimal manualDiscount { get; set; }
         public decimal total { get; set; }
-        public string invType { get; set; }
+        public string invType { get; set; } = "0";//0:sales ,1:return, 2: manual return, 3:replace
         public List<InvoiceItem> items { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
