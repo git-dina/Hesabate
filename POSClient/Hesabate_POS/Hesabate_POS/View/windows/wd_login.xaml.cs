@@ -272,6 +272,7 @@ namespace Hesabate_POS.View.windows
             {
                 if (HelpClass.validate(requiredControlList, this))
                 {
+                    HelpClass.StartAwait(grid_form);
 
                     bool canLogin = false;
                     btn_login.IsEnabled = false;
@@ -305,7 +306,6 @@ namespace Hesabate_POS.View.windows
                         messageWin.ShowDialog();
                     }
 
-                    HelpClass.StartAwait(grid_form);
 
                     if (res == "")
                     {
