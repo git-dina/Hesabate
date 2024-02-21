@@ -158,6 +158,10 @@
     <Compile Include="Classes\Translate.cs" />
     <Compile Include="converters\accuracyConverter.cs" />
     <Compile Include="converters\boolToVisibilityConverter.cs" />
+    <Compile Include="converters\invTotalColorConverter.cs" />
+    <Compile Include="converters\invTotalTitleTextConverter.cs" />
+    <Compile Include="converters\invTypeColorConverter.cs" />
+    <Compile Include="converters\invTypeTextConverter.cs" />
     <Compile Include="converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="converters\stringNotEmptyToVisibilityConverter.cs" />
     <Compile Include="converters\urgentColorConverter.cs" />
@@ -187,6 +191,9 @@
     </Compile>
     <Compile Include="View\windows\wd_getUserCardData.xaml.cs">
       <DependentUpon>wd_getUserCardData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\windows\wd_invoiceReplaceTotal.xaml.cs">
+      <DependentUpon>wd_invoiceReplaceTotal.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_login.xaml.cs">
       <DependentUpon>wd_login.xaml</DependentUpon>
@@ -254,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_getUserCardData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_invoiceReplaceTotal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
