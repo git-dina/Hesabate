@@ -131,7 +131,7 @@ namespace Hesabate_POS.View.receipts
             txt_taxValueTitle.Text = Translate.getResource("361");
             txt_AutoDiscountTitle.Text = Translate.getResource("2283");
             txt_UserDiscountTitle.Text = Translate.getResource("571");
-            txt_totalTitle.Text = Translate.getResource("727");
+            //txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
@@ -2958,7 +2958,10 @@ namespace Hesabate_POS.View.receipts
 
                 textTotal.FontSize = 14;
                 textTotal.FontWeight = FontWeights.Bold;
-                textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                if (item.itemType == "0")
+                    textTotal.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                else
+                    textTotal.Foreground = Application.Current.Resources["mediumRed"] as SolidColorBrush;
                 textTotal.HorizontalAlignment = HorizontalAlignment.Center;
                 textTotal.VerticalAlignment = VerticalAlignment.Center;
                 textTotal.Margin = new Thickness(5);
@@ -2970,7 +2973,10 @@ namespace Hesabate_POS.View.receipts
                 textTotalAccuracy.Text = AppSettings.currency;
                 textTotalAccuracy.FontSize = 14;
                 textTotalAccuracy.FontWeight = FontWeights.Bold;
-                textTotalAccuracy.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                if (item.itemType == "0")
+                    textTotalAccuracy.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                else
+                    textTotalAccuracy.Foreground = Application.Current.Resources["mediumRed"] as SolidColorBrush;
                 textTotalAccuracy.HorizontalAlignment = HorizontalAlignment.Center;
                 textTotalAccuracy.VerticalAlignment = VerticalAlignment.Center;
                 textTotalAccuracy.Margin = new Thickness(5);
