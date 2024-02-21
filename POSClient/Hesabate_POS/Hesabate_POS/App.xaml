@@ -16,6 +16,10 @@
             <converters:boolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
             <converters:NotZeroToVisibilityConverter x:Key="NotZeroToVisibilityConverter"/>
             <converters:stringNotEmptyToVisibilityConverter x:Key="stringNotEmptyToVisibilityConverter"/>
+            <converters:invTotalColorConverter x:Key="invTotalColorConverter"/>
+            <converters:invTotalTitleTextConverter x:Key="invTotalTitleTextConverter"/>
+            <converters:invTypeColorConverter x:Key="invTypeColorConverter"/>
+            <converters:invTypeTextConverter x:Key="invTypeTextConverter"/>
 
             <!--#region Fonts-->
             <FontFamily x:Key="Font-cairo-light" >cairo light, /Hesabate_POS;component/fonts/cairo-font/#cairo light, Arial</FontFamily>
