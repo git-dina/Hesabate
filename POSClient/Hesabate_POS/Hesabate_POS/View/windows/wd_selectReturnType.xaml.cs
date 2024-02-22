@@ -193,6 +193,7 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
+                returnType = cmb_returnType.SelectedValue.ToString();
                 isOk = true;
 
                 this.Close();

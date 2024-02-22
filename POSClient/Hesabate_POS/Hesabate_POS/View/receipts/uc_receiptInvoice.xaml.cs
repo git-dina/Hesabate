@@ -349,15 +349,50 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 HelpClass.StartAwait(grid_main);
+                bool canSave = true;
+               
+                if(invoice.invType  == "2") //replace
+                {
+                    Window.GetWindow(this).Opacity = 0.2;
 
+                    //show window to select sales invoice to replace with return
+                    wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                    invoiceWindow.title = Translate.getResource("318");
+                    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                    invoiceWindow.ShowDialog();
+                    if (invoiceWindow.isOk)
+                    {
+                        invoice.sales_billid = invoiceWindow.returnedValue;
+                        //get sales invoice info
+                        var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                        wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
+                        w.salesInvTotal = salesInvoice.total_after_discount;
+                        w.returnInvTotal = invoice.total_after_discount;
+                        w.ShowDialog();
+                        if (w.isOk)
+                        {
+
+                        }
+                        else
+                            canSave = false;
+
+                    }
+                    else
+                        canSave = false;
+                    Window.GetWindow(this).Opacity = 1;
+                   
+                }
                 invoice.note = tb_Notes1.Text;
                 invoice.note2 = tb_Notes2.Text;
-
-                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                clearInvoice(res.next_billid);
+                if (canSave)//save invoice
+                {
+                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                    clearInvoice(res.next_billid);
+                }
                 HelpClass.EndAwait(grid_main);
             }
             catch {
+                Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
             }
         }
@@ -417,7 +452,7 @@ namespace Hesabate_POS.View.receipts
         {
 
         }
-        private void btn_returns_Click(object sender, RoutedEventArgs e)
+        private async void btn_returns_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -428,7 +463,42 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
+                    clearInvoice();
+                    invoice.invType = w.returnType;
+                    if (w.returnType == "1")//full return
+                    {
+                        wd_customizeKeyboard wd = new wd_customizeKeyboard();
+                        wd.title = Translate.getResource("542");//invoice number
+                        wd.ShowDialog();
+                        if (wd.isOk)
+                        {
+                            HelpClass.StartAwait(grid_main);
+                            invoice.id = wd.outputValue.ToString();
+                            try
+                            {
+                                invoice = await _invoiceService.GetInvoiceInfo("2", invoice.id);
+                                invoice.invType = w.returnType;
+                                displayInvoice(invoice);
+                                HelpClass.EndAwait(grid_main);
+                            }
+                            catch 
+                            {
+                                clearInvoice();
+                                HelpClass.EndAwait(grid_main);
 
+                            }
+                        }
+                    }
+                    else if (w.returnType == "2")//replace
+                    {
+                        invoice.invType = w.returnType;
+                        inputEditable();
+                    }
+                    else if (w.returnType == "3")//manual
+                    {
+                        invoice.invType = w.returnType;
+                        inputEditable();
+                    }
                 }
 
                
@@ -772,8 +842,8 @@ namespace Hesabate_POS.View.receipts
 
                             };
                             //#endregion
-  
-                            AddItemToInvoice(item2,itemCopy.isbasic, itemCopy.items, itemCopy.addItems, itemCopy.deleteItems);
+                            if(invoice.invType != "1")
+                                AddItemToInvoice(item2,itemCopy.isbasic, itemCopy.items, itemCopy.addItems, itemCopy.deleteItems);
                         }
                     }
 
@@ -3327,7 +3397,6 @@ namespace Hesabate_POS.View.receipts
                 if (item != null)
                     AddItemToInvoice(item, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 tb_search.Text = "";
-                //HelpClass.EndAwait(grid_main);
             }
             }
             catch (Exception ex)
@@ -3389,11 +3458,14 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
                 displayInvoice(res);
+                HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
             {
+                HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
@@ -3402,11 +3474,14 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
+                HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
                 displayInvoice(res);
+                HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
             {
+                HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
@@ -3618,13 +3693,41 @@ namespace Hesabate_POS.View.receipts
             else
                 refreshInvoiceDetailsBig();
 
+            inputEditable();
             CalculateInvoiceValues();
         }
 
+        private void inputEditable()
+        {
+            //0:sales, 1:full return, 2:replace, 3:manual
+            btn_search.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType =="3") ? true : false;
+            btn_searchBarcode.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType == "3") ? true : false; 
+            btn_discount.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_external.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_takeAway.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_tables.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_customer.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptAmountMinus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptAmountPlus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptBonusMinus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptBonusPlus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptDelete.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptDiscountMinus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptDiscountPlus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptLibraReading.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptNotes.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptPriceMinus.IsEnabled = invoice.invType == "0" ? true : false; 
+            btn_invItmOptPricePlus.IsEnabled = invoice.invType == "0" ? true : false; 
+            tb_search.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType == "3") ? true : false; 
+
+        }
         private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                HelpClass.StartAwait(grid_main);
+
+                Window.GetWindow(this).Opacity = 0.2;
                 wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
                 invoiceWindow.title = Translate.getResource("318");
                 invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
@@ -3632,13 +3735,17 @@ namespace Hesabate_POS.View.receipts
                 invoiceWindow.ShowDialog();
                 if(invoiceWindow.isOk)
                 {
-                    //var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                    var res = await _invoiceService.GetInvoiceInfo("2", "9");
+                   var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    //var res = await _invoiceService.GetInvoiceInfo("2", "9");
                     displayInvoice(res);
                 }
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
             {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }

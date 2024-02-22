@@ -85,10 +85,10 @@ namespace Hesabate_POS.Classes
         static public List<keyValueString> RefreshReturnTypeList()
         {
             returnTypeList = new List<keyValueString> {
-                new keyValueString { key = "default" ,  value = "-" },
-                new keyValueString { key = "full" ,  value ="full"},
-                new keyValueString { key = "replace" ,  value ="replace"},
-                new keyValueString { key = "manual" ,  value ="manual"},
+                new keyValueString { key = "0" ,  value = "-" },
+                new keyValueString { key = "1" ,  value ="full"},
+                new keyValueString { key = "2" ,  value ="replace"},
+                new keyValueString { key = "3" ,  value ="manual"},
                  };
             return returnTypeList;
         }

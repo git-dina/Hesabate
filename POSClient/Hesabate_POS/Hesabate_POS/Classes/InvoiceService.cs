@@ -300,7 +300,7 @@ namespace Hesabate_POS.Classes
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(AppSettings.token), "token");
             content.Add(new StringContent("14"), "op");
-            content.Add(new StringContent(type), "type");
+            content.Add(new StringContent(type), "type"); //0: next invoice, 1: previouse invoice, 2:current invoice
             content.Add(new StringContent(invoiceId), "id");
             content.Add(new StringContent("0"), "table_id");
             content.Add(new StringContent("0"), "request");

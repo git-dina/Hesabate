@@ -38,7 +38,9 @@ namespace Hesabate_POS.View.windows
             this.Close();
         }
 
-
+         
+        public decimal salesInvTotal { get; set; }
+        public decimal returnInvTotal { get; set; }
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
 
@@ -68,6 +70,9 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
+                txt_salesInvTotal.Text = HelpClass.DecTostring( salesInvTotal);
+                txt_returnInvTotal.Text = HelpClass.DecTostring( returnInvTotal);
+                txt_total.Text = HelpClass.DecTostring(salesInvTotal - returnInvTotal);
 
                 HelpClass.EndAwait(grid_main);
             }
