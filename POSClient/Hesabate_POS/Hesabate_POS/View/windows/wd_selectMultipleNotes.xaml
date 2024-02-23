@@ -51,24 +51,88 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
-                    <Grid   >
-                        <ComboBox 
-                               x:Name="cmb_notes"
-                               SelectedValue="{Binding notes,Mode=TwoWay}"
-                                 Padding="10,0,5,0"  Foreground="#4E4E4E"
-                                 Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                 materialDesign:HintAssist.Hint="notes..."  
-                                 Grid.Column="1" Height="40"   
-                                BorderBrush="#737373"   BorderThickness="0" Margin="0" 
-                                 LostFocus="validateEmpty_LostFocus"/>
-                        <Path Fill="#E81123" x:Name="p_error_selectBox" Stretch="Fill" Margin="5,5,20,5"
-                              HorizontalAlignment="Right" Grid.Row="8"  Visibility="Collapsed"   
-                         VerticalAlignment="Center" Width="15"  Height="15" 
-                             Data="{StaticResource infoCircle}"/>
-                    </Grid>
-                </Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>    
+                        <ColumnDefinition Width="auto"/>    
+                        <ColumnDefinition Width="auto"/>    
+                    </Grid.ColumnDefinitions>
+                    
+                        <Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                            <Grid   >
+                                <ComboBox 
+                                       x:Name="cmb_notes"
+                                         Padding="10,0,5,0"  Foreground="#4E4E4E"
+                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                         materialDesign:HintAssist.Hint="notes..."  
+                                         Grid.Column="1" Height="40"   
+                                        BorderBrush="#737373"   BorderThickness="0" Margin="0" 
+                                         LostFocus="validateEmpty_LostFocus"
+                                            IsEditable="True"
+                                     IsTextSearchEnabled="True"
+                                         StaysOpenOnEdit="True"/>
+                                <Path Fill="#E81123" x:Name="p_error_selectBox" Stretch="Fill" Margin="5,5,20,5"
+                                      HorizontalAlignment="Right" Grid.Row="8"  Visibility="Collapsed"   
+                                 VerticalAlignment="Center" Width="15"  Height="15" 
+                                     Data="{StaticResource infoCircle}"/>
+                            </Grid>
+                        </Border>
+                        <Button  Grid.Row="1" Grid.Column="1"
+                Margin="5" 
+                Width="35" Height="35"
+x:Name="btn_add"  Click="btn_add_Click"
+                materialDesign:ButtonAssist.CornerRadius="50"
+   Background="{x:Null}"
+                BorderBrush="{StaticResource MainColor}"
+             BorderThickness="1"
+   Padding="0" 
+       >
+                        <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+             HorizontalAlignment="Center" Grid.Column="0"  
+        VerticalAlignment="Center" Width="35" Height="35"
+             Data="{StaticResource plusCircle}"
+                    />
+                    </Button>
+                    
+                    <Button  Grid.Row="1" Grid.Column="2"
+                Margin="5" 
+                Width="35" Height="35"
+x:Name="btn_clear"  Click="btn_clear_Click"
+                materialDesign:ButtonAssist.CornerRadius="50"
+   Background="{StaticResource MainColor}"
+                BorderBrush="{StaticResource MainColor}"
+             BorderThickness="1"
+   Padding="0" 
+       >
+                        <Path Fill="{StaticResource White}"  Stretch="Fill"  
+             HorizontalAlignment="Center" Grid.Column="0"  
+        VerticalAlignment="Center" Width="22.5" Height="22.5"
+             Data="{StaticResource refresh_clear}"
+                    />
+                    </Button>
 
+                </Grid>
+
+                <Border  CornerRadius="7"  Grid.Row="1"  Margin="10,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource Grey}" >
+                    <ScrollViewer Margin="4 0" Background="White"  
+                   Grid.Row="2"  
+                   VerticalScrollBarVisibility="Auto" 
+                   HorizontalScrollBarVisibility="Disabled" 
+               >
+                        <TextBox x:Name="txt_note" Grid.Row="8"  Padding="10,0,5,0"  
+             Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          materialDesign:HintAssist.Hint="Note..."    
+         Foreground="{StaticResource textColor}"    
+      BorderThickness="0" TextWrapping="Wrap"
+  BorderBrush="AliceBlue" 
+ materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+ Margin="0"  
+ LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"
+         />
+
+                    </ScrollViewer>
+                </Border>
                 <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="5,10" x:Name="btn_save" Click="Btn_save_Click" Foreground="White"
                           Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />

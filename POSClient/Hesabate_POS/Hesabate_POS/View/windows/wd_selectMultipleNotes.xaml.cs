@@ -38,9 +38,10 @@ namespace Hesabate_POS.View.windows
             this.Close();
         }
 
+        public List<string> notesList { get; set; }
         public string note { get; set; }
         public bool isOk { get; set; }
-        public static List<string> requiredControlList;
+        //public static List<string> requiredControlList;
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {//load
@@ -48,7 +49,7 @@ namespace Hesabate_POS.View.windows
             try
             {
                 HelpClass.StartAwait(grid_main);
-                requiredControlList = new List<string> { "", };
+                //requiredControlList = new List<string> { "", };
 
                 #region translate
 
@@ -66,6 +67,9 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
+
+                cmb_notes.ItemsSource = notesList;
+                txt_note.Text = note;
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -170,7 +174,7 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-                HelpClass.validate(requiredControlList, this);
+                //HelpClass.validate(requiredControlList, this);
             }
             catch (Exception ex)
             {
@@ -181,7 +185,7 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-                HelpClass.validate(requiredControlList, this);
+                //HelpClass.validate(requiredControlList, this);
             }
             catch (Exception ex)
             {
@@ -195,6 +199,7 @@ namespace Hesabate_POS.View.windows
             try
             {
                 isOk = true;
+                note = txt_note.Text;
 
                 this.Close();
             }
@@ -203,5 +208,25 @@ namespace Hesabate_POS.View.windows
 
             }
         }
+        private void btn_add_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(!string.IsNullOrWhiteSpace( txt_note.Text))
+                    txt_note.Text +="\n"+ cmb_notes.Text;
+                else
+                    txt_note.Text += cmb_notes.Text;
+            }
+            catch
+            {
+
+            }
+        }
+        private void btn_clear_Click(object sender, RoutedEventArgs e)
+        {
+            txt_note.Text = "";
+        }
+
+        
     }
 }
