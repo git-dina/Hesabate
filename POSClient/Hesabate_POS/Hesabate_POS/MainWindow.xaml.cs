@@ -114,17 +114,7 @@ namespace Hesabate_POS
                 permission();
                 #endregion
 
-                //grid_main.Children.Clear();
-                //grid_main.Children.Add(uc_receiptInvoice.Instance);
-                //var receiptInvoice = new uc_receiptInvoice();
-                //receiptInvoice.Tag = "0";
-                //receiptInvoice.tb_Notes1.Text = "0";
-                //receiptInvoiceList.Add(receiptInvoice);
-                //grid_main.Children.Add(receiptInvoiceList.First());
-                //var receiptInvoice1 = new uc_receiptInvoice();
-                //receiptInvoice1.Tag = "1";
-                //receiptInvoice1.tb_Notes1.Text = "1";
-                //receiptInvoiceList.Add(receiptInvoice1);
+               
                 Btn_addReceiptInvoice_Click(btn_addReceiptInvoice, null);
 
                 //SelectAllText
@@ -289,7 +279,7 @@ namespace Hesabate_POS
 
             #region side buttons
             txt_pay.Text = Translate.getResource("2162");
-            txt_using.Text = Translate.getResource("1613");
+            //txt_using.Text = Translate.getResource("1613");
             txt_toKitchen.Text = Translate.getResource("1295");
             txt_pending.Text = Translate.getResource("2154");
             txt_pendingQuery.Text = Translate.getResource("2155");//استعلام فقط نحتاج استعلام معلق
@@ -319,20 +309,7 @@ namespace Hesabate_POS
                         expander.IsExpanded = false;
                 }
 
-                /*
-                colorTextRefreash(txt_home);
-                FN_pathVisible(path_openHome);
-                fn_ColorIconRefreash(path_iconHome);
-                grid_main.Children.Clear();
-                grid_main.Children.Add(uc_home.Instance);
-                if (isHome)
-                {
-                    uc_home.Instance.timerAnimation();
-                    isHome = false;
-                }
-                Button button = sender as Button;
-                MainWindow.mainWindow.initializationMainTrack(button.Tag.ToString());
-                */
+               
             }
             catch (Exception ex)
             {
@@ -358,25 +335,7 @@ namespace Hesabate_POS
 
 
 
-        /*
-         private void Btn_vendorsData_Click(object sender, RoutedEventArgs e)
-         {
-
-             try
-             {
-                 grid_main.Children.Clear();
-                 grid_main.Children.Add(uc_vendorsData.Instance);
-                 Button button = sender as Button;
-                 secondMenuTitleActivate(button.Tag.ToString());
-             }
-             catch (Exception ex)
-             {
-                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-             }
-
-
-         }
-         */
+      
 
         private void Btn_lang_Click(object sender, RoutedEventArgs e)
         {
@@ -487,10 +446,6 @@ namespace Hesabate_POS
         {
 
         }
-        private void btn_using_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void btn_toKitchen_Click(object sender, RoutedEventArgs e)
         {
 
@@ -546,6 +501,7 @@ namespace Hesabate_POS
         #endregion
 
         #region receiptInvoice
+        uc_receiptInvoice selectedReceiptInvoice = new uc_receiptInvoice();
         List<uc_receiptInvoice> receiptInvoiceList = new List<uc_receiptInvoice>();
         int receiptInvoiceListCounter = 0;
         private void receiptInvoiceSwitch_Click(object sender, RoutedEventArgs e)
@@ -554,13 +510,13 @@ namespace Hesabate_POS
             {
                 Button button = sender as Button;
 
-                var receiptInvoice = receiptInvoiceList.Where(
+                selectedReceiptInvoice = receiptInvoiceList.Where(
                         x => button.Tag.ToString().Contains(x.Tag.ToString())
                         ).FirstOrDefault();
-                if (receiptInvoice != null)
+                if (selectedReceiptInvoice != null)
                 {
                     grid_main.Children.Clear();
-                    grid_main.Children.Add(receiptInvoice);
+                    grid_main.Children.Add(selectedReceiptInvoice);
                     string tagNumber = button.Tag.ToString().Split('_')[1];
                     receiptInvoiceButtonActive(tagNumber);
                 }
@@ -650,8 +606,6 @@ namespace Hesabate_POS
                 var receiptInvoice = new uc_receiptInvoice();
                 receiptInvoice.Tag = receiptInvoiceListCounter.ToString();
                 receiptInvoiceList.Add(receiptInvoice);
-                //grid_main.Children.Clear();
-                //grid_main.Children.Add(receiptInvoice);
                 var newButton = buildReceiptInvoiceButtonTab(receiptInvoice.Tag.ToString());
                 sp_receiptInvoice.Children.Add(newButton);
                 if (firstLoad)
@@ -744,6 +698,7 @@ namespace Hesabate_POS
                     if (grid_main.Children.Contains(receiptInvoice))
                     {
                         grid_main.Children.Clear();
+                        selectedReceiptInvoice = new uc_receiptInvoice();
                         var receiptInvoiceSwitch =  receiptInvoiceList.FirstOrDefault();
                         var buttonSwitch = FindControls.FindVisualChildren<Button>(this)
                         .Where(x => x.Tag != null && x.Tag.ToString()

@@ -297,36 +297,7 @@ Padding="0" Margin="5 0">
                                        Margin="10,0,0,0"/>
                                 </Grid>
                             </Button>
-                            <Button   x:Name="btn_using" 
-                             Tag="using"
-                             Click="btn_using_Click"
-                            Height="50" 
-                            HorizontalAlignment="Left"  
-                            Background="{StaticResource MainColor}" 
-                             BorderBrush="{x:Null}"   
-                             Padding="0"  BorderThickness="0" 
-                        materialDesign:ButtonAssist.CornerRadius="0">
-                                <Grid Width="{Binding ElementName=grid, Path=ActualWidth}"
-                             Height="50"  >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Path  x:Name="path_using" 
-                                   Grid.Column="0"  
-                                      FlowDirection="LeftToRight"
-                                  Fill="{StaticResource White}" 
-                                  Stretch="Fill"  
-                             HorizontalAlignment="Center"
-                               VerticalAlignment="Center" Width="20" Height="20"
-                             Data="{StaticResource cookieBite}"/>
-                                    <TextBlock  x:Name="txt_using" Grid.Column="1"
-                                       Text="using" 
-                                  Foreground="{StaticResource White}" 
-                                  HorizontalAlignment="Left" VerticalAlignment="Center" 
-                                       Margin="10,0,0,0"/>
-                                </Grid>
-                            </Button>
+                           
                             <Button   x:Name="btn_toKitchen" 
                              Tag="toKitchen"
                              Click="btn_toKitchen_Click"
