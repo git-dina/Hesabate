@@ -414,7 +414,12 @@ namespace Hesabate_POS.View.windows
             }
         }
 
-       
+        private void btn_idCard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
         /*
 private void btn_serverName_Click(object sender, RoutedEventArgs e)
 {
