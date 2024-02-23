@@ -2151,6 +2151,41 @@ namespace Hesabate_POS.View.receipts
         #region grid2_1
 
 
+        private void btn_using_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
+
+                if(invoice.for_use == "0")
+                    invoice.for_use = "1";
+                else
+                    invoice.for_use = "0";
+
+                if (invoice != null)
+                {
+                    if (invoice.for_use.Equals("1"))
+                    {
+                        btn_using.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                        path_using.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                    }
+                    else
+                    {
+                        btn_using.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                        path_using.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+                    }
+                }
+                Window.GetWindow(this).Opacity = 1;
+
+
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         private void btn_external_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -3749,8 +3784,9 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
         #endregion
 
-
+        
     }
 }
