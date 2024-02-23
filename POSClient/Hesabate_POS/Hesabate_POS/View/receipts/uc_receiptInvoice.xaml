@@ -858,7 +858,7 @@ Margin="5"  CornerRadius="0,0,0,0"
 Margin="5"  CornerRadius="0,0,0,0"  
        Width="1" BorderThickness="0" 
           Background="{StaticResource MainColor}" />
-                                            <!--<Border Grid.Row="8" CornerRadius="0" Margin="5,5,5,5"  Height="40"  BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                                            <!--<Border Grid.Row="8" CorwwnerRadius="0" Margin="5,5,5,5"  Height="40"  BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                                                 <Grid   >
                                                     <ComboBox  x:Name="cb_invItemOptNotes"
                                                  Text="{Binding notes,Mode=TwoWay}"
@@ -884,7 +884,8 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                    materialDesign:ButtonAssist.CornerRadius="7"
                                                   Background="{StaticResource MainColor}"
                                                    BorderBrush="{StaticResource MainColor}"
-                                                BorderThickness="1" Padding="0"  >
+                                                BorderThickness="1" Padding="0"  
+                                                     Click="buttonNotes_Click">
                                                 <TextBlock Text="Notes" 
                                               Foreground="{StaticResource White}" 
                                               x:Name="txt_invItmOptNotes"

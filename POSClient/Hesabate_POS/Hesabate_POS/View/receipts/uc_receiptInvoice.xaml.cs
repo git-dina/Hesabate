@@ -3192,11 +3192,12 @@ namespace Hesabate_POS.View.receipts
                 }
 
                 wd_selectMultipleNotes w = new wd_selectMultipleNotes();
-                //w.returnType = invoiceDetails.notes;
+                w.note = invoiceDetails.notes;
+                w.notesList = invoiceDetails.production_extra_notes;
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    //invoiceDetails.notes = w.returnType;
+                    invoiceDetails.notes = w.note;
                 }
 
                 Window.GetWindow(this).Opacity = 1;
