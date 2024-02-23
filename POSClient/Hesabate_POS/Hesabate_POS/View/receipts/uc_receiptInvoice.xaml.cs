@@ -3787,6 +3787,18 @@ namespace Hesabate_POS.View.receipts
 
         #endregion
 
-        
+        #region Button From mainWindow
+
+        public void btn_pending_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("btn_pending_Click");
+        }
+        public void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("btn_pendingQuery_Click");
+        }
+        #endregion
+
+
     }
 }

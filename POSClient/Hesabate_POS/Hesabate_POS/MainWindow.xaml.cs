@@ -450,14 +450,29 @@ namespace Hesabate_POS
         {
 
         }
-        private void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void btn_pending_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                selectedReceiptInvoice.btn_pending_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
+        private void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                selectedReceiptInvoice.btn_pendingQuery_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+        
         private void btn_openBox_Click(object sender, RoutedEventArgs e)
         {
 
