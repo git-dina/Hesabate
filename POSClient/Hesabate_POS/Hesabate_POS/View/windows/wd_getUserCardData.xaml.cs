@@ -38,12 +38,8 @@ namespace Hesabate_POS.View.windows
             this.Close();
         }
 
-        public string itemStatus { get; set; }
-        public string itemRecieptType { get; set; }
-        public string itemType { get; set; }
-        public string itemTransactionType { get; set; }
-        public decimal? packageWeight { get; set; }
-        public long? packageUnit { get; set; }
+
+        public string userCardData { get; set; }
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
 
@@ -89,8 +85,8 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            txt_title.Text = Translate.getResource("104");
-            //btn_save.Content = Translate.getResource("27");
+            //txt_title.Text = Translate.getResource("104");
+            btn_save.Content = Translate.getResource("27");
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -99,7 +95,7 @@ namespace Hesabate_POS.View.windows
             {
                 if (e.Key == Key.Return)
                 {
-                    //Btn_save_Click(btn_save, null);
+                    Btn_save_Click(btn_save, null);
                 }
             }
             catch (Exception ex)
@@ -112,8 +108,6 @@ namespace Hesabate_POS.View.windows
             try
             {
                 e.Cancel = true;
-
-                this.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
@@ -208,30 +202,18 @@ namespace Hesabate_POS.View.windows
         }
 
         #endregion
-        /*
         private void Btn_save_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
-                HelpClass.StartAwait(grid_main);
-
-                if (cb_selectBox.SelectedValue != null)
-                {
-                    AppSettings.cashBoxId = cb_selectBox.SelectedValue.ToString();
-                    isOk = true;
-                    this.Close();
-                }
-
-                HelpClass.EndAwait(grid_main);
+                isOk = true;
+                userCardData = tb_userCardData.Text;
+                this.Close();
             }
-            catch (Exception ex)
+            catch
             {
 
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        */
     }
 }

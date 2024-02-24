@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hesabate_POS.View.windows"
-        mc:Ignorable="d" KeyDown="HandleKeyPress"
+        mc:Ignorable="d"  KeyDown="HandleKeyPress"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
          Height="155" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
-        Loaded="Window_Loaded" Closing="Window_Closing" >
+        Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -35,7 +35,7 @@
                               HorizontalAlignment="Right" Grid.Column="0"  
                          VerticalAlignment="Center"  Width="20" Height="20"
                               Data="{StaticResource vendor}"/>-->
-                        <TextBlock Text="User Card" x:Name="txt_title" Foreground="White" 
+                        <TextBlock Text="title" x:Name="txt_title" Foreground="White" 
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
                               Grid.Column="1"      Margin="5,0"/>
                     </Grid>
@@ -45,26 +45,34 @@
         <Border BorderThickness="1,0,1,1"  Grid.Row="1"
                     CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
             <Grid  Margin="5">
-                <!--<Grid.RowDefinitions>
+                <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>-->
-                
-                <TextBlock x:Name="txt_message"
-                               Text="Please input your Card..."
-                           Foreground="{StaticResource MainColor}" 
-                               FontSize="18"
-                           FontWeight="SemiBold"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="25 5"
-                        TextWrapping="WrapWithOverflow"
-                        TextAlignment="Center"/>
+                </Grid.RowDefinitions>
 
-                <!--<Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
+                <Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                    <Grid   >
+                        <TextBox  x:Name="tb_userCardData" Text="{Binding note, Mode=TwoWay}"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              Padding="10,0,5,0"
+                             materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                              materialDesign:HintAssist.Hint="userCardData..."  
+                              Foreground="{StaticResource textColor}"
+                             Margin="0,0"  BorderThickness="0"
+                                  Height="40"
+                        Grid.Column="1"  TextWrapping="Wrap"
+                         />
+                        <Path Fill="#E81123" x:Name="p_error_userCardData" Stretch="Fill" Margin="5,5,20,5"
+                              HorizontalAlignment="Right" Grid.Row="8"  Visibility="Collapsed"   
+                         VerticalAlignment="Center" Width="15"  Height="15" 
+                             Data="{StaticResource infoCircle}"/>
+                    </Grid>
+                </Border>
+
+                <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="5,10" x:Name="btn_save" Click="Btn_save_Click" Foreground="White"
-                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />-->
+                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />
             </Grid>
 
         </Border>
