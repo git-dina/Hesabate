@@ -257,7 +257,7 @@ namespace Hesabate_POS.View.receipts
 
             manualReturn = false;
             manualReturnSetState(manualReturn);
-
+            inputEditable();
             CalculateInvoiceValues();
             switchGrid1_1("mainItemsCatalog");
             //txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
@@ -468,7 +468,11 @@ namespace Hesabate_POS.View.receipts
                 {
                     clearInvoice();
                     invoice.invType = w.returnType;
-                    if (w.returnType == "1")//full return
+                    if(w.returnType == "0")
+                    {
+                        inputEditable();
+                    }
+                    else if (w.returnType == "1")//full return
                     {
                         wd_customizeKeyboard wd = new wd_customizeKeyboard();
                         wd.title = Translate.getResource("542");//invoice number
@@ -896,7 +900,8 @@ namespace Hesabate_POS.View.receipts
         //private void AddItemToInvoice(CategoryModel item)
         private void AddItemToInvoice(ItemModel item, List<CategoryModel> basicItems, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
         {
-            var itemInInvoice = invoiceDetailsList.Where(x => x.product_id == item.product_id).FirstOrDefault();
+            string itemType = manualReturn == true ? "1" : "0";
+            var itemInInvoice = invoiceDetailsList.Where(x => x.product_id == item.product_id && x.itemType == itemType).FirstOrDefault();
             if (itemInInvoice != null && item.no_w.Equals("0"))
             {
                 itemInInvoice.amount++;
@@ -906,7 +911,8 @@ namespace Hesabate_POS.View.receipts
             {
                 //string extra = string.Empty;
                 //if (item.unit != "0")
-                    //item.unit_name = item.unitList.Where(x=> x.id ==item.unit).FirstOrDefault().name;
+                //item.unit_name = item.unitList.Where(x=> x.id ==item.unit).FirstOrDefault().name;
+                item.itemType = manualReturn == false ? "0" : "1"; 
 
                 item.amount = 1;
                 item.total = item.price;
@@ -3345,7 +3351,10 @@ namespace Hesabate_POS.View.receipts
         }
         private void CalculateInvoiceValues()
         {
-            decimal total = invoiceDetailsList.Select(x => x.total).Sum();
+            decimal positiveTotal = invoiceDetailsList.Where(x => x.itemType == "0").Select(x => x.total ).Sum();
+            decimal negativeTotal = invoiceDetailsList.Where(x => x.itemType == "1").Select(x => x.total ).Sum();
+            //decimal total = invoiceDetailsList.Select(x => x.total).Sum();
+            decimal total = positiveTotal - negativeTotal;
 
             //service
             decimal serviceAmount = HelpClass.calcPercentage(total, GeneralInfoService.GeneralInfo.MainOp.service);

@@ -103,7 +103,8 @@ namespace Hesabate_POS.Classes
                     extraitems = extras,
                     addsitems = adds,
                     deletesitems = deletes,
-                    isbasics = basics
+                    isbasics = basics,
+                    itemType = item.itemType,
                 }
                 );
             }

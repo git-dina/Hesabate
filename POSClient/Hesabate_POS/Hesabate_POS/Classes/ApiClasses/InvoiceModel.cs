@@ -105,6 +105,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string back_val { get; set; }
         public decimal min_p { get; set; }
         public decimal max_p { get; set; }
+        public string itemType { get; set; }
 
         public List<ExtraItemModel> extraitems = new List<ExtraItemModel>();
         public List<ExtraItemModel> addsitems = new List<ExtraItemModel>();

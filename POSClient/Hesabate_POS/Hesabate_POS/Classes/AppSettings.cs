@@ -60,7 +60,7 @@ namespace Hesabate_POS.Classes
         public static string invoiceDetailsType = "small";
 
         #region User Info
-        public static string loginName; // login Name
+        //public static string loginName; // login Name
         public static string userId;//رقم المستخدم على النظام
         public static string userName;//اسم المستخدم على النظام
         public static string database_id;//رقم قاعدة البيانات التي يعمل عليها النظام في برنامج المحاسبة
