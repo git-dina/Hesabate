@@ -72,7 +72,7 @@ namespace Hesabate_POS.View.windows
 
                 txt_salesInvTotal.Text = HelpClass.DecTostring( salesInvTotal);
                 txt_returnInvTotal.Text = HelpClass.DecTostring( returnInvTotal);
-                txt_total.Text = HelpClass.DecTostring(salesInvTotal - returnInvTotal);
+                txt_total.Text = HelpClass.DecTostring(Math.Abs( salesInvTotal - returnInvTotal));
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -89,8 +89,14 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            //txt_title.Text = Translate.getResource("104");
+            txt_title.Text = Translate.getResource("727");
+            txt_salesInvTotalTitle.Text = Translate.getResource("1330");
+            txt_returnInvTotalTitle.Text = "مردودات";
             btn_save.Content = Translate.getResource("27");
+            if(salesInvTotal - returnInvTotal >= 0)
+                txt_totalTitle.Text = Translate.getResource("727");
+            else
+                txt_totalTitle.Text = "المبلغ المدفوع";
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)

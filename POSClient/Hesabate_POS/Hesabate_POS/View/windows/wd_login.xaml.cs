@@ -286,11 +286,11 @@ namespace Hesabate_POS.View.windows
                         var res1 = await _authService.Login(tb_userName.Text, pb_password.Password, cb_language.SelectedValue.ToString());
                         res = Convert.ToString(res1);
                     }
-                    else if (tb_idCard.Text != "")
-                    {
-                        var res1 = await _authService.Login(tb_idCard.Text);
-                        res = Convert.ToString(res1);
-                    }
+                    //else if (tb_idCard.Text != "")
+                    //{
+                    //    var res1 = await _authService.Login(tb_idCard.Text);
+                    //    res = Convert.ToString(res1);
+                    //}
 
                     // show message
                     /*

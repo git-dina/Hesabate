@@ -87,7 +87,7 @@ namespace Hesabate_POS.View.windows
         {
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_notes, Translate.getResource("411"));
 
-            //txt_title.Text = Translate.getResource("104");
+            txt_title.Text = Translate.getResource("411");
             btn_save.Content = Translate.getResource("27");
         }
 
