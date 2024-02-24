@@ -19,9 +19,9 @@ namespace Hesabate_POS.converters
                 {
                     string text = value.ToString();
                     if (text == "0")
-                        return "sales";
+                        return Translate.getResource("1330"); 
                     else
-                        return "return";
+                        return "مردودات";
                 }
                 else return "";
             }
