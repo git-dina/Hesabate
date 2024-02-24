@@ -3795,13 +3795,55 @@ namespace Hesabate_POS.View.receipts
 
         #region Button From mainWindow
 
-        public void btn_pending_Click(object sender, RoutedEventArgs e)
+        public async void btn_pending_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("btn_pending_Click");
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                invoice.pending = "1";
+
+                invoice.note = tb_Notes1.Text;
+                invoice.note2 = tb_Notes2.Text;
+                //save invoice
+
+                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                clearInvoice(res.next_billid);
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+            }
+
         }
-        public void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
+        public async void btn_pendingQuery_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("btn_pendingQuery_Click");
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                invoiceWindow.title = Translate.getResource("318");
+                invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                invoiceWindow.ShowDialog();
+                if (invoiceWindow.isOk)
+                {
+                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    displayInvoice(res);
+                }
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
         #endregion
 
