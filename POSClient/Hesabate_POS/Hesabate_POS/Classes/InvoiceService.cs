@@ -143,6 +143,11 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.auto_discount.ToString()), "auto_discount");
                 content.Add(new StringContent(invoice.request.ToString()), "request");//0
 
+                content.Add(new StringContent(invoice.invType), "invType");
+                content.Add(new StringContent(invoice.id), "id");
+                content.Add(new StringContent(invoice.return_billid), "return_billid");//رقم فاتورة المردودات في حال الاستبدال
+                content.Add(new StringContent(invoice.pending), "pending");
+
                 request.Content = content;
                 var response = await client.SendAsync(request);
 
