@@ -416,7 +416,25 @@ namespace Hesabate_POS.View.windows
 
         private void btn_idCard_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Window.GetWindow(this).Opacity = 0.2;
 
+
+                wd_getUserCardData w = new wd_getUserCardData();
+                w.ShowDialog();
+                if (w.isOk)
+                {
+                    MessageBox.Show(w.userCardData);
+                }
+
+                Window.GetWindow(this).Opacity = 1;
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
 
 
