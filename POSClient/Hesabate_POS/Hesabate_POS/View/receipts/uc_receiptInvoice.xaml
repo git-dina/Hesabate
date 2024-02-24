@@ -111,10 +111,8 @@
          materialDesign:ButtonAssist.CornerRadius="7"
                    Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
                              BorderThickness="1"
-                   Padding="0" 
-         >
-                            <Grid 
-          >
+                   Padding="0"   >
+                            <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
@@ -320,7 +318,33 @@ VerticalAlignment="Center" Width="20" Height="20"
                                 </Border>-->
                             </StackPanel>
                         </ScrollViewer>
-                    </Grid>
+                            <Border x:Name="brd_manualReturn"
+                                Grid.Column="0" Height="50" Width="50" 
+                                CornerRadius="0 7 0 0"
+                                    Grid.ColumnSpan="3"
+                                Margin="0" Padding="0" Background="{StaticResource White}"
+                                    HorizontalAlignment="Right">
+                                <Button  x:Name="btn_manualReturn"  
+                                Grid.ColumnSpan="3"
+                                     Height="50" Width="50"
+                                materialDesign:ButtonAssist.CornerRadius="0 7 0 0"
+                                   Background="{StaticResource White}" 
+                                             BorderThickness="0"
+                                   Padding="0" 
+                                         Click="btn_manualReturn_Click">
+                                    <Path x:Name="path_manualReturn"
+                                        Fill="{StaticResource MainColor}"  Stretch="Fill"  
+             HorizontalAlignment="Center" Grid.Column="0"  
+        VerticalAlignment="Center" Width="35" Height="35"
+             Data="{StaticResource returns}"
+                      FlowDirection="LeftToRight"
+                     Margin="5"/>
+                                </Button>
+                            </Border>
+
+                            
+
+                        </Grid>
 
                     <Border Grid.Row="1" Margin="0"  
                         BorderThickness="0 0 0 1" 

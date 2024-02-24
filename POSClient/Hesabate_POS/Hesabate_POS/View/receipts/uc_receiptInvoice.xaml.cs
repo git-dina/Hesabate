@@ -67,6 +67,7 @@ namespace Hesabate_POS.View.receipts
         List<CategoryModel> items = new List<CategoryModel>();
         InvoiceModel invoice = new InvoiceModel();
         CategoryModel _categoryModel = new CategoryModel();
+        bool manualReturn = false;
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             //Instance = null;
@@ -116,7 +117,7 @@ namespace Hesabate_POS.View.receipts
         private void translate()
         {
             txt_allItems.Text = Translate.getResource("162");
-            txt_invoiceTitle.Text = Translate.getResource("1128");
+            //txt_invoiceTitle.Text = Translate.getResource("1128");
             //txt_external.Text = Translate.getResource("2311");
             //txt_tables.Text = Translate.getResource("167");
             //txt_takeAway.Text = Translate.getResource("2307");
@@ -241,7 +242,7 @@ namespace Hesabate_POS.View.receipts
             }
         }
         */
-        private void clearInvoice(string BillId="")
+        private void clearInvoice(string BillId = "")
         {
             invoice = new InvoiceModel();
             if (BillId != "")
@@ -253,6 +254,9 @@ namespace Hesabate_POS.View.receipts
                 buildInvoiceDetailsSmall(invoiceDetailsList);
             else
                 refreshInvoiceDetailsBig();
+
+            manualReturn = false;
+            manualReturnSetState(manualReturn);
 
             CalculateInvoiceValues();
             switchGrid1_1("mainItemsCatalog");
@@ -266,7 +270,7 @@ namespace Hesabate_POS.View.receipts
         }
 
         //bool menuState = false;
-        
+
         #region validate - clearValidate - textChange - lostFocus - . . . . 
 
         string input;
@@ -345,7 +349,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        
+
 
 
         #endregion
@@ -355,8 +359,8 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 //bool canSave = true;
-               
-                if(invoice.invType  == "2") //replace
+
+                if (invoice.invType == "2") //replace
                 {
                     Window.GetWindow(this).Opacity = 0.2;
 
@@ -379,15 +383,15 @@ namespace Hesabate_POS.View.receipts
                     }
 
                     Window.GetWindow(this).Opacity = 1;
-                   
+
                 }
                 invoice.note = tb_Notes1.Text;
                 invoice.note2 = tb_Notes2.Text;
                 //save invoice
-               
+
                 var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
                 clearInvoice(res.next_billid);
-        
+
                 HelpClass.EndAwait(grid_main);
             }
             catch {
@@ -417,7 +421,7 @@ namespace Hesabate_POS.View.receipts
                     }
                     else
                         clearInvoice();
-                HelpClass.EndAwait(grid_main);
+                    HelpClass.EndAwait(grid_main);
                 }
 
             }
@@ -442,7 +446,7 @@ namespace Hesabate_POS.View.receipts
 
         #region grid0_1
 
-       
+
         private void btn_printInvoice_Click(object sender, RoutedEventArgs e)
         {
 
@@ -481,7 +485,7 @@ namespace Hesabate_POS.View.receipts
                                 displayInvoice(invoice);
                                 HelpClass.EndAwait(grid_main);
                             }
-                            catch 
+                            catch
                             {
                                 clearInvoice();
                                 HelpClass.EndAwait(grid_main);
@@ -498,10 +502,11 @@ namespace Hesabate_POS.View.receipts
                     {
                         invoice.invType = w.returnType;
                         inputEditable();
+
                     }
                 }
 
-               
+
                 Window.GetWindow(this).Opacity = 1;
 
 
@@ -512,6 +517,38 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        private void btn_manualReturn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (manualReturn)
+                    manualReturn = false;
+                else
+                    manualReturn = true;
+
+                manualReturnSetState(manualReturn);
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
+
+        void manualReturnSetState(bool  isActive)
+        {
+            if (isActive)
+            {
+                //btn_using.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                path_manualReturn.Fill = Application.Current.Resources["mediumRed"] as SolidColorBrush;
+            }
+            else
+            {
+                //btn_using.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                path_manualReturn.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            }
+        }
+
         private void btn_discount_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1017,7 +1054,6 @@ namespace Hesabate_POS.View.receipts
             sp_categoryPath.Children.Clear();
             foreach (var item in categories)
             {
-
                 #region borderMain
                 Border borderMain = new Border();
 
@@ -3759,7 +3795,8 @@ namespace Hesabate_POS.View.receipts
             btn_invItmOptNotes.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
             btn_invItmOptPriceMinus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
             btn_invItmOptPricePlus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            tb_search.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType == "3") ? true : false; 
+            tb_search.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType == "3") ? true : false;
+            brd_manualReturn.Visibility = invoice.invType == "3"  ? Visibility.Visible : Visibility.Collapsed;
 
         }
         private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
@@ -3845,8 +3882,9 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
         #endregion
 
-
+        
     }
 }
