@@ -238,7 +238,7 @@ namespace Hesabate_POS.View.windows
 
 
                 string password =  pb_password.Password;
-                var res1 = await _authService.Login(AppSettings.loginName, pb_password.Password, AppSettings.langId.ToString());
+                var res1 = await _authService.Login(AppSettings.userName, pb_password.Password, AppSettings.langId.ToString());
                 var res = Convert.ToString(res1);
 
                 // show message

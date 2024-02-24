@@ -276,7 +276,7 @@ namespace Hesabate_POS.View.windows
 
                     bool canLogin = false;
                     btn_login.IsEnabled = false;
-                    //txt_message.Text = "";
+ 
                     string res = "";
 
                     //clear loaded images
@@ -286,19 +286,7 @@ namespace Hesabate_POS.View.windows
                         var res1 = await _authService.Login(tb_userName.Text, pb_password.Password, cb_language.SelectedValue.ToString());
                         res = Convert.ToString(res1);
                     }
-                    //else if (tb_idCard.Text != "")
-                    //{
-                    //    var res1 = await _authService.Login(tb_idCard.Text);
-                    //    res = Convert.ToString(res1);
-                    //}
 
-                    // show message
-                    /*
-                    if (res != "")
-                        txt_message.Text = res;
-                    else
-                        txt_message.Text = "";
-                    */
                     if (res != "")
                     {
                         wd_messageBoxWithIcon messageWin = new wd_messageBoxWithIcon();
@@ -348,7 +336,7 @@ namespace Hesabate_POS.View.windows
                     #endregion
                     if (canLogin)
                     {
-                        AppSettings.loginName = tb_userName.Text.Trim();
+                        //AppSettings.loginName = tb_userName.Text.Trim();
                         #region remember me
                         if (cbxRemmemberMe.IsChecked.Value)
                         {
@@ -414,24 +402,75 @@ namespace Hesabate_POS.View.windows
             }
         }
 
-        private void btn_idCard_Click(object sender, RoutedEventArgs e)
+        private async void btn_idCard_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Window.GetWindow(this).Opacity = 0.2;
+                btn_login.IsEnabled = false;
 
-
+                bool canLogin = false;
                 wd_getUserCardData w = new wd_getUserCardData();
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    MessageBox.Show(w.userCardData);
+                    var res1 = await _authService.Login(w.userCardData);
+                   string res = Convert.ToString(res1);
+
+                    if (res != "")
+                    {
+                        wd_messageBoxWithIcon messageWin = new wd_messageBoxWithIcon();
+                        messageWin.contentText1 = res;
+                        messageWin.ShowDialog();
+                    }
+
+
+                    if (res == "")
+                    {
+                        canLogin = true;
+
+                        pb_main.Visibility = Visibility.Visible;
+                        txt_progressBarValue.Visibility = Visibility.Visible;
+                        pb_main.Value = 0;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
+                        int taskCount = 3;
+                        await GeneralInfoService.GetMainInfo();//general info, buttons-cat, tables ,...
+                        pb_main.Value += 100 / taskCount;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
+                        await GeneralInfoService.GetLanguagesTerms((int)cb_language.SelectedValue);// get selected language terms
+                        pb_main.Value += 100 / taskCount;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
+                        await _itemService.GetItems();
+                        pb_main.Value = 100;
+                        txt_progressBarValue.Text = $"{pb_main.Value}%";
+                    }
+
+                    if (canLogin)
+                    {
+                        if (AppSettings.showPx.Equals("1"))
+                        {
+                            //show custody window
+                            wd_chromiumWebBrowser custodyWindow = new wd_chromiumWebBrowser();
+                            custodyWindow.title = Translate.getResource("1740");
+                            custodyWindow.url = "/pp2.php" + "?token=" + AppSettings.token;
+                            custodyWindow.ShowDialog();
+                        }
+
+                        //open main window and close this window
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                        this.Close();
+                    }
+                    btn_login.IsEnabled = true;
+                    HelpClass.EndAwait(grid_form);
+                  
                 }
 
                 Window.GetWindow(this).Opacity = 1;
             }
             catch (Exception ex)
             {
+                btn_login.IsEnabled = true;
                 Window.GetWindow(this).Opacity = 1;
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }

@@ -35,7 +35,7 @@
                               HorizontalAlignment="Right" Grid.Column="0"  
                          VerticalAlignment="Center"  Width="20" Height="20"
                               Data="{StaticResource vendor}"/>-->
-                        <TextBlock Text="title" x:Name="txt_title" Foreground="White" 
+                        <TextBlock Text="Login With Card" x:Name="txt_title" Foreground="White" 
                                    HorizontalAlignment="Left" VerticalAlignment="Center" 
                               Grid.Column="1"      Margin="5,0"/>
                     </Grid>
@@ -57,7 +57,7 @@
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               Padding="10,0,5,0"
                              materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                              materialDesign:HintAssist.Hint="userCardData..."  
+                              materialDesign:HintAssist.Hint="Card ID..."  
                               Foreground="{StaticResource textColor}"
                              Margin="0,0"  BorderThickness="0"
                                   Height="40"
@@ -70,7 +70,7 @@
                     </Grid>
                 </Border>
 
-                <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
+                <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="login" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="5,10" x:Name="btn_save" Click="Btn_save_Click" Foreground="White"
                           Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />
             </Grid>
