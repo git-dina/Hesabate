@@ -32,7 +32,20 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string return_billid { get; set; }
         public string table_id { get; set; } = "0";
         public string is_do { get; set; } = "0";//0 : save invoice , 1: Update invoice , 2 : Hold Invoice , 3 : Update Hold Invoice
-        public decimal total_after_discount { get; set; }//invoice total
+        private decimal _total_after_discount;  //invoice total
+        public decimal total_after_discount
+        {
+            get => _total_after_discount;
+            set
+            {
+                if (_total_after_discount == value) return;
+
+            _total_after_discount = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public int UNo { get; set; } = 0;//customer id
         public decimal over_discount { get; set; }//discount amount
         public decimal over_discount_percentage { get; set; }//discount percentage
