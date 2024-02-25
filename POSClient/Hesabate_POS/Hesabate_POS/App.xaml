@@ -20,6 +20,7 @@
             <converters:invTotalTitleTextConverter x:Key="invTotalTitleTextConverter"/>
             <converters:invTypeColorConverter x:Key="invTypeColorConverter"/>
             <converters:invTypeTextConverter x:Key="invTypeTextConverter"/>
+            <converters:totalPositiveConverter x:Key="totalPositiveConverter"/>
 
             <!--#region Fonts-->
             <FontFamily x:Key="Font-cairo-light" >cairo light, /Hesabate_POS;component/fonts/cairo-font/#cairo light, Arial</FontFamily>
