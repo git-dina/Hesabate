@@ -164,6 +164,7 @@
     <Compile Include="converters\invTypeTextConverter.cs" />
     <Compile Include="converters\NotZeroToVisibilityConverter.cs" />
     <Compile Include="converters\stringNotEmptyToVisibilityConverter.cs" />
+    <Compile Include="converters\totalPositiveConverter.cs" />
     <Compile Include="converters\urgentColorConverter.cs" />
     <Compile Include="en_file.Designer.cs" />
     <Compile Include="Keyboard\AnimationHelper.cs" />
