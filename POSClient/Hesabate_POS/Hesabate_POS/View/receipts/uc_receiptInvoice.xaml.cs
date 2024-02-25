@@ -559,7 +559,6 @@ namespace Hesabate_POS.View.receipts
             {
                 Window.GetWindow(this).Opacity = 0.2;
                 wd_discount w = new wd_discount();
-               
                 w.discountType = invoice.discountType;
                 w.discountValue = invoice.over_discount;
                 w.ShowDialog();
@@ -3185,7 +3184,7 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceDetailsList.RemoveAt(index - 1);
 
-                if(selectedInvItmOps != null ||   selectedInvItmOps.index == invOptItem.index)
+                if(selectedInvItmOps != null &&   selectedInvItmOps.index == invOptItem.index)
                 switchGrid1_1("mainItemsCatalog");
 
                 if (AppSettings.invoiceDetailsType == "small")
@@ -3429,7 +3428,7 @@ namespace Hesabate_POS.View.receipts
             txt_Service.Text = HelpClass.DecTostring(serviceAmount);
             txt_taxValue.Text = HelpClass.DecTostring(taxAmount);
             txt_UserDiscountRate.Text = HelpClass.DecTostring(overDiscountPercentage);
-            txt_total.Text = HelpClass.DecTostring(totalNet);
+            txt_total.Text = HelpClass.DecTostringPositve(totalNet);
 
         }
 
