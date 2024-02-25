@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using System.Globalization;
 using System.Reflection;
 using Newtonsoft.Json;
+using CefSharp.DevTools.CSS;
 //using System.Drawing.Printing;
 namespace Hesabate_POS.Classes
 {
@@ -373,14 +374,29 @@ namespace Hesabate_POS.Classes
 
             return percentageVal;
         }
+        public static string DecTostringPositve(decimal? dec)
+        {
+            try
+            {
+                if (dec != null)
+                {
+                    if (dec < 0)
+                        dec *= -1;
+                    string s = HelpClass.DecTostring(dec);
+                    return s;
+                }
+                else return "";
+
+            }
+            catch
+            {
+                return "";
+            }
+        }
         public static string DecTostring(decimal? dec)
         {
             string sdc = "0";
-            if (dec == null)
-            {
-
-            }
-            else
+            if (dec != null)
             {
                 decimal dc = decimal.Parse(dec.ToString());
 
@@ -407,9 +423,9 @@ namespace Hesabate_POS.Classes
                     sdc = string.Format("{0:G29}", decimal.Parse(sdc));
             }
 
-
             return sdc;
         }
+
         public static void defaultDatePickerStyle(DatePicker dp)
         {
             dp.Loaded += delegate
