@@ -68,7 +68,6 @@
                                 >
                             <Grid >
                                 <TextBox x:Name="tb_discount" Grid.Row="8"  Padding="10,0,5,0"  
-                  Text="{Binding discount, Mode=TwoWay}"
                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                   materialDesign:HintAssist.Hint="discount..."    
                  Foreground="{StaticResource textColor}"    

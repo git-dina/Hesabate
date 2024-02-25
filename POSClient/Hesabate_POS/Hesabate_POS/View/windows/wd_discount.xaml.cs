@@ -72,10 +72,9 @@ namespace Hesabate_POS.View.windows
 
                 translate();
                 #endregion
-
-                HelpClass.EndAwait(grid_main);
                 tb_discount.Text = discountValue.ToString();
 
+                HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
             {
