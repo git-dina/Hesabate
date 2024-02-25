@@ -72,7 +72,7 @@ namespace Hesabate_POS.View.windows
 
                 txt_salesInvTotal.Text = HelpClass.DecTostring( salesInvTotal);
                 txt_returnInvTotal.Text = HelpClass.DecTostring( returnInvTotal);
-                txt_total.Text = HelpClass.DecTostring(Math.Abs( salesInvTotal - returnInvTotal));
+                txt_total.Text = HelpClass.DecTostringPositve(Math.Abs( salesInvTotal - returnInvTotal));
 
                 HelpClass.EndAwait(grid_main);
             }
