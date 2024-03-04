@@ -81,7 +81,7 @@ namespace Hesabate_POS.Classes
         #endregion
 
         #region returnType
-
+        /*
         static public List<keyValueString> returnTypeList;
         static public List<keyValueString> RefreshReturnTypeList()
         {
@@ -103,6 +103,7 @@ namespace Hesabate_POS.Classes
             cmb.ItemsSource = returnTypeList;
             #endregion
         }
+        */
         #endregion
 
     }
