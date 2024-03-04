@@ -65,7 +65,7 @@ namespace Hesabate_POS.View.windows
 
                 translate();
                 #endregion
-                FillCombo.FillReturnType(cmb_returnType);
+                //FillCombo.FillReturnType(cmb_returnType);
 
 
                 HelpClass.EndAwait(grid_main);
@@ -84,7 +84,7 @@ namespace Hesabate_POS.View.windows
         {
 
             //txt_title.Text = Translate.getResource("104");
-            btn_save.Content = Translate.getResource("27");
+            //btn_save.Content = Translate.getResource("27");
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -93,7 +93,7 @@ namespace Hesabate_POS.View.windows
             {
                 if (e.Key == Key.Return)
                 {
-                    Btn_save_Click(btn_save, null);
+                    //Btn_save_Click(btn_save, null);
                 }
             }
             catch (Exception ex)
@@ -189,19 +189,47 @@ namespace Hesabate_POS.View.windows
         }
 
         #endregion
-        private void Btn_save_Click(object sender, RoutedEventArgs e)
+        //private void Btn_save_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        returnType = cmb_returnType.SelectedValue.ToString();
+        //        isOk = true;
+
+        //        this.Close();
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
+        
+        private void btn_normal_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                returnType = cmb_returnType.SelectedValue.ToString();
-                isOk = true;
+            returnType = "0";
+            isOk = true;
+            this.Close();
+        }
 
-                this.Close();
-            }
-            catch
-            {
+        private void btn_full_Click(object sender, RoutedEventArgs e)
+        {
+            returnType = "1";
+            isOk = true;
+            this.Close();
+        }
 
-            }
+        private void btn_replace_Click(object sender, RoutedEventArgs e)
+        {
+            returnType = "2";
+            isOk = true;
+            this.Close();
+        }
+
+        private void btn_manual_Click(object sender, RoutedEventArgs e)
+        {
+            returnType = "3";
+            isOk = true;
+            this.Close();
         }
     }
 }

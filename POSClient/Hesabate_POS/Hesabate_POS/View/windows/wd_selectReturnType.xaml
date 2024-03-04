@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Height="155" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+         Height="220" Width="200" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -50,8 +50,104 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" Margin="0 0 0 -5">
+                    <Button  Grid.Row="1" 
+                         Margin="5"
+            x:Name="btn_normal"  materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+                   Click="btn_normal_Click">
+                        <Grid Width="{Binding ElementName=btn_normal, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource invoice}"
+              FlowDirection="LeftToRight"
+             Margin="10 5 10 5"/>
+                            <TextBlock Text="فاتورة مبيعات" Foreground="{StaticResource MainColor}" x:Name="txt_normal"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                        </Grid>
+                    </Button>
+                    <Button  Grid.Row="1" 
+                         Margin="5"
+            x:Name="btn_full"  materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+                   Click="btn_full_Click">
+                        <Grid Width="{Binding ElementName=btn_full, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource returns}"
+              FlowDirection="LeftToRight"
+             Margin="10 5 10 5"/>
+                            <TextBlock Text="كامل" Foreground="{StaticResource MainColor}" x:Name="txt_full"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                        </Grid>
+                    </Button>
+                    <Button  Grid.Row="1" 
+                         Margin="5"
+            x:Name="btn_replace"  materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+                   Click="btn_replace_Click">
+                        <Grid Width="{Binding ElementName=btn_replace, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource returns}"
+              FlowDirection="LeftToRight"
+             Margin="10 5 10 5"/>
+                            <TextBlock Text="استبدال" Foreground="{StaticResource MainColor}" x:Name="txt_replace"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                        </Grid>
+                    </Button>
+                    <Button  Grid.Row="1" 
+                         Margin="5"
+            x:Name="btn_manual"  materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+                   Click="btn_manual_Click">
+                        <Grid Width="{Binding ElementName=btn_manual, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource returns}"
+              FlowDirection="LeftToRight"
+             Margin="10 5 10 5"/>
+                            <TextBlock Text="يدوي" Foreground="{StaticResource MainColor}" x:Name="txt_manual"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                        </Grid>
+                    </Button>
+                    
+                </StackPanel>
 
-                <Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+
+                <!--<Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                     <Grid   >
                         <ComboBox 
                                x:Name="cmb_returnType"
@@ -71,7 +167,8 @@
 
                 <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="5,10" x:Name="btn_save" Click="Btn_save_Click" Foreground="White"
-                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />
+                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />-->
+           
             </Grid>
 
         </Border>
