@@ -55,7 +55,7 @@ namespace Hesabate_POS.Classes
         #endregion
 
         #region externalType
-        
+        /*
         static public List<keyValueString> externalTypeList;
         static public List<keyValueString> RefreshExternalTypeList()
         {
@@ -77,6 +77,7 @@ namespace Hesabate_POS.Classes
             //cmb.SelectedIndex = 0;
             #endregion
         }
+        */
         #endregion
 
         #region returnType
