@@ -65,9 +65,9 @@ namespace Hesabate_POS.View.windows
 
                 translate();
                 #endregion
-                FillCombo.FillExternalType(cmb_externalType);
+                //FillCombo.FillExternalType(cmb_externalType);
 
-                cmb_externalType.SelectedValue = externalType;
+                //cmb_externalType.SelectedValue = externalType;
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -84,8 +84,8 @@ namespace Hesabate_POS.View.windows
         {
 
             txt_title.Text = Translate.getResource("695");
-            btn_save.Content = Translate.getResource("27");
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_externalType, Translate.getResource("576"));
+            //btn_save.Content = Translate.getResource("27");
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(cmb_externalType, Translate.getResource("576"));
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
@@ -94,7 +94,7 @@ namespace Hesabate_POS.View.windows
             {
                 if (e.Key == Key.Return)
                 {
-                    Btn_save_Click(btn_save, null);
+                    //Btn_save_Click(btn_save, null);
                 }
             }
             catch (Exception ex)
@@ -195,15 +195,28 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-                externalType = cmb_externalType.SelectedValue.ToString();
+                //externalType = cmb_externalType.SelectedValue.ToString();
                 isOk = true;
-
                 this.Close();
             }
             catch
             {
 
             }
+        }
+
+        private void btn_invoice_Click(object sender, RoutedEventArgs e)
+        {
+            externalType = "1";
+            isOk = true;
+            this.Close();
+        }
+
+        private void btn_invoiceExternal_Click(object sender, RoutedEventArgs e)
+        {
+            externalType = "2";
+            isOk = true;
+            this.Close();
         }
     }
 }

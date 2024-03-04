@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Height="155" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+         Height="140" Width="200" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -50,8 +50,57 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-
-                <Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                <StackPanel Orientation="Vertical" Margin="0 0 0 -5">
+                    <Button  Grid.Row="1" 
+        Margin="5"
+                    
+            x:Name="btn_invoice"  materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+                   Click="btn_invoice_Click">
+                        <Grid Width="{Binding ElementName=btn_invoice, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource invoice}"
+              FlowDirection="LeftToRight"
+             Margin="10 5 10 5"/>
+                            <TextBlock Text="حفظ كفاتورة" Foreground="{StaticResource MainColor}" x:Name="txt_invoice"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                        </Grid>
+                    </Button>
+                    <Button  Grid.Row="1" 
+        Margin="5"
+                    
+            x:Name="btn_invoiceExternal"  materialDesign:ButtonAssist.CornerRadius="7"
+               Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                         BorderThickness="1"
+               Padding="0" 
+                   Click="btn_invoiceExternal_Click">
+                        <Grid Width="{Binding ElementName=btn_invoiceExternal, Path=ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+     HorizontalAlignment="Center" Grid.Column="0"  
+VerticalAlignment="Center" Width="20" Height="20"
+     Data="{StaticResource delivery}"
+              FlowDirection="LeftToRight"
+             Margin="10 5 10 5"/>
+                            <TextBlock Text="حفظ كفاتورة معلقة" Foreground="{StaticResource MainColor}" x:Name="txt_invoiceExternal"
+          HorizontalAlignment="Left" VerticalAlignment="Center" 
+     Grid.Column="1"      Margin="5"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+                <!--<Border  CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                     <Grid   >
                         <ComboBox 
                                x:Name="cmb_externalType"
@@ -71,7 +120,8 @@
 
                 <Button   Grid.Row="6" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
                        Margin="5,10" x:Name="btn_save" Click="Btn_save_Click" Foreground="White"
-                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />
+                          Background="{StaticResource MainColor}" BorderBrush="{x:Null}" />-->
+            
             </Grid>
 
         </Border>
