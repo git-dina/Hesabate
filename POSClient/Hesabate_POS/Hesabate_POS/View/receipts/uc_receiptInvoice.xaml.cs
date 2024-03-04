@@ -3815,6 +3815,9 @@ namespace Hesabate_POS.View.receipts
 
                 Window.GetWindow(this).Opacity = 0.2;
                 wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+
                 invoiceWindow.title = Translate.getResource("318");
                 invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
                 //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
