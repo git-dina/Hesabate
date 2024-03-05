@@ -358,7 +358,7 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 HelpClass.StartAwait(grid_main);
-                //bool canSave = true;
+                bool canSave = false;
 
                 if (invoice.invType == "2") //replace
                 {
@@ -371,6 +371,7 @@ namespace Hesabate_POS.View.receipts
                     invoiceWindow.ShowDialog();
                     if (invoiceWindow.isOk)
                     {
+                        canSave = true;
                         invoice.return_billid = invoiceWindow.returnedValue;
                         //get sales invoice info
                         var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
@@ -385,13 +386,18 @@ namespace Hesabate_POS.View.receipts
                     Window.GetWindow(this).Opacity = 1;
 
                 }
-                invoice.note = tb_Notes1.Text;
-                invoice.note2 = tb_Notes2.Text;
-                //save invoice
+                else
+                    canSave = true;
 
-                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                clearInvoice(res.next_billid);
+                if (canSave)
+                {
+                    invoice.note = tb_Notes1.Text;
+                    invoice.note2 = tb_Notes2.Text;
+                    //save invoice
 
+                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                    clearInvoice(res.next_billid);
+                }
                 HelpClass.EndAwait(grid_main);
             }
             catch {
@@ -3784,27 +3790,36 @@ namespace Hesabate_POS.View.receipts
         private void inputEditable()
         {
             //0:sales, 1:full return, 2:replace, 3:manual
-            btn_search.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType =="3") ? true : false;
-            btn_searchBarcode.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType == "3") ? true : false; 
-            btn_discount.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_external.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_takeAway.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_tables.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_using.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false;
-            btn_customer.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptAmountMinus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptAmountPlus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptBonusMinus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptBonusPlus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptDelete.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptDiscountMinus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptDiscountPlus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptLibraReading.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptNotes.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptPriceMinus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            btn_invItmOptPricePlus.IsEnabled = invoice.invType == "0" || invoice.invType == "2" ? true : false; 
-            tb_search.IsEnabled = (invoice.invType == "0" || invoice.invType == "2" || invoice.invType == "3") ? true : false;
-            brd_manualReturn.Visibility = invoice.invType == "3"  ? Visibility.Visible : Visibility.Collapsed;
+            btn_search.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_searchBarcode.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_discount.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_external.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_takeAway.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_tables.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_using.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_customer.IsEnabled = !(invoice.invType == "1") ? true : false;
+            tb_invItmOptAmount.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptAmountMinus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptAmountPlus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            cmb_invItmOptUnit.IsEnabled = !(invoice.invType == "1") ? true : false;
+            tb_invItmOptBonus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptBonusMinus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptBonusPlus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptDelete.IsEnabled = !(invoice.invType == "1") ? true : false;
+            tb_invItmOptDiscount.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptDiscountMinus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptDiscountPlus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptLibraReading.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptNotes.IsEnabled = !(invoice.invType == "1") ? true : false;
+            tb_invItmOptPrice.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptPriceMinus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_invItmOptPricePlus.IsEnabled = !(invoice.invType == "1") ? true : false;
+            tb_search.IsEnabled = !(invoice.invType == "1") ? true : false;
+            brd_manualReturn.Visibility = invoice.invType == "3" ? Visibility.Visible : Visibility.Collapsed;
+            sp_invItmOpsBasic.IsEnabled = !(invoice.invType == "1") ? true : false;
+            sp_invItmOpsAdds.IsEnabled = !(invoice.invType == "1") ? true : false;
+            sp_invItmOpsDeletes.IsEnabled = !(invoice.invType == "1") ? true : false;
+            sp_invItmOpsExtra.IsEnabled = !(invoice.invType == "1") ? true : false;
 
         }
         private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
