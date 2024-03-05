@@ -2235,7 +2235,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        private void btn_external_Click(object sender, RoutedEventArgs e)
+        private async void btn_external_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -2249,6 +2249,12 @@ namespace Hesabate_POS.View.receipts
                 if (w.isOk)
                 {
                     invoice.external = w.externalType;
+
+                    invoice.note = tb_Notes1.Text;
+                    invoice.note2 = tb_Notes2.Text;
+                    //save invoice
+
+                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
                 }
 
                 if (invoice != null)
