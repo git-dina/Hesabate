@@ -885,7 +885,7 @@ namespace Hesabate_POS.View.receipts
                                 unit_name = item1.unit_name,
                                 x_discount = item1.x_discount,
                                 x_vat = item1.x_vat,
-
+                                production_extra_notes = item1.production_extra_notes,
                             };
                             //#endregion
                             if(invoice.invType != "1")
@@ -902,7 +902,6 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
-        //private void AddItemToInvoice(CategoryModel item)
         private void AddItemToInvoice(ItemModel item, List<CategoryModel> basicItems, List<CategoryModel> extraItems, List<CategoryModel> addItems, List<CategoryModel> deleteItems)
         {
             string itemType = manualReturn == true ? "1" : "0";
@@ -2255,6 +2254,7 @@ namespace Hesabate_POS.View.receipts
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                    clearInvoice(res.next_billid);
                 }
 
                 if (invoice != null)
@@ -3490,8 +3490,48 @@ namespace Hesabate_POS.View.receipts
                     item = await _itemService.GetItemInfo(tb_search.Text, "1", invoice.customer_id, GeneralInfoService.GeneralInfo.MainOp.price_id, tb_search.Text);
 
                 }
-                if (item != null)
-                    AddItemToInvoice(item, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    if (item != null)
+                    {
+                        //#region copy item
+                        var item2 = new ItemModel()
+                        {
+                            addsItems = item.addsItems,
+                            amount = item.amount,
+                            basicItems = item.basicItems,
+                            bonus = item.bonus,
+                            dangure = item.dangure,
+                            deletesItems = item.deletesItems,
+                            detail = item.detail,
+                            discount = item.discount,
+                            discount_per = item.discount_per,
+                            extraItems = item.extraItems,
+                            id = item.id,
+                            index = item.index,
+                            isUrgent = item.isUrgent,
+                            is_ext = item.is_ext,
+                            is_special = item.is_special,
+                            max_p = item.max_p,
+                            measure_id = item.measure_id,
+                            min_p = item.min_p,
+                            name = item.name,
+                            notes = item.notes,
+                            no_w = item.no_w,
+                            price = item.price,
+                            product_id = item.product_id,
+                            serial = item.serial,
+                            serial_text = item.serial_text,
+                            tax_class = item.tax_class,
+                            total = item.total,
+                            unit = item.unit,
+                            unitList = item.unitList,
+                            unit_name = item.unit_name,
+                            x_discount = item.x_discount,
+                            x_vat = item.x_vat,
+                            production_extra_notes = item.production_extra_notes,
+                        };
+
+                        AddItemToInvoice(item2, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    }
                 tb_search.Text = "";
             }
             }
@@ -3509,7 +3549,44 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(),new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    //#region copy item1
+                    var item2 = new ItemModel()
+                    {
+                        addsItems = w.selectedItem.addsItems,
+                        amount = w.selectedItem.amount,
+                        basicItems = w.selectedItem.basicItems,
+                        bonus = w.selectedItem.bonus,
+                        dangure = w.selectedItem.dangure,
+                        deletesItems = w.selectedItem.deletesItems,
+                        detail = w.selectedItem.detail,
+                        discount = w.selectedItem.discount,
+                        discount_per = w.selectedItem.discount_per,
+                        extraItems = w.selectedItem.extraItems,
+                        id = w.selectedItem.id,
+                        index = w.selectedItem.index,
+                        isUrgent = w.selectedItem.isUrgent,
+                        is_ext = w.selectedItem.is_ext,
+                        is_special = w.selectedItem.is_special,
+                        max_p = w.selectedItem.max_p,
+                        measure_id = w.selectedItem.measure_id,
+                        min_p = w.selectedItem.min_p,
+                        name = w.selectedItem.name,
+                        notes = w.selectedItem.notes,
+                        no_w = w.selectedItem.no_w,
+                        price = w.selectedItem.price,
+                        product_id = w.selectedItem.product_id,
+                        serial = w.selectedItem.serial,
+                        serial_text = w.selectedItem.serial_text,
+                        tax_class = w.selectedItem.tax_class,
+                        total = w.selectedItem.total,
+                        unit = w.selectedItem.unit,
+                        unitList = w.selectedItem.unitList,
+                        unit_name = w.selectedItem.unit_name,
+                        x_discount = w.selectedItem.x_discount,
+                        x_vat = w.selectedItem.x_vat,
+                        production_extra_notes = w.selectedItem.production_extra_notes,
+                    };
+                    AddItemToInvoice(item2, new List<CategoryModel>(),new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 }
 
                 Window.GetWindow(this).Opacity = 1;
@@ -3529,7 +3606,44 @@ namespace Hesabate_POS.View.receipts
                 w.ShowDialog();
                 if (w.isOk)
                 {
-                    AddItemToInvoice(w.selectedItem, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
+                    //#region copy item1
+                    var item2 = new ItemModel()
+                    {
+                        addsItems = w.selectedItem.addsItems,
+                        amount = w.selectedItem.amount,
+                        basicItems = w.selectedItem.basicItems,
+                        bonus = w.selectedItem.bonus,
+                        dangure = w.selectedItem.dangure,
+                        deletesItems = w.selectedItem.deletesItems,
+                        detail = w.selectedItem.detail,
+                        discount = w.selectedItem.discount,
+                        discount_per = w.selectedItem.discount_per,
+                        extraItems = w.selectedItem.extraItems,
+                        id = w.selectedItem.id,
+                        index = w.selectedItem.index,
+                        isUrgent = w.selectedItem.isUrgent,
+                        is_ext = w.selectedItem.is_ext,
+                        is_special = w.selectedItem.is_special,
+                        max_p = w.selectedItem.max_p,
+                        measure_id = w.selectedItem.measure_id,
+                        min_p = w.selectedItem.min_p,
+                        name = w.selectedItem.name,
+                        notes = w.selectedItem.notes,
+                        no_w = w.selectedItem.no_w,
+                        price = w.selectedItem.price,
+                        product_id = w.selectedItem.product_id,
+                        serial = w.selectedItem.serial,
+                        serial_text = w.selectedItem.serial_text,
+                        tax_class = w.selectedItem.tax_class,
+                        total = w.selectedItem.total,
+                        unit = w.selectedItem.unit,
+                        unitList = w.selectedItem.unitList,
+                        unit_name = w.selectedItem.unit_name,
+                        x_discount = w.selectedItem.x_discount,
+                        x_vat = w.selectedItem.x_vat,
+                        production_extra_notes = w.selectedItem.production_extra_notes,
+                    };
+                    AddItemToInvoice(item2, new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>(), new List<CategoryModel>());
                 }
 
                 Window.GetWindow(this).Opacity = 1;

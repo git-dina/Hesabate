@@ -83,7 +83,7 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            //txt_title.Text = Translate.getResource("104");
+            txt_title.Text = "نوع الفاتورة";
             //btn_save.Content = Translate.getResource("27");
         }
 

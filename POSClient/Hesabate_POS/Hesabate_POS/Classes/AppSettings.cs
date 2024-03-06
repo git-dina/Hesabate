@@ -14,7 +14,7 @@ namespace Hesabate_POS.Classes
     {
         public static readonly HttpClient httpClient = new HttpClient()
         {
-            Timeout = TimeSpan.FromMinutes(3),
+            Timeout = TimeSpan.FromMinutes(10),
             
     };
 
