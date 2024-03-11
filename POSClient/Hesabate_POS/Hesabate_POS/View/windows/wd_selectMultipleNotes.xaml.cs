@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPFTabTip;
 
 namespace Hesabate_POS.View.windows
 {
@@ -41,6 +42,7 @@ namespace Hesabate_POS.View.windows
         public List<string> notesList { get; set; }
         public string note { get; set; }
         public bool isOk { get; set; }
+        public double widthScreen { get; set; }
         //public static List<string> requiredControlList;
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,6 +52,7 @@ namespace Hesabate_POS.View.windows
             {
                 HelpClass.StartAwait(grid_main);
                 //requiredControlList = new List<string> { "", };
+                this.Left = widthScreen / 2;
 
                 #region translate
 
@@ -227,6 +230,23 @@ namespace Hesabate_POS.View.windows
             txt_note.Text = "";
         }
 
-        
+        private void btn_Keyboard_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                if (TabTip.Close())
+                {
+#pragma warning disable CS0436 // Type conflicts with imported type
+                    TabTip.OpenUndockedAndStartPoolingForClosedEvent();
+#pragma warning restore CS0436 // Type conflicts with imported type
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+        }
     }
 }

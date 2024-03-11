@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:Hesabate_POS.View.windows"
         mc:Ignorable="d" KeyDown="HandleKeyPress"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-         WindowStyle="None" WindowStartupLocation="CenterScreen"
+         WindowStyle="None" WindowStartupLocation="Manual"
+        Top="0"
         ResizeMode="NoResize" Margin="0"
-         Height="250" Width="400" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+         Height="400" Width="500" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -26,7 +27,13 @@
                         <materialDesign:PackIcon Foreground="White" Kind="Close" 
                                          Width="20" Height="20"/>
                     </Button>
-                    <Grid  HorizontalAlignment="Center"  >
+                <Button     HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+          BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0,50,0"  x:Name="btn_Keyboard" Click="btn_Keyboard_Click"
+          FontWeight="SemiBold" Padding="0"  FontSize="14">
+                    <materialDesign:PackIcon Foreground="{StaticResource White}" Kind="Keyboard"  FlowDirection="LeftToRight"
+ Width="30" Height="30"/>
+                </Button>
+                <Grid  HorizontalAlignment="Center"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="1.2*"/>
