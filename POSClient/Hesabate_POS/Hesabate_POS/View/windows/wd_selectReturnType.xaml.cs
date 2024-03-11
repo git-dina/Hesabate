@@ -204,12 +204,12 @@ namespace Hesabate_POS.View.windows
         //    }
         //}
         
-        private void btn_normal_Click(object sender, RoutedEventArgs e)
-        {
-            returnType = "0";
-            isOk = true;
-            this.Close();
-        }
+        //private void btn_normal_Click(object sender, RoutedEventArgs e)
+        //{
+        //    returnType = "0";
+        //    isOk = true;
+        //    this.Close();
+        //}
 
         private void btn_full_Click(object sender, RoutedEventArgs e)
         {
