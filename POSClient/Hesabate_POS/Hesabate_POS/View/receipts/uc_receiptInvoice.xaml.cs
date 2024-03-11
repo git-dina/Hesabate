@@ -3247,6 +3247,7 @@ namespace Hesabate_POS.View.receipts
                 }
 
                 wd_selectMultipleNotes w = new wd_selectMultipleNotes();
+                w.widthScreen = this.ActualWidth;
                 w.note = invoiceDetails.notes;
                 w.notesList = invoiceDetails.production_extra_notes;
                 w.ShowDialog();
