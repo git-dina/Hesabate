@@ -21,7 +21,7 @@ namespace Hesabate_POS.converters
                     if (num >= 0)
                         return Translate.getResource("727");
                     else
-                        return "المبلغ المدفوع";
+                        return "المبلغ للإرجاع";
                 }
                 else return "";
             }

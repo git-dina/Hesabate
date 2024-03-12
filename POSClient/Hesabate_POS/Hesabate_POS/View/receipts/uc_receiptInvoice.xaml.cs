@@ -103,7 +103,7 @@ namespace Hesabate_POS.View.receipts
                 //buildInvoiceDetailsSmall(invoiceDetailsList);
 
                 this.DataContext = invoice;
-
+                inputEditable();
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -932,6 +932,7 @@ namespace Hesabate_POS.View.receipts
                 refreshInvoiceDetailsBig();
                 
             CalculateInvoiceValues();
+            inputEditable();
         }
         public async Task setImg(Button img, string uri)
         {
@@ -2418,6 +2419,7 @@ namespace Hesabate_POS.View.receipts
                             switchGrid1_1("mainItemsCatalog");
 
                         CalculateInvoiceValues();
+                        inputEditable();
                     }
 
                 HelpClass.EndAwait(grid_main);
@@ -3912,7 +3914,7 @@ namespace Hesabate_POS.View.receipts
             btn_search.IsEnabled = !(invoice.invType == "1") ? true : false;
             btn_searchBarcode.IsEnabled = !(invoice.invType == "1") ? true : false;
             btn_discount.IsEnabled = !(invoice.invType == "1") ? true : false;
-            btn_external.IsEnabled = !(invoice.invType == "1") ? true : false;
+            btn_external.IsEnabled = !(invoice.invType == "1") && invoiceDetailsList.Count > 0 ? true : false;
             btn_takeAway.IsEnabled = !(invoice.invType == "1") ? true : false;
             btn_tables.IsEnabled = !(invoice.invType == "1") ? true : false;
             btn_using.IsEnabled = !(invoice.invType == "1") ? true : false;
@@ -3939,6 +3941,8 @@ namespace Hesabate_POS.View.receipts
             sp_invItmOpsAdds.IsEnabled = !(invoice.invType == "1") ? true : false;
             sp_invItmOpsDeletes.IsEnabled = !(invoice.invType == "1") ? true : false;
             sp_invItmOpsExtra.IsEnabled = !(invoice.invType == "1") ? true : false;
+
+
 
         }
         private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
