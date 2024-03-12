@@ -83,7 +83,10 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            txt_title.Text = "نوع الفاتورة";
+            txt_title.Text = "نوع الإرجاع";
+            txt_full.Text = "ارجاع فاتورة";
+            txt_manual.Text = "يدوي";
+            txt_replace.Text = "استبدال";
             //btn_save.Content = Translate.getResource("27");
         }
 
