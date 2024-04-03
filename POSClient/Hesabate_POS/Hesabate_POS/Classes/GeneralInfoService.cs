@@ -68,7 +68,7 @@ namespace Hesabate_POS.Classes
                     var jsonString = await response.Content.ReadAsStringAsync();
                     GeneralInfo = JsonConvert.DeserializeObject<GeneralInfoModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
 
-
+                    AppSettings.nextBillId = GeneralInfo.BILL_ID.ToString();
                 }
             }
             catch(Exception ex)

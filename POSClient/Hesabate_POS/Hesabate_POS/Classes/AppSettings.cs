@@ -36,9 +36,8 @@ namespace Hesabate_POS.Classes
         //general info
         internal static string accuracy = "3";
         internal static string currency = "TL";
-        internal static int MainCurrency ;
+        internal static int MainCurrency;
         public static string dateFormat = "ShortDatePattern";
-
 
 
         // app version
@@ -87,6 +86,9 @@ namespace Hesabate_POS.Classes
 
         #endregion
 
+        #region invoice
+        public static string nextBillId;
+        #endregion
 
     }
 }

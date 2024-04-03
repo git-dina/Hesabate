@@ -12,8 +12,9 @@ namespace Hesabate_POS.Classes.ApiClasses
     {
 
         public int customer_id { get; set; }
-        //public string BillId { get; set; } = "000000";
-        private string _BillId = GeneralInfoService.GeneralInfo.BILL_ID.ToString();
+
+       // private string _BillId = GeneralInfoService.GeneralInfo.BILL_ID.ToString();
+        private string _BillId = AppSettings.nextBillId;
         public string id
         {
             get => _BillId;

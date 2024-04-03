@@ -242,12 +242,13 @@ namespace Hesabate_POS.View.receipts
             }
         }
         */
-        private void clearInvoice(string BillId = "")
+        private void clearInvoice()
         {
             invoice = new InvoiceModel();
-            if (BillId != "")
-                invoice.id = BillId;
+            //if (BillId != "")
+            //    invoice.id = BillId;
 
+            invoice.id = AppSettings.nextBillId;
             invoiceDetailsList = new List<ItemModel>();
 
             if (AppSettings.invoiceDetailsType == "small")
@@ -396,7 +397,8 @@ namespace Hesabate_POS.View.receipts
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                    clearInvoice(res.next_billid);
+                   // clearInvoice(res.next_billid);
+                    clearInvoice();
                 }
                 HelpClass.EndAwait(grid_main);
             }
@@ -472,11 +474,12 @@ namespace Hesabate_POS.View.receipts
                 {
                     clearInvoice();
                     invoice.invType = w.returnType;
-                    if(w.returnType == "0")
-                    {
-                        inputEditable();
-                    }
-                    else if (w.returnType == "1")//full return
+                    //if(w.returnType == "0")
+                    //{
+                    //    inputEditable();
+                    //}
+                    //else 
+                    if (w.returnType == "1")//full return
                     {
                         wd_customizeKeyboard wd = new wd_customizeKeyboard();
                         wd.title = Translate.getResource("542");//invoice number
@@ -489,7 +492,7 @@ namespace Hesabate_POS.View.receipts
                             {
                                 invoice = await _invoiceService.GetInvoiceInfo("2", invoice.id);
                                 invoice.invType = w.returnType;
-                                //invoice.id = "0";
+                                invoice.id = AppSettings.nextBillId;
                                 displayInvoice(invoice);
                                 HelpClass.EndAwait(grid_main);
                             }
@@ -504,11 +507,13 @@ namespace Hesabate_POS.View.receipts
                     else if (w.returnType == "2")//replace
                     {
                         invoice.invType = w.returnType;
+                        invoice.id = AppSettings.nextBillId;
                         inputEditable();
                     }
                     else if (w.returnType == "3")//manual
                     {
                         invoice.invType = w.returnType;
+                        invoice.id = AppSettings.nextBillId;
                         inputEditable();
 
                     }
@@ -2253,7 +2258,8 @@ namespace Hesabate_POS.View.receipts
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                    clearInvoice(res.next_billid);
+                    //clearInvoice(res.next_billid);
+                    clearInvoice();
                 }
 
                 if (invoice != null)
@@ -3671,7 +3677,7 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
-                res.is_do = "1";
+                invoice.is_do = "1";
                 displayInvoice(res);
                 HelpClass.EndAwait(grid_main);
             }
@@ -3688,7 +3694,7 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
-                 res.is_do = "1";
+                invoice.is_do = "1";
                 displayInvoice(res);
                 HelpClass.EndAwait(grid_main);
             }
@@ -3699,6 +3705,38 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
+        private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+
+                invoiceWindow.title = Translate.getResource("318");
+                invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                invoiceWindow.ShowDialog();
+                if (invoiceWindow.isOk)
+                {
+                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    invoice.is_do = "1";
+                    //var res = await _invoiceService.GetInvoiceInfo("2", "9");
+                    displayInvoice(res);
+                }
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         private void displayInvoice(InvoiceModel invoiceModel)
         {
             invoiceDetailsList = new List<ItemModel>();
@@ -3947,38 +3985,7 @@ namespace Hesabate_POS.View.receipts
 
 
         }
-        private async void btn_invoiceNumber_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                HelpClass.StartAwait(grid_main);
-
-                Window.GetWindow(this).Opacity = 0.2;
-                wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
-                invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
-
-                invoiceWindow.title = Translate.getResource("318");
-                invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
-                //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
-                invoiceWindow.ShowDialog();
-                if(invoiceWindow.isOk)
-                {
-                   var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                    res.is_do = "1";
-                    //var res = await _invoiceService.GetInvoiceInfo("2", "9");
-                    displayInvoice(res);
-                }
-                Window.GetWindow(this).Opacity = 1;
-                HelpClass.EndAwait(grid_main);
-            }
-            catch (Exception ex)
-            {
-                Window.GetWindow(this).Opacity = 1;
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
+      
 
         #endregion
 
@@ -3997,7 +4004,8 @@ namespace Hesabate_POS.View.receipts
                 //save invoice
 
                 var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                clearInvoice(res.next_billid);
+                //clearInvoice(res.next_billid);
+                clearInvoice();
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -4023,7 +4031,7 @@ namespace Hesabate_POS.View.receipts
                 if (invoiceWindow.isOk)
                 {
                     var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                    res.is_do = "3";
+                    invoice.is_do = "3";
                     displayInvoice(res);
                 }
                 Window.GetWindow(this).Opacity = 1;
