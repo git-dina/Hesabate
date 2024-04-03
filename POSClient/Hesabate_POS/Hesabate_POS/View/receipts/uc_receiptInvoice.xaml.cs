@@ -366,8 +366,8 @@ namespace Hesabate_POS.View.receipts
 
                     //show window to select sales invoice to replace with return
                     wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                    invoiceWindow.title = Translate.getResource("318");
-                    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                    invoiceWindow.title = Translate.getResource("133");
+                    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token="+ AppSettings.token + "&backbill=1"  ;
                     invoiceWindow.ShowDialog();
                     if (invoiceWindow.isOk)
                     {
@@ -4012,9 +4012,9 @@ namespace Hesabate_POS.View.receipts
 
                 Window.GetWindow(this).Opacity = 0.2;
                 wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                invoiceWindow.title = Translate.getResource("318");
-                invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
-                //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                invoiceWindow.title = Translate.getResource("2155");
+                invoiceWindow.url = "/search/pos_search/desktop_search/p5_1_1api.php?token=" + AppSettings.token;
+
                 invoiceWindow.ShowDialog();
                 if (invoiceWindow.isOk)
                 {
