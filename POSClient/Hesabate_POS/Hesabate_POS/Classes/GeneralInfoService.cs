@@ -44,7 +44,8 @@ namespace Hesabate_POS.Classes
                     }
                 }
                 catch  (Exception e){
-                    Languages = new List<LanguageModel>();
+                    await GetLanguages();
+                    //Languages = new List<LanguageModel>();
                 }
             }
 

@@ -3671,6 +3671,7 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
+                res.is_do = "1";
                 displayInvoice(res);
                 HelpClass.EndAwait(grid_main);
             }
@@ -3687,6 +3688,7 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
+                 res.is_do = "1";
                 displayInvoice(res);
                 HelpClass.EndAwait(grid_main);
             }
@@ -3897,7 +3899,7 @@ namespace Hesabate_POS.View.receipts
                 });
             }
 
-            this.DataContext = invoice;
+            this.DataContext = invoiceModel;
 
             if (AppSettings.invoiceDetailsType == "small")
                 buildInvoiceDetailsSmall(invoiceDetailsList);
@@ -3963,6 +3965,7 @@ namespace Hesabate_POS.View.receipts
                 if(invoiceWindow.isOk)
                 {
                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    res.is_do = "1";
                     //var res = await _invoiceService.GetInvoiceInfo("2", "9");
                     displayInvoice(res);
                 }
@@ -3986,7 +3989,8 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 HelpClass.StartAwait(grid_main);
-                invoice.pending = "1";
+                if(invoice.is_do != "3")
+                    invoice.is_do = "2";
 
                 invoice.note = tb_Notes1.Text;
                 invoice.note2 = tb_Notes2.Text;
@@ -4019,6 +4023,7 @@ namespace Hesabate_POS.View.receipts
                 if (invoiceWindow.isOk)
                 {
                     var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    res.is_do = "3";
                     displayInvoice(res);
                 }
                 Window.GetWindow(this).Opacity = 1;

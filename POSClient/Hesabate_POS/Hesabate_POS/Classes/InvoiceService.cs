@@ -53,7 +53,7 @@ namespace Hesabate_POS.Classes
                 {
                     foreach (var row in item.addsItems)
                         foreach (var add in row.group_items)
-                            if (add.basicAmount != 0)
+                            //if (add.basicAmount != 0)
                             {
                                 if (adds.Count.Equals(0))
                                     adds.Add(new ExtraItemModel() { 
@@ -111,8 +111,7 @@ namespace Hesabate_POS.Classes
             #endregion
             InvoiceModel invoiceRes = new InvoiceModel();
             var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
-            try
-            {
+           
                 var content = new MultipartFormDataContent();
                 content.Add(new StringContent(AppSettings.token), "token");
                 content.Add(new StringContent("2"), "op");
@@ -147,21 +146,25 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.invType), "invType");
                 content.Add(new StringContent(invoice.id), "id");
                 content.Add(new StringContent(invoice.return_billid), "return_billid");//رقم فاتورة المردودات في حال الاستبدال
-                content.Add(new StringContent(invoice.pending), "pending");
+               // content.Add(new StringContent(invoice.pending), "pending");
 
                 request.Content = content;
-                var response = await client.SendAsync(request);
+            HttpResponseMessage response = new HttpResponseMessage(); 
+            try
+            {
+                 response = await client.SendAsync(request);
 
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                  invoiceRes = JsonConvert.DeserializeObject<InvoiceModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-
-                }
+               
             }
             catch (Exception ex)
             {
-               // return new List<ItemModel>();
+                await SaveInvoice(invoiceItems, invoice);
+            }
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                invoiceRes = JsonConvert.DeserializeObject<InvoiceModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+
             }
             return invoiceRes;
 
@@ -283,7 +286,7 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.invType), "invType");
                 content.Add(new StringContent(invoice.id), "id");
                 content.Add(new StringContent(invoice.return_billid), "return_billid");//رقم فاتورة المردودات في حال الاستبدال
-                content.Add(new StringContent(invoice.pending), "pending");
+                //content.Add(new StringContent(invoice.pending), "pending");
 
                 request.Content = content;
                 var response = await client.SendAsync(request);

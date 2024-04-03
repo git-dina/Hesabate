@@ -68,7 +68,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public decimal round_dis { get; set; }//discount calculated through round mathmatics
         public decimal auto_discount { get; set; }//discount from campages and other options
         public decimal request { get; set; }//id of holded invoice changed from
-        public string pending { get; set; } = "0"; //0: normal, 1: pending
+        //public string pending { get; set; } = "0"; //0: normal, 1: pending
 
         //extra
         public string discountType { get; set; } = "rate";
