@@ -164,7 +164,7 @@ namespace Hesabate_POS.Classes
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
                 invoiceRes = JsonConvert.DeserializeObject<InvoiceModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-                if (invoiceRes.next_billid != "0")
+                if (invoiceRes.next_billid != "0" && invoiceRes.next_billid != "")
                     AppSettings.nextBillId = invoiceRes.next_billid;
             }
             return invoiceRes;

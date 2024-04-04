@@ -284,7 +284,8 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-                mainWindowBrowser.returnedValue = metaData;
+                var data = metaData.Split('&');
+                mainWindowBrowser.returnedValue = data[0];
                 mainWindowBrowser.isOk = true;
                 //Yasin
                 mainWindowBrowser.Dispatcher.Invoke(() =>
@@ -299,6 +300,7 @@ namespace Hesabate_POS.View.windows
                 return EXXX.ToString();
             }
         }
+        
         //public string KioskPOS(double amount, string bill_id, int Currency)
         //{
         //    try

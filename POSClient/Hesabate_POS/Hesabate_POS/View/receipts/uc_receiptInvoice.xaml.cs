@@ -3677,8 +3677,12 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
-                invoice.is_do = "1";
-                displayInvoice(res);
+                if (res.result != "-1")
+                {
+                    invoice.is_do = "1";
+                    invoice.id = res.id;
+                    displayInvoice(res);
+                }
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -3694,8 +3698,12 @@ namespace Hesabate_POS.View.receipts
             {
                 HelpClass.StartAwait(grid_main);
                 var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
-                invoice.is_do = "1";
-                displayInvoice(res);
+                if (res.result != "-1")
+                {
+                    invoice.is_do = "1";
+                    invoice.id = res.id;
+                    displayInvoice(res);
+                }
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -3724,6 +3732,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
                     invoice.is_do = "1";
+                    invoice.id = res.id;
                     //var res = await _invoiceService.GetInvoiceInfo("2", "9");
                     displayInvoice(res);
                 }
@@ -3905,6 +3914,10 @@ namespace Hesabate_POS.View.receipts
                 }
                 #endregion
                 totalPrice = (totalPrice - it.discount) * it.amount;
+               var unitsList = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList;
+                string unitName = "";
+                if(unitsList != null)
+                    unitName = unitsList.Where(x => x.id == it.unit).FirstOrDefault().name;
                 invoiceDetailsList.Add(new ItemModel()
                 {
                     addsItems =addsGroup,
@@ -3931,8 +3944,10 @@ namespace Hesabate_POS.View.receipts
                     x_discount = it.x_discount,
                     x_vat = it.x_vat,
                     unit = it.unit,
-                    unitList = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList,
-                    unit_name = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList.Where(x => x.id == it.unit).FirstOrDefault().name,
+                  //  unitList = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList,
+                    unitList =unitsList,
+                   // unit_name = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList.Where(x => x.id == it.unit).FirstOrDefault().name,
+                    unit_name = unitName,
                     total = totalPrice,
                 });
             }
@@ -4032,6 +4047,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
                     invoice.is_do = "3";
+                    invoice.id = res.id;
                     displayInvoice(res);
                 }
                 Window.GetWindow(this).Opacity = 1;
