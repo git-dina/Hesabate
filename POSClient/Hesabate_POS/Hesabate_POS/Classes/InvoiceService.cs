@@ -71,7 +71,7 @@ namespace Hesabate_POS.Classes
                 {
                     foreach (var row in item.deletesItems)
                         foreach (var add in row.group_items)
-                            if (add.basicAmount != 0)
+                            //if (add.basicAmount != 0)
                             {
                                 if (deletes.Count.Equals(0))
                                     deletes.Add(new ExtraItemModel() { 
@@ -153,20 +153,20 @@ namespace Hesabate_POS.Classes
             try
             {
                  response = await client.SendAsync(request);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    invoiceRes = JsonConvert.DeserializeObject<InvoiceModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                    if (invoiceRes.next_billid != "0" && invoiceRes.next_billid != "")
+                        AppSettings.nextBillId = invoiceRes.next_billid;
+                }
 
-               
             }
             catch (Exception ex)
             {
-                await SaveInvoice(invoiceItems, invoice);
+                invoiceRes = await SaveInvoice(invoiceItems, invoice);
             }
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var jsonString = await response.Content.ReadAsStringAsync();
-                invoiceRes = JsonConvert.DeserializeObject<InvoiceModel>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-                if (invoiceRes.next_billid != "0" && invoiceRes.next_billid != "")
-                    AppSettings.nextBillId = invoiceRes.next_billid;
-            }
+            
             return invoiceRes;
 
         } 

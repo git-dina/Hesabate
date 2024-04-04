@@ -2252,7 +2252,8 @@ namespace Hesabate_POS.View.receipts
                 if (w.isOk)
                 {
                     invoice.external = w.externalType;
-
+                    if (w.externalType == "2")
+                        invoice.is_do = "3";
                     invoice.note = tb_Notes1.Text;
                     invoice.note2 = tb_Notes2.Text;
                     //save invoice
