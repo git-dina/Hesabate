@@ -11,7 +11,7 @@ namespace Hesabate_POS.Classes.ApiClasses
     public class InvoiceModel : INotifyPropertyChanged
     {
 
-        public int customer_id { get; set; }
+        public int customer_id { get; set; } = 1;
 
        // private string _BillId = GeneralInfoService.GeneralInfo.BILL_ID.ToString();
         private string _BillId = AppSettings.nextBillId;
