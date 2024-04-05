@@ -2294,20 +2294,21 @@ namespace Hesabate_POS.View.receipts
             {
                 if (invoice != null)
                 {
+                    if (invoice.takeaway == "0")
+                        invoice.takeaway = "1";
+                    else
+                        invoice.takeaway = "0";
+
                     if (invoice.takeaway.Equals("1"))
                     {
-                        invoice.takeaway = "0";
                         btn_takeAway.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
                         path_takeAway.Fill = Application.Current.Resources["White"] as SolidColorBrush;
-                        //txt_takeAway.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
                     }
                     else
                     {
-                        invoice.takeaway = "1";
                         btn_takeAway.Background = Application.Current.Resources["White"] as SolidColorBrush;
                         path_takeAway.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                        //txt_takeAway.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                     }
                 }
             }
@@ -3680,9 +3681,11 @@ namespace Hesabate_POS.View.receipts
                 var res = await _invoiceService.GetInvoiceInfo("0", invoice.id);
                 if (res.result != "-1")
                 {
+                    invoice = res;
                     invoice.is_do = "1";
-                    invoice.id = res.id;
-                    displayInvoice(res);
+
+                    //invoice.id = res.id;
+                    displayInvoice(invoice);
                 }
                 HelpClass.EndAwait(grid_main);
             }
@@ -3701,9 +3704,10 @@ namespace Hesabate_POS.View.receipts
                 var res = await _invoiceService.GetInvoiceInfo("1",invoice.id);
                 if (res.result != "-1")
                 {
+                    invoice = res;
                     invoice.is_do = "1";
-                    invoice.id = res.id;
-                    displayInvoice(res);
+                    //invoice.id = res.id;
+                    displayInvoice(invoice);
                 }
                 HelpClass.EndAwait(grid_main);
             }
@@ -3732,10 +3736,11 @@ namespace Hesabate_POS.View.receipts
                 if (invoiceWindow.isOk)
                 {
                     var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    invoice = res;
                     invoice.is_do = "1";
-                    invoice.id = res.id;
-                    //var res = await _invoiceService.GetInvoiceInfo("2", "9");
-                    displayInvoice(res);
+                    //invoice.id = res.id;
+
+                    displayInvoice(invoice);
                 }
                 Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
@@ -3962,6 +3967,44 @@ namespace Hesabate_POS.View.receipts
 
             inputEditable();
             CalculateInvoiceValues();
+
+            #region button color
+            if (invoice.for_use.Equals("1"))
+            {
+                btn_using.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                path_using.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+            }
+            else
+            {
+                btn_using.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                path_using.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+            }
+            if (invoice.takeaway.Equals("1"))
+            {
+                btn_takeAway.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                path_takeAway.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+
+            }
+            else
+            {
+                btn_takeAway.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                path_takeAway.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            }
+
+            if (invoice.external.Equals("1") || invoice.external.Equals("2"))
+            {
+                btn_external.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                path_external.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+            }
+            else
+            {
+
+                btn_external.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                path_external.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+            }
+            #endregion
         }
 
         private void inputEditable()
