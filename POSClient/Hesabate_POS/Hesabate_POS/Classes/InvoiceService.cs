@@ -16,6 +16,9 @@ namespace Hesabate_POS.Classes
         private HttpClient client = AppSettings.httpClient;
         public async Task<InvoiceModel> SaveInvoice(List<ItemModel> invoiceItems,InvoiceModel invoice)
         {
+            if (invoice.invType == "1")
+                invoice.total_after_discount = invoice.total_after_discount * -1;
+
             #region invoice item object
             List<InvoiceItem> items = new List<InvoiceItem>();
             foreach(var item in invoiceItems)

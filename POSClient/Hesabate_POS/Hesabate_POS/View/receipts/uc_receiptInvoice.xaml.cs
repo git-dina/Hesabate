@@ -2255,7 +2255,7 @@ namespace Hesabate_POS.View.receipts
                 {
                     invoice.external = w.externalType;
                     if (w.externalType == "2")
-                        invoice.is_do = "3";
+                        invoice.is_do = "2";
                     invoice.note = tb_Notes1.Text;
                     invoice.note2 = tb_Notes2.Text;
                     //save invoice
@@ -3378,6 +3378,7 @@ namespace Hesabate_POS.View.receipts
             //decimal total = invoiceDetailsList.Select(x => x.total).Sum();
             decimal total = positiveTotal - negativeTotal;
 
+          
             //service
             decimal serviceAmount = HelpClass.calcPercentage(total, GeneralInfoService.GeneralInfo.MainOp.service);
             invoice.service = serviceAmount;
@@ -3443,7 +3444,12 @@ namespace Hesabate_POS.View.receipts
             if (invoice.for_use == "1")
                 totalNet = 0;
 
+
+            if (invoice.invType == "1")
+                totalNet = totalNet * -1;
+
             invoice.total_after_discount = totalNet;
+
             invoice.total = invoiceDetailsList.Select(x => x.total).Sum();
             //display
             txt_Count.Text = invoiceDetailsList.Select(x => x.amount).Sum().ToString();
