@@ -367,6 +367,8 @@ namespace Hesabate_POS.View.receipts
 
                     //show window to select sales invoice to replace with return
                     wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                    invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                    invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
                     invoiceWindow.title = Translate.getResource("133");
                     invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token="+ AppSettings.token + "&backbill=1"  ;
                     invoiceWindow.ShowDialog();
@@ -4035,7 +4037,20 @@ namespace Hesabate_POS.View.receipts
             btn_invItmOptPriceMinus.IsEnabled = !(invoice.invType == "1") ? true : false;
             btn_invItmOptPricePlus.IsEnabled = !(invoice.invType == "1") ? true : false;
             tb_search.IsEnabled = !(invoice.invType == "1") ? true : false;
-            brd_manualReturn.Visibility = invoice.invType == "3" ? Visibility.Visible : Visibility.Collapsed;
+
+            //brd_manualReturn.Visibility = invoice.invType == "3" ? Visibility.Visible : Visibility.Collapsed;
+            if(invoice.invType == "3")
+            {
+                brd_manualReturn.Visibility =  Visibility.Visible;
+                dg_invoiceDetailsBig.AlternatingRowBackground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#00FFFFFF")); 
+            }
+            else
+            {
+                brd_manualReturn.Visibility =Visibility.Collapsed;
+                dg_invoiceDetailsBig.AlternatingRowBackground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f3f3f3"));
+
+            }
+
             sp_invItmOpsBasic.IsEnabled = !(invoice.invType == "1") ? true : false;
             sp_invItmOpsAdds.IsEnabled = !(invoice.invType == "1") ? true : false;
             sp_invItmOpsDeletes.IsEnabled = !(invoice.invType == "1") ? true : false;
@@ -4083,6 +4098,8 @@ namespace Hesabate_POS.View.receipts
 
                 Window.GetWindow(this).Opacity = 0.2;
                 wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
                 invoiceWindow.title = Translate.getResource("2155");
                 invoiceWindow.url = "/search/pos_search/desktop_search/p5_1_1api.php?token=" + AppSettings.token;
 

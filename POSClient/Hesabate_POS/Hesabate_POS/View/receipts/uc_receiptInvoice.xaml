@@ -2155,10 +2155,12 @@ Margin="5"  CornerRadius="0,0,0,0"
                         <Grid x:Name="grid_invoiceDetailsBig" Visibility="Collapsed">
                             <Border Margin="5,5,5,17.5"   Grid.Row="1" CornerRadius="10" x:Name="brd_roundDataGrid" BorderThickness="0" 
                             Background="White"/>
+                            <!--AlternatingRowBackground="#f3f3f3" AlternationCount="2"-->
                             <DataGrid  Margin="5,5,5,5" Grid.Row="1"  IsReadOnly="False"   HeadersVisibility="Column"
                        x:Name="dg_invoiceDetailsBig" SelectionChanged="Dg_invoiceDetailsBig_SelectionChanged"  AutoGenerateColumns="False"   Background="White"
-                        AlternatingRowBackground="#f3f3f3" AlternationCount="2"
-                                      ColumnWidth="Auto" MaxColumnWidth="200"  >
+                                      ColumnWidth="Auto" MaxColumnWidth="200" 
+                                      AlternatingRowBackground="#f3f3f3" AlternationCount="2" 
+                                       CanUserAddRows="False">
                                 <DataGrid.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=brd_roundDataGrid}"/>
                                 </DataGrid.OpacityMask>
@@ -2189,19 +2191,6 @@ Margin="5"  CornerRadius="0,0,0,0"
                                     <DataGridTextColumn  x:Name="col_amount" Header="amount" IsReadOnly="True"   Binding="{Binding Path=amount, Mode=OneWay}"/>
                                     <DataGridTextColumn  x:Name="col_price" Header="price" Binding="{Binding Path=price, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
                                     <DataGridTextColumn  x:Name="col_total" Header="total" IsReadOnly="True" Binding="{Binding Path=total, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
-                                    <!--<DataGridTemplateColumn Header="Location" IsReadOnly="True" >
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Margin="-10"   Click="locationInvoiceItemRowinDatagrid"
-                                            Padding="0" 
-                                            Background="{x:Null}" BorderBrush="{x:Null}">
-                                                    <materialDesign:PackIcon Foreground="{StaticResource MainColor}" Kind="InfoCircle"  
-                                                                 HorizontalAlignment="Center" Grid.Column="0"  
-                                                                 VerticalAlignment="Center" Width="25" Height="25"/>
-                                                </Button>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>-->
                                     <DataGridTemplateColumn Width="35" Header="" IsReadOnly="True" >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
@@ -2216,6 +2205,15 @@ Margin="5"  CornerRadius="0,0,0,0"
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                 </DataGrid.Columns>
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="DataGridRow">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding itemType}" Value="1">
+                                                <Setter Property="Background" Value="{StaticResource lightRed}"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
                             </DataGrid>
                             
                         </Grid>
