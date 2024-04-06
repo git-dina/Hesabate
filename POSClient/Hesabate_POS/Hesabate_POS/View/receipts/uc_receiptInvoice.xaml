@@ -2160,7 +2160,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                        x:Name="dg_invoiceDetailsBig" SelectionChanged="Dg_invoiceDetailsBig_SelectionChanged"  AutoGenerateColumns="False"   Background="White"
                                       ColumnWidth="Auto" MaxColumnWidth="200" 
                                       AlternatingRowBackground="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeColorAlternatingDGConverter },UpdateSourceTrigger=PropertyChanged}" 
-                                       AlternationCount="" 
+                                       AlternationCount="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeCountAlternatingDGConverter},UpdateSourceTrigger=PropertyChanged}" 
                                        CanUserAddRows="False">
                                 <DataGrid.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=brd_roundDataGrid}"/>
