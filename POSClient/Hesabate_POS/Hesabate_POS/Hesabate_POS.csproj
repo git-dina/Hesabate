@@ -160,6 +160,7 @@
     <Compile Include="converters\boolToVisibilityConverter.cs" />
     <Compile Include="converters\invTotalColorConverter.cs" />
     <Compile Include="converters\invTotalTitleTextConverter.cs" />
+    <Compile Include="converters\invTypeColorAlternatingDGConverter.cs" />
     <Compile Include="converters\invTypeColorConverter.cs" />
     <Compile Include="converters\invTypeTextConverter.cs" />
     <Compile Include="converters\NotZeroToVisibilityConverter.cs" />
