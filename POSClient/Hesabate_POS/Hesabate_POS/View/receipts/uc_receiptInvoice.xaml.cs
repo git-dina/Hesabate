@@ -4054,7 +4054,6 @@ namespace Hesabate_POS.View.receipts
             {
                 brd_manualReturn.Visibility =Visibility.Collapsed;
                 dg_invoiceDetailsBig.AlternatingRowBackground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f3f3f3"));
-
             }
 
             sp_invItmOpsBasic.IsEnabled = !(invoice.invType == "1") ? true : false;
