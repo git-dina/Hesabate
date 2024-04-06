@@ -57,8 +57,8 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock   x:Name="txt_salesInvTotalTitle" 
-             Text="salesInv" 
+                <TextBlock   x:Name="txt_returnInvTotalTitle" 
+             Text="returnInv" Grid.Row="0"
         HorizontalAlignment="Left"
             VerticalAlignment="Center"
                 Foreground="{StaticResource MainColor}" 
@@ -66,33 +66,6 @@
                 FontSize="12"
                              Margin="10"/>
                 <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" 
-           Margin="10"
-                            HorizontalAlignment="Right"
-            VerticalAlignment="Center"  >
-                    <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
-x:Name="txt_salesInvTotal" 
-        HorizontalAlignment="Center"
-VerticalAlignment="Center"
-Foreground="{StaticResource MainColor}" 
- FontSize="12"  
-Margin="5 0"/>
-                    <TextBlock  Text="$" Grid.Row="0" Grid.Column="1"
-Tag="moneyIcon"
-        HorizontalAlignment="Center"
-VerticalAlignment="Center"
-Foreground="{StaticResource MainColor}" 
- FontSize="12"  Margin="0" />
-                </StackPanel>
-
-                <TextBlock   x:Name="txt_returnInvTotalTitle" 
-             Text="returnInv" Grid.Row="1"
-        HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-                Foreground="{StaticResource MainColor}" 
-                            FontWeight="SemiBold"
-                FontSize="12"
-                             Margin="10"/>
-                <StackPanel Grid.Row="1" Grid.Column="1"  Orientation="Horizontal" 
            Margin="10"
                             HorizontalAlignment="Right"
             VerticalAlignment="Center"  >
@@ -111,6 +84,35 @@ Foreground="{StaticResource mediumRed}"
  FontSize="12"  Margin="0" />
                 </StackPanel>
 
+
+                <TextBlock   x:Name="txt_salesInvTotalTitle" 
+             Text="salesInv"  Grid.Row="1"
+        HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+                Foreground="{StaticResource MainColor}" 
+                            FontWeight="SemiBold"
+                FontSize="12"
+                             Margin="10"/>
+                <StackPanel Grid.Row="1" Grid.Column="1"  Orientation="Horizontal" 
+           Margin="10"
+                            HorizontalAlignment="Right"
+            VerticalAlignment="Center"  >
+                    <TextBlock  Text="0.00" Grid.Row="0" Grid.Column="1"
+x:Name="txt_salesInvTotal" 
+        HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Foreground="{StaticResource MainColor}" 
+ FontSize="12"  
+Margin="5 0"/>
+                    <TextBlock  Text="$" Grid.Row="0" Grid.Column="1"
+Tag="moneyIcon"
+        HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Foreground="{StaticResource MainColor}" 
+ FontSize="12"  Margin="0" />
+                </StackPanel>
+
+                
 
                 <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="10 0"  
      BorderThickness="0 0 0 1" 

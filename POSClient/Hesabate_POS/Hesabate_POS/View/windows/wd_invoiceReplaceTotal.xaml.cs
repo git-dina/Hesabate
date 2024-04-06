@@ -96,7 +96,7 @@ namespace Hesabate_POS.View.windows
             if(salesInvTotal - returnInvTotal >= 0)
                 txt_totalTitle.Text = Translate.getResource("727");
             else
-                txt_totalTitle.Text = "المبلغ المدفوع";
+                txt_totalTitle.Text = "المبلغ للإرجاع";
         }
 
         private void HandleKeyPress(object sender, KeyEventArgs e)
