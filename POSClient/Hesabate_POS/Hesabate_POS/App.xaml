@@ -20,6 +20,7 @@
             <converters:invTotalTitleTextConverter x:Key="invTotalTitleTextConverter"/>
             <converters:invTypeColorConverter x:Key="invTypeColorConverter"/>
             <converters:invTypeColorAlternatingDGConverter x:Key="invTypeColorAlternatingDGConverter"/>
+            <converters:invTypeCountAlternatingDGConverter x:Key="invTypeCountAlternatingDGConverter"/>
             <converters:invTypeTextConverter x:Key="invTypeTextConverter"/>
             <converters:totalPositiveConverter x:Key="totalPositiveConverter"/>
 
