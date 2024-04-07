@@ -4048,14 +4048,14 @@ namespace Hesabate_POS.View.receipts
             if(invoice.invType == "3")
             {
                 brd_manualReturn.Visibility =  Visibility.Visible;
-                //dg_invoiceDetailsBig.AlternatingRowBackground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#00FFFFFF"));
-                //dg_invoiceDetailsBig.AlternationCount = 999999;
+                dg_invoiceDetailsBig.AlternationCount = 0;
+                dg_invoiceDetailsBig.AlternatingRowBackground = null ;
             }
             else
             {
                 brd_manualReturn.Visibility =Visibility.Collapsed;
-                //dg_invoiceDetailsBig.AlternatingRowBackground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f3f3f3"));
-                //dg_invoiceDetailsBig.AlternationCount = 2;
+                dg_invoiceDetailsBig.AlternatingRowBackground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f3f3f3"));
+                dg_invoiceDetailsBig.AlternationCount = 2;
             }
 
             sp_invItmOpsBasic.IsEnabled = !(invoice.invType == "1") ? true : false;

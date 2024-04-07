@@ -2156,12 +2156,12 @@ Margin="5"  CornerRadius="0,0,0,0"
                             <Border Margin="5,5,5,17.5"   Grid.Row="1" CornerRadius="10" x:Name="brd_roundDataGrid" BorderThickness="0" 
                             Background="White"/>
                             <!--AlternatingRowBackground="#f3f3f3" AlternationCount="2"-->
+                                 <!--AlternatingRowBackground="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeColorAlternatingDGConverter },UpdateSourceTrigger=PropertyChanged}" 
+                                AlternationCount="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeCountAlternatingDGConverter},UpdateSourceTrigger=PropertyChanged}"-->
                             <DataGrid  Margin="5,5,5,5" Grid.Row="1"  IsReadOnly="False"   HeadersVisibility="Column"
                        x:Name="dg_invoiceDetailsBig" SelectionChanged="Dg_invoiceDetailsBig_SelectionChanged"  AutoGenerateColumns="False"   Background="White"
                                       ColumnWidth="Auto" MaxColumnWidth="200" 
-                                      AlternatingRowBackground="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeColorAlternatingDGConverter },UpdateSourceTrigger=PropertyChanged}" 
-                                       AlternationCount="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeCountAlternatingDGConverter},UpdateSourceTrigger=PropertyChanged}" 
-                                       CanUserAddRows="False">
+                                      CanUserAddRows="False">
                                 <DataGrid.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=brd_roundDataGrid}"/>
                                 </DataGrid.OpacityMask>
