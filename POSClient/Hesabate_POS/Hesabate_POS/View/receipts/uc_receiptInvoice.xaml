@@ -2159,7 +2159,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                  <!--AlternatingRowBackground="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeColorAlternatingDGConverter },UpdateSourceTrigger=PropertyChanged}" 
                                 AlternationCount="{Binding invType, Mode=OneWay, Converter={StaticResource invTypeCountAlternatingDGConverter},UpdateSourceTrigger=PropertyChanged}"-->
                             <DataGrid  Margin="5,5,5,5" Grid.Row="1"  IsReadOnly="False"   HeadersVisibility="Column"
-                       x:Name="dg_invoiceDetailsBig" SelectionChanged="Dg_invoiceDetailsBig_SelectionChanged"  AutoGenerateColumns="False"   Background="White"
+                                        x:Name="dg_invoiceDetailsBig" SelectionChanged="Dg_invoiceDetailsBig_SelectionChanged"  AutoGenerateColumns="False"   Background="White"
                                       ColumnWidth="Auto" MaxColumnWidth="200" 
                                       CanUserAddRows="False">
                                 <DataGrid.OpacityMask>
@@ -2186,13 +2186,13 @@ Margin="5"  CornerRadius="0,0,0,0"
                                         </DataGridTextColumn.Header>
                                     </DataGridTextColumn>
                                     <DataGridTextColumn  x:Name="col_id"  Header="product_id" IsReadOnly="True"   Binding="{Binding Path=product_id, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_name" Header="name"  IsReadOnly="False"  Binding="{Binding Path=name}"/>
+                                    <DataGridTextColumn  x:Name="col_name" Header="name"  IsReadOnly="True"  Binding="{Binding Path=name}"/>
                                     <DataGridTextColumn  x:Name="col_unitName" Header="unitName" IsReadOnly="True"   Binding="{Binding Path=unit_name, Mode=OneWay}"/>
-                                    <DataGridTextColumn  x:Name="col_discount" Header="discount" IsReadOnly="True"   Binding="{Binding Path=discount, Mode=OneWay}"/>
+                                    <DataGridTextColumn  x:Name="col_discount" Header="discount" IsReadOnly="True"   Binding="{Binding Path=discount,  Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
                                     <DataGridTextColumn  x:Name="col_amount" Header="amount" IsReadOnly="True"   Binding="{Binding Path=amount, Mode=OneWay}"/>
                                     <DataGridTextColumn  x:Name="col_price" Header="price" Binding="{Binding Path=price, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
                                     <DataGridTextColumn  x:Name="col_total" Header="total" IsReadOnly="True" Binding="{Binding Path=total, Mode=OneWay, Converter={StaticResource accuracyConverter }}"/>
-                                    <DataGridTemplateColumn Width="35" Header="" IsReadOnly="True" >
+                                    <!--<DataGridTemplateColumn Width="35" Header="" IsReadOnly="True" >
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Margin="-10"   Click="deleteInvoiceItemRowinDatagrid"
@@ -2204,7 +2204,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                                 </Button>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    </DataGridTemplateColumn>-->
                                 </DataGrid.Columns>
                                 <DataGrid.RowStyle>
                                     <Style TargetType="DataGridRow">
