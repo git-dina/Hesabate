@@ -113,7 +113,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string is_ext { get; set; }
         public bool isUrgent { get; set; }
         public int index { get; set; }
-        public int amount { get; set; }
+        public decimal amount { get; set; }
         public decimal price { get; set; }
         public string notes { get; set; }
         public string no_w { get; set; }

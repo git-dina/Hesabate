@@ -101,8 +101,8 @@ namespace Hesabate_POS.Classes.ApiClasses
                 nameUnit = value;
             }
         }
-        private int _amount;
-        public int amount
+        private decimal _amount;
+        public decimal amount
         {
             get => _amount;
             set

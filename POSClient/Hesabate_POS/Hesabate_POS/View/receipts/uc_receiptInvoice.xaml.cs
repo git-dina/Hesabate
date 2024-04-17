@@ -359,48 +359,65 @@ namespace Hesabate_POS.View.receipts
             try
             {
                 HelpClass.StartAwait(grid_main);
-                bool canSave = false;
-
-                if (invoice.invType == "2") //replace
+                if (invoiceDetailsList.Count > 0)
                 {
-                    Window.GetWindow(this).Opacity = 0.2;
+                    bool canSave = false;
 
-                    //show window to select sales invoice to replace with return
-                    wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                    invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
-                    invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
-                    invoiceWindow.title = Translate.getResource("133");
-                    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token="+ AppSettings.token + "&backbill=1"  ;
-                    invoiceWindow.ShowDialog();
-                    if (invoiceWindow.isOk)
+                    if (invoice.invType == "2") //replace
                     {
-                        canSave = true;
-                        invoice.return_billid = invoiceWindow.returnedValue;
-                        //get sales invoice info
-                        var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                        wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
-                        w.salesInvTotal = invoice.total_after_discount;
-                        w.returnInvTotal = salesInvoice.total_after_discount;
-                        w.ShowDialog();
+                        Window.GetWindow(this).Opacity = 0.2;
 
+                        //show window to select sales invoice to replace with return
+                        wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                        invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                        invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+                        invoiceWindow.title = Translate.getResource("133");
+                        invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token + "&backbill=1";
+                        invoiceWindow.ShowDialog();
+                        if (invoiceWindow.isOk)
+                        {
+                            canSave = true;
+                            invoice.return_billid = invoiceWindow.returnedValue;
+                            //get sales invoice info
+                            var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                            wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
+                            w.salesInvTotal = invoice.total_after_discount;
+                            w.returnInvTotal = salesInvoice.total_after_discount;
+                            w.ShowDialog();
+
+
+                        }
+
+                        Window.GetWindow(this).Opacity = 1;
 
                     }
+                    else
+                        canSave = true;
 
-                    Window.GetWindow(this).Opacity = 1;
 
+                    if (canSave)
+                    {
+                        //save pending invoice
+                        if (invoice.is_do == "3")
+                        {
+                            invoice.is_do = "0";
+                            invoice.request = invoice.id;
+                        }
+
+                        invoice.note = tb_Notes1.Text;
+                        invoice.note2 = tb_Notes2.Text;
+                        //save invoice
+
+                        var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                        // clearInvoice(res.next_billid);
+                        clearInvoice();
+                    }
                 }
                 else
-                    canSave = true;
-
-                if (canSave)
                 {
-                    invoice.note = tb_Notes1.Text;
-                    invoice.note2 = tb_Notes2.Text;
-                    //save invoice
-
-                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                   // clearInvoice(res.next_billid);
-                    clearInvoice();
+                    wd_messageBoxWithIcon messageWin = new wd_messageBoxWithIcon();
+                    messageWin.contentText1 = "لا يمكن حفظ فاتورة فارغة";
+                    messageWin.ShowDialog();
                 }
                 HelpClass.EndAwait(grid_main);
             }
@@ -1259,7 +1276,7 @@ namespace Hesabate_POS.View.receipts
                 if (w.isOk)
                 {
                     ItemModel invOptItem = textBox.DataContext as ItemModel;
-                    invOptItem.amount = int.Parse(w.outputValue.ToString());
+                    invOptItem.amount = decimal.Parse(w.outputValue.ToString());
                     calculateItemPrice();
                 }
 
@@ -1373,7 +1390,7 @@ namespace Hesabate_POS.View.receipts
                 if (w.isOk)
                 {
                     ItemModel invOptItem = textBox.DataContext as ItemModel;
-                    invOptItem.bonus = int.Parse(w.outputValue.ToString());
+                    invOptItem.bonus = decimal.Parse(w.outputValue.ToString());
                     //calculateItemPrice();
                 }
                 btn_allItems.Focus();
