@@ -47,6 +47,7 @@ namespace Hesabate_POS.View.windows
         public decimal valueForRate { get; set; }
         public bool isOk { get; set; }
         public static List<string> requiredControlList;
+        bool firstHandleKey = true;
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {//load
@@ -103,6 +104,12 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
+                if(firstHandleKey)
+                {
+                    firstHandleKey = false;
+                    tb_discount.Text = "";
+                }
+
                 if (e.Key == Key.Return)
                 {
                     //Btn_save_Click(btn_save, null);
@@ -249,6 +256,11 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
+                if (firstHandleKey)
+                {
+                    firstHandleKey = false;
+                    tb_discount.Text = "";
+                }
                 tb_discount.Text += (sender as Button).Content;
             }
             catch (Exception ex)
@@ -261,6 +273,11 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
+                if (firstHandleKey)
+                {
+                    firstHandleKey = false;
+                    tb_discount.Text = "";
+                }
                 if (!string.IsNullOrEmpty(tb_discount.Text))
                 {
                     tb_discount.Text = tb_discount.Text.Remove(tb_discount.Text.Length - 1);
