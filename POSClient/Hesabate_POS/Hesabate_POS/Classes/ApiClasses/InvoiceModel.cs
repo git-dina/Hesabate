@@ -68,7 +68,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int room_reservation_id { get; set; } = 0;//room reservation id if used
         public decimal round_dis { get; set; }//discount calculated through round mathmatics
         public decimal auto_discount { get; set; }//discount from campages and other options
-        public decimal request { get; set; }//id of holded invoice changed from
+        public string request { get; set; }//id of holded invoice changed from
         
         public string result { get; set; }
 
@@ -109,7 +109,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string x_vat { get; set; } //ضريبة العنصر
         public string is_special { get; set; }
         public decimal x_discount { get; set; }
-        public int bonus { get; set; }
+        public decimal bonus { get; set; }
         public string is_ext { get; set; }
         public bool isUrgent { get; set; }
         public int index { get; set; }

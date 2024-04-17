@@ -43,8 +43,8 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string x_vat { get; set; } //ضريبة العنصر
         public string is_special { get; set; }//غير موجود في اجراء getitems
         public decimal x_discount { get; set; }//غير موجود في اجراء getitems
-        private int _bonus;
-        public int bonus
+        private decimal _bonus;
+        public decimal bonus
         {
             get => _bonus;
             set
