@@ -85,8 +85,8 @@ namespace Hesabate_POS.View.windows
 
             txt_title.Text = "نوع الإرجاع";
             txt_full.Text = "ارجاع فاتورة";
-            txt_manual.Text = "يدوي";
-            txt_replace.Text = "استبدال";
+            txt_manual.Text = "استبدال أصناف بأصناف";
+            txt_replace.Text = "استبدال فاتورة كاملة بأصناف";
             //btn_save.Content = Translate.getResource("27");
         }
 
