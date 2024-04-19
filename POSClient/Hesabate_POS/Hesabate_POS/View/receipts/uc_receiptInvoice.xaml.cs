@@ -361,41 +361,41 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.StartAwait(grid_main);
                 if (invoiceDetailsList.Count > 0)
                 {
-                    bool canSave = false;
+                    //bool canSave = false;
 
-                    if (invoice.invType == "2") //replace
-                    {
-                        Window.GetWindow(this).Opacity = 0.2;
+                    //if (invoice.invType == "2") //replace
+                    //{
+                    //    Window.GetWindow(this).Opacity = 0.2;
 
-                        //show window to select sales invoice to replace with return
-                        wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                        invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
-                        invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
-                        invoiceWindow.title = Translate.getResource("133");
-                        invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token + "&backbill=1";
-                        invoiceWindow.ShowDialog();
-                        if (invoiceWindow.isOk)
-                        {
-                            canSave = true;
-                            invoice.return_billid = invoiceWindow.returnedValue;
-                            //get sales invoice info
-                            var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                            wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
-                            w.salesInvTotal = invoice.total_after_discount;
-                            w.returnInvTotal = salesInvoice.total_after_discount;
-                            w.ShowDialog();
-
-
-                        }
-
-                        Window.GetWindow(this).Opacity = 1;
-
-                    }
-                    else
-                        canSave = true;
+                    //    //show window to select sales invoice to replace with return
+                    //    wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                    //    invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                    //    invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+                    //    invoiceWindow.title = Translate.getResource("133");
+                    //    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token + "&backbill=1";
+                    //    invoiceWindow.ShowDialog();
+                    //    if (invoiceWindow.isOk)
+                    //    {
+                    //        canSave = true;
+                    //        invoice.return_billid = invoiceWindow.returnedValue;
+                    //        //get sales invoice info
+                    //        var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    //        wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
+                    //        w.salesInvTotal = invoice.total_after_discount;
+                    //        w.returnInvTotal = salesInvoice.total_after_discount;
+                    //        w.ShowDialog();
 
 
-                    if (canSave)
+                    //    }
+
+                    //    Window.GetWindow(this).Opacity = 1;
+
+                    //}
+                    //else
+                    //    canSave = true;
+
+
+                    //if (canSave)
                     {
                         //save pending invoice
                         if (invoice.is_do == "3")
@@ -493,49 +493,94 @@ namespace Hesabate_POS.View.receipts
                 {
                     clearInvoice();
                     invoice.invType = w.returnType;
-                    //if(w.returnType == "0")
-                    //{
-                    //    inputEditable();
-                    //}
-                    //else 
+                    HelpClass.StartAwait(grid_main);
+
                     if (w.returnType == "1")//full return
                     {
-                        wd_customizeKeyboard wd = new wd_customizeKeyboard();
-                        wd.title = Translate.getResource("542");//invoice number
-                        wd.ShowDialog();
-                        if (wd.isOk)
-                        {
-                            HelpClass.StartAwait(grid_main);
-                            invoice.id = wd.outputValue.ToString();
-                            try
-                            {
-                                invoice = await _invoiceService.GetInvoiceInfo("2", invoice.id);
-                                invoice.invType = w.returnType;
-                                invoice.id = AppSettings.nextBillId;
-                                displayInvoice(invoice);
-                                HelpClass.EndAwait(grid_main);
-                            }
-                            catch
-                            {
-                                clearInvoice();
-                                HelpClass.EndAwait(grid_main);
+                        Window.GetWindow(this).Opacity = 0.2;
+                        wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                        invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                        invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
 
-                            }
+                        invoiceWindow.title = Translate.getResource("318");
+                        invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                        //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
+                        invoiceWindow.ShowDialog();
+                        if (invoiceWindow.isOk)
+                        {
+                            var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                            invoice = res;
+                            invoice.invType = w.returnType;
+                            invoice.id = AppSettings.nextBillId;
+                            displayInvoice(invoice);
                         }
+                        Window.GetWindow(this).Opacity = 1;
+                       
+
+                        //wd_customizeKeyboard wd = new wd_customizeKeyboard();
+                        //wd.title = Translate.getResource("542");//invoice number
+                        //wd.ShowDialog();
+                        //if (wd.isOk)
+                        //{
+                        //    HelpClass.StartAwait(grid_main);
+                        //    invoice.id = wd.outputValue.ToString();
+                        //    try
+                        //    {
+                        //        invoice = await _invoiceService.GetInvoiceInfo("2", invoice.id);
+                        //        invoice.invType = w.returnType;
+                        //        invoice.id = AppSettings.nextBillId;
+                        //        displayInvoice(invoice);
+                        //        HelpClass.EndAwait(grid_main);
+                        //    }
+                        //    catch
+                        //    {
+                        //        clearInvoice();
+                        //        HelpClass.EndAwait(grid_main);
+
+                        //    }
+                        //}
                     }
                     else if (w.returnType == "2")//replace
                     {
-                        invoice.invType = w.returnType;
-                        invoice.id = AppSettings.nextBillId;
-                        inputEditable();
+                        Window.GetWindow(this).Opacity = 0.2;
+
+                        //show window to select sales invoice to replace with return
+                        wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                        invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                        invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+                        invoiceWindow.title = Translate.getResource("133");
+                        invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token + "&backbill=1";
+                        invoiceWindow.ShowDialog();
+                        if (invoiceWindow.isOk)
+                        {
+                            invoice.return_billid = invoiceWindow.returnedValue;
+                            //get sales invoice info
+                            var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                            invoice = res;
+                            invoice.invType = w.returnType;
+                            invoice.id = AppSettings.nextBillId;
+
+                            foreach (var it in invoice.items)
+                            {
+                                it.itemType = "1";
+                            }
+                            displayInvoice(invoice);
+                        }
+
+                        Window.GetWindow(this).Opacity = 1;
+
+                       
                     }
                     else if (w.returnType == "3")//manual
                     {
+                        manualReturn = true;
+
                         invoice.invType = w.returnType;
                         invoice.id = AppSettings.nextBillId;
                         inputEditable();
 
                     }
+                    HelpClass.EndAwait(grid_main);
                 }
 
 
@@ -546,6 +591,7 @@ namespace Hesabate_POS.View.receipts
             catch (Exception ex)
             {
                 Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
@@ -3980,6 +4026,7 @@ namespace Hesabate_POS.View.receipts
                    // unit_name = GeneralInfoService.items.Where(x => x.product_id == it.id).FirstOrDefault().unitList.Where(x => x.id == it.unit).FirstOrDefault().name,
                     unit_name = unitName,
                     total = totalPrice,
+                    itemType = it.itemType,
                 });
             }
 
