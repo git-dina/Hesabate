@@ -579,6 +579,9 @@ namespace Hesabate_POS.View.receipts
                         invoice.id = AppSettings.nextBillId;
                         inputEditable();
 
+
+                        manualReturn = true;
+                        manualReturnSetState(manualReturn);
                     }
                     HelpClass.EndAwait(grid_main);
                 }
