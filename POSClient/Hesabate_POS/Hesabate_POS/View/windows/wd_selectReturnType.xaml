@@ -8,7 +8,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
-         Height="180" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+         Height="210" Width="325" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
@@ -75,7 +75,7 @@ VerticalAlignment="Center" Width="20" Height="20"
                         </Grid>
                     </Button>-->
                     <Button  Grid.Row="1" 
-                         Margin="5"
+                         Margin="5" Height="40"
             x:Name="btn_full"  materialDesign:ButtonAssist.CornerRadius="7"
                Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
                          BorderThickness="1"
@@ -98,7 +98,7 @@ VerticalAlignment="Center" Width="20" Height="20"
                         </Grid>
                     </Button>
                     <Button  Grid.Row="1" 
-                         Margin="5"
+                         Margin="5" Height="40"
             x:Name="btn_replace"  materialDesign:ButtonAssist.CornerRadius="7"
                Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
                          BorderThickness="1"
@@ -121,7 +121,7 @@ VerticalAlignment="Center" Width="20" Height="20"
                         </Grid>
                     </Button>
                     <Button  Grid.Row="1" 
-                         Margin="5"
+                         Margin="5" Height="40"
             x:Name="btn_manual"  materialDesign:ButtonAssist.CornerRadius="7"
                Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
                          BorderThickness="1"
