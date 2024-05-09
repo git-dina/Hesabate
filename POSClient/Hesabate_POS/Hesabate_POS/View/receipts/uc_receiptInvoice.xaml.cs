@@ -4143,19 +4143,21 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                HelpClass.StartAwait(grid_main);
-                if(invoice.is_do != "3")
-                    invoice.is_do = "2";
+                if (invoiceDetailsList.Count > 0)
+                {
+                    HelpClass.StartAwait(grid_main);
+                    if (invoice.is_do != "3")
+                        invoice.is_do = "2";
 
-                invoice.note = tb_Notes1.Text;
-                invoice.note2 = tb_Notes2.Text;
-                //save invoice
+                    invoice.note = tb_Notes1.Text;
+                    invoice.note2 = tb_Notes2.Text;
+                    //save invoice
 
-                var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                //clearInvoice(res.next_billid);
-                clearInvoice();
+                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                    clearInvoice();
 
-                HelpClass.EndAwait(grid_main);
+                    HelpClass.EndAwait(grid_main);
+                }
             }
             catch
             {
@@ -4180,7 +4182,7 @@ namespace Hesabate_POS.View.receipts
                 invoiceWindow.ShowDialog();
                 if (invoiceWindow.isOk)
                 {
-                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
+                    var res = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue,"1");
                     invoice.is_do = "3";
                     invoice.id = res.id;
                     displayInvoice(res);
