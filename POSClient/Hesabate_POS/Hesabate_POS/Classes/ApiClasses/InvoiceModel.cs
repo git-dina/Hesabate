@@ -47,14 +47,12 @@ namespace Hesabate_POS.Classes.ApiClasses
         }
 
 
-        public int UNo { get; set; } = 0;//customer id
         public decimal over_discount { get; set; }//discount amount
         public decimal over_discount_percentage { get; set; }//discount percentage
         public decimal vat { get; set; }//vat percent
         public string vat_included { get; set; } = "0"; //is vat included ??from where
         public decimal vat_amount { get; set; }//calculateed vat amount
         public string bill_status { get; set; } = "1";//invoice status
-        public string cname { get; set; } = "";//customer name
         public string paid { get; set; } = "0";//payment type(0 not paid, 1 paid)
         public string note { get; set; }
         public string note2 { get; set; }
@@ -68,7 +66,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int room_reservation_id { get; set; } = 0;//room reservation id if used
         public decimal round_dis { get; set; }//discount calculated through round mathmatics
         public decimal auto_discount { get; set; }//discount from campages and other options
-        public string request { get; set; }//id of holded invoice changed from
+        public string request { get; set; } = "0";//id of holded invoice changed from
         
         public string result { get; set; }
 

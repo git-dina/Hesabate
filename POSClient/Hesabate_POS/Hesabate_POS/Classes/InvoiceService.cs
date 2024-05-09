@@ -124,13 +124,11 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.is_do), "Do");
                 content.Add(new StringContent(invoice.table_id), "table_id");
                 content.Add(new StringContent(invoice.total_after_discount.ToString()), "total_after_discount");
-                content.Add(new StringContent(invoice.UNo.ToString()), "UNo");
                 content.Add(new StringContent(invoice.over_discount.ToString()), "over_discount");
                 content.Add(new StringContent(invoice.vat.ToString()), "vat");
                 content.Add(new StringContent(invoice.vat_included), "vat_included");
                 content.Add(new StringContent(invoice.vat_amount.ToString()), "vat_amount");
                 content.Add(new StringContent(invoice.bill_status), "bill_status");
-                content.Add(new StringContent(invoice.cname), "cname");//مبيعات نقدية
                 content.Add(new StringContent(invoice.paid), "paid");//0,1
                 content.Add(new StringContent(invoice.note), "note");
                 content.Add(new StringContent(invoice.note2), "note2");
@@ -266,13 +264,11 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.is_do), "Do");
                 content.Add(new StringContent(invoice.table_id), "table_id");
                 content.Add(new StringContent(invoice.total_after_discount.ToString()), "total_after_discount");
-                content.Add(new StringContent(invoice.UNo.ToString()), "UNo");
                 content.Add(new StringContent(invoice.over_discount.ToString()), "over_discount");
                 content.Add(new StringContent(invoice.vat.ToString()), "vat");
                 content.Add(new StringContent(invoice.vat_included), "vat_included");
                 content.Add(new StringContent(invoice.vat_amount.ToString()), "vat_amount");
                 content.Add(new StringContent(invoice.bill_status), "bill_status");
-                content.Add(new StringContent(invoice.cname), "cname");//مبيعات نقدية
                 content.Add(new StringContent(invoice.paid), "paid");//0,1
                 content.Add(new StringContent(invoice.note), "note");
                 content.Add(new StringContent(invoice.note2), "note2");
@@ -291,7 +287,6 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.invType), "invType");
                 content.Add(new StringContent(invoice.id), "id");
                 content.Add(new StringContent(invoice.return_billid), "return_billid");//رقم فاتورة المردودات في حال الاستبدال
-                //content.Add(new StringContent(invoice.pending), "pending");
 
                 request.Content = content;
                 var response = await client.SendAsync(request);
