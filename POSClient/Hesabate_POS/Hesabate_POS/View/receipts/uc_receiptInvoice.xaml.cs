@@ -1,4 +1,5 @@
-﻿using Hesabate_POS.Classes;
+﻿using CefSharp.Wpf;
+using Hesabate_POS.Classes;
 using Hesabate_POS.Classes.ApiClasses;
 using Hesabate_POS.converters;
 using Hesabate_POS.View.windows;
@@ -354,6 +355,8 @@ namespace Hesabate_POS.View.receipts
 
 
         #endregion
+
+        #region save - saveDraft
         private async void Btn_save_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -464,6 +467,7 @@ namespace Hesabate_POS.View.receipts
 
             var res = await _invoiceService.ArchiveInvoice(invoiceDetailsList, invoice);
         }
+        #endregion
         private void Btn_stop_Click(object sender, RoutedEventArgs e)
         {
 
@@ -472,9 +476,27 @@ namespace Hesabate_POS.View.receipts
         #region grid0_1
 
 
-        private void btn_printInvoice_Click(object sender, RoutedEventArgs e)
+        private async void btn_printInvoice_Click(object sender, RoutedEventArgs e)
         {
+            //print
+            try
+            {
+                HelpClass.StartAwait(grid_main);
 
+                var url  =AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
+                var bmMain = new System.Windows.Forms.WebBrowser();
+                wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                var external = new external(bmMain, invoiceWindow);
+                external.AmmarPrint(url);
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
         private void Mi_printInvoiceTax_Click(object sender, RoutedEventArgs e)
         {

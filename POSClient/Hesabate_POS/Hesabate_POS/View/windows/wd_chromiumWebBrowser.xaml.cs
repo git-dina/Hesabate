@@ -300,7 +300,20 @@ namespace Hesabate_POS.View.windows
                 return EXXX.ToString();
             }
         }
-        
+
+        public void AmmarPrint(string url)
+        {
+            try
+            {
+                bmMain.Navigate( url);
+                // MessageBox.Show(Settings.Default.StartPage + "/" + url);
+            }
+            catch (Exception EXXX)
+            {
+               // MessageBox.Show(EXXX.ToString());
+            }
+
+        }
         //public string KioskPOS(double amount, string bill_id, int Currency)
         //{
         //    try
