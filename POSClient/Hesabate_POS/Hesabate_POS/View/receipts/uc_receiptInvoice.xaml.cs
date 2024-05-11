@@ -4161,6 +4161,22 @@ namespace Hesabate_POS.View.receipts
 
         #region Button From mainWindow
 
+
+        public async void btn_toKitchen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                    HelpClass.StartAwait(grid_main);
+                    MessageBox.Show("you click btn_toKitchen_Click");
+                    HelpClass.EndAwait(grid_main);
+            }
+            catch
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+            }
+
+        }
         public async void btn_pending_Click(object sender, RoutedEventArgs e)
         {
             try

@@ -448,7 +448,14 @@ namespace Hesabate_POS
         }
         private void btn_toKitchen_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                selectedReceiptInvoice.btn_toKitchen_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
         }
         private void btn_pending_Click(object sender, RoutedEventArgs e)
         {
