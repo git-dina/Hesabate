@@ -489,6 +489,7 @@ namespace Hesabate_POS.View.receipts
                 var external = new external(bmMain, invoiceWindow);
                 external.AmmarPrint(url);
 
+                //bmMain.Dispose();
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -538,29 +539,6 @@ namespace Hesabate_POS.View.receipts
                         }
                         Window.GetWindow(this).Opacity = 1;
                        
-
-                        //wd_customizeKeyboard wd = new wd_customizeKeyboard();
-                        //wd.title = Translate.getResource("542");//invoice number
-                        //wd.ShowDialog();
-                        //if (wd.isOk)
-                        //{
-                        //    HelpClass.StartAwait(grid_main);
-                        //    invoice.id = wd.outputValue.ToString();
-                        //    try
-                        //    {
-                        //        invoice = await _invoiceService.GetInvoiceInfo("2", invoice.id);
-                        //        invoice.invType = w.returnType;
-                        //        invoice.id = AppSettings.nextBillId;
-                        //        displayInvoice(invoice);
-                        //        HelpClass.EndAwait(grid_main);
-                        //    }
-                        //    catch
-                        //    {
-                        //        clearInvoice();
-                        //        HelpClass.EndAwait(grid_main);
-
-                        //    }
-                        //}
                     }
                     else if (w.returnType == "2")//replace
                     {
@@ -2290,7 +2268,35 @@ namespace Hesabate_POS.View.receipts
         #endregion
         #region grid2_1
 
+        private async void btn_tables_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
 
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_chromiumWebBrowser tablesWindow = new wd_chromiumWebBrowser();
+                tablesWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                tablesWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+
+                tablesWindow.title = Translate.getResource("167");
+                tablesWindow.url = "/search/pos_search/desktop_search/p5_i.php" + "?token=" + AppSettings.token;
+
+                tablesWindow.ShowDialog();
+                if (tablesWindow.isOk)
+                {
+                    invoice.table_id = tablesWindow.returnedValue;
+                }
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         private void btn_using_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -3827,7 +3833,6 @@ namespace Hesabate_POS.View.receipts
 
                 invoiceWindow.title = Translate.getResource("318");
                 invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
-                //custodyWindow.url = "https://extra.hesabate.com/search/pos_search/desktop_search/_1api.php" + "?token=" + AppSettings.token;
                 invoiceWindow.ShowDialog();
                 if (invoiceWindow.isOk)
                 {
@@ -4166,14 +4171,32 @@ namespace Hesabate_POS.View.receipts
         {
             try
             {
-                    HelpClass.StartAwait(grid_main);
-                    MessageBox.Show("you click btn_toKitchen_Click");
-                    HelpClass.EndAwait(grid_main);
+                HelpClass.StartAwait(grid_main);
+                var printerName = "EPSON L6170 Series";
+                //printerName = "Snagit 2020";
+
+                // var url = AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
+                var bmMain = new System.Windows.Forms.WebBrowser();
+               wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+                var external = new external(bmMain, invoiceWindow, printerName);
+
+                var  url = AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
+
+
+                //external.PrintToPrinter(url);
+                external.PrintToPrinter2(url);
+                //bmMain.Navigate(url);
+              // WebBrowserToImagePrinter printer = new WebBrowserToImagePrinter(null,printerName);
+              //  printer.PrintWebBrowserContent(url);
+                //printer.PrintWebPage();
+                //bmMain.Dispose();
+                HelpClass.EndAwait(grid_main);
             }
-            catch
+            catch (Exception ex)
             {
                 Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
 
         }
@@ -4236,8 +4259,9 @@ namespace Hesabate_POS.View.receipts
             }
         }
 
+
         #endregion
 
-        
+       
     }
 }
