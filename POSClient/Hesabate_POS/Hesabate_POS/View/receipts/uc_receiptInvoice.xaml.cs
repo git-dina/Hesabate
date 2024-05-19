@@ -7,6 +7,8 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -264,6 +266,16 @@ namespace Hesabate_POS.View.receipts
             switchGrid1_1("mainItemsCatalog");
             //txt_Service.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.service);
             //txt_Tax.Text = HelpClass.DecTostring(GeneralInfoService.GeneralInfo.MainOp.vat);
+            btn_tables.Background = Application.Current.Resources["White"] as SolidColorBrush;
+            path_tables.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            btn_using.Background = Application.Current.Resources["White"] as SolidColorBrush;
+            path_using.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            btn_external.Background = Application.Current.Resources["White"] as SolidColorBrush;
+            path_external.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
+            btn_takeAway.Background = Application.Current.Resources["White"] as SolidColorBrush;
+            path_takeAway.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush; 
+            btn_customer.Background = Application.Current.Resources["White"] as SolidColorBrush;
+            path_customer.Fill = Application.Current.Resources["MainColor"] as SolidColorBrush;
             this.DataContext = invoice;
         }
         private void btn_home_Click(object sender, RoutedEventArgs e)
@@ -2285,7 +2297,15 @@ namespace Hesabate_POS.View.receipts
                 tablesWindow.ShowDialog();
                 if (tablesWindow.isOk)
                 {
+                    var res = await _invoiceService.GetInvoiceInfo("2", "0","1", tablesWindow.returnedValue);
+                    if (res.result != null && res.result != "-1")
+                        displayInvoice(res);
+                    else
                     invoice.table_id = tablesWindow.returnedValue;
+
+
+                    btn_tables.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    path_tables.Fill = Application.Current.Resources["White"] as SolidColorBrush;
                 }
                 Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
@@ -4166,34 +4186,63 @@ namespace Hesabate_POS.View.receipts
 
         #region Button From mainWindow
 
+        private void printToPrinter(string url,string printerName)
+        {
+            var bmMain = new System.Windows.Forms.WebBrowser();
+            bmMain.Width = 750;
+            bmMain.Height = 1000;
+            wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
+
+            var external = new external(bmMain, invoiceWindow, printerName);
+
+           // external.PrintToPrinter(url);
+            external.PrintToPrinter2(url);
+        }
+       
 
         public async void btn_toKitchen_Click(object sender, RoutedEventArgs e)
         {
+            PrinterSettings ps = new PrinterSettings();
+            var defaultPrinter = ps.PrinterName;
+            defaultPrinter = Printers.GetDefaultPrinter();
             try
             {
                 HelpClass.StartAwait(grid_main);
-                var printerName = "EPSON L6170 Series";
-                //printerName = "Snagit 2020";
-
-                // var url = AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
-                var bmMain = new System.Windows.Forms.WebBrowser();
-               wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                var external = new external(bmMain, invoiceWindow, printerName);
-
-                var  url = AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
+                //string[] printerName = { "EPSON L6170 Series" };
+                string[] printerName = { "Microsoft Print to PDF", "Snagit 2020" };
+                Dictionary<int,System.Windows.Forms.WebBrowser> printDic = new Dictionary<int,System.Windows.Forms.WebBrowser>();
+                 printerName = new string[] { "Snagit 2020", "Snagit 2020" };
 
 
-                //external.PrintToPrinter(url);
-                external.PrintToPrinter2(url);
+                   // Thread t1 = new Thread(async () =>
+                    //{
+                    for (int i = 0; i < printerName.Count(); i++)
+                    {
+
+                    var url = AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
+
+                    printToPrinter(url, printerName[i]);
+              
+                     }
+
+                // });
+                // t1.Start();
+               // Printers.MonitorPrinterJobs(defaultPrinter);
+                //Task.Delay(1000);
+               //Printers.SetDefaultPrinter(defaultPrinter);
+
+                //external2.PrintToPrinter2(url);
                 //bmMain.Navigate(url);
-              // WebBrowserToImagePrinter printer = new WebBrowserToImagePrinter(null,printerName);
-              //  printer.PrintWebBrowserContent(url);
+                // WebBrowserToImagePrinter printer = new WebBrowserToImagePrinter(null,printerName);
+                //  printer.PrintWebBrowserContent(url);
                 //printer.PrintWebPage();
                 //bmMain.Dispose();
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
             {
+                Printers.SetDefaultPrinter(defaultPrinter);
+
                 Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);

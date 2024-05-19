@@ -306,7 +306,7 @@ namespace Hesabate_POS.Classes
 
         }
 
-        public async Task<InvoiceModel> GetInvoiceInfo(string type,string invoiceId,string requestVar = "0")
+        public async Task<InvoiceModel> GetInvoiceInfo(string type,string invoiceId,string requestVar = "0",string tableId="0")
         {
             InvoiceModel invoice = new InvoiceModel();
             var request = new HttpRequestMessage(HttpMethod.Post, AppSettings.APIUri + "/POS/p5api2.php");
@@ -316,7 +316,7 @@ namespace Hesabate_POS.Classes
             content.Add(new StringContent("14"), "op");
             content.Add(new StringContent(type), "type"); //0: next invoice, 1: previouse invoice, 2:current invoice
             content.Add(new StringContent(invoiceId), "id");
-            content.Add(new StringContent("0"), "table_id");
+            content.Add(new StringContent(tableId), "table_id");
             content.Add(new StringContent(requestVar), "request");
             content.Add(new StringContent("1"), "priceid");
             request.Content = content;

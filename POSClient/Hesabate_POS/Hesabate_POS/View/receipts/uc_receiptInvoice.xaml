@@ -1268,7 +1268,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                                    <Path x:Name="path_tables" Fill="{StaticResource MainColor}"  Stretch="Fill"  
              HorizontalAlignment="Center" Grid.Column="0"  
         VerticalAlignment="Center" Width="20" Height="20"
              Data="{StaticResource table}"
@@ -1365,7 +1365,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Path Fill="{StaticResource MainColor}"  Stretch="Fill"  
+                                    <Path x:Name="path_customer" Fill="{StaticResource MainColor}"  Stretch="Fill"  
                               HorizontalAlignment="Center" Grid.Column="0"  
                          VerticalAlignment="Center" Width="20" Height="20"
                               Data="{StaticResource customer}"
