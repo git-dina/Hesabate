@@ -1,4 +1,6 @@
-﻿using Hesabate_POS.Classes.ApiClasses;
+﻿using CefSharp.DevTools.Network;
+using Hesabate_POS.Classes.ApiClasses;
+using Hesabate_POS.Properties;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -148,7 +150,6 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.invType), "invType");
                 content.Add(new StringContent(invoice.id), "id");
                 content.Add(new StringContent(invoice.return_billid), "return_billid");//رقم فاتورة المردودات في حال الاستبدال
-               // content.Add(new StringContent(invoice.pending), "pending");
 
                 request.Content = content;
             HttpResponseMessage response = new HttpResponseMessage(); 
@@ -330,6 +331,16 @@ namespace Hesabate_POS.Classes
             }
 
             return invoice;
+        }
+
+        public List<PrintObject> GetPrintObjects()
+        {
+
+            string jsonObject = "[{\"setting\":{\"width\":\"240\",\"font\":\"Arial\",\"fontSize\":\"14\",\"leftMargin\":\"10\",\"topMargin\":\"10\",\"printerName\":\"Snagit 2020\"},\"inviceInfo\":[\"table 1رقم الطاولة: \",\"0569001411رقم الهاتف: \"],\"tableHeader\":[{\"title\":\"رقم الصنف\"},{\"title\":\" اسم الصنف\"},{\"title\":\"الكمية\"},{\"title\":\"الاضافات\"},{\"title\":\"المحذوفات\"}],\"tableData\":[[\"100\",\" شاي\",\"2\",\"  سكر زيادة\",\" \"],[\"100\",\" قهوة\",\"2\",\"   \",\" بلا سكر\"]]},{\"setting\":{\"width\":\"240\",\"printerName\":\"Snagit 2020\"},\"inviceInfo\":[\"table 1رقم الطاولة: \",\"0569001411رقم الهاتف: \"],\"tableHeader\":[{\"title\":\"رقم الصنف\"},{\"title\":\" اسم الصنف\"},{\"title\":\"الكمية\"},{\"title\":\"الاضافات\"},{\"title\":\"المحذوفات\"}],\"tableData\":[[\"100\",\" شاي\",\"2\",\"  سكر زيادة\",\" \"],[\"100\",\" قهوة\",\"2\",\"   \",\" بلا سكر\"]]}]";
+
+
+            var printObject = JsonConvert.DeserializeObject<List<PrintObject>>(jsonObject, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }); 
+            return printObject;
         }
     }
 }

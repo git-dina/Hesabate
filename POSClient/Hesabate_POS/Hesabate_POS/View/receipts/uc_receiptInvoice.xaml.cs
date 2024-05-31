@@ -67,6 +67,7 @@ namespace Hesabate_POS.View.receipts
         public static List<string> requiredControlList;
         ItemService _itemService = new ItemService();
         InvoiceService _invoiceService = new InvoiceService();
+        PrintObject _printService = new PrintObject();
         List<CategoryModel> items = new List<CategoryModel>();
         InvoiceModel invoice = new InvoiceModel();
         CategoryModel _categoryModel = new CategoryModel();
@@ -410,23 +411,20 @@ namespace Hesabate_POS.View.receipts
                     //    canSave = true;
 
 
-                    //if (canSave)
+                    //save pending invoice
+                    if (invoice.is_do == "3")
                     {
-                        //save pending invoice
-                        if (invoice.is_do == "3")
-                        {
-                            invoice.is_do = "0";
-                            invoice.request = invoice.id;
-                        }
-
-                        invoice.note = tb_Notes1.Text;
-                        invoice.note2 = tb_Notes2.Text;
-                        //save invoice
-
-                        var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
-                        // clearInvoice(res.next_billid);
-                        clearInvoice();
+                        invoice.is_do = "0";
+                        invoice.request = invoice.id;
                     }
+
+                    invoice.note = tb_Notes1.Text;
+                    invoice.note2 = tb_Notes2.Text;
+                    //save invoice
+
+                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
+                    clearInvoice();
+                 
                 }
                 else
                 {
@@ -4186,69 +4184,53 @@ namespace Hesabate_POS.View.receipts
 
         #region Button From mainWindow
 
-        private void printToPrinter(string url,string printerName)
-        {
-            var bmMain = new System.Windows.Forms.WebBrowser();
-            bmMain.Width = 750;
-            bmMain.Height = 1000;
-            wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-
-            var external = new external(bmMain, invoiceWindow, printerName);
-
-           // external.PrintToPrinter(url);
-            external.PrintToPrinter2(url);
-        }
-       
 
         public async void btn_toKitchen_Click(object sender, RoutedEventArgs e)
         {
-            PrinterSettings ps = new PrinterSettings();
-            var defaultPrinter = ps.PrinterName;
-            defaultPrinter = Printers.GetDefaultPrinter();
             try
             {
                 HelpClass.StartAwait(grid_main);
-                //string[] printerName = { "EPSON L6170 Series" };
-                string[] printerName = { "Microsoft Print to PDF", "Snagit 2020" };
-                Dictionary<int,System.Windows.Forms.WebBrowser> printDic = new Dictionary<int,System.Windows.Forms.WebBrowser>();
-                 printerName = new string[] { "Snagit 2020", "Snagit 2020" };
-
-
-                   // Thread t1 = new Thread(async () =>
-                    //{
-                    for (int i = 0; i < printerName.Count(); i++)
+                if (invoiceDetailsList.Count > 0)
+                {
+                    //save pending invoice
+                    if (invoice.is_do == "3")
                     {
+                        invoice.is_do = "0";
+                        invoice.request = invoice.id;
+                    }
 
-                    var url = AppSettings.APIUri + "/print/p5_p.php?token=" + AppSettings.token + "&handid=" + invoice.id;
+                    invoice.note = tb_Notes1.Text;
+                    invoice.note2 = tb_Notes2.Text;
+                    //save invoice
 
-                    printToPrinter(url, printerName[i]);
-              
-                     }
+                    var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
 
-                // });
-                // t1.Start();
-               // Printers.MonitorPrinterJobs(defaultPrinter);
-                //Task.Delay(1000);
-               //Printers.SetDefaultPrinter(defaultPrinter);
 
-                //external2.PrintToPrinter2(url);
-                //bmMain.Navigate(url);
-                // WebBrowserToImagePrinter printer = new WebBrowserToImagePrinter(null,printerName);
-                //  printer.PrintWebBrowserContent(url);
-                //printer.PrintWebPage();
-                //bmMain.Dispose();
+                    Thread t1 = new Thread(async () =>
+                   {
+                       await _printService.PrintToPrinter(res.id);
+                       //await _printService.PrintToPrinter("23");
+
+                   });
+                    t1.Start();
+                    
+                    clearInvoice();
+                }
+                else
+                {
+                    wd_messageBoxWithIcon messageWin = new wd_messageBoxWithIcon();
+                    messageWin.contentText1 = "لا يمكن حفظ فاتورة فارغة";
+                    messageWin.ShowDialog();
+                }
                 HelpClass.EndAwait(grid_main);
             }
-            catch (Exception ex)
+            catch
             {
-                Printers.SetDefaultPrinter(defaultPrinter);
-
                 Window.GetWindow(this).Opacity = 1;
                 HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-
+            }          
         }
+
         public async void btn_pending_Click(object sender, RoutedEventArgs e)
         {
             try
