@@ -4208,7 +4208,7 @@ namespace Hesabate_POS.View.receipts
 
                     Thread t1 = new Thread(async () =>
                    {
-                       await _printService.PrintToPrinter(res.id);
+                       await _printService.PrintToPrinter(invoice.id);
                        //await _printService.PrintToPrinter("23");
 
                    });
