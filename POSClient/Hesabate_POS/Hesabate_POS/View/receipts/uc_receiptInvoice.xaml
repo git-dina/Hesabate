@@ -1798,7 +1798,19 @@ Margin="5"  CornerRadius="0,0,0,0"
                              />
                         </Grid>
                     </Border>
-                    <Border Grid.Row="8" Grid.Column="1" CornerRadius="0" Margin="5,5,10,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
+                    <Button  x:Name="btn_invoiceNote" 
+                               Margin="5" Grid.Column="1"
+                               materialDesign:ButtonAssist.CornerRadius="7"
+                              Background="{StaticResource MainColor}"
+                               BorderBrush="{StaticResource MainColor}"
+                            BorderThickness="1" Padding="0"  
+                             Click="btn_invoiceNote_Click">
+                                                    <TextBlock Text="ملاحظات" 
+                              Foreground="{StaticResource White}" 
+                              x:Name="txt_InvoiceNote"
+                                  Margin="5" />
+                    </Button>
+                    <!--<Border Grid.Row="8" Grid.Column="1" CornerRadius="0" Margin="5,5,10,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                         <Grid   >
                             <TextBox  x:Name="tb_Notes2" Text="{Binding note2, Mode=TwoWay}"
                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -1811,7 +1823,7 @@ Margin="5"  CornerRadius="0,0,0,0"
                             Grid.Column="1"  TextWrapping="Wrap"
                              />
                         </Grid>
-                    </Border>
+                    </Border>-->
 
                 </Grid>
             </Border>

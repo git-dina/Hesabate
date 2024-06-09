@@ -139,7 +139,7 @@ namespace Hesabate_POS.View.receipts
             //txt_totalTitle.Text = Translate.getResource("727");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, Translate.getResource("2143"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes1, Translate.getResource("411"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_Notes2, Translate.getResource("411"));
 
             btn_save.Content = Translate.getResource("2104");
             btn_newDraft.Content = Translate.getResource("8");
@@ -3815,7 +3815,25 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+        private void btn_invoiceNote_Click(object sender, RoutedEventArgs e)
+        {
 
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                
+                wd_invoiceNote wd = new wd_invoiceNote();
+                wd.note2 = invoice.note2;
+                wd.ShowDialog();
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         private async void btn_previous_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -4289,6 +4307,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
 
 
         #endregion
