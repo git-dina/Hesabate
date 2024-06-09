@@ -419,7 +419,7 @@ namespace Hesabate_POS.View.receipts
                     }
 
                     invoice.note = tb_Notes1.Text;
-                    invoice.note2 = tb_Notes2.Text;
+                   // invoice.note2 = tb_Notes2.Text;
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
@@ -473,7 +473,7 @@ namespace Hesabate_POS.View.receipts
         private async Task SaveDraft()
         {
             invoice.note = tb_Notes1.Text;
-            invoice.note2 = tb_Notes2.Text;
+            //invoice.note2 = tb_Notes2.Text;
 
             var res = await _invoiceService.ArchiveInvoice(invoiceDetailsList, invoice);
         }
@@ -2369,7 +2369,7 @@ namespace Hesabate_POS.View.receipts
                     if (w.externalType == "2")
                         invoice.is_do = "2";
                     invoice.note = tb_Notes1.Text;
-                    invoice.note2 = tb_Notes2.Text;
+                   // invoice.note2 = tb_Notes2.Text;
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
@@ -4200,7 +4200,7 @@ namespace Hesabate_POS.View.receipts
                     }
 
                     invoice.note = tb_Notes1.Text;
-                    invoice.note2 = tb_Notes2.Text;
+                    //invoice.note2 = tb_Notes2.Text;
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
@@ -4242,7 +4242,7 @@ namespace Hesabate_POS.View.receipts
                         invoice.is_do = "2";
 
                     invoice.note = tb_Notes1.Text;
-                    invoice.note2 = tb_Notes2.Text;
+                    //invoice.note2 = tb_Notes2.Text;
                     //save invoice
 
                     var res = await _invoiceService.SaveInvoice(invoiceDetailsList, invoice);
