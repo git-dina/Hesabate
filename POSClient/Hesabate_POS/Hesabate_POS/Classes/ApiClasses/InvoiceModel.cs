@@ -55,7 +55,7 @@ namespace Hesabate_POS.Classes.ApiClasses
         public string bill_status { get; set; } = "1";//invoice status
         public string paid { get; set; } = "0";//payment type(0 not paid, 1 paid)
         public string note { get; set; }
-        public string note2 { get; set; }
+        public InvoiceNote note2 { get; set; }
         public string external { get; set; } = "0"; //is invoice external {0: normal, 1: delivery, 2: Pending delivery}
         public decimal service { get; set; }//service amount ??value or percentage
         public string emp { get; set; } = "0"; //employer id
@@ -132,5 +132,13 @@ namespace Hesabate_POS.Classes.ApiClasses
         public int group_count { get; set; }
 
         public List<GroupItemModel> group_items { get; set; } = new List<GroupItemModel>();
+    }
+
+    public class InvoiceNote
+    {
+        public string name { get; set; }
+        public string mobile { get; set; }
+        public string address { get; set; }
+        public string notes { get; set; }
     }
 }
