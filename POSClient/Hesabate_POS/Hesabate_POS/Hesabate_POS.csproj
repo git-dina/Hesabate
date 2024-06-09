@@ -251,6 +251,9 @@
     <Compile Include="View\windows\wd_getUserCardData.xaml.cs">
       <DependentUpon>wd_getUserCardData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_invoiceNote.xaml.cs">
+      <DependentUpon>wd_invoiceNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_invoiceReplaceTotal.xaml.cs">
       <DependentUpon>wd_invoiceReplaceTotal.xaml</DependentUpon>
     </Compile>
@@ -287,6 +290,9 @@
     <Compile Include="View\windows\wd_serverName.xaml.cs">
       <DependentUpon>wd_serverName.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_settings.xaml.cs">
+      <DependentUpon>wd_settings.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -320,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_getUserCardData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_invoiceNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -368,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\windows\wd_serverName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\windows\wd_settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
