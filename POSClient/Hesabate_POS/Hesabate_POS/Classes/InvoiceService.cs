@@ -133,7 +133,9 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.bill_status), "bill_status");
                 content.Add(new StringContent(invoice.paid), "paid");//0,1
                 content.Add(new StringContent(invoice.note), "note");
-                content.Add(new StringContent(invoice.note2), "note2");
+
+            var noteContent = JsonConvert.SerializeObject(invoice.note2);
+            content.Add(new StringContent(noteContent), "note2");
                 content.Add(new StringContent(invoice.over_discount_percentage.ToString()), "over_discount_percentage");
                 content.Add(new StringContent(invoice.external), "external");//0,1
                 content.Add(new StringContent(invoice.service.ToString()), "service");
@@ -272,7 +274,10 @@ namespace Hesabate_POS.Classes
                 content.Add(new StringContent(invoice.bill_status), "bill_status");
                 content.Add(new StringContent(invoice.paid), "paid");//0,1
                 content.Add(new StringContent(invoice.note), "note");
-                content.Add(new StringContent(invoice.note2), "note2");
+
+                var noteContent = JsonConvert.SerializeObject(invoice.note2);
+                content.Add(new StringContent(noteContent), "note2");
+
                 content.Add(new StringContent(invoice.over_discount_percentage.ToString()), "over_discount_percentage");
                 content.Add(new StringContent(invoice.external), "external");//0,1,2
                 content.Add(new StringContent(invoice.service.ToString()), "service");
