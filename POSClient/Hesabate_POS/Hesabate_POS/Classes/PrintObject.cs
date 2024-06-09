@@ -191,7 +191,7 @@ namespace Hesabate_POS.Classes
         public int width { get; set; }
         public string printerName { get; set; }
         public string font { get; set; } = "Arial";
-        public int fontSize { get; set; } = 14;
+        public int fontSize { get; set; } = 10;
         public int leftMargin { get; set; } = 14;
         public int topMargin { get; set; } = 14;
     }
