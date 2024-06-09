@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         Title="Hesabate POS" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        d:DesignHeight="768" d:DesignWidth="1024"
+        d:DesignHeight="1000" d:DesignWidth="1024"
         WindowStartupLocation="CenterScreen"  WindowStyle="None"
         WindowState="Maximized"  Loaded="Window_Loaded" Unloaded="Window_Unloaded">
     <Window.Resources>
