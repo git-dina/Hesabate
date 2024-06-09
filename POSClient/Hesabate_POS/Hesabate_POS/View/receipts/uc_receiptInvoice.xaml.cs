@@ -2295,7 +2295,7 @@ namespace Hesabate_POS.View.receipts
                 tablesWindow.ShowDialog();
                 if (tablesWindow.isOk)
                 {
-                    var res = await _invoiceService.GetInvoiceInfo("2", "0","1", tablesWindow.returnedValue);
+                    var res = await _invoiceService.GetInvoiceInfo("2", "0","0", tablesWindow.returnedValue);
                     if (res.result != null && res.result != "-1")
                         displayInvoice(res);
                     else
