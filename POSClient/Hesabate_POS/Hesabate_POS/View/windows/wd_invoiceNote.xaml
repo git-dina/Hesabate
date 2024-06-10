@@ -9,7 +9,7 @@
          WindowStyle="None" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" Margin="0"
          Height="300" Width="300" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
-        Loaded="Window_Loaded" Closing="Window_Closing" >
+        Loaded="Window_Loaded"  >
     <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -55,7 +55,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                     <Grid   >
-                        <TextBox  x:Name="tb_name" Text="{Binding name, Mode=TwoWay}"
+                        <TextBox  x:Name="tb_name" Text=""
                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                Padding="10,0,5,0"
               materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
@@ -69,7 +69,7 @@
                 </Border>
                 <Border Grid.Row="1" CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                     <Grid   >
-                        <TextBox  x:Name="tb_mobile" Text="{Binding mobile, Mode=TwoWay}"
+                        <TextBox  x:Name="tb_mobile" Text=""
       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
       Padding="10,0,5,0"
      materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
@@ -83,7 +83,7 @@ Grid.Column="1"  TextWrapping="Wrap"
                 </Border>
                 <Border Grid.Row="2" CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                     <Grid   >
-                        <TextBox  x:Name="tb_address" Text="{Binding address, Mode=TwoWay}"
+                        <TextBox  x:Name="tb_address" Text=""
       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
       Padding="10,0,5,0"
      materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
@@ -97,7 +97,7 @@ Grid.Column="1"  TextWrapping="Wrap"
                 </Border>
                 <Border Grid.Row="3" CornerRadius="0" Margin="10,5,5,5"   BorderThickness="0 0 0 1" BorderBrush="{StaticResource Grey}">
                     <Grid   >
-                        <TextBox  x:Name="tb_notes" Text="{Binding notes, Mode=TwoWay}"
+                        <TextBox  x:Name="tb_notes" Text=""
       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
       Padding="10,0,5,0"
      materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"

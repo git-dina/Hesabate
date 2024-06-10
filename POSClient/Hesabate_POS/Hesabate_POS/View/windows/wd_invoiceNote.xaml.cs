@@ -62,10 +62,16 @@ namespace Hesabate_POS.View.windows
 
                 translate();
                 #endregion
+                if (note2 == null)
+                    note2 = new InvoiceNote();
 
+                //if (note2 != null && string.IsNullOrWhiteSpace( note2.name))
                 tb_name.Text = note2.name;
+                //if(note2 != null && string.IsNullOrWhiteSpace( note2.mobile))
                 tb_mobile.Text = note2.mobile;
+               // if(note2 != null && string.IsNullOrWhiteSpace( note2.address))
                 tb_address.Text = note2.address;
+                //if(note2 != null && string.IsNullOrWhiteSpace( note2.notes))
                 tb_notes.Text = note2.notes;
 
 
@@ -102,17 +108,7 @@ namespace Hesabate_POS.View.windows
         }
 
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            try
-            {
-                e.Cancel = true;
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
+     
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -213,9 +209,9 @@ namespace Hesabate_POS.View.windows
                 isOk = true;
                 this.Close();
             }
-            catch
+            catch (Exception ex)
             {
-
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
     }

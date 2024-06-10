@@ -3825,6 +3825,10 @@ namespace Hesabate_POS.View.receipts
                 wd_invoiceNote wd = new wd_invoiceNote();
                 wd.note2 = invoice.note2;
                 wd.ShowDialog();
+                if(wd.isOk)
+                {
+                    invoice.note2 = wd.note2;
+                }
 
                 HelpClass.EndAwait(grid_main);
             }
