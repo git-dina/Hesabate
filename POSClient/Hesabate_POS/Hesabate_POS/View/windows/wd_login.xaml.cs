@@ -73,6 +73,7 @@ namespace Hesabate_POS.View.windows
                 #region read app settings
                 AppSettings.invoiceDetailsType = Properties.Settings.Default.invoiceDetailsType;
                 AppSettings.APIUri = Properties.Settings.Default.APIUri;
+                AppSettings.timer = Properties.Settings.Default.timer;
                 if (AppSettings.APIUri.Equals(""))//display server name
                 {
                     Window.GetWindow(this).Opacity = 0.0;
