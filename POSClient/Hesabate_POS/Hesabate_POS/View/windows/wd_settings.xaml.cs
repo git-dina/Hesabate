@@ -43,7 +43,7 @@ namespace Hesabate_POS.View.windows
             try
             {
                 HelpClass.StartAwait(grid_main);
-                requiredControlList = new List<string> { "", };
+                requiredControlList = new List<string> { "timer", };
 
                 #region translate
 
@@ -61,8 +61,8 @@ namespace Hesabate_POS.View.windows
                 translate();
                 #endregion
 
-                
 
+                tb_timer.Text = AppSettings.timer.ToString();
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -79,7 +79,8 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            //txt_title.Text = Translate.getResource("104");
+            txt_title.Text = Translate.getResource("2240");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_timer, "عداد الطباعة");
             btn_save.Content = Translate.getResource("27");
         }
 
@@ -200,10 +201,13 @@ namespace Hesabate_POS.View.windows
         {
             try
             {
-              
-
-                isOk = true;
-                this.Close();
+                if (HelpClass.validate(requiredControlList, this))
+                {
+                    Properties.Settings.Default.timer = int.Parse( tb_timer.Text);
+                    Properties.Settings.Default.Save();
+                    isOk = true;
+                    this.Close();
+                }
             }
             catch
             {
