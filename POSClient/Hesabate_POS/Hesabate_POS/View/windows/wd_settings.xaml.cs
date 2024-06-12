@@ -97,17 +97,7 @@ namespace Hesabate_POS.View.windows
         }
 
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            try
-            {
-                e.Cancel = true;
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
+       
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -205,9 +195,9 @@ namespace Hesabate_POS.View.windows
                 isOk = true;
                 this.Close();
             }
-            catch
+            catch (Exception ex)
             {
-
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
     }
