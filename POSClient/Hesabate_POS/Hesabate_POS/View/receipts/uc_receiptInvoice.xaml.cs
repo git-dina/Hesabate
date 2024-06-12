@@ -377,40 +377,6 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.StartAwait(grid_main);
                 if (invoiceDetailsList.Count > 0)
                 {
-                    //bool canSave = false;
-
-                    //if (invoice.invType == "2") //replace
-                    //{
-                    //    Window.GetWindow(this).Opacity = 0.2;
-
-                    //    //show window to select sales invoice to replace with return
-                    //    wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                    //    invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
-                    //    invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
-                    //    invoiceWindow.title = Translate.getResource("133");
-                    //    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token + "&backbill=1";
-                    //    invoiceWindow.ShowDialog();
-                    //    if (invoiceWindow.isOk)
-                    //    {
-                    //        canSave = true;
-                    //        invoice.return_billid = invoiceWindow.returnedValue;
-                    //        //get sales invoice info
-                    //        var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                    //        wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
-                    //        w.salesInvTotal = invoice.total_after_discount;
-                    //        w.returnInvTotal = salesInvoice.total_after_discount;
-                    //        w.ShowDialog();
-
-
-                    //    }
-
-                    //    Window.GetWindow(this).Opacity = 1;
-
-                    //}
-                    //else
-                    //    canSave = true;
-
-
                     //save pending invoice
                     if (invoice.is_do == "3")
                     {
