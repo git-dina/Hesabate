@@ -61,10 +61,16 @@
               materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                materialDesign:HintAssist.Hint="timer..."  
                Foreground="{StaticResource textColor}"
-              Margin="0,0"  BorderThickness="0"
+              Margin="0,0"  BorderThickness="0" Tag="int" PreviewTextInput="Number_PreviewTextInput"
+                                  LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"
                    Height="40"
          Grid.Column="1"  TextWrapping="Wrap"
           />
+                        <Path Fill="{StaticResource Red}"   Stretch="Fill" Margin="5,5,15,5"
+     HorizontalAlignment="Right" Visibility="Collapsed"    x:Name="p_error_timer"
+VerticalAlignment="Center" Width="15"  Height="15"
+    Data="{StaticResource infoCircle}">
+                        </Path>
                     </Grid>
                 </Border>
                 

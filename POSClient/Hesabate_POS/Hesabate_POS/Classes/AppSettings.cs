@@ -26,6 +26,7 @@ namespace Hesabate_POS.Classes
        
         public static string APIUri ;
         public static bool menuState = false;
+        public static int timer;
 
         #region folders Paths
         public const string TMPFolder = "Thumb";

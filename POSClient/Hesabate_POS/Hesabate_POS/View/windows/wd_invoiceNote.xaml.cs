@@ -90,7 +90,12 @@ namespace Hesabate_POS.View.windows
         private void translate()
         {
 
-            //txt_title.Text = Translate.getResource("104");
+            txt_title.Text = Translate.getResource("411");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, Translate.getResource("424"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, Translate.getResource("408"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_address, Translate.getResource("407")); 
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_notes, Translate.getResource("411")); 
+
             btn_save.Content = Translate.getResource("27");
         }
 

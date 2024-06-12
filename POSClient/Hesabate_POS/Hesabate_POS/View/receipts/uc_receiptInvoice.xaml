@@ -1353,10 +1353,9 @@ Margin="5"  CornerRadius="0,0,0,0"
                            
                             <Button  Grid.Row="1"
                                  Margin="5"
-                         
-                 x:Name="btn_customer"  materialDesign:ButtonAssist.CornerRadius="7"
-                    Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
-                              BorderThickness="1"
+                                x:Name="btn_customer"  materialDesign:ButtonAssist.CornerRadius="7"
+                                Background="{StaticResource White}" BorderBrush="{StaticResource MainColor}"
+                              BorderThickness="1" Click="btn_customer_Click"
                     Padding="0" 
                         >
                                 <Grid 

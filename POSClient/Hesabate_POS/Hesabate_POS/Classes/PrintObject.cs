@@ -131,9 +131,9 @@ namespace Hesabate_POS.Classes
                 {
                     cellWidth += (int)ev.Graphics.MeasureString(headerData.title.Trim(), printFont, (int)midMargin).Width + 30;
                     //ev.Graphics.DrawString(headerData.title.Trim(), printFont, System.Drawing.Brushes.Black, righMargin - cellWidth, yPos, cellformat);
-
-                     var titleHeight1= ev.Graphics.MeasureString(headerData.title.Trim(), printFont, headerData.width, StringFormat.GenericDefault).Height;
-                    var rect = new RectangleF(righMargin - cellWidth, yPos, headerData.width, yPos+ titleHeight);
+                    int titleWidth = (int)(headerData.width * width / 100);
+                     var titleHeight1= ev.Graphics.MeasureString(headerData.title.Trim(), printFont, titleWidth, StringFormat.GenericDefault).Height;
+                    var rect = new RectangleF(righMargin - cellWidth, yPos, titleWidth, yPos+ titleHeight);
                     ev.Graphics.DrawString(headerData.title.Trim(), printFont, System.Drawing.Brushes.Black,rect);
 
                     headerData.xPoint = cellWidth;

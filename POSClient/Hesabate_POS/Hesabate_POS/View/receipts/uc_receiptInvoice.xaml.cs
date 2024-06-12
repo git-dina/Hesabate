@@ -249,8 +249,6 @@ namespace Hesabate_POS.View.receipts
         private void clearInvoice()
         {
             invoice = new InvoiceModel();
-            //if (BillId != "")
-            //    invoice.id = BillId;
 
             invoice.id = AppSettings.nextBillId;
             invoiceDetailsList = new List<ItemModel>();
@@ -377,40 +375,6 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.StartAwait(grid_main);
                 if (invoiceDetailsList.Count > 0)
                 {
-                    //bool canSave = false;
-
-                    //if (invoice.invType == "2") //replace
-                    //{
-                    //    Window.GetWindow(this).Opacity = 0.2;
-
-                    //    //show window to select sales invoice to replace with return
-                    //    wd_chromiumWebBrowser invoiceWindow = new wd_chromiumWebBrowser();
-                    //    invoiceWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
-                    //    invoiceWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
-                    //    invoiceWindow.title = Translate.getResource("133");
-                    //    invoiceWindow.url = "/search/pos_search/desktop_search/_1api.php?token=" + AppSettings.token + "&backbill=1";
-                    //    invoiceWindow.ShowDialog();
-                    //    if (invoiceWindow.isOk)
-                    //    {
-                    //        canSave = true;
-                    //        invoice.return_billid = invoiceWindow.returnedValue;
-                    //        //get sales invoice info
-                    //        var salesInvoice = await _invoiceService.GetInvoiceInfo("2", invoiceWindow.returnedValue);
-                    //        wd_invoiceReplaceTotal w = new wd_invoiceReplaceTotal();
-                    //        w.salesInvTotal = invoice.total_after_discount;
-                    //        w.returnInvTotal = salesInvoice.total_after_discount;
-                    //        w.ShowDialog();
-
-
-                    //    }
-
-                    //    Window.GetWindow(this).Opacity = 1;
-
-                    //}
-                    //else
-                    //    canSave = true;
-
-
                     //save pending invoice
                     if (invoice.is_do == "3")
                     {
@@ -2431,6 +2395,41 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
+        private async void btn_customer_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_chromiumWebBrowser tablesWindow = new wd_chromiumWebBrowser();
+                tablesWindow.Height = MainWindow.mainWindow.ActualHeight * 0.9;
+                tablesWindow.Width = MainWindow.mainWindow.ActualWidth * 0.9;
+
+                tablesWindow.title = Translate.getResource("167");
+                tablesWindow.url = "/search/pos_search/desktop_search/p5_i.php" + "?token=" + AppSettings.token;
+
+                tablesWindow.ShowDialog();
+                if (tablesWindow.isOk)
+                {
+                    var res = tablesWindow.returnedValue;
+                    //invoice.customer_id = tablesWindow.returnedValue;
+
+
+                    btn_customer.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                    path_customer.Fill = Application.Current.Resources["White"] as SolidColorBrush;
+                }
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                Window.GetWindow(this).Opacity = 1;
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+        }
         #endregion
 
         #region invoiceDetails
@@ -4311,6 +4310,7 @@ namespace Hesabate_POS.View.receipts
                 HelpClass.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
+
 
 
 
